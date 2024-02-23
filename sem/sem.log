@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.2.18)  22 FEB 2024 19:18
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.2.18)  23 FEB 2024 19:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -527,30 +527,30 @@ Package caption Info: End \AtBeginDocument code.
 *geometry* detected driver: dvips
 *geometry* verbose mode - [ preamble ] result:
 * driver: dvips
-* paper: <default>
+* paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
-* v-part:(T,H,B)=(85.35826pt, 674.33032pt, 85.35826pt)
-* \paperwidth=597.50787pt
-* \paperheight=845.04684pt
-* \textwidth=455.24411pt
-* \textheight=674.33032pt
-* \oddsidemargin=-1.1381pt
-* \evensidemargin=-1.1381pt
-* \topmargin=-22.60892pt
+* h-part:(L,W,R)=(59.27655pt, 478.95477pt, 59.27655pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=717.0044pt
+* \paperheight=1014.03809pt
+* \textwidth=478.95477pt
+* \textheight=702.78308pt
+* \oddsidemargin=-12.99344pt
+* \evensidemargin=-12.99344pt
+* \topmargin=-32.09216pt
 * \headheight=20.0pt
-* \headsep=15.69719pt
+* \headsep=10.95406pt
 * \topskip=12.76073pt
-* \footskip=28.45792pt
-* \marginparwidth=18.49374pt
+* \footskip=23.71478pt
+* \marginparwidth=9.24687pt
 * \marginparsep=18.49374pt
 * \columnsep=18.49374pt
 * \skip\footins=16.0pt plus 5.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
+* \hoffset=12.0588pt
+* \voffset=12.0588pt
+* \mag=1200
 * \@twocolumnfalse
 * \@twosidefalse
 * \@mparswitchfalse
@@ -598,41 +598,43 @@ LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 52.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 52.
-LaTeX Font Info:    Font shape `JT1/mc/m/it' in size <10> not available
-(Font)              Font shape `JT1/mc/m/n' tried instead on input line 53.
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 53.
-LaTeX Font Info:    Font shape `JY1/mc/m/it' in size <10> not available
-(Font)              Font shape `JY1/mc/m/n' tried instead on input line 53.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 53.
-LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 53.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 53.
+(Font)              scaled to size 11.53198pt on input line 53.
+LaTeX Font Info:    Font shape `JT1/mc/m/it' in size <10> not available
+(Font)              Font shape `JT1/mc/m/n' tried instead on input line 54.
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 54.
+LaTeX Font Info:    Font shape `JY1/mc/m/it' in size <10> not available
+(Font)              Font shape `JY1/mc/m/n' tried instead on input line 54.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 54.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 54.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 54.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 53.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 54.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 53.
+(Font)              scaled to size 9.60999pt on input line 54.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 54.
+(Font)              scaled to size 6.72699pt on input line 55.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 54.
+(Font)              scaled to size 4.805pt on input line 55.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 54.
+(Font)              scaled to size 6.72699pt on input line 55.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 4.805pt on input line 54.
+(Font)              scaled to size 4.805pt on input line 55.
  [1
 
 ]
 LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 126.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 127.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 126.
+(Font)              scaled to size 9.60999pt on input line 127.
 LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 126.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 127.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 126.
+(Font)              scaled to size 9.60999pt on input line 127.
  [2]
 
 Package caption Warning: Unused \captionsetup[figure] on input line 34.
@@ -644,12 +646,12 @@ See the caption package documentation for explanation.
 
 [3] (./sem.aux) ) 
 Here is how much of TeX's memory you used:
- 8321 strings out of 478741
- 130928 string characters out of 5860982
- 460878 words of memory out of 5000000
- 26598 multiletter control sequences out of 15000+600000
- 490044 words of font info for 123 fonts, out of 8000000 for 9000
+ 8322 strings out of 478741
+ 130943 string characters out of 5860982
+ 460904 words of memory out of 5000000
+ 26599 multiletter control sequences out of 15000+600000
+ 490540 words of font info for 125 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 55i,8n,63p,312b,298s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,8n,63p,312b,300s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sem.dvi (3 pages, 9288 bytes).
+Output written on sem.dvi (3 pages, 11088 bytes).

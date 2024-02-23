@@ -2,7 +2,7 @@
 %ctrl+click -> highlight line
 
 %\documentclass[titlepage]{jsarticle}
-\documentclass{jsarticle}
+\documentclass[12pt,a4paper]{jsarticle}
 %\documentclass[11pt,a4paper]{jsreport}
 
 \usepackage{algorithmic}
@@ -49,7 +49,8 @@
 \date{}
 \maketitle
 
-\section{Banach Space}
+\section{Preparation}
+\subsection{Banach Space}
 \begin{dfn}[線形空間の公理]
   空でない集合$X$が，係数体$\mathbb{K}$上の線形空間であるとは，任意の$u+v \in X$とスカラー$\alpha \in \mathbb{K}$に対して，加法$u+v \in X$とスカラー乗法$\alpha u \in X$が定義されていて，任意の$u,v,w \in X$とスカラー$\alpha, \beta \in \mathbb{K}$に対して次のことが成り立つことである．
   \begin{enumerate}
@@ -191,6 +192,29 @@
   を満たすとき，$M$は線形空間$X$の線形部分空間と呼ぶ．
 \end{dfn}
 
+\begin{dfn}[ノルム空間の開球]
+  $X$をノルム空間とする．$x\in X$とし，$r>0$を正実数とする．そのとき，集合
+  \begin{align*}
+    B_X(x,r):=\{y\in X \ | \ \|x-y\|_X<r\}
+  \end{align*}
+  を中心$x$，半径$r$の開球という．$X$が明らかな場合は$B_X(x,r)$を省略して$B(x,r)$と表記する．
+\end{dfn}
+
+\begin{dfn}[ノルム空間の開集合]
+  $X$をノルム空間とし，$M$を$X$の部分集合とする．任意の$x\in M$に対して，$B_X(x,r)\subset M$となる$r>0$が存在する場合，$M$が開集合であるという．
+\end{dfn}
+
+\begin{dfn}[ノルム空間の閉集合]
+  Xをノルム空間とし，MをXの部分集合とする．Mが閉集合であるとは，Mの任意の点列$(u_n)$の極限$u\in X$がMにも属することである．すなわち，点列$(u_n)\subset M$について
+  \begin{align*}
+    u_n\rightarrow u, \quad \left(n\rightarrow \infty\right) \Rightarrow u\in M
+  \end{align*}
+  であるとき，Mは閉集合であるという．
+\end{dfn}
+
+\begin{dfn}[閉部分空間]
+  Xをノルム空間とし，MをXの線形部分空間が閉集合であるとき，Mを閉部分空間であるという．
+\end{dfn}
 
 %\begin{thebibliography}{9}
 %  \bibitem{ラベル} 著者名, ``題名'', 出版社, pp.0-1.
