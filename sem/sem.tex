@@ -115,26 +115,27 @@
 \end{dfn}
 
 \begin{thm}[逆三角不等式]
+  \label{thm1}
   $X$をノルム空間とする．任意の$u,v\in X$について次の不等式を満たす．
   \begin{align*}
-    |\|u\|-\|v\||\geq\|u-v\|
+    |\|u\|-\|v\||\leq\|u-v\|
   \end{align*}
 \end{thm}
 
 \begin{proof}
   任意の$u,v\in X$について
   \begin{align*}
-    \|u\| & =\|u-v+v\|\geq\|u-v\|+\|v\|               \\
-    \|v\| & =\|v-u+u\|\geq\|v-u\|+\|u\|=\|u-v\|+\|u\|
+    \|u\| & =\|u-v+v\|\leq\|u-v\|+\|v\|               \\
+    \|v\| & =\|v-u+u\|\leq\|v-u\|+\|u\|=\|u-v\|+\|u\|
   \end{align*}
   となる．よって
   \begin{align*}
-    \|u\|-\|v\|\geq\|u-v\| \\
-    \|v\|-\|u\|\geq\|u-v\|
+    \|u\|-\|v\|\leq\|u-v\| \\
+    \|v\|-\|u\|\leq\|u-v\|
   \end{align*}
   となるため，
   \begin{align*}
-    |\|u\|-\|v\||\geq\|u-v\|
+    |\|u\|-\|v\||\leq\|u-v\|
   \end{align*}
   を持つ．
 \end{proof}
@@ -142,7 +143,7 @@
 \begin{dfn}[有界列]
   $X$をノルム空間とする．そのとき$X$の点列$(u_n)$が有界列とは任意の$n\in\mathbb{N}$に対して
   \begin{align*}
-    \|u_n\|\geq M
+    \|u_n\|\leq M
   \end{align*}
   となる定数$M>0$が存在することである．
 \end{dfn}
@@ -157,8 +158,38 @@
     \forall\epsilon >0, \ \exists N\in \mathbb{N}, \ \forall n,m \geq Nに対して||u_n-u_m||<\epsilon
   \end{align*}
   を満たす．$\epsilon=1$としても，それに対応した$N$が存在し，任意の$n\geq N$に対して
-  \begin
+  \begin{align*}
+    \|u_n-u_N\|<1
+  \end{align*}
+  を満たす．
+
+  任意の$n\geq N$に対して$\|u_n\|$が$\|u_N\|$で評価できることを示す．逆三角不等式である定理\ref{thm1}を用いると
+  \begin{align*}
+    |\|u_n\|-\|u_N\|\leq \|u_n-u_N\|<1
+  \end{align*}
+  となる．絶対値の性質より$|\|u_n-u_N\||<1$は
+  \begin{align*}
+    \|u_N\|-1\leq\|u_n\|<\|u_N\|+1
+  \end{align*}
+  となる．よって
+  \begin{align*}
+    M=\max\{\|u_1\|,\|u_2\|,\cdots,\|u_{N-1}\|,\|u_N\|+1\}
+  \end{align*}
+  とすると，任意の$n\in \mathbb{N}について$
+  \begin{align*}
+    \|u_n\|\leq M
+  \end{align*}
+  が成り立つため，点列$(u_N)$は有界列である．
 \end{proof}
+
+\begin{dfn}[線形部分空間]
+  線形空間$X$の空でない集合$M$が任意の元$u,v\in M$と任意の係数体$\alpha\in\mathbb{K}$に対して
+  \begin{align*}
+    u+v\in M \\
+    \alpha u \in M
+  \end{align*}
+  を満たすとき，$M$は線形空間$X$の線形部分空間と呼ぶ．
+\end{dfn}
 
 
 %\begin{thebibliography}{9}
