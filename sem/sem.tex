@@ -1,0 +1,170 @@
+%ctrl+alt+b -> build, ctrl+alt+v => preview at new tab
+%ctrl+click -> highlight line
+
+%\documentclass[titlepage]{jsarticle}
+\documentclass{jsarticle}
+%\documentclass[11pt,a4paper]{jsreport}
+
+\usepackage{algorithmic}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{ascmac}
+\usepackage{bm}
+\usepackage{caption}
+\usepackage{cite}
+\usepackage{comment}
+\usepackage[dvipdfmx]{color}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{multicol}
+\usepackage{latexsym}
+\usepackage{listings}
+\usepackage[dvipdfmx]{pict2e}
+\usepackage[ipaex]{pxchfon}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{underscore}
+\usepackage{ulem}
+\usepackage{url}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry}
+
+\captionsetup[figure]{labelsep=space}
+\captionsetup[table]{labelsep=space}
+
+\theoremstyle{difinition}
+\newtheorem{dfn}{定義}
+\newtheorem{thm}{定理}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\proofname}{\textbf{証明}}
+
+%============
+\begin{document}
+\pagestyle{plain}
+\title{タイトル}
+\author{2131701 齋藤悠希}
+\date{}
+\maketitle
+
+\section{Banach Space}
+\begin{dfn}[線形空間の公理]
+  空でない集合$X$が，係数体$\mathbb{K}$上の線形空間であるとは，任意の$u+v \in X$とスカラー$\alpha \in \mathbb{K}$に対して，加法$u+v \in X$とスカラー乗法$\alpha u \in X$が定義されていて，任意の$u,v,w \in X$とスカラー$\alpha, \beta \in \mathbb{K}$に対して次のことが成り立つことである．
+  \begin{enumerate}
+    \item $(u+v)+w=u+(v+w)$
+    \item $u+v=v+u$
+    \item $u+0=u$となる$0 \in X$が一意に存在
+    \item $u+(-u)=0$となる$-u\in X$が一意に存在
+    \item $\alpha(u+v)=\alpha u+\alpha v$
+    \item $(\alpha +\beta)u = \alpha u+\beta u$
+    \item $(\alpha \beta)u = \alpha (\beta u)$
+    \item $1u=u, 1 \in \mathbb{K}$
+  \end{enumerate}
+\end{dfn}
+
+\begin{dfn}[ノルムとノルム空間の定義]
+  $X$を係数体$\mathbb{K}$上の線形空間とする．$X$で定義された関数$||\cdot||:X\rightarrow \mathbb{K}$上で定義された関数が$X$のノルムであるとは
+  \begin{enumerate}
+    \item $||u||\geq 0, \quad u \in X$
+    \item $||u||=0 \Leftrightarrow u=0$
+    \item $||\alpha u||=|\alpha| ||u||, \quad (\alpha \in \mathbb{K}, u \in X)$
+    \item $||u+v||\leq ||u||+||v||$
+  \end{enumerate}
+  が成立することである．さらに$X$に1つのノルムが指定されているとき，$X$はノルム空間という．
+\end{dfn}
+
+\begin{dfn}[ノルム空間の収束と極限]$X$をノルム空間とする．$X$の点列$(u_n)\subset X$は
+  \begin{align*}
+    \forall\epsilon >0, \ \exists N\in \mathbb{N}, \space \forall N \geq Nに対して||u_n-u||<\epsilon
+  \end{align*}
+  のとき，点$u\in X$に収束するといい，
+  \begin{align*}
+    ||u_n-u||\rightarrow 0, \ \left(n\rightarrow\infty\right)
+  \end{align*}
+  と表す．このとき，$u$を$u_n$の極限といい，
+  \begin{align*}
+    u_n-u, \ (n\rightarrow \infty)
+  \end{align*}
+  と表す．
+\end{dfn}
+
+\begin{dfn}[Cauchy列]
+  $X$をノルム空間とする．そのとき$X$がCauchy列であるとは
+  \begin{align*}
+    u_n-u_m\rightarrow 0, \ \left(n,m\rightarrow\infty \right)
+  \end{align*}
+  が成立することである．即ち
+  \begin{align*}
+    ||u_n-u_m||\rightarrow 0, \ \left(n,m\rightarrow \infty\right)
+  \end{align*}
+  が成立することである．
+\end{dfn}
+
+\begin{dfn}[完備]
+  $X$をノルム空間とする．$X$が完備であるとは，任意のCauchy列$(u_n)$が$X$の中で極限をもつことである．すなわち，任意のCauchy列$(u_n\subset X)$が
+  \begin{align*}
+    \|u_n-u\|\rightarrow 0\ ,\left(n\rightarrow 0\right)
+  \end{align*}
+  となる極限$u$を$X$内に持つことである．
+\end{dfn}
+
+\begin{dfn}[Banach空間]
+  ノルム空間$X$がBanach空間であるとは，$X$が完備であることである．
+\end{dfn}
+
+\begin{thm}[逆三角不等式]
+  $X$をノルム空間とする．任意の$u,v\in X$について次の不等式を満たす．
+  \begin{align*}
+    |\|u\|-\|v\||\geq\|u-v\|
+  \end{align*}
+\end{thm}
+
+\begin{proof}
+  任意の$u,v\in X$について
+  \begin{align*}
+    \|u\| & =\|u-v+v\|\geq\|u-v\|+\|v\|               \\
+    \|v\| & =\|v-u+u\|\geq\|v-u\|+\|u\|=\|u-v\|+\|u\|
+  \end{align*}
+  となる．よって
+  \begin{align*}
+    \|u\|-\|v\|\geq\|u-v\| \\
+    \|v\|-\|u\|\geq\|u-v\|
+  \end{align*}
+  となるため，
+  \begin{align*}
+    |\|u\|-\|v\||\geq\|u-v\|
+  \end{align*}
+  を持つ．
+\end{proof}
+
+\begin{dfn}[有界列]
+  $X$をノルム空間とする．そのとき$X$の点列$(u_n)$が有界列とは任意の$n\in\mathbb{N}$に対して
+  \begin{align*}
+    \|u_n\|\geq M
+  \end{align*}
+  となる定数$M>0$が存在することである．
+\end{dfn}
+
+\begin{thm}[Cauchy列ならば有界列]
+  $X$をノルム空間とする．そのとき$X$の点列$(u_n)$がCauchy列ならば有界列でもある．
+\end{thm}
+
+\begin{proof}
+  $X$の点列$(u_n)$がCauchy列であるために，$\epsilon -N$論法を用いた表記で
+  \begin{align*}
+    \forall\epsilon >0, \ \exists N\in \mathbb{N}, \ \forall n,m \geq Nに対して||u_n-u_m||<\epsilon
+  \end{align*}
+  を満たす．$\epsilon=1$としても，それに対応した$N$が存在し，任意の$n\geq N$に対して
+  \begin
+\end{proof}
+
+
+%\begin{thebibliography}{9}
+%  \bibitem{ラベル} 著者名, ``題名'', 出版社, pp.0-1.
+%  \bibitem{lit:name} 著者名, ``題名'',\linebreak \verb|http://www.kisarazu.ac.jp/|
+%\end{thebibliography}
+%%文章のあとに，\cite{label1, label2},\cite{lite:xxx}とつける
+%隙間ができたら，\newlineを入れ込む
+\end{document}
