@@ -2,7 +2,7 @@
 %ctrl+click -> highlight line
 
 %\documentclass[titlepage]{jsarticle}
-\documentclass[12pt,a4paper]{jsarticle}
+\documentclass[11pt,a4paper]{jsarticle}
 %\documentclass[11pt,a4paper]{jsreport}
 
 \usepackage{algorithmic}
@@ -28,8 +28,6 @@
 \usepackage{url}
 \usepackage{wrapfig}
 \usepackage{xcolor}
-
-\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry}
 
 \captionsetup[figure]{labelsep=space}
 \captionsetup[table]{labelsep=space}
@@ -195,7 +193,7 @@
 \begin{dfn}[ノルム空間の開球]
   $X$をノルム空間とする．$x\in X$とし，$r>0$を正実数とする．そのとき，集合
   \begin{align*}
-    B_X(x,r):=\{y\in X \ | \ \|x-y\|_X<r\}
+    B_X(x,r):=\{y\in X \mid \|x-y\|_X<r\}
   \end{align*}
   を中心$x$，半径$r$の開球という．$X$が明らかな場合は$B_X(x,r)$を省略して$B(x,r)$と表記する．
 \end{dfn}
@@ -213,8 +211,91 @@
 \end{dfn}
 
 \begin{dfn}[閉部分空間]
-  Xをノルム空間とし，MをXの線形部分空間が閉集合であるとき，Mを閉部分空間であるという．
+  Xをノルム空間とし，MをXの線形部分空間が閉集合であるとき，Mを閉部分空間である．
 \end{dfn}
+
+\subsection{Operator}
+\begin{dfn}[作用素]
+  ある線形空間Xから別の線形空間Yへの作用素Aとは，
+  \begin{align*}
+    \mathcal{D}(A) := \{u \in X \mid Au \in Y\}
+  \end{align*}
+  としたとき，$\mathcal{D}(A)$のどんな元に対しても，それぞれ集合Yのただ一つの元を指定する規則のことである.また，$\mathcal{D}(A)$はAの定義域と呼ばれ
+  \begin{align*}
+    \mathcal{R}(A) := \{Au \in Y \mid u\in\mathcal{D}(A)\}
+  \end{align*}
+  を値域と呼ぶ
+\end{dfn}
+
+\begin{dfn}[単射]
+  \label{injection}
+  線形空間Xから線形空間Yへの作用素Aが
+  \begin{align*}
+    u_1 \neq u_2, \quad \forall u_1,u_2 \in \mathcal{D}(A) \Rightarrow A(u_1)\neq A(u_2)
+  \end{align*}
+\end{dfn}
+
+\begin{dfn}[全射]
+  線形空間Xから線形空間Yへの作用素Aが
+  \begin{align*}
+    Y=\mathcal{R}(A)
+  \end{align*}
+  を満たすときに作用素Aは全単射であるという．
+\end{dfn}
+
+\begin{dfn}[全射]
+  線形空間Xから線形空間Yへの作用素Aとし，その定義域を$\mathcal{D}(A)\subset X$，値域を$\mathcal{R}(A)\subset Y$とする．そのとき，
+  \begin{align*}
+    A^{-1}\left( A\left( u \right) \right)&=u, \, u\in\mathcal{D}\left( A \right)  \\
+    A(A^{-1}(u))&=u, \, u\in\mathcal{R}(A) 
+  \end{align*}
+  かつ
+  \begin{align*}
+    \mathcal{D}(A^{-1})&=\mathcal{R}(A) \\
+    \mathcal{R}(A^{-1})&=\mathcal{D}(A)
+  \end{align*}
+  となるYからXへの作用素$A^{-1}$をAの逆作用素と呼ぶ．
+\end{dfn}
+
+\begin{thm}[単射と逆作用素の環境]
+  線形空間Xから線形空間Yへの作用素Aとすると．
+  \begin{align*}
+    Aが逆作用素を持つ \Leftrightarrow Aが単射である
+  \end{align*}
+\end{thm}
+
+\begin{proof}
+  「$Aが逆作用素を持つ \Rightarrow Aが単射である$」の証明
+
+  単射の定義\ref{injection}の待遇「$任意のu_1,u_2\in\mathcal{D}(A)に対しA(u_1)=A(u_2) \Rightarrow u_1=u_2$」を満たすことを確かめる．Aの逆作用素を$A^{-1}$とすると，任意の$u_1,u_2\in\mathcal{D}(A)$に対し
+  \begin{align*}
+    &A(u_1) = A(u_2)\\
+    \Rightarrow& A^{-1}(A(u_1))=A^{-1}(A(u_2))\\
+    \Rightarrow& u_1=u_2
+  \end{align*}
+  \begin{align*}
+    「Aが単射である\Rightarrow Aが逆作用素A^{-1}をもつ」の証明
+  \end{align*}
+
+  Aの値域の定義$\mathcal{R}(A)=\{A(u)\in Y \mid u\in\mathcal{D}(A)\}$より，任意の$v\in\mathcal{R}(A)$に対し，
+  \begin{align*}
+    A(u)=verb
+  \end{align*}
+  となる$u\in\mathcal{D}(A)$が存在する．その上，Aが単射であるため，単射の定義の対偶より$u\in\mathcal{D}(A)$はどんな$u\in\mathcal{R}(A)$に対してもただ一つの元である．そのため，作用素の定義より，上記の$u\in\mathcal{R}(A)$に対してただ一つの元$u\in\mathcal{D}(A)$を指定する規則として
+  \begin{align*}
+    B(v)=u
+  \end{align*}
+  となる定義域$\mathcal{D}(B)=\mathcal{R}(A)$と値域$\mathcal{R}(B)=\mathcal{D}(A)$となるYからXへの作用素Bが定義できる．その上，$B(v)=u$の$v=A(u)$を代入すると
+  \begin{align*}
+    B(A(u))=u
+  \end{align*}
+  となる．同様に，$A(u)=v$の$u$に$u=B(v)$を代入すると
+  \begin{align*}
+    A(B(v))=v
+  \end{align*}
+  となる．よって，定義域$\mathcal{D}(B)=\mathcal{R}(A)$と値域$\mathcal{R}(B)=\mathcal{D}(A)$となるYからXへの作用素BはAの逆作用素であるため，Aは逆作用素を持つ．
+\end{proof}
+
 
 %\begin{thebibliography}{9}
 %  \bibitem{ラベル} 著者名, ``題名'', 出版社, pp.0-1.
