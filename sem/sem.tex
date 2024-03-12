@@ -75,37 +75,37 @@
 \end{dfn}
 
 \begin{dfn}[ノルム空間の収束と極限]$X$をノルム空間とする．$X$の点列$(u_n)\subset X$は
-  \begin{align*}
+  \begin{equation*}
     \forall\epsilon >0, \ \exists N\in \mathbb{N}, \space \forall N \geq Nに対して||u_n-u||<\epsilon
-  \end{align*}
+  \end{equation*}
   のとき，点$u\in X$に収束するといい，
-  \begin{align*}
+  \begin{equation*}
     ||u_n-u||\rightarrow 0, \ \left(n\rightarrow\infty\right)
-  \end{align*}
+  \end{equation*}
   と表す．このとき，$u$を$u_n$の極限といい，
-  \begin{align*}
+  \begin{equation*}
     u_n-u, \ (n\rightarrow \infty)
-  \end{align*}
+  \end{equation*}
   と表す．
 \end{dfn}
 
 \begin{dfn}[Cauchy列]
   $X$をノルム空間とする．そのとき$X$がCauchy列であるとは
-  \begin{align*}
+  \begin{equation*}
     u_n-u_m\rightarrow 0, \ \left(n,m\rightarrow\infty \right)
-  \end{align*}
+  \end{equation*}
   が成立することである．即ち
-  \begin{align*}
+  \begin{equation*}
     ||u_n-u_m||\rightarrow 0, \ \left(n,m\rightarrow \infty\right)
-  \end{align*}
+  \end{equation*}
   が成立することである．
 \end{dfn}
 
 \begin{dfn}[完備]
   $X$をノルム空間とする．$X$が完備であるとは，任意のCauchy列$(u_n)$が$X$の中で極限をもつことである．すなわち，任意のCauchy列$(u_n\subset X)$が
-  \begin{align*}
+  \begin{equation*}
     \|u_n-u\|\rightarrow 0\ ,\left(n\rightarrow 0\right)
-  \end{align*}
+  \end{equation*}
   となる極限$u$を$X$内に持つことである．
 \end{dfn}
 
@@ -116,9 +116,9 @@
 \begin{thm}[逆三角不等式]
   \label{thm1}
   $X$をノルム空間とする．任意の$u,v\in X$について次の不等式を満たす．
-  \begin{align*}
+  \begin{equation*}
     |\|u\|-\|v\||\leq\|u-v\|
-  \end{align*}
+  \end{equation*}
 \end{thm}
 
 \begin{proof}
@@ -128,22 +128,22 @@
     \|v\| & =\|v-u+u\|\leq\|v-u\|+\|u\|=\|u-v\|+\|u\|
   \end{align*}
   となる．よって
-  \begin{align*}
+  \begin{equation*}
     \|u\|-\|v\|\leq\|u-v\| \\
     \|v\|-\|u\|\leq\|u-v\|
-  \end{align*}
+  \end{equation*}
   となるため，
-  \begin{align*}
+  \begin{equation*}
     |\|u\|-\|v\||\leq\|u-v\|
-  \end{align*}
+  \end{equation*}
   を持つ．
 \end{proof}
 
 \begin{dfn}[有界列]
   $X$をノルム空間とする．そのとき$X$の点列$(u_n)$が有界列とは任意の$n\in\mathbb{N}$に対して
-  \begin{align*}
+  \begin{equation*}
     \|u_n\|\leq M
-  \end{align*}
+  \end{equation*}
   となる定数$M>0$が存在することである．
 \end{dfn}
 
@@ -153,48 +153,48 @@
 
 \begin{proof}
   $X$の点列$(u_n)$がCauchy列であるために，$\epsilon -N$論法を用いた表記で
-  \begin{align*}
+  \begin{equation*}
     \forall\epsilon >0, \ \exists N\in \mathbb{N}, \ \forall n,m \geq Nに対して||u_n-u_m||<\epsilon
-  \end{align*}
+  \end{equation*}
   を満たす．$\epsilon=1$としても，それに対応した$N$が存在し，任意の$n\geq N$に対して
-  \begin{align*}
+  \begin{equation*}
     \|u_n-u_N\|<1
-  \end{align*}
+  \end{equation*}
   を満たす．
 
   任意の$n\geq N$に対して$\|u_n\|$が$\|u_N\|$で評価できることを示す．逆三角不等式である定理\ref{thm1}を用いると
-  \begin{align*}
+  \begin{equation*}
     |\|u_n\|-\|u_N\|\leq \|u_n-u_N\|<1
-  \end{align*}
+  \end{equation*}
   となる．絶対値の性質より$|\|u_n-u_N\||<1$は
-  \begin{align*}
+  \begin{equation*}
     \|u_N\|-1\leq\|u_n\|<\|u_N\|+1
-  \end{align*}
+  \end{equation*}
   となる．よって
-  \begin{align*}
+  \begin{equation*}
     M=\max\{\|u_1\|,\|u_2\|,\cdots,\|u_{N-1}\|,\|u_N\|+1\}
-  \end{align*}
+  \end{equation*}
   とすると，任意の$n\in \mathbb{N}について$
-  \begin{align*}
+  \begin{equation*}
     \|u_n\|\leq M
-  \end{align*}
+  \end{equation*}
   が成り立つため，点列$(u_N)$は有界列である．
 \end{proof}
 
 \begin{dfn}[線形部分空間]
   線形空間$X$の空でない集合$M$が任意の元$u,v\in M$と任意の係数体$\alpha\in\mathbb{K}$に対して
-  \begin{align*}
+  \begin{equation*}
     u+v\in M \\
     \alpha u \in M
-  \end{align*}
+  \end{equation*}
   を満たすとき，$M$は線形空間$X$の線形部分空間と呼ぶ．
 \end{dfn}
 
 \begin{dfn}[ノルム空間の開球]
   $X$をノルム空間とする．$x\in X$とし，$r>0$を正実数とする．そのとき，集合
-  \begin{align*}
+  \begin{equation*}
     B_X(x,r):=\{y\in X \mid \|x-y\|_X<r\}
-  \end{align*}
+  \end{equation*}
   を中心$x$，半径$r$の開球という．$X$が明らかな場合は$B_X(x,r)$を省略して$B(x,r)$と表記する．
 \end{dfn}
 
@@ -204,9 +204,9 @@
 
 \begin{dfn}[ノルム空間の閉集合]
   Xをノルム空間とし，MをXの部分集合とする．Mが閉集合であるとは，Mの任意の点列$(u_n)$の極限$u\in X$がMにも属することである．すなわち，点列$(u_n)\subset M$について
-  \begin{align*}
+  \begin{equation*}
     u_n\rightarrow u, \quad \left(n\rightarrow \infty\right) \Rightarrow u\in M
-  \end{align*}
+  \end{equation*}
   であるとき，Mは閉集合であるという．
 \end{dfn}
 
@@ -217,37 +217,37 @@
 \subsection{Operator}
 \begin{dfn}[作用素]
   ある線形空間Xから別の線形空間Yへの作用素Aとは，
-  \begin{align*}
+  \begin{equation*}
     \mathcal{D}(A) := \{u \in X \mid Au \in Y\}
-  \end{align*}
+  \end{equation*}
   としたとき，$\mathcal{D}(A)$のどんな元に対しても，それぞれ集合Yのただ一つの元を指定する規則のことである.また，$\mathcal{D}(A)$はAの定義域と呼ばれ
-  \begin{align*}
+  \begin{equation*}
     \mathcal{R}(A) := \{Au \in Y \mid u\in\mathcal{D}(A)\}
-  \end{align*}
+  \end{equation*}
   を値域と呼ぶ
 \end{dfn}
 
 \begin{dfn}[単射]
   \label{injection}
   線形空間Xから線形空間Yへの作用素Aが
-  \begin{align*}
+  \begin{equation*}
     u_1 \neq u_2, \quad \forall u_1,u_2 \in \mathcal{D}(A) \Rightarrow A(u_1)\neq A(u_2)
-  \end{align*}
+  \end{equation*}
 \end{dfn}
 
 \begin{dfn}[全射]
   線形空間Xから線形空間Yへの作用素Aが
-  \begin{align*}
+  \begin{equation*}
     Y=\mathcal{R}(A)
-  \end{align*}
+  \end{equation*}
   を満たすときに作用素Aは全単射であるという．
 \end{dfn}
 
 \begin{dfn}[全射]
   線形空間Xから線形空間Yへの作用素Aとし，その定義域を$\mathcal{D}(A)\subset X$，値域を$\mathcal{R}(A)\subset Y$とする．そのとき，
   \begin{align*}
-    A^{-1}\left( A\left( u \right) \right)&=u, \, u\in\mathcal{D}\left( A \right)  \\
-    A(A^{-1}(u))&=u, \, u\in\mathcal{R}(A) 
+    A^{-1}\left( A\left( u \right) \right)&=u, \  u\in\mathcal{D}\left( A \right)  \\
+    A(A^{-1}(u))&=u, \  u\in\mathcal{R}(A) 
   \end{align*}
   かつ
   \begin{align*}
@@ -259,9 +259,9 @@
 
 \begin{thm}[単射と逆作用素の環境]
   線形空間Xから線形空間Yへの作用素Aとすると．
-  \begin{align*}
+  \begin{equation*}
     Aが逆作用素を持つ \Leftrightarrow Aが単射である
-  \end{align*}
+  \end{equation*}
 \end{thm}
 
 \begin{proof}
@@ -273,29 +273,71 @@
     \Rightarrow& A^{-1}(A(u_1))=A^{-1}(A(u_2))\\
     \Rightarrow& u_1=u_2
   \end{align*}
-  \begin{align*}
-    「Aが単射である\Rightarrow Aが逆作用素A^{-1}をもつ」の証明
-  \end{align*}
+  
+  $「Aが単射である\Rightarrow Aが逆作用素A^{-1}をもつ」の証明$
 
-  Aの値域の定義$\mathcal{R}(A)=\{A(u)\in Y \mid u\in\mathcal{D}(A)\}$より，任意の$v\in\mathcal{R}(A)$に対し，
-  \begin{align*}
-    A(u)=verb
-  \end{align*}
+  $A$の値域の定義$\mathcal{R}(A)=\{A(u)\in Y \mid u\in\mathcal{D}(A)\}$より，任意の$v\in\mathcal{R}(A)$に対し，
+  \begin{equation*}
+    A(u)=v
+  \end{equation*}
   となる$u\in\mathcal{D}(A)$が存在する．その上，Aが単射であるため，単射の定義の対偶より$u\in\mathcal{D}(A)$はどんな$u\in\mathcal{R}(A)$に対してもただ一つの元である．そのため，作用素の定義より，上記の$u\in\mathcal{R}(A)$に対してただ一つの元$u\in\mathcal{D}(A)$を指定する規則として
-  \begin{align*}
+  \begin{equation*}
     B(v)=u
-  \end{align*}
+  \end{equation*}
   となる定義域$\mathcal{D}(B)=\mathcal{R}(A)$と値域$\mathcal{R}(B)=\mathcal{D}(A)$となるYからXへの作用素Bが定義できる．その上，$B(v)=u$の$v=A(u)$を代入すると
-  \begin{align*}
+  \begin{equation*}
     B(A(u))=u
-  \end{align*}
+  \end{equation*}
   となる．同様に，$A(u)=v$の$u$に$u=B(v)$を代入すると
-  \begin{align*}
+  \begin{equation*}
     A(B(v))=v
-  \end{align*}
+  \end{equation*}
   となる．よって，定義域$\mathcal{D}(B)=\mathcal{R}(A)$と値域$\mathcal{R}(B)=\mathcal{D}(A)$となるYからXへの作用素BはAの逆作用素であるため，Aは逆作用素を持つ．
 \end{proof}
 
+\begin{dfn}[作用素の等号]
+  線形空間Xから線形空間Yへの作用素AとBが等しいとは
+  \begin{equation*}
+    \mathcal{D}(A) = \mathcal{D}(B)
+  \end{equation*}
+  かつ
+  \begin{equation*}
+    Au=Bu, \  \forall u\in\mathcal{D}(A)=\mathcal{D}(B)
+  \end{equation*}
+  が成立することであり，
+  \begin{equation*}
+    A=B
+  \end{equation*}
+  と表記する．
+\end{dfn}
+
+\begin{dfn}[作用素の連続]
+  ノルム空間Xからノルム空間Yへの作用素Aが$u\in\mathcal{D}(A)$で連続であるとは
+  \begin{equation*}
+    u_n \rightarrow u, \ (n\rightarrow \infty)
+  \end{equation*}
+  となる任意の$u_n\in\mathcal{D}(A)\subset X$に対して
+  \begin{equation*}
+    Au_n\rightarrow Au, \ (n\rightarrow \infty)
+  \end{equation*}
+  を満たすときである．さらに，Aが任意の$u\in\mathcal{D}(A)$において連続であるとき，Aは連続であるという．
+\end{dfn}
+
+\begin{dfn}[線形作用素]
+  線形空間Xから線形空間Yへの作用素Aが，任意の$u,v\in\mathcal{D}(A)\subset X$と$\alpha\in\mathbb{K}$に対し，
+  \begin{align*}
+    &\mathcal{D}(A)がXの線形部分空間 \\
+    &A(u+v)=Au+Av \\
+    &A(\alpha u)=\alpha Au
+  \end{align*}
+  を満たすとき，Aを作用素と呼ぶ．
+\end{dfn}
+
+%P61, 9 から
+
+%% 定義 dfn
+%% 定理 thm
+%% 証明 proof
 
 %\begin{thebibliography}{9}
 %  \bibitem{ラベル} 著者名, ``題名'', 出版社, pp.0-1.
