@@ -35,17 +35,20 @@
 \theoremstyle{difinition}
 \newtheorem{dfn}{定義}
 \newtheorem{thm}{定理}
+\newtheorem{prf}{証明}
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \renewcommand{\proofname}{\textbf{証明}}
+%============
+
+%\newtheo
 
 %============
 \begin{document}
 \pagestyle{plain}
 \title{タイトル}
 \author{2131701 齋藤悠希}
-\date{}
-\maketitle
+\date{}\maketitle
 
 \section{Preparation}
 \subsection{Banach Space}
@@ -183,10 +186,10 @@
 
 \begin{dfn}[線形部分空間]
   線形空間$X$の空でない集合$M$が任意の元$u,v\in M$と任意の係数体$\alpha\in\mathbb{K}$に対して
-  \begin{equation*}
+  \begin{align*}
     u+v\in M \\
     \alpha u \in M
-  \end{equation*}
+  \end{align*}
   を満たすとき，$M$は線形空間$X$の線形部分空間と呼ぶ．
 \end{dfn}
 
@@ -333,7 +336,148 @@
   を満たすとき，Aを作用素と呼ぶ．
 \end{dfn}
 
-%P61, 9 から
+\begin{dfn}[線形作用素の加法]
+  線形空間Xから線形空間Yへの線形作用素AとBの和を
+  \begin{equation*}
+    (A+B)u := Au+Bu, \ u\in\mathcal{D}(A)\cup\mathcal{D}(B)
+  \end{equation*}
+  と定義する．このとき，XからYへの作用素$A+B$の定義域は
+  \begin{equation*}
+    \mathcal{D}(A+B) = \mathcal{D}(A)\cup\mathcal{D}(B)
+  \end{equation*}
+  とする．
+\end{dfn}
+
+\begin{dfn}[線形作用素のスカラー乗法]
+  線形空間Xから線形空間Yへの線形作用素Aの$\alpha\in\mathbb{K}$によるスカラー倍を
+  \begin{equation*}
+    (\alpha A)u := \alpha Au, \ u\in\mathcal{D}(A)
+  \end{equation*}
+  と定義する．このとき，XからYへの作用素$\alpha A$の定義域は
+  \begin{equation*}
+    \mathcal{D}(\alpha A):= \mathcal{D}(A)
+  \end{equation*}
+  とする．
+\end{dfn}
+
+\begin{dfn}[合成作用素]
+  X,Y,Zを線形空間とする．AをYからZへの線形作用素とし，BをXからYへの線形作用素とする．そのとき，AとBの合成作用素ABは
+  \begin{equation*}
+    (AB)u:=A(Bu),\ u\in\{v\in\mathcal{D}(B)\mid Bv\in\mathcal{D}(A)\}
+  \end{equation*}
+  と定義する．このとき，XからZへの合成作用素ABの定義域は
+  \begin{equation*}
+    \mathcal{D}(AB):=\{v\in\mathcal{D}(B)\mid Bv\in\mathcal{D}(A)\}
+  \end{equation*}
+  とする．
+\end{dfn}
+
+\begin{thm}[線形作用素に対する単射性(1)]
+  線形空間Xから線形空間Yへの線形作用素Aにおいて以下は同値である．
+  \begin{enumerate}
+    \item 線形作用素がAの単射である．
+    \item $Au=0,\ u\in\mathcal{D}(A)\Rightarrow u=0$
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  単射の定義の対偶は
+  \begin{equation*}
+    Au_1 = Au_2,\ \forall u_1,u_2\in\mathcal{D}(A)\Rightarrow u_1=u_2
+  \end{equation*}
+  となる．その上，Aは線形作用素であるため，
+  \begin{equation*}
+    Au_1=Au_2\Leftrightarrow A(u_1-u_2)=0
+  \end{equation*}
+  となる．$u_1-u_2\in\mathcal{D}(A)$を$u\in\mathcal{D}(A)$とおきなおせば，$1\Rightarrow2$は証明された．また，証明を逆に追うことで$2\Rightarrow1$も示せる．
+\end{proof}
+
+\begin{thm}[線形作用素に対する単射性(2)]
+  ノルム空間Xからノルム空間Yへの線形作用素Aとする．不等式
+  \begin{equation*}
+    \|u\|_X \leq K\|Au\|_Y,\ u\in\mathcal{D}(A)
+  \end{equation*}
+  を満たす定数$K>0$が存在するならば，線形作用素Aは単射である．
+\end{thm}
+
+\begin{proof}
+  Aが線形作用素であるため，$Au=0,\ u\in\mathcal{D}(A)\Rightarrow u=0$を使って証明する．ノルムの定義より
+  \begin{equation*}
+    Au=0,\ \forall u\in\mathcal{D}(A)\Leftrightarrow\|Au\|_Y=0
+  \end{equation*}
+  となる．さらに，$Au=0$ならば，
+  \begin{equation*}
+    \|u\|_X \leq K\|Au\|_Y=0,\ u\in\mathcal{D}(A)
+  \end{equation*}
+  より$\|u\|_X=0$となる．よって，再びノルムの定義より
+  \begin{equation*}
+    \|u\|_X=0,\ \forall u\in\mathcal{D}(A)\Leftrightarrow u=0
+  \end{equation*}
+  より，$Au=0$ならば$u=0$となる．
+\end{proof}
+
+\begin{dfn}[有界な線形作用素]
+  ノルム空間Xからノルム空間Yへの作用素Aに対し，
+  \begin{equation*}
+    \|Au\|_Y\leq K\|u\|_X,\ \mathcal{D}(A)
+  \end{equation*}
+  を満たす正の定数Kが存在する時，線形作用素Aを有界な作用素と呼ぶ．
+\end{dfn}
+
+\begin{thm}[有界な線形作用素と連続な線形作用素]
+  ノルム空間Xからノルム空間Yへの作用素Aに対し，
+  \begin{equation*}
+    Aが有界\Leftrightarrow Aが連続
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  「$Aが有界\Rightarrow Aが連続$」の証明
+
+  連続性の定義より，$u_n\rightarrow u$となる任意の$u_n\in\mathcal{D}(A)$に対して$Au_n\rightarrow Au$となることを確かめる．$u_n\rightarrow u$となる任意の$u_n\in \mathcal{D}(A)$から$\|u_n-u\|_X\rightarrow 0,\ (n\rightarrow \infty)$を持つ．その上，Aは有界であることから
+  \begin{equation*}
+    \|Au_n-Au\|_Y\leq M\|u_n-u\|_X\rightarrow 0,\ (n\rightarrow\infty)
+  \end{equation*}
+  よって，$u_n\rightarrow u,\ (n\rightarrow \infty)$ならば，$Au_n\rightarrow Au$であるため，Aは連続である．
+
+  \vskip\baselineskip
+
+  「$Aが連続\Rightarrow Aが有界$」の証明
+
+  背理法によって証明する．すなわち，Aが連続ならば，任意の$M_2>0$に対して
+  \begin{equation*}
+    \|Au\|_Y>M_2\|u\|_x
+  \end{equation*}
+  を満たす$u\in\mathcal{D}$が存在すると仮定して矛盾を見つける．この仮定より自然数$n$に対して，
+  \begin{equation*}
+    \|Au_n\|_Y>n\|u_n\|_X
+  \end{equation*}
+  を満たす$u_n\in\mathcal{D}(A)$が存在する．このとき，$\|u_n\|_X\neq 0$であることに注意する．ノルム空間$X$はノルム空間全体の定義より線形空間であるため，ゼロ元$0\subset X$を持つ．その上，線形作用素の定義より$\mathcal{D}(A)$は$X$の部分空間であるため，ゼロ元$0\in\mathcal{D}(A)\subset X$を持つ．その上，$A$が連続であるため，$A$は$0\in\mathcal{D}(A)$でも連続である．$\epsilon-\sigma$論法による$A$の$0\in\mathcal{D}(A)\subset X$における連続の定義を記述すると
+  \begin{equation*}
+    \forall\epsilon>0,\ \exists\delta>0,\ \|u_n\|_X<\delta となる\forall u_n\in Xに対して\|Au_n\|_Y<\epsilon
+  \end{equation*}
+  となる．その上，$\epsilon$を$n\|u_n\|_X$とすると，$\delta_n>0$が存在し，$\|u_n\|_X<\delta$となる任意の$u_n\in\mathcal{D}(A)$に対して，
+  \begin{equation*}
+    \|Au_n\|_Y<n\|u_n\|_X
+  \end{equation*}
+  となる．有界ではないという仮定と組み合わせると
+  \begin{equation*}
+    n\|u_n\|_X<\|Au_n\|_Y<n\|u_n\|_X
+  \end{equation*}
+  となるため矛盾する．
+\end{proof}
+
+\begin{dfn}[定義域が$X$の全体となる有界な線形作用素全体の集合$\mathcal{L}(X,Y)$]
+  定義域が\rm{Banach}空間X全体となるXからYへの有界線形作用素全体を
+  \begin{equation*}
+    \mathcal{L}(X,Y)
+  \end{equation*}
+  とする．
+\end{dfn}
+
+\begin{thm}[$L$]
+dvi  
+\end{thm}
 
 %% 定義 dfn
 %% 定理 thm
