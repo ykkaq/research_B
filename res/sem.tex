@@ -53,6 +53,7 @@
 \section{Preparation}
 \subsection{Banach Space}
 \begin{dfn}[線形空間の公理]
+  \label{dfn:線形空間の公理}
   空でない集合$X$が，係数体$\mathbb{K}$上の線形空間であるとは，任意の$u+v \in X$とスカラー$\alpha \in \mathbb{K}$に対して，加法$u+v \in X$とスカラー乗法$\alpha u \in X$が定義されていて，任意の$u,v,w \in X$とスカラー$\alpha, \beta \in \mathbb{K}$に対して次のことが成り立つことである．
   \begin{enumerate}
     \item $(u+v)+w=u+(v+w)$
@@ -337,6 +338,7 @@
 \end{dfn}
 
 \begin{dfn}[線形作用素の加法]
+  \label{dfn:線形作用素の加法}
   線形空間Xから線形空間Yへの線形作用素AとBの和を
   \begin{equation*}
     (A+B)u := Au+Bu, \ u\in\mathcal{D}(A)\cup\mathcal{D}(B)
@@ -349,6 +351,7 @@
 \end{dfn}
 
 \begin{dfn}[線形作用素のスカラー乗法]
+  \label{dfn:線形作用素のスカラー乗法}
   線形空間Xから線形空間Yへの線形作用素Aの$\alpha\in\mathbb{K}$によるスカラー倍を
   \begin{equation*}
     (\alpha A)u := \alpha Au, \ u\in\mathcal{D}(A)
@@ -444,7 +447,7 @@
 
   「$Aが連続\Rightarrow Aが有界$」の証明
 
-  背理法によって証明する．すなわち，Aが連続ならば，任意の$M_2>0$に対して
+  背理法によって証明する．すなわち，$A$が連続ならば，任意の$M_2>0$に対して
   \begin{equation*}
     \|Au\|_Y>M_2\|u\|_x
   \end{equation*}
@@ -468,7 +471,7 @@
 \end{proof}
 
 \begin{dfn}[定義域が$X$の全体となる有界な線形作用素全体の集合$\mathcal{L}(X,Y)$]
-  定義域が\rm{Banach}空間X全体となるXからYへの有界線形作用素全体を
+  定義域が\textrm{Banach}空間X全体となるXからYへの有界線形作用素全体を
   \begin{equation*}
     \mathcal{L}(X,Y)
   \end{equation*}
@@ -476,8 +479,16 @@
 \end{dfn}
 
 \begin{thm}[$\mathcal{L}(X,Y)$はBanach空間]
-  Xをノルム空間とし，YをBanach空間とする．定義域がX全体となるXから
+  Xをノルム空間とし，Yを\textrm{Banach}空間とする．定義域がX全体となるXからYへの有界な線形作用素全体の集合$\mathcal{L}(X,Y)$のノルムを
+  \begin{equation*}
+    \|A\|_{\mathcal{L}(X,Y)}:=\sup_{u\in X\backslash\{0\}} \frac{\|Au\|_Y}{\|X\|_X}, \ A\in\mathcal{L}(X,Y)
+  \end{equation*}
+  とすると，$\mathcal{L}(X,Y)$は\textrm{Banach}空間となる．
 \end{thm}
+
+\begin{proof}
+  作用素の加法（\ref{dfn:線形作用素の加法}）と作用素のスカラー乗法（\ref{dfn:線形作用素のスカラー乗法}）の定義をもとに線形空間の公理（\ref{dfn:線形空間の公理}）が満たされていることが導かれる．ただし，
+\end{proof}
 
 %% 定義 dfn
 %% 定理 thm
