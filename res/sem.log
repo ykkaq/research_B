@@ -1,9 +1,9 @@
-This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024/Arch Linux) (preloaded format=platex 2024.3.23)  8 APR 2024 13:02
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024/Arch Linux) (preloaded format=platex 2024.3.23)  9 APR 2024 16:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/qsu/workspace/research_B/sem/sem
-(/home/qsu/workspace/research_B/sem/sem.tex
+**/home/qsu/workspace/research_B/res/sem
+(/home/qsu/workspace/research_B/res/sem.tex
 pLaTeX2e <2023-02-14>+1, based on
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -567,4 +567,4 @@ Here is how much of TeX's memory you used:
  934 hyphenation exceptions out of 8191
  57i,9n,65p,500b,311s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on sem.dvi (9 pages, 27168 bytes).
+Output written on sem.dvi (9 pages, 27916 bytes).

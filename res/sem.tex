@@ -483,11 +483,18 @@
   \begin{equation*}
     \|A\|_{\mathcal{L}(X,Y)}:=\sup_{u\in X\backslash\{0\}} \frac{\|Au\|_Y}{\|X\|_X}, \ A\in\mathcal{L}(X,Y)
   \end{equation*}
-  とすると，$\mathcal{L}(X,Y)$は\textrm{Banach}空間となる．
+  とすると，$\mathcal{L}(X,Y)$はBanach空間となる．
 \end{thm}
 
 \begin{proof}
-  作用素の加法（\ref{dfn:線形作用素の加法}）と作用素のスカラー乗法（\ref{dfn:線形作用素のスカラー乗法}）の定義をもとに線形空間の公理（\ref{dfn:線形空間の公理}）が満たされていることが導かれる．ただし，
+  作用素の加法（\ref{dfn:線形作用素の加法}）と作用素のスカラー乗法（\ref{dfn:線形作用素のスカラー乗法}）の定義をもとに線形空間の公理（\ref{dfn:線形空間の公理}）が満たされていることが導かれる．ただし，$\mathcal{L}(X,Y)$のゼロ元は任意の$u\in X$を$0\in Y$へ写す作用素であることに注意が必要である．
+
+  「ノルム空間」
+  $\|A\|_{\mathcal{L}(X,Y)}$がノルムの定義を満たすことを示せばよい．ノルム空間$X$とBanach空間$Y$であるため$\|\cdot\|_X\geq 0$と$\|\cdot\|_Y\geq 0$であることから
+  \begin{align*}
+    \frac{\|Au\|_Y}{\|u\|_X} \geq 0
+  \end{align*}
+  となるため，$\|A\|_{\mathcal{L}(X,Y)\geq 0}$となり，ノルムの定義(\ref{dfn:線形空間の公理})
 \end{proof}
 
 %% 定義 dfn
