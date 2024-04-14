@@ -496,11 +496,38 @@
   \end{align*}
   となるため，$\|A\|_{\mathcal{L}(X,Y)}\geq 0$となり，ノルムの定義(\ref{dfn:線形空間の公理})はいえる．
 
-  次に,$A=0$ならば$\|Au\|_Y=0$であるため，
+  次に，$A=0$ならば$\|Au\|_Y=0$であるため，
   \begin{equation*}
-    \|A\|_{\mathbb{B}(X,Y)}=\sup_{u\in X\backslash \{0\}} 
+    \|A\|_{\mathcal{L}(X,Y)}=\sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y}{\|u\|_X} = \sup_{u\in X\backslash \{0\}} \frac{0}{\|u\|_X} = 0
   \end{equation*}
+  である．さらに，任意の$u\in X\backslash\{0\}$について
+  \begin{equation*}
+    \frac{\|Au\|_Y}{\|u\|_X} = 0 \Leftrightarrow \|Au\|_Y=0 \Leftrightarrow Au=0
+  \end{equation*}
+  任意の$u\in X\backslash \{0\}$を$0\in Y$へ写す作用素は$\mathcal{L}(X,Y)$が線形空間により一意に存在し，$A=0$である．よって，ノルムの定義(2)も示された．
+
+  続いて$\alpha\in K$としたとき，$Y$はBanach空間であるため，$\|\cdot\|_Y$はノルムの定義を満たすため，
+  \begin{equation*}
+    \|\alpha A\|_{\mathcal{L}} = \sup_{u\in X\backslash \{0\}} \frac{\|\alpha Au\|_Y}{\|u\|_X} = |\alpha|\sup_{u\in X\backslash \{0\}} \frac{\| Au\|_Y}{\|u\|_X} = |\alpha|\|A\|_{\mathcal{L}(X,Y)}
+  \end{equation*}
+  となるため，ノルムの定義(3)も示された．
+
+  最後に，任意の$A,B\in \mathcal{L}(X,Y)$について
+  \begin{align*}
+    \|A+B\|_{\mathcal{L}(X,Y)} & = \sup_{u\in X\backslash \{0\}} \frac{\|(A+B)u\|_Y}{\|u\|_X}                                                    \\
+                               & = \sup_{u\in X\backslash \{0\}} \frac{\|Au+Bu\|_Y}{\|u\|_X}                                                     \\
+                               & = \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y + \|Bu\|_Y}{|u\|_X}                                              \\
+                               & = \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y}{|u\|_X} + \sup_{u\in X\backslash \{0\}} \frac{\|Bu\|_Y}{|u\|_X} \\
+                               & = \|A\|_{\mathcal{L}(X,Y)} + \|B\|_{\mathcal{L}(X,Y)}
+  \end{align*}
+  となり，ノルムの定義(4)も示されたため，$\mathcal{L}(X,Y)$はノルム空間である．
+
+  「Banach空間」
+
+  Banach空間であることを証明するには$\mathcal{L}(X,Y)$の任意のCauchy列$(A_n)\subset \mathcal{}$
 \end{proof}
+
+
 
 %% 定義 dfn
 %% 定理 thm
