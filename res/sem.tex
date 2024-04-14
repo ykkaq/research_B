@@ -32,10 +32,9 @@
 \captionsetup[figure]{labelsep=space}
 \captionsetup[table]{labelsep=space}
 
-\theoremstyle{difinition}
+\theoremstyle{definition}
 \newtheorem{dfn}{定義}
 \newtheorem{thm}{定理}
-\newtheorem{prf}{証明}
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \renewcommand{\proofname}{\textbf{証明}}
@@ -94,6 +93,7 @@
 \end{dfn}
 
 \begin{dfn}[Cauchy列]
+  \label{dfn:cauchy}
   $X$をノルム空間とする．そのとき$X$がCauchy列であるとは
   \begin{equation*}
     u_n-u_m\rightarrow 0, \ \left(n,m\rightarrow\infty \right)
@@ -364,6 +364,7 @@
 \end{dfn}
 
 \begin{dfn}[合成作用素]
+  \label{dfn:合成作用素}
   X,Y,Zを線形空間とする．AをYからZへの線形作用素とし，BをXからYへの線形作用素とする．そのとき，AとBの合成作用素ABは
   \begin{equation*}
     (AB)u:=A(Bu),\ u\in\{v\in\mathcal{D}(B)\mid Bv\in\mathcal{D}(A)\}
@@ -376,6 +377,7 @@
 \end{dfn}
 
 \begin{thm}[線形作用素に対する単射性(1)]
+  \label{thm:線形作用素に対する単射性(1)}
   線形空間Xから線形空間Yへの線形作用素Aにおいて以下は同値である．
   \begin{enumerate}
     \item 線形作用素がAの単射である．
@@ -524,10 +526,257 @@
 
   「Banach空間」
 
-  Banach空間であることを証明するには$\mathcal{L}(X,Y)$の任意のCauchy列$(A_n)\subset \mathcal{}$
+  Banach空間であることを証明するには$\mathcal{L}(X,Y)$の任意のCauchy列$(A_n)\subset \mathcal{L}(X,Y)$が極限$T$を$\mathcal{L}(X,Y)$内に持つことを示せばよい．
+
+  まず，極限の候補$\tilde{A}$が定義できるか確認する．任意のCauchy列$(A_n)\subset \mathcal{L}(X,Y)$はCauchy列の定義(\ref{dfn:cauchy})より
+  \begin{equation*}
+    \|A_n-A_m\|_{\mathcal{L}(X,Y)} \rightarrow 0,\ (n,m\rightarrow \infty)
+  \end{equation*}
+  となる．任意の$u\in X\backslash \{0\}$に対して，点列$(A_nu) \subset Y$は
+  \begin{align*}
+    \|A_n u-A_mu\|_Y &= \frac{\|(A_n-A_m)u\|_Y}{\|u\|_X}\|u\|_X \\
+    &\leq \sup_{\phi\in X\backslash\{0\}} \frac{\|(A_n-A_m)\phi\|_Y}{\|\phi\|_X}\|\|_X\\
+    &= \|A_n-A_m\|_{\mathcal{L}(X,Y)}\|u\|_X \rightarrow 0,\ (n,m \rightarrow \infty)
+  \end{align*}
+  を持つため，点列$(A_nu)\subset Y$はCauchy列になる．その上，$Y$はBanach空間であるため，$Y$の任意のCauchy列は収束し，$Y$内に極限$\tilde{A}u$となるような$X$から$Y$への作用素$\tilde{A}$が存在する．ここで，任意の$u\in X$に対して極限$\tilde{A}u$が定義されることから，$\tilde{A}$の定義域は$\mathcal{D}(\tilde{A})=X$である．これにより，$\mathcal{L}(X,Y)$の任意のCauchy列$(A_n)$の極限の候補$\tilde{A}$が定義できた．
+
+  続いて，定義した極限の候補$\tilde{A}$が$\mathcal{L}(X,Y)$に属しているか確認する．$\tilde{A}$が有界な線形作用素であり，かつ$D(\tilde{A})=X$であることを示せばよい．$\mathcal{L}(X,Y)$の任意のCauchy列$(A_n)$の元$A_n$は線形作用素であるため，線形作用素の定義より任意の$\alpha,\beta \in \mathbb{K}$と$u,v\in X$について
+
+  \begin{equation*}
+    A_n(\alpha u+\beta v) = \alpha A_n u + \beta A_n v
+  \end{equation*}
+  を持つ．よって$n\rightarrow \infty$とすると
+  \begin{equation*}
+    (\alpha u+\beta v)=\alpha \tilde{A} u + \beta \tilde{A} v
+  \end{equation*}
+  となり，極限の候補$\tilde{A}$は線形作用素である．次に極限の候補$\tilde{A}$が有界作用素であることを示す．点列$(A_n)$はCauchy列であるため定理(2)より有界列でもある．すなわち，どんな$n\in \mathbb{N}$に対しても
+  \begin{equation*}
+    \|A_n\|_{\mathcal{L}(X,Y)} \leq M
+  \end{equation*}
+  となる$n\in\mathbb{N}$に依存しない定数$M$が存在する．この$n\in\mathbb{N}$に依存しない定数$M$は，任意の$n\in X$について
+  \begin{equation*}
+    \|A_nu\|_Y \leq M\|u\|_X
+  \end{equation*}
+  も満たす．$\|A_nu\|\rightarrow\tilde{A}_u,\ (n\rightarrow \infty)$であるため，上の不等式に対して$n\rightarrow \infty$とすると$M$が$n$に依存しないため
+  \begin{equation*}
+    \|\tilde{A}u\|_Y \leq M\|u\|_X
+  \end{equation*}
+  を得る．よって，点列$(A_n)$の極限の候補$\tilde{A}$は$\mathcal{L}(X,Y)$に属する．
+
+  最後に，点列$(A_n)$の極限が$\tilde{A}$であることを示す．任意の$u\in X$に対して，点列$(A_nu)\subset Y$は$Y$内に極限$\tilde{A}u$を持つこと，すなわち
+  \begin{equation*}
+    A_nu\rightarrow \tilde{A}u,\ (u\rightarrow \infty)
+  \end{equation*}
+  を持つことから
+  \begin{equation*}
+    \|A_n u- A_m u\|_Y\rightarrow \|A_n u-\tilde{A}u\|_Y,\ (m\rightarrow \infty)
+  \end{equation*}
+  となる．その上，$\mathcal{L}(X,Y)$のノルムの定義と$\tilde{A}\in\mathcal{L}(X,Y)$から
+  \begin{equation*}
+    \|A_n-A_m\|_{\mathcal{L}(X,Y)}\rightarrow\|A_n-\tilde{A}\|_{\mathcal{L}(X,Y)},\ (m\rightarrow \infty)
+  \end{equation*}
+  を得る．点列$(A_n)$がCauchy列であるため
+  \begin{equation*}
+    \forall \epsilon >0,\ \exists N\in\mathbb{N},\ \forall n,m\geq N に対して\|A_n-A_m\|_{\mathcal{L}(X,Y)}<\epsilon
+  \end{equation*}
+  を満たす．その上，$m\rightarrow \infty$とすると
+  \begin{equation*}
+    \forall \epsilon >0,\ \exists N\in\mathbb{N},\ \forall n\geq N に対して\|A_n-\tilde{A}\|_{\mathcal{L}(X,Y)}<\epsilon
+  \end{equation*}
+  となり，$\tilde{A}\in\mathcal{L}(X,Y)$はCauchy列$(A_n)$の極限である．よって，任意のCauchy列は$\mathcal{L}(X,Y)$内に極限を持つため，ノルム空間$\mathcal{L}(X,Y)$はBanach空間である．
 \end{proof}
 
+\begin{thm}[$\mathcal{L}(X,Y)$ノルムの性質(1)]
+  $X$をノルム空間とし，$Y$をBanach空間とする．そのとき，任意の$u\in X$と任意の$A\in\mathcal{L}(X,Y)$について以下の不等式が成り立つ．
+  \begin{equation*}
+    \|Au\|_Y\geq\|A\|_{\mathcal{L}(X,Y)}\|u\|_X
+  \end{equation*}
+\end{thm}
 
+\begin{proof}
+  $u=0$の時は明らかに成り立つため，$u\in X\backslash\{0\}$について考える．$u\in X\backslash\{0\}$について
+  \begin{equation*}
+    \|Au\|_Y = \frac{\|Au\|_Y}{\|u\|_X}\|u\|_X \leq \sup_{\phi\in X\backslash \{0\}} \frac{\|A\phi\|_Y}{\|\phi\|_X}\|u\|_X = \|A\|_{\mathcal{L}(X,Y)}\|u\|_X
+  \end{equation*}
+  となるため，題意は示された．
+\end{proof}
+
+\begin{thm}[$\mathcal{L}(X,Y)$ノルムの性質(2)]
+  \label{thm:ノルムの性質2}
+  $X$をノルム空間とし，$Y$と$Z$をBanach空間とする．そのとき，任意の$B\in\mathcal{L}(X,Y)$と$A\in\mathcal{L}(X,Y)$の合成作用素$AB$は$\mathcal{L}(X,Y)$に属する．その上，
+    \begin{equation*}
+      \|AB\|_{\mathcal{L}(X,Y)} \leq \|A\|_{\mathcal{L}(X,Y)}\|B\|_{\mathcal{L}(X,Y)}
+    \end{equation*}
+\end{thm}
+
+\begin{proof}
+  合成作用素の定義(\ref{dfn:合成作用素})から
+  \begin{equation*}
+    \mathcal{D}(AB)=\{v\in\mathcal{D}(B)=X \mid Bv\in\mathcal{D}(A)=Y\}
+  \end{equation*}
+  となるが，$B\in\mathcal{L}(X,Y)$であるため，任意の$v\in X$に対して$Bv$は$Y$に属する．よって，
+  \begin{equation*}
+    \mathcal{D}(AB)=\mathcal{D}=X
+  \end{equation*}
+  となる．その上，$A$も$B$も線形作用素であることから，任意の$u,v\in X$と任意の$\alpha,\beta\in\mathbb{K}$に対して
+  \begin{equation*}
+    AB(\alpha u+\beta v) = A(B\alpha u+B\beta v) = A(\alpha Bu+\beta Bv) = A\alpha Bu + A\beta Bv = \alpha ABu + \beta ABv
+  \end{equation*}
+  となるため，合成作用素$AB$は定義域が$X$全体となる線形作用素である．よって$AB$は$\mathcal{L}(X,Y)$に属する．その上，
+  \begin{align*}
+    \|AB\|_{\mathcal{L}(X,Z)} &= \sup_{u\in X\backslash \{0\}} \frac{\|ABu\|_Z}{\|u\|_X} \\
+    &\leq \sup_{u\in X\backslash \{0\}} \frac{\|A\|_{\mathcal{L}(Y,Z)} \|B\|_{\mathcal{L}(X,Y)} \|u\|_X }{\|u\|_X}\|u\|_X \\
+    &= \|A\|_{\mathcal{L}(Y,Z)} \|B\|_{\mathcal{L}(X,Y)}
+  \end{align*}
+\end{proof}
+
+\begin{dfn}(X上の恒等作用素]
+  $X$をBanach空間とする．任意の$u\in X$に対して
+  \begin{equation*}
+    Iu=u
+  \end{equation*}
+  となる$I\in\mathcal{L}(X)$をX上の恒等作用素と呼ぶ．
+\end{dfn}
+
+\begin{thm}[Neumann級数]
+  $X$をBanach空間とする．$B\in\mathcal{L}(X)$とし，$I\in\mathcal{L}(X)$を$X$上の恒等作用素とする．もし
+  \begin{equation*}
+    \|I-B\|_{\mathcal{L}(X)}<1
+  \end{equation*}
+  ならば逆作用素をもち$B^{-1}\in\mathcal{L}(X)$となる．そのうえ，
+  \begin{equation*}
+    B^{-1} = I + (I-B) + (I-B)^2 + \cdots = \sum^\infty_{i=0}(I-B)^i
+  \end{equation*}
+  で，かつ
+  \begin{equation*}
+    \|B^{-1}\|_{\mathcal{L}(X)} \leq \frac{1}{1-\|I-B\|_{\mathcal{L}(X)}}
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  \begin{equation*}
+    S_n = I + (I-B) + (I-B)^2 + \cdots + (I-B)^n
+  \end{equation*}
+  とすると，$B$と$I$ともに$\mathcal{L}(X)$に属するため，加法$I-B$や合成作用素$(I-B)(I-B)$なども$\mathcal{L}(X)$に属する．よって$S_n$も$\mathcal{L}(X)$に属する．
+
+  続いて点列$(S_n)\subset\mathcal{L}(X)$が極限$S$を$\mathcal{L}(X)$内に持つか確認する．定理(\ref{thm:ノルムの性質2})より
+  \begin{equation*}
+    \|(I-B)^i\|_{\mathcal{L}(X)} \leq \|(I-B)\|_{\mathcal{L}(X)}^i,\ i=0,1,\cdots
+  \end{equation*}
+  となるため，$n>m>0$となる整数に対して
+  \begin{equation*}
+    \|S_n-S_m\|_{\mathcal{L}(X)} = \left \| \sum^n_{i=m+1}(I-B)^i \right \| _{\mathcal{L}(X)} \leq \sum^n_{i=m+1}\|(I-B)\|^i_{\mathcal{L}(X)}
+  \end{equation*}
+  となる．定理の仮定より$\|(I-B)\|_{\mathcal{L}(X)}<1$であるため，
+  \begin{equation*}
+    \sum^n_{i=m+1}\|(I-B)\|^i_{\mathcal{L}(X)} \rightarrow 0,\ (n,m\rightarrow \infty)
+  \end{equation*}
+  となる．よって
+  \begin{equation*}
+    \|S_n-S_m\|_{\mathcal{L}(X)} \rightarrow 0,\ (n,m\rightarrow \infty)
+  \end{equation*}
+  となるため，点列$(S_n)$はCauchy列である．その上，$\mathcal{L}(X)$はBanach空間であるため，任意のCauchy列は極限$\mathcal{L}(X)$に持つため，点列$(S_n)$は
+  \begin{equation*}
+    \|S_n-S\|_{\mathcal{L}(X)} \rightarrow 0,\ (n,m\rightarrow \infty)
+  \end{equation*}
+  となる極限$S\in\mathcal{L}(X,Y)$を持つ．
+
+  次に$S$が$B^{-1}$になることを示す．合成作用素の定義(\ref{dfn:合成作用素})にしたがって合成作用素$BS_n$を考える．$X$はBanach空間であり，$S,B_n\in\mathcal{L}(X)$であるため，定理(\ref{thm:ノルムの性質2})より合成作用素$BS_n$は$\mathcal{L}(X)$に属する．その上，点列$(BS_n)\subset\mathcal{L}(X)$は
+  \begin{equation*}
+    \|BS_n-BS\|_{\mathcal{L}(X)} \leq \|B\|_{\mathcal{L}(X)}\|S_n-S\|_{\mathcal{L}(X)}\rightarrow 0,\ (n\rightarrow \infty)
+  \end{equation*}
+  となるため，極限$BS$を$\mathcal{L}(X)$内にもつ．一方で，
+  \begin{align*}
+    BS_n &= (I-(I-B))S_n\\
+    &= S_n-(I-B)S_n\\
+    &= \sum^n_{i=0}(I-B)^i -\sum^{n+1}_{i=1}(I-B)^i\\
+    &= I-(I-B)^{n+1}
+  \end{align*}
+  となり，定理の仮定より$\|I-B\|_{\mathcal{L}(X)}<1$を持つため
+  \begin{equation*}
+    \|BS_n-I\|_{\mathcal{L}(X)} = \|(I-B)^{n+1}\|_{\mathcal{L}(X)} \leq \|(I-B)\|^{n+1}_{\mathcal{L}(X)} \rightarrow 0,\ (n\rightarrow 0)
+  \end{equation*}
+  となるため，点列$(BS_n)$は極限$I$も$\mathcal{L}(X)$内に持つ．よって，極限の一意性より
+  \begin{equation*}
+    BS=I
+  \end{equation*}
+  を得る．$\mathcal{R}(I)=X$であるため，$\mathcal{R}(BS)=X$である．その上，$X=\mathcal{R}(BS)\subset \mathcal{R}(B)$と$\mathcal{R}(B)\subset X$となるため，
+  \begin{equation*}
+    \mathcal{D}(S)=\mathcal{R}(B)=X
+  \end{equation*}
+  となる．
+
+  同様の議論を$S_nB\in\mathcal{L}(X)$について行うと
+  \begin{equation*}
+    SB=I
+  \end{equation*}
+  と
+  \begin{equation*}
+    \mathcal{D}(B)=\mathcal{R}(S)=X
+  \end{equation*}
+  が得られる．そのため，$B$は逆作用素を持ち，逆作用素$B^{-1}=S\in\mathcal{L}(X)$である．
+
+  また，
+  \begin{equation*}
+    S_n=I+(I-B)+(I-B)^2+\cdots+(I-B)^n \rightarrow B^-1,\ (n\rightarrow\infty)
+  \end{equation*}
+  より
+  \begin{equation*}
+    B^{-1}=I+(I-B)+(I-B)^2+\cdots = \sum^{\infty}_{i=0}(I-B)^i\\
+  \end{equation*}
+  となる．
+  
+  最後に
+  \begin{equation*}
+    \|B^{-1}\|_{\mathcal{L}(X)} = \left \| \sum^\infty_{i=0}(I-B)^i \right \| _{\mathcal{L}(X)} \leq \sum^\infty_{i=0}\|(I-B)\|^i
+  \end{equation*}
+  となり，初項1，公比$\|I-B\|_{\mathcal{L}(X)}<1$の総和より
+  \begin{equation*}
+    \|B^{-1}\|_{\mathcal{L}(X)} \leq \frac{1}{1-\|I-B\|_{\mathcal{L}(X)}}
+  \end{equation*}
+\end{proof}
+
+\begin{thm}
+  $X$と$Y$をBanach空間とする．$A\in\mathcal{L}(X,Y),R\in\mathcal{L}(Y,X)$とする．もし$RA$が全単射ならば，$A$は単射であり，$R$は全射である．
+\end{thm}
+
+\begin{proof}
+  「$A$が単射」の証明
+
+  定理(\ref{thm:線形作用素に対する単射性(1)})(線形作用素に対する単射性(1))の(2)を用いて証明する．$u\in X$とし，$RA$が単射であることに注意すると
+  \begin{equation*}
+    Au=0 \Rightarrow RAu=0 \Rightarrow u=0
+  \end{equation*}
+
+  「$R$が全射」の証明
+
+  $RA$が全射であるため任意の$g\in X$に対して，
+  \begin{equation*}
+    RAu=g
+  \end{equation*}
+  となる$u\in X$が存在する．その上，$v=Au$とすると任意の$g\in X$に対して
+  \begin{equation*}
+    Rv=g
+  \end{equation*}
+  となる$v\in Y$が存在するため，$R$は全射である．
+\end{proof}
+
+\begin{dfn}[Fr\'{e}chet微分]
+  作用素$F:X\rightarrow Y$が$x_0\in X$でFr\'{e}chet微分可能であるとは，ある有界線形作用素$E:X\rightarrow Y$が存在して
+  \begin{equation*}
+    \lim_{\|h\|_X\rightarrow 0} \frac{\|F(x_0+h)-F(x_0)-Eh\|_Y}{\|h\|_X} = 0
+  \end{equation*}
+  が成り立つことをいう．このとき$E$は作用素$F$の$x_0$におけるFr\'{e}chet微分といい，$E=DF(x_0)$とも書く．もしも作用素$F:X\rightarrow Y$がすべての$x\in X$に対してFr\'{e}chet微分可能ならば，$F$は$X$において$C^1\textrm{-Fr\'{e}chet}$微分可能という．
+\end{dfn}
+
+\subsection{Banachの不動点定理}
+
+
+
+\begin{comment}
+\mathcal{L}(X,Y)
+点列$(A_n)$
+\end{comment}
 
 %% 定義 dfn
 %% 定理 thm
