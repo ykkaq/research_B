@@ -605,7 +605,7 @@
   \label{thm:ノルムの性質2}
   $X$をノルム空間とし，$Y$と$Z$をBanach空間とする．そのとき，任意の$B\in\mathcal{L}(X,Y)$と$A\in\mathcal{L}(X,Y)$の合成作用素$AB$は$\mathcal{L}(X,Y)$に属する．その上，
     \begin{equation*}
-      \|AB\|_{\mathcal{L}(X,Y)} \leq \|A\|_{\mathcal{L}(X,Y)}\|B\|_{\mathcal{L}(X,Y)}
+      \|AB\|_{\mathcal{L}(X,Z)} \leq \|A\|_{\mathcal{L}(Y,Z)}\|B\|_{\mathcal{L}(X,Y)}
     \end{equation*}
 \end{thm}
 
@@ -630,7 +630,7 @@
   \end{align*}
 \end{proof}
 
-\begin{dfn}(X上の恒等作用素]
+\begin{dfn}[X上の恒等作用素]
   $X$をBanach空間とする．任意の$u\in X$に対して
   \begin{equation*}
     Iu=u
@@ -769,8 +769,25 @@
   が成り立つことをいう．このとき$E$は作用素$F$の$x_0$におけるFr\'{e}chet微分といい，$E=DF(x_0)$とも書く．もしも作用素$F:X\rightarrow Y$がすべての$x\in X$に対してFr\'{e}chet微分可能ならば，$F$は$X$において$C^1\textrm{-Fr\'{e}chet}$微分可能という．
 \end{dfn}
 
+%===================%
 \subsection{Banachの不動点定理}
+\begin{dfn}[不動点]
+  $X$を係数帯が$\mathbb{K}$のBanach空間とする．$M$は空でない閉集合で$M\subset X$を満たすとする．$A$を$M$から$M$への写像とする．$x\in M$が$A$の不動点であるとは，$x$が
+  \begin{equation*}
+    x=Ax
+  \end{equation*}
+  を満たすことである．
+\end{dfn}
 
+\begin{dfn}[距離空間]
+  $X$をノルム空間とし，$x,y\in X$に対して実数値を対応させる関数$d(\cdot,\cdot):X\times X\rightarrow \mathbb{R}$が定義され，
+  \begin{enumerate}
+    \item $d(x,y) \leq 0$かつ$d(x,y)=0 \Leftrightarrow x=y,\ x,y\in X$
+    \item $d(x,y)=d(y,x),\ x,y\in X$
+    \item $d(x,y)\leq d(x,z) + d(z,y),\ x,y,z\in X$
+  \end{enumerate}
+  を満たすとき，$d$を距離空間という．距離の備わった
+\end{dfn}
 
 
 \begin{comment}
