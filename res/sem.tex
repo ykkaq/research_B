@@ -473,7 +473,7 @@
 \end{proof}
 
 \begin{dfn}[定義域が$X$の全体となる有界な線形作用素全体の集合$\mathcal{L}(X,Y)$]
-  定義域が\textrm{Banach}空間X全体となるXからYへの有界線形作用素全体を
+  定義域がBanach空間X全体となるXからYへの有界線形作用素全体を
   \begin{equation*}
     \mathcal{L}(X,Y)
   \end{equation*}
@@ -481,7 +481,7 @@
 \end{dfn}
 
 \begin{thm}[$\mathcal{L}(X,Y)$はBanach空間]
-  Xをノルム空間とし，Yを\textrm{Banach}空間とする．定義域がX全体となるXからYへの有界な線形作用素全体の集合$\mathcal{L}(X,Y)$のノルムを
+  Xをノルム空間とし，YをBanach空間とする．定義域がX全体となるXからYへの有界な線形作用素全体の集合$\mathcal{L}(X,Y)$のノルムを
   \begin{equation*}
     \|A\|_{\mathcal{L}(X,Y)}:=\sup_{u\in X\backslash\{0\}} \frac{\|Au\|_Y}{\|X\|_X}, \ A\in\mathcal{L}(X,Y)
   \end{equation*}
@@ -534,9 +534,9 @@
   \end{equation*}
   となる．任意の$u\in X\backslash \{0\}$に対して，点列$(A_nu) \subset Y$は
   \begin{align*}
-    \|A_n u-A_mu\|_Y &= \frac{\|(A_n-A_m)u\|_Y}{\|u\|_X}\|u\|_X \\
-    &\leq \sup_{\phi\in X\backslash\{0\}} \frac{\|(A_n-A_m)\phi\|_Y}{\|\phi\|_X}\|\|_X\\
-    &= \|A_n-A_m\|_{\mathcal{L}(X,Y)}\|u\|_X \rightarrow 0,\ (n,m \rightarrow \infty)
+    \|A_n u-A_mu\|_Y & = \frac{\|(A_n-A_m)u\|_Y}{\|u\|_X}\|u\|_X                                         \\
+                     & \leq \sup_{\phi\in X\backslash\{0\}} \frac{\|(A_n-A_m)\phi\|_Y}{\|\phi\|_X}\|\|_X \\
+                     & = \|A_n-A_m\|_{\mathcal{L}(X,Y)}\|u\|_X \rightarrow 0,\ (n,m \rightarrow \infty)
   \end{align*}
   を持つため，点列$(A_nu)\subset Y$はCauchy列になる．その上，$Y$はBanach空間であるため，$Y$の任意のCauchy列は収束し，$Y$内に極限$\tilde{A}u$となるような$X$から$Y$への作用素$\tilde{A}$が存在する．ここで，任意の$u\in X$に対して極限$\tilde{A}u$が定義されることから，$\tilde{A}$の定義域は$\mathcal{D}(\tilde{A})=X$である．これにより，$\mathcal{L}(X,Y)$の任意のCauchy列$(A_n)$の極限の候補$\tilde{A}$が定義できた．
 
@@ -604,9 +604,9 @@
 \begin{thm}[$\mathcal{L}(X,Y)$ノルムの性質(2)]
   \label{thm:ノルムの性質2}
   $X$をノルム空間とし，$Y$と$Z$をBanach空間とする．そのとき，任意の$B\in\mathcal{L}(X,Y)$と$A\in\mathcal{L}(X,Y)$の合成作用素$AB$は$\mathcal{L}(X,Y)$に属する．その上，
-    \begin{equation*}
-      \|AB\|_{\mathcal{L}(X,Z)} \leq \|A\|_{\mathcal{L}(Y,Z)}\|B\|_{\mathcal{L}(X,Y)}
-    \end{equation*}
+  \begin{equation*}
+    \|AB\|_{\mathcal{L}(X,Z)} \leq \|A\|_{\mathcal{L}(Y,Z)}\|B\|_{\mathcal{L}(X,Y)}
+  \end{equation*}
 \end{thm}
 
 \begin{proof}
@@ -624,9 +624,9 @@
   \end{equation*}
   となるため，合成作用素$AB$は定義域が$X$全体となる線形作用素である．よって$AB$は$\mathcal{L}(X,Y)$に属する．その上，
   \begin{align*}
-    \|AB\|_{\mathcal{L}(X,Z)} &= \sup_{u\in X\backslash \{0\}} \frac{\|ABu\|_Z}{\|u\|_X} \\
-    &\leq \sup_{u\in X\backslash \{0\}} \frac{\|A\|_{\mathcal{L}(Y,Z)} \|B\|_{\mathcal{L}(X,Y)} \|u\|_X }{\|u\|_X}\|u\|_X \\
-    &= \|A\|_{\mathcal{L}(Y,Z)} \|B\|_{\mathcal{L}(X,Y)}
+    \|AB\|_{\mathcal{L}(X,Z)} & = \sup_{u\in X\backslash \{0\}} \frac{\|ABu\|_Z}{\|u\|_X}                                                            \\
+                              & \leq \sup_{u\in X\backslash \{0\}} \frac{\|A\|_{\mathcal{L}(Y,Z)} \|B\|_{\mathcal{L}(X,Y)} \|u\|_X }{\|u\|_X}\|u\|_X \\
+                              & = \|A\|_{\mathcal{L}(Y,Z)} \|B\|_{\mathcal{L}(X,Y)}
   \end{align*}
 \end{proof}
 
@@ -687,10 +687,10 @@
   \end{equation*}
   となるため，極限$BS$を$\mathcal{L}(X)$内にもつ．一方で，
   \begin{align*}
-    BS_n &= (I-(I-B))S_n\\
-    &= S_n-(I-B)S_n\\
-    &= \sum^n_{i=0}(I-B)^i -\sum^{n+1}_{i=1}(I-B)^i\\
-    &= I-(I-B)^{n+1}
+    BS_n & = (I-(I-B))S_n                                 \\
+         & = S_n-(I-B)S_n                                 \\
+         & = \sum^n_{i=0}(I-B)^i -\sum^{n+1}_{i=1}(I-B)^i \\
+         & = I-(I-B)^{n+1}
   \end{align*}
   となり，定理の仮定より$\|I-B\|_{\mathcal{L}(X)}<1$を持つため
   \begin{equation*}
@@ -725,7 +725,7 @@
     B^{-1}=I+(I-B)+(I-B)^2+\cdots = \sum^{\infty}_{i=0}(I-B)^i\\
   \end{equation*}
   となる．
-  
+
   最後に
   \begin{equation*}
     \|B^{-1}\|_{\mathcal{L}(X)} = \left \| \sum^\infty_{i=0}(I-B)^i \right \| _{\mathcal{L}(X)} \leq \sum^\infty_{i=0}\|(I-B)\|^i
@@ -786,8 +786,97 @@
     \item $d(x,y)=d(y,x),\ x,y\in X$
     \item $d(x,y)\leq d(x,z) + d(z,y),\ x,y,z\in X$
   \end{enumerate}
-  を満たすとき，$d$を距離空間という．距離の備わった
+  を満たすとき，$d$を距離空間という．距離の備わった集合を距離空間という．
 \end{dfn}
+
+\begin{dfn}[縮小写像]
+  $X$を係数体が$\mathbb{K}$のBanach空間とする．$M$は空でない閉集合で$M\subset X$を満たすとする．写像$A:M\rightarrow M$が$k$次の縮小写像であるとは，$0\leq k<1$を満たす定数$k$が存在し，$\forall x,y \in M$について
+  \begin{equation*}
+    \|Ax-Ay\|\leq k\|x-y\|
+  \end{equation*}
+  を満たすことである．
+\end{dfn}
+
+\begin{thm}[Banachの不動点定理]
+  $X$を係数体が$\mathbb{K}$のBanach空間とする．$M$は空でない閉集合で$M\subset X$を満たすとする．$A$は$M$から$M$への$k$次の縮小写像とする．そのとき，問題
+  \begin{equation}
+    \label{equ:Banachの不動点定理}
+    \mathrm{Find}\ u\in M\ \mathrm{s.t.} \ u=Au
+  \end{equation}
+  は真の解$u^*$を$M$内にただ一つ持つ．即ち，写像$A$は$M$上にただ一つ不動点$u^*$を持つ．
+\end{thm}
+
+\begin{proof}
+  $u_0$を閉集合$M$の元として与えられていると仮定する．点列$(u_n)$は反復法
+  \begin{equation}
+    \label{equ:反復法による点列}
+    u_{n+1}=Au_n,\ n=0,1,\cdots
+  \end{equation}
+  にとって得られる．そのとき，証明のプロセスは次のように考える．
+  \begin{enumerate}
+    \item $(u_n)$がCauchy列になること，さらにBanach空間の完備性を使うことで，$u_n\rightarrow u,\ n\rightarrow \infty$となる$u$が$X$内に存在することを示す．
+    \item $u$が式(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$と一致することを示す(解の存在性)．
+    \item 真の解$u^*$が$M$内で一意であることを示す．
+  \end{enumerate}
+
+  \textbf{1)}
+
+  式(\ref{equ:反復法による点列})より，
+  \begin{equation}
+    \|u_n-u_{n+1}\|=\|Au_{n-1}-Au_{n}\|
+  \end{equation}
+  となる．定理の仮定より$A$は$k$次の縮小写像であるため，
+  \begin{equation}
+    \|Au_{n-1}-Au_{n}\|\leq k\|u_{n-1}-u_{n}\|
+  \end{equation}
+  となる定数$k$が存在する．同様に$\|u_{n-1}-u_{n}\|$に式(\ref{equ:反復法による点列})と$A$の縮小写像の性質を使うと最終的に
+  \begin{equation}
+    \label{equ:点列と縮小写像より}
+    \|u_{n}-u_{n+1}\|\leq k^n\|u_{0}-u_{1}\|
+  \end{equation}
+  を得る．
+
+  次に三角不等式より，$n=0,1,2,\cdots,\ m>n$について
+  \begin{align}
+    \|u_{n}-u_{m}\| & = \|(u_{n}-u_{n+1})+(u_{n+1}-u_{n+2})+\cdots+(u_{m-1}-u_{m})\|      \\
+                    & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\|
+  \end{align}
+  となる．上の式に式(\ref{equ:点列と縮小写像より})を適用すると
+  \begin{align}
+    \|u_{n}-u_{m}\| & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\| \label{equ:-1}    \\
+                    & \leq k^n\|(u_{n}-u_{n+1}\|+k^{n+1}\|u_{n+1}-u_{n+2}\|+\cdots+k^{m-1}\|u_{m-1}-u_{m}\| \\
+                    & = k^n(1+k+\cdots+k^{m-n-1})\|u_0-u_1\|
+  \end{align}
+  となる．ここで，$k$は$0<k<1$であるため，$1+k+\cdots+k^{m-n-1}\leq 1+k+\cdots+k^{m-1}$となる．さらに，等比級数から
+  \begin{equation}
+    1+k+\cdots+k^{m-1} = \frac{1-k^m}{1-k}
+  \end{equation}
+
+  であるため，式(\ref{equ:-1})は
+  \begin{equation}
+    \|u_{n}-u_{m}\| \leq \frac{k^n(1-k^m)}{1-k} \|u_0-u_1\|
+  \end{equation}
+  となる．よって，$k$は$0<k<1$から$k^n\rightarrow 0,\ n\rightarrow \infty$と$k^m\rightarrow 0,\ m\rightarrow \infty$となる．すなわち，
+  \begin{equation*}
+    \|u_{n}-u_{m}\| \rightarrow 0,\ (n,m\rightarrow \infty)
+  \end{equation*}
+  となるため，点列$(u_n)$はCauchy列である．さらに$X$はBanach空間であるため，$X$は完備である．すなわち，任意のCauchy列が$X$の中で極限を持つ．よって，点列$(u_n)$は
+  \begin{equation*}
+    u_n\rightarrow u,\ n\rightarrow \infty
+  \end{equation*}
+  となる$u \in X$が存在する．
+
+  \textbf{2)}
+
+  a
+
+  \textbf{3)}
+
+  a
+
+
+
+\end{proof}
 
 
 \begin{comment}
