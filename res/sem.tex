@@ -819,7 +819,7 @@
     \item 真の解$u^*$が$M$内で一意であることを示す．
   \end{enumerate}
 
-  \textbf{1)}
+  \textbf{1}
 
   式(\ref{equ:反復法による点列})より，
   \begin{equation}
@@ -866,17 +866,81 @@
   \end{equation*}
   となる$u \in X$が存在する．
 
-  \textbf{2)}
+  \textbf{2}
 
-  a
+  $t_0$を$M$の元とする．仮定より，$A$は$M$から$M$への写像であるため，$A(M)\subseteq M$となる．すなわち，$u_1=Au_0$が成立する$u_1\in M$が存在する．同様に，$\forall n \in \mathbb{N}$について$u_n\in M$が存在する．さらに，$M$は閉集合であるため，\textbf{1}で存在を証明した$u$は$M$に属する．そのうえで仮定とり$A$は$k$次の縮小写像であるため
+  \begin{equation*}
+    \|Au_n-Au\|\leq k\|u_n-u\|
+  \end{equation*}
+  を得る．\textbf{1}より点列$(u_n)$は極限をもつため，$\|u_n-u\|\rightarrow 0,\ n\rightarrow \infty$となる．すなわち
+  \begin{equation*}
+    \|Au_n-Au\|\rightarrow 0,\ n\rightarrow \infty
+  \end{equation*}
+  となるため，$Au$は$Au_n$の極限である．よって式(\ref{equ:反復法による点列})とすると
+  \begin{equation*}
+    u=Au
+  \end{equation*}
+  が成立する．とって$u$は式(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$となる．
 
-  \textbf{3)}
+  \textbf{3}
 
-  a
-
-
-
+  $u^*,v^*\in M$をそれぞれ$u^*=Au^*$と$v^*=Av^*$を満たすとする．その時，$A$は$k$次の縮小写像であるため
+  \begin{equation*}
+    \|u^*-v^*\| \leq \|Au^*-Av^*\| \leq k\|u^*-v^*\|
+  \end{equation*}
+  を得る．ここで$0\leq k<1$であるため，不等式を満たすものは$u^*=v^*$の場合のみである．すなわち式(\ref{equ:Banachの不動点定理})を満たす真の解は一意である．
 \end{proof}
+
+\subsection{簡易ニュートン写像}
+本節では，$X,Y$をBanach空間とし，写像$F:X\rightarrow Y$に対して
+\begin{equation*}
+  F(x)=0 \in Y
+\end{equation*}
+という（非線形）作用素方程式を考える．
+
+このとき，写像$T:X\rightarrow X$を
+\begin{equation*}
+  T(x):=x-AF(X)
+\end{equation*}
+で定義する．これを簡易ニュートン写像という．ここで$A:Y\rightarrow X$はある全単射な線形作用素である．いま$\bar{x}$を$F(\bar{x})\approx 0$となる近似解とし，$\bar{x}$の近傍を
+\begin{align*}
+  B(\bar{x},r)            & :=\{x\in X\:\|x-\bar{x}\|<r\}\ （開球）     \\
+  \overline{B(\bar{x},r)} & :=\{x\in X\:\|x-\bar{x}\|\leq r\}\ （閉球）
+\end{align*}
+で定義する．このとき，もし，$B(\bar{x},r)$上で写像$T$が縮小写像となれば，Banachの不動点定理から$F(\tilde{x})=0$をみたす解$\tilde{x}\in B(\bar{x},r)$がただ一つ存在することになる．このように解の存在を仮定せずに近似解近傍での収束をいう定理をNewton-Kantorovichの定理という．
+
+\subsection{フーリエ級数}
+\subsubsection{フーリエ級数の導出}
+ある関数$f(x)$が有限の閉空間$[a,b]$で定義されている場合に，次の性質をもつとき区分的に連続であるという．
+\begin{enumerate}
+  \item $f(x)$は有限個の不連続点を除いて連続である．
+  \item $f(x)$の不連続点$c$では$f(c+0)$と$f(c-0)$が存在する．
+\end{enumerate}
+
+また，$f(x)$が無限区間で定義されている場合には，$f(x)$が任意の有限区間で区分的に連続であるときに，$f(x)$は区分的に連続であるという．以降は，特に断らないかぎり区分的に連続な関数のみを考えることにする．
+
+関数$f(x),\ (x\in [-\pi,\pi])$を周期$2\pi$の周期関数とする．このような$f(x)$が以下の三角関数で表されるとして，係数$a_0,a_1,a_2,\cdots,b_0,b_1,b_2,\cdots$を求めることを考える．
+
+\begin{align}
+  f(x) & = \frac{a_0}{2} + \sum_{\infty}^{n=1} (a_n \cos nx + b_n \sin nx)                          \\
+       & = \frac{a_0}{2} + (a_1 \cos x + b_1 \sin nx) + (a_2 \cos 2x + b_2 \sin 2x) + \cdots \notag
+\end{align}
+
+そのために，次の公式を用意する．ここで，$m,n\in \mathbb{N}$である．
+\begin{align}
+  \int_{-\pi}^{\pi} \cos nx \cos mx dx                        & = \begin{cases}
+                                                                    0 \quad (n\neq m) \\
+                                                                    \pi \quad (n=m)
+                                                                  \end{cases} \notag \\
+  \int_{-\pi}^{\pi} \sin nx \sin mx dx                        & = \begin{cases}
+                                                                    0 \quad (n\neq m) \\
+                                                                    \pi \quad (n=m)   \\
+                                                                  \end{cases} \notag \\
+  \int_{-\pi}^{\pi} \sin nx \cos mx dx                        & = 0                  \\
+  \int_{-\pi}^{\pi} \sin nx dx = \int_{-\pi}^{\pi} \cos mx dx & = 0
+\end{align}
+
+ここで，次のような形式的計算が許されると仮定する．
 
 
 \begin{comment}
