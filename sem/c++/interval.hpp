@@ -2,7 +2,6 @@
 #include <cmath>
 #include <iostream>
 
-#include "add.hpp"
 #include "subs.hpp"
 
 // fesetround(FE_UPWARD);
@@ -10,9 +9,11 @@
 // fesetround(FE_TOWARDZERO);
 // fesetround(FE_TONEAREST);
 
-class interval : protected iadd, protected isubs {
+template <typename T>
+
+class interval : protected isubs<T> {
  public:
-  void setting(const double& i, const double& s) {
+  void setting(const T& i, const T& s) {
     this->inf = i;
     this->sup = s;
   }
@@ -21,13 +22,13 @@ class interval : protected iadd, protected isubs {
     std::cout << "[" << this->inf << "," << this->sup << "]" << std::endl;
   }
 
-  friend interval operator+(const interval& a, const interval& b) {
+  friend interval<T> operator+(const interval<T>& a, const interval<T>& b) {
     interval res = a;
     res.add(b);
     return res;
   }
 
-  friend interval operator-(const interval& a, const interval& b) {
+  friend interval<T> operator-(const interval<T>& a, const interval<T>& b) {
     interval res = a;
     res.subs(b);
     return res;
@@ -35,10 +36,10 @@ class interval : protected iadd, protected isubs {
 
   // 野良関数をclass内に書くにはfriend
   //     → メソッド関数ではない!! * a.xxxx(  )
-  friend interval sqrt(const interval& a) {
-    interval res;
-    volatile double asup = a.sup, ainf = a.inf;
-    volatile double rsup, rinf;
+  friend interval<T> sqrt(const interval<T>& a) {
+    interval<T> res;
+    volatile T asup = a.sup, ainf = a.inf;
+    volatile T rsup, rinf;
     fesetround(FE_UPWARD);
     rsup = std::sqrt(asup);
     fesetround(FE_DOWNWARD);
