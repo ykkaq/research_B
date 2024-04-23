@@ -815,13 +815,13 @@
   にとって得られる．そのとき，証明のプロセスは次のように考える．
   \begin{enumerate}
     \item $(u_n)$がCauchy列になること，さらにBanach空間の完備性を使うことで，$u_n\rightarrow u,\ n\rightarrow \infty$となる$u$が$X$内に存在することを示す．
-    \item $u$が式(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$と一致することを示す(解の存在性)．
+    \item $u$が(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$と一致することを示す(解の存在性)．
     \item 真の解$u^*$が$M$内で一意であることを示す．
   \end{enumerate}
 
   \textbf{1}
 
-  式(\ref{equ:反復法による点列})より，
+  (\ref{equ:反復法による点列})より，
   \begin{equation}
     \|u_n-u_{n+1}\|=\|Au_{n-1}-Au_{n}\|
   \end{equation}
@@ -829,7 +829,7 @@
   \begin{equation}
     \|Au_{n-1}-Au_{n}\|\leq k\|u_{n-1}-u_{n}\|
   \end{equation}
-  となる定数$k$が存在する．同様に$\|u_{n-1}-u_{n}\|$に式(\ref{equ:反復法による点列})と$A$の縮小写像の性質を使うと最終的に
+  となる定数$k$が存在する．同様に$\|u_{n-1}-u_{n}\|$に(\ref{equ:反復法による点列})と$A$の縮小写像の性質を使うと最終的に
   \begin{equation}
     \label{equ:点列と縮小写像より}
     \|u_{n}-u_{n+1}\|\leq k^n\|u_{0}-u_{1}\|
@@ -841,7 +841,7 @@
     \|u_{n}-u_{m}\| & = \|(u_{n}-u_{n+1})+(u_{n+1}-u_{n+2})+\cdots+(u_{m-1}-u_{m})\|      \\
                     & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\|
   \end{align}
-  となる．上の式に式(\ref{equ:点列と縮小写像より})を適用すると
+  となる．上の式に(\ref{equ:点列と縮小写像より})を適用すると
   \begin{align}
     \|u_{n}-u_{m}\| & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\| \label{equ:-1}    \\
                     & \leq k^n\|(u_{n}-u_{n+1}\|+k^{n+1}\|u_{n+1}-u_{n+2}\|+\cdots+k^{m-1}\|u_{m-1}-u_{m}\| \\
@@ -852,7 +852,7 @@
     1+k+\cdots+k^{m-1} = \frac{1-k^m}{1-k}
   \end{equation}
 
-  であるため，式(\ref{equ:-1})は
+  であるため，(\ref{equ:-1})は
   \begin{equation}
     \|u_{n}-u_{m}\| \leq \frac{k^n(1-k^m)}{1-k} \|u_0-u_1\|
   \end{equation}
@@ -876,11 +876,11 @@
   \begin{equation*}
     \|Au_n-Au\|\rightarrow 0,\ n\rightarrow \infty
   \end{equation*}
-  となるため，$Au$は$Au_n$の極限である．よって式(\ref{equ:反復法による点列})とすると
+  となるため，$Au$は$Au_n$の極限である．よって(\ref{equ:反復法による点列})とすると
   \begin{equation*}
     u=Au
   \end{equation*}
-  が成立する．とって$u$は式(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$となる．
+  が成立する．とって$u$は(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$となる．
 
   \textbf{3}
 
@@ -888,7 +888,7 @@
   \begin{equation*}
     \|u^*-v^*\| \leq \|Au^*-Av^*\| \leq k\|u^*-v^*\|
   \end{equation*}
-  を得る．ここで$0\leq k<1$であるため，不等式を満たすものは$u^*=v^*$の場合のみである．すなわち式(\ref{equ:Banachの不動点定理})を満たす真の解は一意である．
+  を得る．ここで$0\leq k<1$であるため，不等式を満たすものは$u^*=v^*$の場合のみである．すなわち(\ref{equ:Banachの不動点定理})を満たす真の解は一意である．
 \end{proof}
 
 \subsection{簡易ニュートン写像}
@@ -922,7 +922,7 @@
 関数$f(x),\ (x\in [-\pi,\pi])$を周期$2\pi$の周期関数とする．このような$f(x)$が以下の三角関数で表されるとして，係数$a_0,a_1,a_2,\cdots,b_0,b_1,b_2,\cdots$を求めることを考える．
 
 \begin{align}
-  f(x) & = \frac{a_0}{2} + \sum_{\infty}^{n=1} (a_n \cos nx + b_n \sin nx)                          \\
+  f(x) & = \frac{a_0}{2} + \sum_{\infty}^{n=1} (a_n \cos nx + b_n \sin nx)                       \label{equ:fourie-1}   \\
        & = \frac{a_0}{2} + (a_1 \cos x + b_1 \sin nx) + (a_2 \cos 2x + b_2 \sin 2x) + \cdots \notag
 \end{align}
 
@@ -936,12 +936,50 @@
                                                                     0 \quad (n\neq m) \\
                                                                     \pi \quad (n=m)   \\
                                                                   \end{cases} \notag \\
-  \int_{-\pi}^{\pi} \sin nx \cos mx dx                        & = 0                  \\
-  \int_{-\pi}^{\pi} \sin nx dx = \int_{-\pi}^{\pi} \cos mx dx & = 0
+  \int_{-\pi}^{\pi} \sin nx \cos mx dx                        & = 0   \label{equ:fourie-2} \\
+  \int_{-\pi}^{\pi} \sin nx dx = \int_{-\pi}^{\pi} \cos mx dx & = 0 \label{equ:fourie-3}
 \end{align}
 
-ここで，次のような形式的計算が許されると仮定する．まず，式$(\ref())$
+ここで，次のような形式的計算が許されると仮定する．まず，(\ref{equ:fourie-1})の両辺について$-\pi$から$\pi$まで積分し，(\ref{equ:fourie-3})を用いれば
+\begin{align*}
+  \int_{-\pi}^{\pi} f(x)dx &= \frac{a_0}{2}\int_{-\pi}^{\pi} dx + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx dx+ \int_{-\pi}^{\pi}b_n \sin nx dx) \\
+  &= \pi a_0
+\end{align*}
+\begin{equation}
+  \label{equ:fourie-a0}
+  \therefore a_0 = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) dx
+\end{equation}
 
+次に，(\ref{equ:fourie-1})の両辺に$\cos mx$をかけて，$-\pi$から$\pi$まで積分し，\ref{equ:fourie-2}\ref{equ:fourie-3}を用いれば
+\begin{align*}
+  \int_{-\pi}^{\pi} f(x) \cos mx dx &= \frac{a_0}{2} \int_{-\pi}^{\pi} \cos mx dx \\
+  & \quad + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx \cos mx dx + \int_{-\pi}^{\pi}b_n \sin nx \cos mx dx) \\
+  &= \pi a_0
+\end{align*}
+\begin{equation}
+  \label{equ:fourie-am}
+  \therefore a_m = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) \cos mx dx
+\end{equation}
+
+同様に，(\ref{equ:fourie-1})の両辺に$\sin mx$をかけて，$-\pi$から$\pi$まで積分することにより次の式が得られる．
+\begin{equation}
+  \label{equ:fourie-bm}
+  b_m = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin xm dx
+\end{equation}
+
+(\ref{equ:fourie-a0}),(\ref{equ:fourie-am}),(\ref{equ:fourie-bm})をまとめて次のようになる．
+
+\begin{dfn}[フーリエ級数]
+  \begin{equation*}
+    f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx + \sum_{n=1}^{\infty} b_n \sin nx
+  \end{equation*}
+  ただし
+  \begin{align*}
+    a_n = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \cos nx dx,\ (n\geq 0) \\
+    a_n = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \cos nx dx,\ (n\geq 1)
+  \end{align*}
+  この無限級数を$f$のフーリエ級数といい，$a_n,b_n$をフーリエ係数という．
+\end{dfn}
 
 \begin{comment}
 \mathcal{L}(X,Y)
