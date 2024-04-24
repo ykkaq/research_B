@@ -6,7 +6,7 @@
 %\documentclass[11pt,a4paper]{jsreport}
 
 \usepackage{algorithmic}
-\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,,mathtools}
 \usepackage{ascmac}
 \usepackage{bm}
 \usepackage{caption}
@@ -922,7 +922,7 @@
 関数$f(x),\ (x\in [-\pi,\pi])$を周期$2\pi$の周期関数とする．このような$f(x)$が以下の三角関数で表されるとして，係数$a_0,a_1,a_2,\cdots,b_0,b_1,b_2,\cdots$を求めることを考える．
 
 \begin{align}
-  f(x) & = \frac{a_0}{2} + \sum_{\infty}^{n=1} (a_n \cos nx + b_n \sin nx)                       \label{equ:fourie-1}   \\
+  f(x) & = \frac{a_0}{2} + \sum_{\infty}^{n=1} (a_n \cos nx + b_n \sin nx)                       \label{equ:fourie-1} \\
        & = \frac{a_0}{2} + (a_1 \cos x + b_1 \sin nx) + (a_2 \cos 2x + b_2 \sin 2x) + \cdots \notag
 \end{align}
 
@@ -931,19 +931,19 @@
   \int_{-\pi}^{\pi} \cos nx \cos mx dx                        & = \begin{cases}
                                                                     0 \quad (n\neq m) \\
                                                                     \pi \quad (n=m)
-                                                                  \end{cases} \notag \\
+                                                                  \end{cases} \notag       \\
   \int_{-\pi}^{\pi} \sin nx \sin mx dx                        & = \begin{cases}
                                                                     0 \quad (n\neq m) \\
                                                                     \pi \quad (n=m)   \\
-                                                                  \end{cases} \notag \\
+                                                                  \end{cases} \notag       \\
   \int_{-\pi}^{\pi} \sin nx \cos mx dx                        & = 0   \label{equ:fourie-2} \\
   \int_{-\pi}^{\pi} \sin nx dx = \int_{-\pi}^{\pi} \cos mx dx & = 0 \label{equ:fourie-3}
 \end{align}
 
 ここで，次のような形式的計算が許されると仮定する．まず，(\ref{equ:fourie-1})の両辺について$-\pi$から$\pi$まで積分し，(\ref{equ:fourie-3})を用いれば
 \begin{align*}
-  \int_{-\pi}^{\pi} f(x)dx &= \frac{a_0}{2}\int_{-\pi}^{\pi} dx + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx dx+ \int_{-\pi}^{\pi}b_n \sin nx dx) \\
-  &= \pi a_0
+  \int_{-\pi}^{\pi} f(x)dx & = \frac{a_0}{2}\int_{-\pi}^{\pi} dx + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx dx+ \int_{-\pi}^{\pi}b_n \sin nx dx) \\
+                           & = \pi a_0
 \end{align*}
 \begin{equation}
   \label{equ:fourie-a0}
@@ -952,9 +952,9 @@
 
 次に，(\ref{equ:fourie-1})の両辺に$\cos mx$をかけて，$-\pi$から$\pi$まで積分し，\ref{equ:fourie-2}\ref{equ:fourie-3}を用いれば
 \begin{align*}
-  \int_{-\pi}^{\pi} f(x) \cos mx dx &= \frac{a_0}{2} \int_{-\pi}^{\pi} \cos mx dx \\
-  & \quad + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx \cos mx dx + \int_{-\pi}^{\pi}b_n \sin nx \cos mx dx) \\
-  &= \pi a_0
+  \int_{-\pi}^{\pi} f(x) \cos mx dx & = \frac{a_0}{2} \int_{-\pi}^{\pi} \cos mx dx                                                                    \\
+                                    & \quad + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx \cos mx dx + \int_{-\pi}^{\pi}b_n \sin nx \cos mx dx) \\
+                                    & = \pi a_0
 \end{align*}
 \begin{equation}
   \label{equ:fourie-am}
@@ -980,6 +980,29 @@
   \end{align*}
   この無限級数を$f$のフーリエ級数といい，$a_n,b_n$をフーリエ係数という．
 \end{dfn}
+
+\begin{dfn}[複素フーリエ変換]
+  また，$$\cos nx = \frac{e^{inx}+e^{-inx}}{2},\ \sin nx = \frac{e^{inx}+e^{-inx}}{2}\quad (iは虚数単位)$$という関係を用いて
+  \begin{align*}
+    f(x) & = \sum_{k=-\infty}^{\infty} c_k e^{ikx}         \\
+    c_k  & = \frac{1}{2\pi} \int_{0}^{2\pi} f(x)e^{ikx} dx
+  \end{align*}
+  と複素数を用いた形式も考えられる．これを$f$の複素フーリエ級数，$c_k$を複素フーリエ係数という．
+
+  これらには関係式
+  \begin{align*}
+    c_k=
+    \begin{dcases}
+      \frac{a_k}{2}            & ,\ k=0 \\
+      \frac{a_k-ib_k}{2}       & ,\ k>0 \\
+      \frac{a_{-k}-ib_{-k}}{2} & ,\ k<0
+    \end{dcases}
+  \end{align*}
+\end{dfn}
+があり，変換可能である．
+
+\subsection{フーリエ級数の性質}
+\textbf{対称性}
 
 \begin{comment}
 \mathcal{L}(X,Y)
