@@ -822,8 +822,9 @@
     \item 真の解$u^*$が$M$内で一意であることを示す．
   \end{enumerate}
 
-  \textbf{1}
-
+  \begin{description}
+    \item[1]
+  　\\
   (\ref{equ:反復法による点列})より，
   \begin{equation}
     \|u_n-u_{n+1}\|=\|Au_{n-1}-Au_{n}\|
@@ -869,8 +870,8 @@
   \end{equation*}
   となる$u \in X$が存在する．
 
-  \textbf{2}
-
+  \item[2]
+  　\\
   $t_0$を$M$の元とする．仮定より，$A$は$M$から$M$への写像であるため，$A(M)\subseteq M$となる．すなわち，$u_1=Au_0$が成立する$u_1\in M$が存在する．同様に，$\forall n \in \mathbb{N}$について$u_n\in M$が存在する．さらに，$M$は閉集合であるため，\textbf{1}で存在を証明した$u$は$M$に属する．そのうえで仮定とり$A$は$k$次の縮小写像であるため
   \begin{equation*}
     \|Au_n-Au\|\leq k\|u_n-u\|
@@ -885,13 +886,15 @@
   \end{equation*}
   が成立する．とって$u$は(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$となる．
 
-  \textbf{3}
-
+  \item[3]
+　\\
   $u^*,v^*\in M$をそれぞれ$u^*=Au^*$と$v^*=Av^*$を満たすとする．その時，$A$は$k$次の縮小写像であるため
   \begin{equation*}
     \|u^*-v^*\| \leq \|Au^*-Av^*\| \leq k\|u^*-v^*\|
   \end{equation*}
   を得る．ここで$0\leq k<1$であるため，不等式を満たすものは$u^*=v^*$の場合のみである．すなわち(\ref{equ:Banachの不動点定理})を満たす真の解は一意である．
+\end{description}
+
 \end{proof}
 
 \subsection{簡易ニュートン写像}
@@ -953,10 +956,10 @@
   \therefore a_0 = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) dx
 \end{equation}
 
-次に，(\ref{equ:fourie-1})の両辺に$\cos mx$をかけて，$-\pi$から$\pi$まで積分し，\ref{equ:fourie-2}\ref{equ:fourie-3}を用いれば
+次に，(\ref{equ:fourie-1})の両辺に$\cos mx$をかけて，$-\pi$から$\pi$まで積分し，(\ref{equ:fourie-2})(\ref{equ:fourie-3})を用いれば
 \begin{align*}
   \int_{-\pi}^{\pi} f(x) \cos mx dx & = \frac{a_0}{2} \int_{-\pi}^{\pi} \cos mx dx                                                                    \\
-                                    & \quad + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx \cos mx dx + \int_{-\pi}^{\pi}b_n \sin nx \cos mx dx) \\
+                                    & \quad + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx \cos mx dx + \int_{-\pi}^{\pi}b_n \sin nx \cos mx dx \\
                                     & = \pi a_0
 \end{align*}
 \begin{equation}
@@ -985,10 +988,10 @@
 \end{dfn}
 
 \begin{dfn}[複素フーリエ変換]
-  また，$$\cos nx = \frac{e^{inx}+e^{-inx}}{2},\ \sin nx = \frac{e^{inx}+e^{-inx}}{2}\quad (iは虚数単位)$$という関係を用いて
+  また，$$\cos nx = \frac{\exp (inx) + \exp (-inx)}{2},\ \sin nx = \frac{\exp (inx) + \exp(-inx)}{2}\quad (iは虚数単位)$$という関係を用いて
   \begin{align*}
-    f(x) & = \sum_{k=-\infty}^{\infty} c_k e^{ikx}         \\
-    c_k  & = \frac{1}{2\pi} \int_{0}^{2\pi} f(x)e^{ikx} dx
+    f(x) & = \sum_{k=-\infty}^{\infty} c_k \exp(ikx)         \\
+    c_k  & = \frac{1}{2\pi} \int_{0}^{2\pi} f(x)\exp (ikx) dx
   \end{align*}
   と複素数を用いた形式も考えられる．これを$f$の複素フーリエ級数，$c_k$を複素フーリエ係数という．
 
@@ -1005,15 +1008,47 @@
 があり，変換可能である．
 
 \subsubsection{フーリエ級数の性質}
-\begin{enumerate}
-  \item 対称性 \\
-        周期関数$f(x)$が偶関数であるとき，$\sin$関数の係数$b_n$は$0$になる．偶関数のフーリエ級数は
+\begin{description}
+  \item[対称性]
+        　\\      
+        　周期関数$f(x)$が偶関数であるとき，偶関数のフーリエ級数は
         \begin{equation*}
-          f(x)=\frac{a_0}{2} + \sum_{n_1}^{\infty} a_n \
+          f(x)=\frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx \
         \end{equation*}
+        と表すことができる．上式のように$\cos$関数のみで表されるフーリエ級数をフーリエ・コサイン級数という．このとき，複素フーリエ係数は$c_{-k}=-c_k$が成り立つ．
 
-  \item bb
-\end{enumerate}
+        　一方で，$f(x)$が奇関数であるとき，奇関数のフーリエ級数は
+        \begin{equation*}
+          f(x) = \sum_{n=1}^{\infty} b_n \sin nx \
+        \end{equation*}
+        と表すことができる．上式のように$\sin$関数のみで表されるフーリエ級数をフーリエ・サイン級数という．このときも，複素フーリエ係数は$c_{-k}=-c_k$が成り立つ．
+
+  \item[実数値関数]
+        　\\
+        　$f(x)$が実数値関数$f(x)\in \mathbb{R}$であるとき，各フーリエ係数$a_n,b_n$は
+        \begin{equation*}
+          a_n,b_n\in\mathbb{R}
+        \end{equation*}
+        となる．このとき．複素フーリエ級数$c_k$は
+        \begin{equation*}
+          c_{-k}=\overline{c_k}
+        \end{equation*}
+        を満たす．これは，$f(x)=\overline{f(x)}$という実数値関数の性質を使うことで確認できる．
+
+  \item[係数の収束]
+  　\\
+  ある周期関数$f(x)$のフーリエ係数を$a_n$として，$n\rightarrow \infty$での収束オーダーを考えると，
+  \begin{equation*}
+    a_n = \begin{cases}
+      \mathcal{O}\left(n^{-K}\right) &k次オーダーの収束 \\
+      \mathcal{O}\left(e^{-qn^r}\right) &k次オーダーの収束 \\
+      \mathcal{O}\left(e^{-qb\log (n)}\right) &超幾何収束
+    \end{cases}
+  \end{equation*}
+  などのパターンがあり，それぞれ$f(x)$の滑らかさによって決まる．例えば，$f(x)$が$k$次オーダーの収束をする場合は，関数$f$は$C^k-級$の関数である．指数オーダーの収束の場合は実解析関数（曲や分岐点を持つ一般的な有限区間・無限区間上の関数），超幾何収束の場合は複素平面上で$\infty$以外で特異点を持たない関数（整関数）とそれぞれ知られている．
+
+  \item[] 
+\end{description}
 
 
 \begin{comment}
