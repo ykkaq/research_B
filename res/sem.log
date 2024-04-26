@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  24 APR 2024 01:10
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  26 APR 2024 15:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -500,6 +500,10 @@ LaTeX Font Info:    Trying to load font information for U+lasy on input line 50.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 52.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 52.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 52.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
@@ -508,49 +512,57 @@ LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 52.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 52.
-LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 53.
-LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 54.
-LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 54.
-LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 54.
-LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 54.
+ (./sem.toc
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 56.
+(Font)              scaled to size 6.72699pt on input line 2.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 56.
+(Font)              scaled to size 4.805pt on input line 2.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 56.
+(Font)              scaled to size 6.72699pt on input line 2.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 4.805pt on input line 56.
+(Font)              scaled to size 4.805pt on input line 2.
+)
+\tf@toc=\write4
+\openout4 = `sem.toc'.
+
  [1
 
 ]
-LaTeX Font Info:    Font shape `JT1/mc/m/it' in size <10> not available
-(Font)              Font shape `JT1/mc/m/n' tried instead on input line 129.
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 129.
-LaTeX Font Info:    Font shape `JY1/mc/m/it' in size <10> not available
-(Font)              Font shape `JY1/mc/m/n' tried instead on input line 129.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 129.
-LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 129.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 129.
-LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 129.
+(Font)              scaled to size 11.53198pt on input line 56.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 57.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 57.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 57.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 129.
- [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
+(Font)              scaled to size 9.60999pt on input line 57.
+ [2
+
+]
+LaTeX Font Info:    Font shape `JT1/mc/m/it' in size <10> not available
+(Font)              Font shape `JT1/mc/m/n' tried instead on input line 132.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 769.
+(Font)              scaled to size 9.60999pt on input line 132.
+LaTeX Font Info:    Font shape `JY1/mc/m/it' in size <10> not available
+(Font)              Font shape `JY1/mc/m/n' tried instead on input line 132.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 132.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 132.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 132.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <10> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 132.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 132.
+ [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14]
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 769.
- [14] [15] [16] [17] [18] [19] Excluding 'comment' comment.
+(Font)              scaled to size 6.72699pt on input line 772.
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 4.805pt on input line 772.
+ [15] [16] [17] [18] [19] [20] Excluding 'comment' comment.
 
 Package caption Warning: Unused \captionsetup[figure] on input line 32.
 See the caption package documentation for explanation.
@@ -559,14 +571,14 @@ See the caption package documentation for explanation.
 Package caption Warning: Unused \captionsetup[table] on input line 33.
 See the caption package documentation for explanation.
 
-[20] (./sem.aux) ) 
+[21] (./sem.aux) ) 
 Here is how much of TeX's memory you used:
- 8398 strings out of 478741
- 134065 string characters out of 5860983
+ 8404 strings out of 478741
+ 134117 string characters out of 5860983
  458080 words of memory out of 5000000
- 26674 multiletter control sequences out of 15000+600000
+ 26677 multiletter control sequences out of 15000+600000
  491223 words of font info for 128 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 55i,15n,63p,500b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,15n,63p,500b,298s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sem.dvi (20 pages, 68716 bytes).
+Output written on sem.dvi (21 pages, 71768 bytes).
