@@ -824,76 +824,76 @@
 
   \begin{description}
     \item[1]
-  　\\
-  (\ref{equ:反復法による点列})より，
-  \begin{equation}
-    \|u_n-u_{n+1}\|=\|Au_{n-1}-Au_{n}\|
-  \end{equation}
-  となる．定理の仮定より$A$は$k$次の縮小写像であるため，
-  \begin{equation}
-    \|Au_{n-1}-Au_{n}\|\leq k\|u_{n-1}-u_{n}\|
-  \end{equation}
-  となる定数$k$が存在する．同様に$\|u_{n-1}-u_{n}\|$に(\ref{equ:反復法による点列})と$A$の縮小写像の性質を使うと最終的に
-  \begin{equation}
-    \label{equ:点列と縮小写像より}
-    \|u_{n}-u_{n+1}\|\leq k^n\|u_{0}-u_{1}\|
-  \end{equation}
-  を得る．
+      \quad\\
+      (\ref{equ:反復法による点列})より，
+      \begin{equation}
+        \|u_n-u_{n+1}\|=\|Au_{n-1}-Au_{n}\|
+      \end{equation}
+      となる．定理の仮定より$A$は$k$次の縮小写像であるため，
+      \begin{equation}
+        \|Au_{n-1}-Au_{n}\|\leq k\|u_{n-1}-u_{n}\|
+      \end{equation}
+      となる定数$k$が存在する．同様に$\|u_{n-1}-u_{n}\|$に(\ref{equ:反復法による点列})と$A$の縮小写像の性質を使うと最終的に
+      \begin{equation}
+        \label{equ:点列と縮小写像より}
+        \|u_{n}-u_{n+1}\|\leq k^n\|u_{0}-u_{1}\|
+      \end{equation}
+      を得る．
 
-  次に三角不等式より，$n=0,1,2,\cdots,\ m>n$について
-  \begin{align}
-    \|u_{n}-u_{m}\| & = \|(u_{n}-u_{n+1})+(u_{n+1}-u_{n+2})+\cdots+(u_{m-1}-u_{m})\|      \\
-                    & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\|
-  \end{align}
-  となる．上の式に(\ref{equ:点列と縮小写像より})を適用すると
-  \begin{align}
-    \|u_{n}-u_{m}\| & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\| \label{equ:-1}    \\
-                    & \leq k^n\|(u_{n}-u_{n+1}\|+k^{n+1}\|u_{n+1}-u_{n+2}\|+\cdots+k^{m-1}\|u_{m-1}-u_{m}\| \\
-                    & = k^n(1+k+\cdots+k^{m-n-1})\|u_0-u_1\|
-  \end{align}
-  となる．ここで，$k$は$0<k<1$であるため，$1+k+\cdots+k^{m-n-1}\leq 1+k+\cdots+k^{m-1}$となる．さらに，等比級数から
-  \begin{equation}
-    1+k+\cdots+k^{m-1} = \frac{1-k^m}{1-k}
-  \end{equation}
+      次に三角不等式より，$n=0,1,2,\cdots,\ m>n$について
+      \begin{align}
+        \|u_{n}-u_{m}\| & = \|(u_{n}-u_{n+1})+(u_{n+1}-u_{n+2})+\cdots+(u_{m-1}-u_{m})\|      \\
+                        & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\|
+      \end{align}
+      となる．上の式に(\ref{equ:点列と縮小写像より})を適用すると
+      \begin{align}
+        \|u_{n}-u_{m}\| & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\| \label{equ:-1}    \\
+                        & \leq k^n\|(u_{n}-u_{n+1}\|+k^{n+1}\|u_{n+1}-u_{n+2}\|+\cdots+k^{m-1}\|u_{m-1}-u_{m}\| \\
+                        & = k^n(1+k+\cdots+k^{m-n-1})\|u_0-u_1\|
+      \end{align}
+      となる．ここで，$k$は$0<k<1$であるため，$1+k+\cdots+k^{m-n-1}\leq 1+k+\cdots+k^{m-1}$となる．さらに，等比級数から
+      \begin{equation}
+        1+k+\cdots+k^{m-1} = \frac{1-k^m}{1-k}
+      \end{equation}
 
-  であるため，(\ref{equ:-1})は
-  \begin{equation}
-    \|u_{n}-u_{m}\| \leq \frac{k^n(1-k^m)}{1-k} \|u_0-u_1\|
-  \end{equation}
-  となる．よって，$k$は$0<k<1$から$k^n\rightarrow 0,\ n\rightarrow \infty$と$k^m\rightarrow 0,\ m\rightarrow \infty$となる．すなわち，
-  \begin{equation*}
-    \|u_{n}-u_{m}\| \rightarrow 0,\ (n,m\rightarrow \infty)
-  \end{equation*}
-  となるため，点列$(u_n)$はCauchy列である．さらに$X$はBanach空間であるため，$X$は完備である．すなわち，任意のCauchy列が$X$の中で極限を持つ．よって，点列$(u_n)$は
-  \begin{equation*}
-    u_n\rightarrow u,\ n\rightarrow \infty
-  \end{equation*}
-  となる$u \in X$が存在する．
+      であるため，(\ref{equ:-1})は
+      \begin{equation}
+        \|u_{n}-u_{m}\| \leq \frac{k^n(1-k^m)}{1-k} \|u_0-u_1\|
+      \end{equation}
+      となる．よって，$k$は$0<k<1$から$k^n\rightarrow 0,\ n\rightarrow \infty$と$k^m\rightarrow 0,\ m\rightarrow \infty$となる．すなわち，
+      \begin{equation*}
+        \|u_{n}-u_{m}\| \rightarrow 0,\ (n,m\rightarrow \infty)
+      \end{equation*}
+      となるため，点列$(u_n)$はCauchy列である．さらに$X$はBanach空間であるため，$X$は完備である．すなわち，任意のCauchy列が$X$の中で極限を持つ．よって，点列$(u_n)$は
+      \begin{equation*}
+        u_n\rightarrow u,\ n\rightarrow \infty
+      \end{equation*}
+      となる$u \in X$が存在する．
 
-  \item[2]
-  　\\
-  $t_0$を$M$の元とする．仮定より，$A$は$M$から$M$への写像であるため，$A(M)\subseteq M$となる．すなわち，$u_1=Au_0$が成立する$u_1\in M$が存在する．同様に，$\forall n \in \mathbb{N}$について$u_n\in M$が存在する．さらに，$M$は閉集合であるため，\textbf{1}で存在を証明した$u$は$M$に属する．そのうえで仮定とり$A$は$k$次の縮小写像であるため
-  \begin{equation*}
-    \|Au_n-Au\|\leq k\|u_n-u\|
-  \end{equation*}
-  を得る．\textbf{1}より点列$(u_n)$は極限をもつため，$\|u_n-u\|\rightarrow 0,\ n\rightarrow \infty$となる．すなわち
-  \begin{equation*}
-    \|Au_n-Au\|\rightarrow 0,\ n\rightarrow \infty
-  \end{equation*}
-  となるため，$Au$は$Au_n$の極限である．よって(\ref{equ:反復法による点列})とすると
-  \begin{equation*}
-    u=Au
-  \end{equation*}
-  が成立する．とって$u$は(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$となる．
+    \item[2]
+      \quad\\
+      $t_0$を$M$の元とする．仮定より，$A$は$M$から$M$への写像であるため，$A(M)\subseteq M$となる．すなわち，$u_1=Au_0$が成立する$u_1\in M$が存在する．同様に，$\forall n \in \mathbb{N}$について$u_n\in M$が存在する．さらに，$M$は閉集合であるため，\textbf{1}で存在を証明した$u$は$M$に属する．そのうえで仮定とり$A$は$k$次の縮小写像であるため
+      \begin{equation*}
+        \|Au_n-Au\|\leq k\|u_n-u\|
+      \end{equation*}
+      を得る．\textbf{1}より点列$(u_n)$は極限をもつため，$\|u_n-u\|\rightarrow 0,\ n\rightarrow \infty$となる．すなわち
+      \begin{equation*}
+        \|Au_n-Au\|\rightarrow 0,\ n\rightarrow \infty
+      \end{equation*}
+      となるため，$Au$は$Au_n$の極限である．よって(\ref{equ:反復法による点列})とすると
+      \begin{equation*}
+        u=Au
+      \end{equation*}
+      が成立する．とって$u$は(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$となる．
 
-  \item[3]
-　\\
-  $u^*,v^*\in M$をそれぞれ$u^*=Au^*$と$v^*=Av^*$を満たすとする．その時，$A$は$k$次の縮小写像であるため
-  \begin{equation*}
-    \|u^*-v^*\| \leq \|Au^*-Av^*\| \leq k\|u^*-v^*\|
-  \end{equation*}
-  を得る．ここで$0\leq k<1$であるため，不等式を満たすものは$u^*=v^*$の場合のみである．すなわち(\ref{equ:Banachの不動点定理})を満たす真の解は一意である．
-\end{description}
+    \item[3]
+      \quad\\
+      $u^*,v^*\in M$をそれぞれ$u^*=Au^*$と$v^*=Av^*$を満たすとする．その時，$A$は$k$次の縮小写像であるため
+      \begin{equation*}
+        \|u^*-v^*\| \leq \|Au^*-Av^*\| \leq k\|u^*-v^*\|
+      \end{equation*}
+      を得る．ここで$0\leq k<1$であるため，不等式を満たすものは$u^*=v^*$の場合のみである．すなわち(\ref{equ:Banachの不動点定理})を満たす真の解は一意である．
+  \end{description}
 
 \end{proof}
 
@@ -958,7 +958,7 @@
 
 次に，(\ref{equ:fourie-1})の両辺に$\cos mx$をかけて，$-\pi$から$\pi$まで積分し，(\ref{equ:fourie-2})(\ref{equ:fourie-3})を用いれば
 \begin{align*}
-  \int_{-\pi}^{\pi} f(x) \cos mx dx & = \frac{a_0}{2} \int_{-\pi}^{\pi} \cos mx dx                                                                    \\
+  \int_{-\pi}^{\pi} f(x) \cos mx dx & = \frac{a_0}{2} \int_{-\pi}^{\pi} \cos mx dx                                                                   \\
                                     & \quad + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx \cos mx dx + \int_{-\pi}^{\pi}b_n \sin nx \cos mx dx \\
                                     & = \pi a_0
 \end{align*}
@@ -990,7 +990,7 @@
 \begin{dfn}[複素フーリエ変換]
   また，$$\cos nx = \frac{\exp (inx) + \exp (-inx)}{2},\ \sin nx = \frac{\exp (inx) + \exp(-inx)}{2}\quad (iは虚数単位)$$という関係を用いて
   \begin{align*}
-    f(x) & = \sum_{k=-\infty}^{\infty} c_k \exp(ikx)         \\
+    f(x) & = \sum_{k=-\infty}^{\infty} c_k \exp(ikx)          \\
     c_k  & = \frac{1}{2\pi} \int_{0}^{2\pi} f(x)\exp (ikx) dx
   \end{align*}
   と複素数を用いた形式も考えられる．これを$f$の複素フーリエ級数，$c_k$を複素フーリエ係数という．
@@ -1010,45 +1010,167 @@
 \subsubsection{フーリエ級数の性質}
 \begin{description}
   \item[対称性]
-        　\\      
-        　周期関数$f(x)$が偶関数であるとき，偶関数のフーリエ級数は
-        \begin{equation*}
-          f(x)=\frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx \
-        \end{equation*}
-        と表すことができる．上式のように$\cos$関数のみで表されるフーリエ級数をフーリエ・コサイン級数という．このとき，複素フーリエ係数は$c_{-k}=-c_k$が成り立つ．
+    \quad\\
+    周期関数$f(x)$が偶関数であるとき，偶関数のフーリエ級数は
+    \begin{equation*}
+      f(x)=\frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx \
+    \end{equation*}
+    と表すことができる．上式のように$\cos$関数のみで表されるフーリエ級数をフーリエ・コサイン級数という．このとき，複素フーリエ係数は$c_{-k}=-c_k$が成り立つ．
 
-        　一方で，$f(x)$が奇関数であるとき，奇関数のフーリエ級数は
-        \begin{equation*}
-          f(x) = \sum_{n=1}^{\infty} b_n \sin nx \
-        \end{equation*}
-        と表すことができる．上式のように$\sin$関数のみで表されるフーリエ級数をフーリエ・サイン級数という．このときも，複素フーリエ係数は$c_{-k}=-c_k$が成り立つ．
+    一方で，$f(x)$が奇関数であるとき，奇関数のフーリエ級数は
+    \begin{equation*}
+      f(x) = \sum_{n=1}^{\infty} b_n \sin nx \
+    \end{equation*}
+    と表すことができる．上式のように$\sin$関数のみで表されるフーリエ級数をフーリエ・サイン級数という．このときも，複素フーリエ係数は$c_{-k}=-c_k$が成り立つ．
 
   \item[実数値関数]
-        　\\
-        　$f(x)$が実数値関数$f(x)\in \mathbb{R}$であるとき，各フーリエ係数$a_n,b_n$は
-        \begin{equation*}
-          a_n,b_n\in\mathbb{R}
-        \end{equation*}
-        となる．このとき．複素フーリエ級数$c_k$は
-        \begin{equation*}
-          c_{-k}=\overline{c_k}
-        \end{equation*}
-        を満たす．これは，$f(x)=\overline{f(x)}$という実数値関数の性質を使うことで確認できる．
+    \quad\\
+    $f(x)$が実数値関数$f(x)\in \mathbb{R}$であるとき，各フーリエ係数$a_n,b_n$は
+    \begin{equation*}
+      a_n,b_n\in\mathbb{R}
+    \end{equation*}
+    となる．このとき．複素フーリエ級数$c_k$は
+    \begin{equation*}
+      c_{-k}=\overline{c_k}
+    \end{equation*}
+    を満たす．これは，$f(x)=\overline{f(x)}$という実数値関数の性質を使うことで確認できる．
 
   \item[係数の収束]
-  　\\
-  ある周期関数$f(x)$のフーリエ係数を$a_n$として，$n\rightarrow \infty$での収束オーダーを考えると，
-  \begin{equation*}
-    a_n = \begin{cases}
-      \mathcal{O}\left(n^{-K}\right) &k次オーダーの収束 \\
-      \mathcal{O}\left(e^{-qn^r}\right) &k次オーダーの収束 \\
-      \mathcal{O}\left(e^{-qb\log (n)}\right) &超幾何収束
-    \end{cases}
-  \end{equation*}
-  などのパターンがあり，それぞれ$f(x)$の滑らかさによって決まる．例えば，$f(x)$が$k$次オーダーの収束をする場合は，関数$f$は$C^k-級$の関数である．指数オーダーの収束の場合は実解析関数（曲や分岐点を持つ一般的な有限区間・無限区間上の関数），超幾何収束の場合は複素平面上で$\infty$以外で特異点を持たない関数（整関数）とそれぞれ知られている．
+    \quad\\
+    ある周期関数$f(x)$のフーリエ係数を$a_n$として，$n\rightarrow \infty$での収束オーダーを考えると，
+    \begin{equation*}
+      a_n = \begin{cases}
+        \mathcal{O}\left(n^{-K}\right)          & k次オーダーの収束 \\
+        \mathcal{O}\left(e^{-qn^r}\right)       & k次オーダーの収束 \\
+        \mathcal{O}\left(e^{-qb\log (n)}\right) & 超幾何収束
+      \end{cases}
+    \end{equation*}
+    などのパターンがあり，それぞれ$f(x)$の滑らかさによって決まる．例えば，$f(x)$が$k$次オーダーの収束をする場合は，関数$f$は$C^k-級$の関数である．指数オーダーの収束の場合は実解析関数（曲や分岐点を持つ一般的な有限区間・無限区間上の関数），超幾何収束の場合は複素平面上で$\infty$以外で特異点を持たない関数（整関数）とそれぞれ知られている．
 
-  \item[] 
+    ランダウの記号$\mathcal{O}$は，例えば，$a_n=\mathcal{O}(n^{-2})\ (n\rightarrow\infty)$は，左辺の絶対値が右辺の絶対値の定数倍以下であることを表す．すなわち，ある定数$C$があって，$n$が十分大きいすべての$n\geq 0$に対して，$|a_n|\leq Cn^{-2}$\textcolor{red}{（memo：$n>0 か n\geq 1$かも，参考見てない）}が成立することを意味する．
+
+  \item[微分とシフト]
+    \quad\\
+    フーリエ変換の便利な性質として微分およびシフト（平行移動）がある．
+
+    いま，$f(x)$を複素フーリエ級数とする微分操作は
+    \begin{equation*}
+      \frac{d}{dx}f(x) \sim \sum_{k=-\infty}^{\infty} (ik)c_k \exp(ikx)
+    \end{equation*}
+    と表すことができる．
+
+    同様に，シフト操作も
+    \begin{equation*}
+      \frac{d}{dx}f(x) \sim \sum_{k=-\infty}^{\infty} (ik)c_k \exp(ikx)
+    \end{equation*}
+    することでシフト$d$だけ$x$方向に平行移動できる．以降，簡単のために特に混合がなければ，複素フーリエ級数も単にフーリエ級数と呼ぶ．
 \end{description}
+
+\subsubsection{フーリエ変換の数値計算}
+\begin{description}
+  \item[与えられた関数のフーリエ級数を計算する]
+    \quad\\
+    周期関数$f(x)$のフーリエ係数$c_k$を数値計算で求める．無限級数を計算機で表現することは難しいため，係数を打ち切る操作が必要である．この時のフーリエ係数のサイズ$N$を$|k|<N$となるように定める（$N-1$を最大端数という）．
+
+    いま，$0=x_0\leq x_1 \leq \cdots \leq x_{2N-1}=2\pi$と区間$[0,2\pi]$を等間隔に分割した点$x_j=jh\ (j=0,\cdots,2N-1),\ h=2\pi / (2N-1)$を標本点といい，標本点上での関数値を用いてフーリエ係数の近似$\overline{c_k}$を得る．
+
+    \begin{equation*}
+      c_k = \frac{1}{2\pi} \int_{0}^{2\pi} f(x) \exp(-kx) dx \thickapprox \frac{1}{2N-1} \sum_{j=0}^{2N-2} f(x_j) \exp\left(-2\pi i \frac{kj}{2N-1}\right) = \overline{c_k},\ (|k|<N)
+    \end{equation*}
+
+    この$\overline{c_k}$の式は，離散フーリエ変換$a_k=\mathcal{F}(b)=\sum_{b_j}^{2N-2} f(x_j) \exp\left(-2\pi i \frac{kj}{2N-1}\right)$そのものである．したがって，高速フーリエ変換（FFT）を用いて近似フーリエ係数$\overline{c_k}$を計算できる．そして，$\overline{c_k}$を使って，元の関数$f(x)$の近似$f^{(N)}(x)$が
+    \begin{equation*}
+      f(x) \approx ^{(N)}(x) = \sum_{|k|<N} \overline{c_k} \exp(ikx)
+    \end{equation*}
+    と得られる．
+
+  \item[フーリエ係数から元の関数の概形を求める]
+    \quad\\
+    近似関数$f^{(N)}(x)$の係数$c_k$から関数の概形を求める．
+
+    いま，標本点上の関数値は
+    \begin{equation*}
+      f^{(N)}(x_j) = \sum_{|k|<N} \overline{c_k} \exp(ikx) = \sum_{|k|<N} \overline{c_k} \exp\left(-2\pi i \frac{kj}{2N-1}\right)
+    \end{equation*}
+
+    これは逆フーリエ変換（IFFT）に相当する．そこで，IFFTを用いて元の関数の外形を求める．しかし，このままIFFTを用いると標本点と同数の関数値しか得られないため，グラフに描画すると粗い概形となる．そこで，フーリエ係数$\overline{c_k}$に0を余分に張り合わせて，なめらかなグラフのプロットを得る．
+
+
+  \item[周期が$2\pi$以外の場合の計算]
+    \quad\\
+    周期が$2\pi$以外の場合も，ほぼ同様な考え方でフーリエ級数を考えられる．
+
+    いま，$f(x)$を周期$L$の周期関数とする．このとき，変数$t:a\rightarrow b,\ (L=b-a)$に対して，変数$x$を$x=\omega (t-a),\ (\omega = 2\pi /L)$と定めると，$x:0\rightarrow 2\pi$となり，関数$g(x)=f(a+\omega^{-1}x)$は周期$2\pi$の周期関数である．そこで$g(x)$がフーリエ級数
+    $g(x)$がフーリエ級数
+    \begin{equation*}
+      g(x) = \sum_{k\in\mathbb{Z}} c_k \exp(ikx)
+    \end{equation*}
+    で表されたとすると，$f(x)$のフーリエ級数は
+    \begin{equation*}
+      f(t) = g(\omega (t-a)) = \sum_{k\in\mathcal{Z}} c_k \exp(ikx)
+    \end{equation*}
+    が成り立つ．フーリエ係数は$dx=\omega dt$より
+    \begin{align*}
+      c_k & = \frac{1}{2\pi} \int_{0}^{2\pi} g(x) \exp(-ikx) dx                              \\
+          & = \frac{1}{2\pi} \int_{0}^{2\pi} g(\omega (t-a)) \exp(-ik\omega (t-a)) \omega dx \\
+          & = \frac{1}{L} \int_{0}^{2\pi} f(t) \exp(-ik\omega (t-a)) dt   \ (k\in\mathbb{Z}) \\
+    \end{align*}
+    と$f$の離散フーリエ変換で求められる．したがって，サイズ$N$のフーリエ係数は標本点を$a=t_0 \leq t_1 \leq \cdots \leq t_{2N-1}=b$と区間$[a,b]$を等間隔に分割した点$t_j=a+jh(j=0,\cdots,2N-1,h=L/(2N-1))$でとり，この標本点上での関数値を用いてフーリエ係数の近似$\overline{c_k}$を得る．
+    \begin{align*}
+      c_k & = \frac{1}{L} \int_{a}^{b} f(t) \exp(-ik\omega (t-a)) dt                                                                     \\
+          & \thickapprox \frac{1}{2N-1} \sum_{j=0}^{2N-2} f(t_j) \exp\left(-2\pi i \frac{kj}{2N-1}\right) = \overline{c_k},\quad (|k|<N)
+    \end{align*}
+    ここで，$t_j=a+\frac{jL}{2N-1}(j=0,1,\cdots,2N-1)$から，周期が$2\pi$の周期関数のフーリエ係数の近似が同じ式になるため，フーリエ係数の計算方法は変わらない．
+\end{description}
+
+\subsection{チェビシェフ級数}
+\subsubsection{チェビシェフ級数の導出}
+\begin{dfn}[チェビシェフ級数]
+  チェビシェフ級数とは，フーリエ・コサイン級数に対し変換$x=\cos \theta$を与えたものである．
+  \begin{equation*}
+    T_n(x) = \cos n\theta,\ \theta = \arccos x
+  \end{equation*}
+  を$n$次の第一種チェビシェフ多項式という．
+  \begin{equation*}
+    f(x)=\sum_{n=0}^{\infty} a_n T_n(x),\ x\in [-1,1]
+  \end{equation*}
+
+  これは変換$x=\cos \theta$と$T_n(x)$の定義から
+  \begin{equation*}
+    f(\cos \theta) = \sum_{n=0}^{\infty} a_n \cos n\theta,\ \theta\in [0,2\pi]
+  \end{equation*}
+  となるため，$g(x)=f(\cos \theta)$というフーリエ・コサイン級数である．したがって，係数の収束もフーリエ級数と似る．チェビシェフ係数は
+  \begin{align*}
+    a_n =
+    \begin{dcases}
+      \frac{1}{\pi} \int_{-1}^{1} \frac{f(x)T_0(x)}{\sqrt{1-x^2}}dx ,\ n=0 \\
+      \frac{2}{\pi} \int_{-1}^{1} \frac{f(x)T_n(x)}{\sqrt{1-x^2}}dx ,\ n\leq 0
+    \end{dcases}
+  \end{align*}
+  で与えられる．この係数$a_n\ (n\leq 0)$をTwo-sided チェビシェフ級数と呼ぶ．
+
+  $T_n(x)=\cos n \theta$なので，$\cos 0=1,\ \cos 1\cdot \theta = \cos \theta,\ \cos 2\theta = 2\cos ^2 \theta -1,\ \cos 3\theta = 4\cos ^3\theta -3\cos \theta,\ \cos4 \theta = 8\cos^4\theta - 8\cos^2\theta + 1, \cdots$となる．これから，
+  \begin{align*}
+    T_0(x) & = 1             \\
+    T_1(x) & = x             \\
+    T_2(x) & = 2x^2 - 1      \\
+    T_3(x) & = 4x^3 - 3x     \\
+    T_4(x) & = 8x^4-8x^2 - 1 \\
+           & \vdots
+  \end{align*}
+  となり，一般的には
+  \begin{equation*}
+    \cos n\theta + \cos (n-2)\theta = 2\cos \theta \cos (n-1) \theta
+  \end{equation*}
+  という三角関数の公式をつかって，
+  \begin{equation*}
+    T_0(x)=1,\ T_1(x)=x,\ T_{n+1}(x) = 2xT_n(x) - T_{n-1}(x) \quad (n= 1,2,\cdots)
+  \end{equation*}
+  という漸化式により，多項式が決定される．
+
+  チェビシェフ多項式のもう1つの表現方法として，$|z|=1$を満たす複素平面の単位円上で定義される複素変数$z$を用いる方法がある．
+\end{dfn}
+
 
 
 \begin{comment}
