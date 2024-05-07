@@ -925,10 +925,10 @@
 
 また，$f(x)$が無限区間で定義されている場合には，$f(x)$が任意の有限区間で区分的に連続であるときに，$f(x)$は区分的に連続であるという．以降は，特に断らないかぎり区分的に連続な関数のみを考えることにする．
 
-関数$f(x),\ (x\in [-\pi,\pi])$を周期$2\pi$の周期関数とする．このような$f(x)$が以下の三角関数で表されるとして，係数$a_0,a_1,a_2,\cdots,b_0,b_1,b_2,\cdots$を求めることを考える．
+関数$f(x),\ (x\in [-\pi,\pi])$を周期$2\pi$の周期関数とする．このような$f(x)$が以下の三角関数で表されるとして，係数$(a_0,a_1,a_2,\cdots,b_0,b_1,b_2,\cdots)$を求めることを考える．
 
 \begin{align}
-  f(x) & = \frac{a_0}{2} + \sum_{\infty}^{n=1} (a_n \cos nx + b_n \sin nx)                       \label{equ:fourie-1} \\
+  f(x) & = \frac{a_0}{2} + \sum_{\infty}^{n=1} (a_n \cos x + b_n \sin nx)                       \label{equ:fourie-1} \\
        & = \frac{a_0}{2} + (a_1 \cos x + b_1 \sin nx) + (a_2 \cos 2x + b_2 \sin 2x) + \cdots \notag
 \end{align}
 
@@ -1164,11 +1164,15 @@
   \end{equation*}
   という三角関数の公式をつかって，
   \begin{equation*}
-    T_0(x)=1,\ T_1(x)=x,\ T_{n+1}(x) = 2xT_n(x) - T_{n-1}(x) \quad (n= 1,2,\cdots)
+    T_0(x)=1,\ T_1(x)=x,\ T_{n+1}(x) = 2xT_n(x) - T_{n-1}(x) \ (n= 1,2,\cdots)
   \end{equation*}
   という漸化式により，多項式が決定される．
 
-  チェビシェフ多項式のもう1つの表現方法として，$|z|=1$を満たす複素平面の単位円上で定義される複素変数$z$を用いる方法がある．
+  チェビシェフ多項式のもう1つの表現方法として，$|z|=1$を満たす複素平面の単位円上で定義される複素変数$z$を用いる方法がある．いま，
+  \begin{equation*}
+    F(z) \equiv f(x),\ x=\frac{z+z^{-1}}{2},\ \textcolor{red}{z\in\{z\in\mathbb{C}:|z|=1\}}
+  \end{equation*}
+  を満たすような複素関数$F$を考える．変換$x=(z+z^{-1})/2$は$x$の1つの値に対して$z$の2つの値$(z,z^{-1})$を対応させる．すなわち$F$
 \end{dfn}
 
 
