@@ -1172,10 +1172,82 @@
   \begin{equation*}
     F(z) \equiv f(x),\ x=\frac{z+z^{-1}}{2},\ \textcolor{red}{z\in\{z\in\mathbb{C}:|z|=1\}}
   \end{equation*}
-  を満たすような複素関数$F$を考える．変換$x=(z+z^{-1})/2$は$x$の1つの値に対して$z$の2つの値$(z,z^{-1})$を対応させる．すなわち$F$
+  を満たすような複素関数$F$を考える．変換$x=(z+z^{-1})/2$は$x$の1つの値に対して$z$の2つの値$(z,z^{-1})$を対応させる．すなわち$F$は$F(z)=F(z^{-1})$の対処性を持つ．関数$F$ローラン展開を考えると
+  \begin{equation*}
+    F(z) = F(z^{-1}) = \frac{1}{2} \sum_{n=0}^{\infty} a_n (z^n + z^{-n}),\ |z|=1
+  \end{equation*}
+
+  よって$n$番目のチェビシェフ多項式$T_n(x)$は，単位円上の変数$z^n$の実部で定義できて，
+  \begin{equation*}
+    T_n(x) = \frac{1}{2} \left( z^n + z^{-n} \right),\ n \geq 0
+  \end{equation*}
+
+  と表すことができる．この表現方法はチェビシェフ多項式が満たす漸化式を簡潔に導く．すなわち任意の$n \geq 1$について
+
+  \begin{equation*}
+    \frac{1}{2} (z+z^{-1})(z^n + z^{-n}) = \frac{1}{2} (z^{n+1} + z^{-(n+1)}) + \frac{1}{2} (z^{n-1} + z^{-(n-1)})
+  \end{equation*}
+  が成り立ち，上記の漸化式を得る．
+
+  一般の定義域$x\in [a,b]$上でのチェビシェフ多項式は
+  \begin{align*}
+    [a,b]   \rightarrow [-1,1], & \ x \mapsto \xi = 2\frac{x-a}{b-a} - 1                  \\
+    [-1,1]  \rightarrow [a,b],  & \ \zeta \mapsto x = \frac{1-\xi}{2}a + \frac{1+\xi}{2}b
+  \end{align*}
+  という変数変換を使う．
 \end{dfn}
 
+\subsubsection{チェビシェフ級数の性質}
+\begin{description}
+  \item [対称性]
+        \quad \\
+        チェビシェフ多項式$T_n(x)$は$n$が偶数のときに偶関数，奇数のときに奇関数となる．したがって，$k\in \mathbb{N}$としたとき，次のような対称性が成り立つ．
+        \begin{itemize}
+          \item 周期関数$f(x)$が偶関数であるとき，$a_{2k-1}=0$となる．
+          \item 周期関数$f(x)$が偶関数であるとき，$a_{2k}=0$となる．
+        \end{itemize}
+  \item [チェビシェフ（-Lobatto）点]
+        \quad \\
+        区間$[-1,1]$の点
+        \begin{equation*}
+          x_j = \cos                 \frac{j\pi}{n},\ 0\leq j \leq n
+        \end{equation*}
+        を$n$次チェビシェフ多項式のチェビシェフ（-Lobatto）点という．この点は複素平面上の単位円周を当分した点の実数部$x_j = \mathrm{Re} \left[\exp (i \frac{j\pi}{n}) \right]$である．チェビシェフ点において，$T_n(x_j)=\pm1$となる．
+  \item[フーリエ級数との関係]
+    \quad \\
+    チェビシェフ級数はフーリエ級数への変換が容易である．
+    \begin{align*}
+      f(x) & = c_0 + 2\sum_{n=1}^{\infty} c_n T_n(x)                          \\
+           & = c_0 + 2 \sum_{n=1}^{\infty} c_n \cos n\theta,\ (x=\cos \theta) \\
+           & = \sum_{k=-\infty}^{\infty} c_|k| \exp(ik\theta)
+    \end{align*}
+    ここで，
+    \begin{equation*}
+      c_k = \frac{1}{2 \pi} \int_{0}^{2\pi} f(\cos \theta) \exp(-ik\theta) d\theta,\ (k\in \mathbb{Z},\ c_k=c_{-k})
+    \end{equation*}
+    が成り立つため，フーリエ係数$c_|k|$は計算できる．この$(c_n)_{n\geq 0}$を（One-sided）チェビシェフ係数と呼ぶ．さらに，$|k|<M$の範囲で打ち切ったチェビシェフ係数$c_k$は離散フーリエ変換を用いて
+    \begin{equation*}
+      c_k \approx \frac{1}{2M-2} \sum_{j=0}^{2M-3} f(x_j) \exp\left(-\pi i \frac{kj}{M-1}\right),\ \left(\theta_j = \frac{\pi j}{M-1},\ h = \frac{\pi}{M-1} ,\ |k|<M\right)
+    \end{equation*}
+    と近似できる．ここで$f(\cos \theta_j)$はチェビシェフ点$x_j=\cos \theta_j$における関数$f$の値を表す．
+\end{description}
 
+\subsection{高速フーリエ変換}
+\begin{dfn}[離散フーリエ変換]
+  $b=(b_0,b_1,\cdots,b_{2M-2}) \in \mathbb{C}^{2M-1}$に対して，$a=\mathcal{F}(b)\in \mathbb{C}^{2M-1}$を
+  \begin{equation*}
+    a_k = \mathcal{F}_k(b) = \sum_{j=0}^{2M-2} b_j \exp\left(-2\pi i \frac{kj}{2M-1}\right),\ (k=-M+1,\cdots,M-1)
+  \end{equation*}
+  とし，離散フーリエ変換（DFT）と呼ぶ．
+\end{dfn}
+
+\begin{dfn}[逆離散フーリエ変換]
+  $a=(a_{k})_{|k|<M} = (a_{-M+1},\cdots,a_{M-1}) \in \mathbb{C}^{2M-1}$に対して，$b=\mathcal{F}^{-1}(a)\in \mathbb{C}^{2M-1}$を
+  \begin{equation*}
+    b_j = \mathcal{F}^{-1}_j(a) = \sum_{k=-M+1}^{M-1} a_k \exp\left(2\pi i \frac{kj}{2M-1}\right),\ (j=0,\cdots,2M-2)
+  \end{equation*}
+  とし，逆離散フーリエ変換（IDFT）と呼ぶ．
+\end{dfn}
 
 \begin{comment}
 \mathcal{L}(X,Y)
