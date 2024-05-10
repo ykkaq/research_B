@@ -1090,7 +1090,7 @@
 
     いま，標本点上の関数値は
     \begin{equation*}
-      f^{(N)}(x_j) = \sum_{|k|<N} \overline{c_k} \exp(ikx) = \sum_{|k|<N} \overline{c_k} \exp\left(-2\pi i \frac{kj}{2N-1}\right)
+      f^{(N)}(x_j) = \sum_{|k|<N} \overline{c_k} \exp(ikx_j) = \sum_{|k|<N} \overline{c_k} \exp\left(2\pi i \frac{kj}{2N-1}\right)
     \end{equation*}
 
     これは逆フーリエ変換（IFFT）に相当する．そこで，IFFTを用いて元の関数の外形を求める．しかし，このままIFFTを用いると標本点と同数の関数値しか得られないため，グラフに描画すると粗い概形となる．そこで，フーリエ係数$\overline{c_k}$に0を余分に張り合わせて，なめらかなグラフのプロットを得る．
@@ -1219,15 +1219,15 @@
     \begin{align*}
       f(x) & = c_0 + 2\sum_{n=1}^{\infty} c_n T_n(x)                          \\
            & = c_0 + 2 \sum_{n=1}^{\infty} c_n \cos n\theta,\ (x=\cos \theta) \\
-           & = \sum_{k=-\infty}^{\infty} c_|k| \exp(ik\theta)
+           & = \sum_{k=-\infty}^{\infty} c_{|k|} \exp(ik\theta)
     \end{align*}
     ここで，
     \begin{equation*}
       c_k = \frac{1}{2 \pi} \int_{0}^{2\pi} f(\cos \theta) \exp(-ik\theta) d\theta,\ (k\in \mathbb{Z},\ c_k=c_{-k})
     \end{equation*}
-    が成り立つため，フーリエ係数$c_|k|$は計算できる．この$(c_n)_{n\geq 0}$を（One-sided）チェビシェフ係数と呼ぶ．さらに，$|k|<M$の範囲で打ち切ったチェビシェフ係数$c_k$は離散フーリエ変換を用いて
+    が成り立つため，フーリエ係数$c_{|k|}$は計算できる．この$(c_n)_{n\geq 0}$を（One-sided）チェビシェフ係数と呼ぶ．さらに，$|k|<M$の範囲で打ち切ったチェビシェフ係数$c_k$は離散フーリエ変換を用いて
     \begin{equation*}
-      c_k \approx \frac{1}{2M-2} \sum_{j=0}^{2M-3} f(x_j) \exp\left(-\pi i \frac{kj}{M-1}\right),\ \left(\theta_j = \frac{\pi j}{M-1},\ h = \frac{\pi}{M-1} ,\ |k|<M\right)
+      c_k \approx \frac{1}{2M-2} \sum_{j=0}^{2M-3} f\left(\cos \theta_j\right) \exp\left(-\pi i \frac{kj}{M-1}\right),\ \left(\theta_j = \frac{\pi j}{M-1},\ h = \frac{\pi}{M-1} ,\ |k|<M\right)
     \end{equation*}
     と近似できる．ここで$f(\cos \theta_j)$はチェビシェフ点$x_j=\cos \theta_j$における関数$f$の値を表す．
 \end{description}
@@ -1236,7 +1236,7 @@
 \begin{dfn}[離散フーリエ変換]
   $b=(b_0,b_1,\cdots,b_{2M-2}) \in \mathbb{C}^{2M-1}$に対して，$a=\mathcal{F}(b)\in \mathbb{C}^{2M-1}$を
   \begin{equation*}
-    a_k = \mathcal{F}_k(b) = \sum_{j=0}^{2M-2} b_j \exp\left(-2\pi i \frac{kj}{2M-1}\right),\ (k=-M+1,\cdots,M-1)
+    a_k = \mathcal{F}_k(b) := \sum_{j=0}^{2M-2} b_j \exp\left(2\pi i \frac{kj}{2M-1}\right),\ (k=-M+1,\cdots,M-1)
   \end{equation*}
   とし，離散フーリエ変換（DFT）と呼ぶ．
 \end{dfn}
@@ -1244,7 +1244,7 @@
 \begin{dfn}[逆離散フーリエ変換]
   $a=(a_{k})_{|k|<M} = (a_{-M+1},\cdots,a_{M-1}) \in \mathbb{C}^{2M-1}$に対して，$b=\mathcal{F}^{-1}(a)\in \mathbb{C}^{2M-1}$を
   \begin{equation*}
-    b_j = \mathcal{F}^{-1}_j(a) = \sum_{k=-M+1}^{M-1} a_k \exp\left(2\pi i \frac{kj}{2M-1}\right),\ (j=0,\cdots,2M-2)
+    b_j = \mathcal{F}^{-1}_j(a) := \sum_{k=-M+1}^{M-1} a_k \exp\left(2\pi i \frac{kj}{2M-1}\right),\ (j=0,\cdots,2M-2)
   \end{equation*}
   とし，逆離散フーリエ変換（IDFT）と呼ぶ．
 \end{dfn}
@@ -1258,14 +1258,14 @@ $u_1,u_2$：周期$L$の周期関数とする．
 \end{align*}
 とする．ただし，$\omega = 2\pi / L$としたとする．このとき，関数の積$u_1(t)u_2(t)$は次のようにフーリエ級数で表せる．
 \begin{equation*}
-  u_1(t)u_2(t) = \sum_{k\in\mathbb{Z}} \left(a^{(1)} * a^{(2)}_k \exp{(ik   \omega t)}\right)
+  u_1(t)u_2(t) = \sum_{k\in\mathbb{Z}} \left(a^{(1)} * a^{(2)}\right)_k \exp{(ik   \omega t)}
 \end{equation*}
 
 ここで$a=(a_k)_{k\in\mathbb{Z}},\ b=(b_k)_{k\in\mathbb{Z}}$に対して，
 \begin{equation*}
   (a * b)_k = \sum_{\substack{{k_1+k_2=k} \\ {k_1,k_2\in\mathbb{Z}}}} a_{k_1}b_{k_2},\ k\in\mathbb{Z}
 \end{equation*}
-を離散畳み込みという．スペクトル法の非線形項の計算，$\mathrm{i.e.},u_1,u_2$のような周期関数が$(\in\mathbb{N})$個あったとき，
+を離散畳み込みという．スペクトル法の非線形項の計算，$\mathrm{i.e.},u_1,u_2$のような（有限モードのフーリエ級数で表される）周期関数が$p個(p\in\mathbb{N})$あったとき，
 \begin{equation*}
   u_l(t) = \sum_{|k|<M} a_k^{(l)} \exp(ik\omega t),\ l=1,2,\cdots,p
 \end{equation*}
@@ -1278,10 +1278,108 @@ $u_1,u_2$：周期$L$の周期関数とする．
 \begin{equation*}
   \left( a^{(1)} * \cdots * a^{(p)} \right)_k = \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k| \leq p(M-1)} \\ {|k_1|,\cdots,|k_p|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)}
 \end{equation*}
+と表される．
+
+畳み込みをフーリエ変換下もには，それぞれのフーリエ変換の積になる．これを畳み込み定理という．
+\begin{align*}
+  \mathcal{F} \left( a^{(1)} * a^{(2)} * \cdots * a^{(p)} \right)= \mathcal{F} \left( a^{(1)} \right) \mathcal{F} \left( a^{(2)} \right) \cdots \mathcal{F} \left( a^{(p)} \right) \\
+  = b^{(1)}b^{(2)}\cdots b^{(p)}
+\end{align*}
+ただし，ベクトルの積は要素ごとの積を表す．
+
+\subsubsection{畳み込みのFFTアルゴリズム}
+$p$個の有限点列$\{a_(k)^{(l)}\}_{|k|<M}$に対して，FFTを使って
+\begin{equation*}
+  \left(a^{(1)} * a^{(2)} * \cdots * a^{(p)}\right)_k = \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)},\ |k| \leq p(M-1)
+\end{equation*}
+を計算する．
+
+\begin{description}
+  \item[入力：]
+  \quad \\
+  \begin{equation*}
+    a^{(l)} = \left( a_k^{(l)} \right)_{|k|<M}\in\mathbb{C}^{2M-1},\ (l=1,\cdots,p)
+  \end{equation*}
+  \item[Step1：]
+  \quad \\
+  エイリアシングエラーを防ぐために， 入力された値$a^{(l)}$の両脇に$(p-1)M$個の0を追加する．これを$\tilde{a}^{(l)}$とする．
+  \begin{equation*}
+    \tilde{a}^{(l)} = \begin{cases}
+      a_j^{(l)} ,\ &|j|<M \\
+      0,\ & M\leq |j| \leq pM-1
+    \end{cases}
+  \end{equation*}
+  という条件で$\tilde{a} \in \mathbb{C}^{2pM-1}$を作る．
+  \begin{equation*}
+    \tilde{a}_j^{(l)} = ( \underbrace{0,\cdots,0}_{p(M-1)},\underbrace{a_{-M+1}^{(l)},\cdots,a_{M-1}^{(l)}}_{2M-1},\underbrace{0,\cdots,0}_{p(M-1)} ) \in \mathbb{C}^{2pM-1}
+  \end{equation*}
+  \item[Step2:]
+  \quad \\
+  $\tilde{b}^{(l)} = \left( \tilde{b}_j^{(l)} \right)_{j=0,\cdots,2pM-2}$を$\tilde{a}^{(l)}$の逆離散フーリエ変換を行い，
+  \begin{equation*}
+    \tilde{b}_j^{(l)} := \mathcal{F}_j^{-1} \left( \tilde{a}^{(l)} \right) = \sum_{k=-pM+1}^{pM-1} \tilde{a}_k^{(l)} \exp\left(2\pi i \frac{kj}{2pM-1}\right)
+  \end{equation*}
+  で定める．
+  \item[Step3:]
+  \quad \\
+  ベクトルの要素毎の積を計算する．
+  \begin{equation*}
+    \left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right)_j := \tilde{b}_j^{(1)} \cdots \tilde{b}_j^{(p)},\ j=0,\cdots,2pM-2
+  \end{equation*}
+  \item[Step4:]
+  \quad \\
+  Step3で計算した$\left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right)$の逆離散フーリエ変換を行うと，$k=-pM+1,\cdots,pM-1$で，
+  \begin{align*}
+    &\mathcal{F}_k \left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right) \\
+    &= \sum_{j=0}^{2pM-2}  \tilde{b}^{(1)}_j \hat{*} \cdots \hat{*} \tilde{b}^{(p)}_j \exp\left(-2\pi i \frac{kj}{2pM-1}\right) \\
+    &= \sum_{j=0}^{2pM-2} \underbrace{ \prod_{l=1}^p  \left( \sum_{k_l=-pM+1}^{pM-1} \tilde{a}_{k_l}^{(l)} \exp\left(2\pi i \frac{k_lj}{2pM-1} \right) \right) \exp\left(2\pi i \frac{kj}{2pM-1}\right)}_{:=S_k(j)}
+  \end{align*}
+
+  いま
+  \begin{align*}
+    S_k(j) :=& \prod_{l=1}^p  \left( \sum_{k_l=-pM+1}^{pM-1} \tilde{a}_{k_l}^{(l)} \exp\left(2\pi i \frac{k_lj}{2pM-1} \right) \right) \exp\left(2\pi i \frac{kj}{2pM-1}\right) \\
+    =& \underbrace{\sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} + \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right) }_{k_1+\cdots+k_p-k \equiv 0 \mod pM-1,\ \exp(\pi ij)\equiv 1} \\
+    & + \underbrace{\sum_{\substack{k_1+\cdots+k_p \notin \left\{ k \pm m(2pM-1)\textcolor{red}{:m=0,\cdots,p} \right\} \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)}_{k_1+\cdots+k_p-k \not\equiv 0 \mod 2pM-1}
+  \end{align*}
+
+  として，
+  \begin{align*}
+    \mathcal{F}\left(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}\right) =& \sum_{j=0}^{2pM-2} S_k(j)\\
+    =& (2pM-1) \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} \\
+    &+ (2pM-1) \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right)  \\
+    &+  \sum_{\substack{( k_1+\cdots+k_p \\ \notin \left\{ k \pm m(2pM-1) \textcolor{red}{:m=0,\cdots,p} \right\} ) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \left( \sum_{j=0}^{2pM-2} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)\right)
+  \end{align*}
+
+  このとき，オイラーの公式より，$k_1+\cdots+k_p-k \equiv 0 \mod 2pM-1$のとき
+  \begin{equation*}
+    \sum_{j=0}^{2pM-2} \exp(2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j) = 0
+  \end{equation*}
+
+  そして，$|k_1|,\cdots,|k_p|<M$と$|k|\leq p(M-1)$（最高次）から
+  \begin{equation*}
+    k_1+\cdots+k_p-k \in \{ -2pM-1, \cdots 2p(M-1) \}
+  \end{equation*}
+
+  となり，$k_1,\cdots,k_p = k \pm m(2pM-1),\ (m=1,\cdots, p)$から
+  \begin{equation*}
+    m(2pM-1) = k_1 + \cdots + k_p - k \in \{ -2p(M-1),\cdots, 2p(M-1)\}
+  \end{equation*}
+
+  となる．しかし，これはありえない．なぜなら
+  \begin{equation*}
+    2pM-1 > 2p(M-1)
+  \end{equation*}
+
+  なので，$M=1$としても，上の式は偽となる．すなわち，$0$となる．最終的に，
+
+\end{description}
 
 \begin{comment}
 \mathcal{L}(X,Y)
 点列$(A_n)$
+
+  \\
+    &
 \end{comment}
 
 %% 定義 dfn
