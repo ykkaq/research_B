@@ -14,3 +14,5 @@
 \contentsline {subsection}{\numberline {1.8}畳み込みのFFTアルゴリズム}{27}{}%
 \contentsline {subsubsection}{\numberline {1.8.1}畳み込み定理}{27}{}%
 \contentsline {subsubsection}{\numberline {1.8.2}畳み込みのFFTアルゴリズム}{28}{}%
+\contentsline {section}{\numberline {2}Newton Kantrovichの定理を用いた精度保証付き数値計算}{31}{}%
+\contentsline {subsection}{\numberline {2.1}radii polynomal approach \cite {rpa}}{31}{}%

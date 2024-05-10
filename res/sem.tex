@@ -15,6 +15,7 @@
 \usepackage[dvipdfmx]{color}
 \usepackage{colortbl}
 \usepackage{float}
+%\usepackage{fancybx}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{multicol}
 \usepackage{latexsym}
@@ -1371,8 +1372,51 @@ $p$個の有限点列$\{a_(k)^{(l)}\}_{|k|<M}$に対して，FFTを使って
   \end{equation*}
 
   なので，$M=1$としても，上の式は偽となる．すなわち，$0$となる．最終的に，
-
+  \begin{equation*}
+    \sum_{\substack{k_1+\cdots+k_p=k \\ |k_m|<M}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} = \frac{1}{pM-1}\mathcal{F}_k(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}),\ |k|\leq p(M-1)
+  \end{equation*}
+  を得る．
 \end{description}
+
+まとめると，FFTアルゴリズムは以下になる．
+\begin{screen}
+  \begin{description}
+    \item[入力：]$a^{(m)}=\left( a^{(m)_k} \right)_{|k|<M}\ (m=1,\cdots,p)$（フーリエ・チェビシェフ級数）
+    \item[1.] $\tilde{a}^{(m)_j} = \left( \underbrace{0,\cdots,0}_{(p-1)M}, \underbrace{a_{-M+1}^{(m)},\cdots,a_{M-1}^{(m)}}_{2M-1},\underbrace{{0,\cdots,0}}_{(p-1)M}\right) \in \mathbb{C}^{2pM-1}$
+    \item[2.] $\tilde{b}^{(m)}=\mathcal{F}^{-1} (\tilde{a}^{(m)}) \in \mathbb{C}^{2pM-1}$（IFFTを用いる）
+    \item[3.] $\left( \tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)} \right) = \tilde{b}^{(1)} \cdots \tilde{b}^{(p)}\ \left(j=0,\cdots,2pM-2\right)$
+    \item[4.] $c_k = \frac{1}{2pM-1} \mathcal{F}_k \left( \tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)} \right),\ (|k| \leq p(M-1))$
+    \item[出力：] $c=\left( c_k \right)_{|k|\leq p(M-1)} \in \mathbb{C}^{2p(M-1)+1}$
+  \end{description}
+\end{screen}
+
+%==================
+%==================
+\newpage
+\section{Newton Kantrovichの定理を用いた精度保証付き数値計算}
+$X,Y$をBanach空間とし，非線形方程式
+\begin{equation*}
+  F(u)=0,\ u\in X
+\end{equation*}
+を求める問題を考える．この問題に対して近似解の品質保証を行う，定理の1つを以下に説明する．
+
+\subsection{radii polynomal approach \cite{rpa}}
+\begin{thm}[Newton-Kantorovich type argument]
+  有界線形作用素$A^\dagger \in \mathcal{L}(X,Y),\ A\in \mathcal{L}(Y,X)$を考え，作用素$F:X\rightarrow Y$が$C^1$-Fr\'{e}chet微分可能とする．また，$A$が単射で$AF:X\rightarrow X$とする．いま，$\bar{x} \in X$に対して%\overline{x}は，F(x) \approx 0となる近似解とする．
+  \begin{align*}
+    \|AF(\bar{x})\|_X &\leq Y_0 \\
+    \|I-A^\dagger\|_{\mathcal{L}(X)} &\leq Z_0 \\
+    \|A(DF(\bar{x})-A^\dagger)\|_{\mathcal{L}(X)} &\leq Z_1 \\
+    \|A(DF(b)-A^\dagger)\|_{\mathcal{L}(X)} &\leq Z_2(r)r,\ \forall b \in \overline{B(\bar{x},r)} \\
+  \end{align*}
+  が成り立つとする．このとき
+    \begin{equation*}
+      p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r+Y_0
+    \end{equation*}
+  をradii polynomialといい，もし$p(r_0)<0$となる$r_0>0$が存在すれば，$F(\tilde{x})=0$をみたす$\tilde{x}$が$\overline{B(\tilde{x},r_0)}$内に一意存在する．
+\end{thm}
+
+%-----------------
 
 \begin{comment}
 \mathcal{L}(X,Y)
@@ -1381,10 +1425,11 @@ $p$個の有限点列$\{a_(k)^{(l)}\}_{|k|<M}$に対して，FFTを使って
   \\
     &
 \end{comment}
-
 %% 定義 dfn
 %% 定理 thm
 %% 証明 proof
+
+%---------------
 
 %\begin{thebibliography}{9}
 %  \bibitem{ラベル} 著者名, ``題名'', 出版社, pp.0-1.
@@ -1392,4 +1437,6 @@ $p$個の有限点列$\{a_(k)^{(l)}\}_{|k|<M}$に対して，FFTを使って
 %\end{thebibliography}
 %%文章のあとに，\cite{label1, label2},\cite{lite:xxx}とつける
 %隙間ができたら，\newlineを入れ込む
+%% rpa = radii polynomial approach
+
 \end{document}
