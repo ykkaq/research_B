@@ -1249,6 +1249,36 @@
   とし，逆離散フーリエ変換（IDFT）と呼ぶ．
 \end{dfn}
 
+\subsection{畳み込みのFFTアルゴリズム}
+\subsubsection{畳み込み定理}
+$u_1,u_2$：周期$L$の周期関数とする．
+\begin{align*}
+  u_1(t) & = \sum_{k\in\mathbb{Z}} a_k^{(1)} \exp\left( ik\omega t \right) ,\ a^{(1)}= \left( a_k^{(1)} \right)_{k\in\mathbb{Z}} \\
+  u_2(t) & = \sum_{k\in\mathbb{Z}} a_k^{(2)} \exp\left( ik\omega t \right) ,\ a^{(2)}= \left( a_k^{(2)} \right)_{k\in\mathbb{Z}}
+\end{align*}
+とする．ただし，$\omega = 2\pi / L$としたとする．このとき，関数の積$u_1(t)u_2(t)$は次のようにフーリエ級数で表せる．
+\begin{equation*}
+  u_1(t)u_2(t) = \sum_{k\in\mathbb{Z}} \left(a^{(1)} * a^{(2)}_k \exp{(ik   \omega t)}\right)
+\end{equation*}
+
+ここで$a=(a_k)_{k\in\mathbb{Z}},\ b=(b_k)_{k\in\mathbb{Z}}$に対して，
+\begin{equation*}
+  (a * b)_k = \sum_{\substack{{k_1+k_2=k} \\ {k_1,k_2\in\mathbb{Z}}}} a_{k_1}b_{k_2},\ k\in\mathbb{Z}
+\end{equation*}
+を離散畳み込みという．スペクトル法の非線形項の計算，$\mathrm{i.e.},u_1,u_2$のような周期関数が$(\in\mathbb{N})$個あったとき，
+\begin{equation*}
+  u_l(t) = \sum_{|k|<M} a_k^{(l)} \exp(ik\omega t),\ l=1,2,\cdots,p
+\end{equation*}
+とすると，離散畳み込みはこれらの周期関数の積
+\begin{align*}
+  u_1(t)u_2(t)\cdots u_p(t) & = \sum_{|k|<M} \left(a^{(1)} * a^{(2)} * \cdots * a^{(p)}\right)_k \exp(ik\omega t)          \\
+                            & = \sum_{|k|\leq p(M-1)} \left(a^{(1)} * a^{(2)} * \cdots * a^{(p)}\right)_k \exp(ik\omega t)
+\end{align*}
+を表すことになる．ここで，
+\begin{equation*}
+  \left( a^{(1)} * \cdots * a^{(p)} \right)_k = \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k| \leq p(M-1)} \\ {|k_1|,\cdots,|k_p|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)}
+\end{equation*}
+
 \begin{comment}
 \mathcal{L}(X,Y)
 点列$(A_n)$
