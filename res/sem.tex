@@ -643,6 +643,7 @@
 \end{dfn}
 
 \begin{thm}[Neumann級数]
+  \label{thm:Neumann級数}
   $X$をBanach空間とする．$B\in\mathcal{L}(X)$とし，$I\in\mathcal{L}(X)$を$X$上の恒等作用素とする．もし
   \begin{equation*}
     \|I-B\|_{\mathcal{L}(X)}<1
@@ -741,6 +742,7 @@
 \end{proof}
 
 \begin{thm}
+  \label{thm:Banachの全単射}
   $X$と$Y$をBanach空間とする．$A\in\mathcal{L}(X,Y),R\in\mathcal{L}(Y,X)$とする．もし$RA$が全単射ならば，$A$は単射であり，$R$は全射である．
 \end{thm}
 
@@ -802,6 +804,7 @@
 \end{dfn}
 
 \begin{thm}[Banachの不動点定理]
+  \label{thm:Banachの不動点定理}
   $X$を係数体が$\mathbb{K}$のBanach空間とする．$M$は空でない閉集合で$M\subset X$を満たすとする．$A$は$M$から$M$への$k$次の縮小写像とする．そのとき，問題
   \begin{equation}
     \label{equ:Banachの不動点定理}
@@ -1429,6 +1432,68 @@ $X,Y$をBanach空間とし，非線形方程式
                                & \leq \|I-AA^\dagger\|_\mathcal{L(X)} + \|A(A^\dagger-DF(\bar{x}))\|_{\mathcal{L}(X)} + \|A(DF(\bar{x})-DF(x))\|_{\mathcal{L}(X)} \\
                                & \leq Z_0 + Z_1 + Z_2(r_0)r_0
   \end{align*}
+\end{proof}
+
+そして，任意の$x\in \overline{B(\bar{x},r_0)}$に対して，平均値の定理より，
+\begin{align*}
+  \|T(x)-\bar{x}\|_X &= \|T(x)-T(\bar{x})\|_X + \|T(\bar{x}) - \bar{x}\|_X \\
+  &\leq \sup_{b\in B(\bar{x},r_0)} \|DT(b)\|_{\mathcal{L}(X)} \|x-\bar{x}\|_X + \|AF(\bar{x})\|_X \\
+  &\leq (Z_0 + Z_1 + Z_2(r_0)r_0) r_0 + Y_0 \\
+  &= p(r_0)+r_0
+\end{align*}
+
+よって，$p(r_0)<0$ならば，$\|T(x)-\bar{x}\|_X<r_0$．よって，$T(x)\in\overline{B(\bar{x},r_0)}$．
+
+次に，$X$の距離として，$d(x,y):=\|x-y\|_X,\ x,y\in X$と定義すると，
+\begin{align*}
+  d(T(x),T(y))\leq \sup_{b\in B(\bar{x},r_0)} \|DT(b)\|_{\mathcal{L}(X)} d(x,y) \\
+  \leq (Z_0 + Z_1 + Z_2(r_0)r_0) d(x,y),\ x,y\in \overline{B(\bar{x},r_0)}
+\end{align*}
+
+このとき，$p(r_0)<0$より，
+\begin{equation*}
+  Z_0 + Z_1 + Z_2{r_0}r_0 + \frac{Y_0}{r_0} < 1
+\end{equation*}
+
+よって，$k:=Z_0+Z_1+Z_2(r_0)r_0<1$となるため，$T$は$\overline{B(\bar{x},r_0)}$において縮小写像になる．
+
+したがって，Banachの不動点定理より，ただ1つの不動点$\tilde{x}$が$\overline{B(\bar{x},r_0)}$内に存在し，$A$の単射性により，この不動点は写像$F$の零点となる，$\mathrm{i.e.}，F(\tilde{x})=0$
+
+% 修正：先にDFを表記しろ．
+\subsection*{Newton-Kantorovichの定理の特徴\cite{}}
+\begin{thm}[Newton-Kantorovichの定理の亜種]
+  XとYをBanach空間とする．$F:X\rightarrow Y$を与えられた作用素とし，$\bar{x}\in X$を与えられているとする．$A\in \mathcal{L}(Y,X)$とする．$F$は$\bar{x}$でFr\'{e}chet微分可能とし，$DF(\bar{x})$と表記する．$DF(\bar{x})$は全射であるとする．$\eta,\delta$を不等式
+  \begin{align*}
+    \|AF(\bar{x})\|_X \leq \eta\\
+     \|I-A(DF(\bar{x}))\|_{\mathcal{L}(X)} \leq \delta < 1
+  \end{align*}
+  を満たす定数とする．
+
+  $\overline{B(0,\frac{2\eta}{1-\delta})} = \{z\in X \mid \|z\|_X \leq \frac{2\eta}{1-\delta} \}$とし，定数$K$を不等式
+  \begin{equation*}
+    \|A(DF(\bar{x})-DF(\bar{x}+z))\|_\mathcal{{L}(X)} \leq K,\ z\in \overline{B\left(0,\frac{2\eta}{1-\delta}\right)}
+  \end{equation*}
+  を満たす定数とする．もし，$2K+\delta\leq 1$ならば．
+  \begin{equation*}
+    \|\tilde{x}-\bar{x}\|_X \leq \frac{\eta}{1-(K+\delta)} := p
+  \end{equation*}
+  に対し，真の解は$\bar{B}(\bar{x},p)$内に存在する．その上，$\bar{B}\left(\bar{x},\frac{2\eta}{1-\delta}\right)$内で一意である．
+\end{thm}
+
+\begin{proof}
+  まず，$AとDF(\bar{x})$が全単射であることを示す．$DF(\bar{x})$は$Fの\bar{x}$におけるFr\'{e}chet微分であるから，$DF(\bar{x})$は$\mathcal{L}(X,Y)$に属する．さらに，Neumann級数の定理（\ref{thm:Neumann級数}）と仮定$\|I-ADF(\bar{x})_{\mathcal{L}(X)}\leq \delta 1$より，$ADF(\bar{x})$は全単射である．その上，定理（\ref{thm:Banachの全単射}）より，$DF(\bar{x})$は単射であり，$A$は全射である．また，定理の仮定より，$DF(\bar{x})$は全単射となるため，逆作用素$DF(\bar{x})^{-1}$が存在し，$\mathcal{L}(Y,X)$に属する．また$A$の単射性について，定理（\ref{thm:線形作用素に対する単射性(1)}）と逆作用素$DF(\bar{x})^{-1}$を用いて
+  \begin{equation*}
+    A\phi = 0 \Rightarrow ADF(\bar{x}) DF(\bar{x})^{-1}\phi = 0 \Rightarrow \phi = 0
+  \end{equation*}
+  となるため，$A$も全単射である．
+
+  続いて，Banachの不動点定理（\ref{thm:Banachの不動点定理}）を用いて解の存在を示す．まず，作用素方程式$F(x)=0$を不動点方程式に変形すｒ．$w:=\tilde{x}-\bar{x}$とする．$A$が単射であるため，
+  \begin{align*}
+    &F(\tilde{x})=0\\
+    &\Leftrightarrow w = w-AF(\tilde{x} + w)\\
+    &\Leftrightarrow w = -AF(\bar{x}) + w - A(F(\bar{x}+w)-F(\bar{x}))\\
+  \end{align*}
+  $\mathcal{T}: V \rightarrow V$を
 \end{proof}
 
 %-----------------
