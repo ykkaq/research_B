@@ -1297,85 +1297,85 @@ $p$個の有限点列$\{a_(k)^{(l)}\}_{|k|<M}$に対して，FFTを使って
 
 \begin{description}
   \item[入力：]
-  \quad \\
-  \begin{equation*}
-    a^{(l)} = \left( a_k^{(l)} \right)_{|k|<M}\in\mathbb{C}^{2M-1},\ (l=1,\cdots,p)
-  \end{equation*}
+    \quad \\
+    \begin{equation*}
+      a^{(l)} = \left( a_k^{(l)} \right)_{|k|<M}\in\mathbb{C}^{2M-1},\ (l=1,\cdots,p)
+    \end{equation*}
   \item[Step1：]
-  \quad \\
-  エイリアシングエラーを防ぐために， 入力された値$a^{(l)}$の両脇に$(p-1)M$個の0を追加する．これを$\tilde{a}^{(l)}$とする．
-  \begin{equation*}
-    \tilde{a}^{(l)} = \begin{cases}
-      a_j^{(l)} ,\ &|j|<M \\
-      0,\ & M\leq |j| \leq pM-1
-    \end{cases}
-  \end{equation*}
-  という条件で$\tilde{a} \in \mathbb{C}^{2pM-1}$を作る．
-  \begin{equation*}
-    \tilde{a}_j^{(l)} = ( \underbrace{0,\cdots,0}_{p(M-1)},\underbrace{a_{-M+1}^{(l)},\cdots,a_{M-1}^{(l)}}_{2M-1},\underbrace{0,\cdots,0}_{p(M-1)} ) \in \mathbb{C}^{2pM-1}
-  \end{equation*}
+    \quad \\
+    エイリアシングエラーを防ぐために， 入力された値$a^{(l)}$の両脇に$(p-1)M$個の0を追加する．これを$\tilde{a}^{(l)}$とする．
+    \begin{equation*}
+      \tilde{a}^{(l)} = \begin{cases}
+        a_j^{(l)} ,\  & |j|<M               \\
+        0,\           & M\leq |j| \leq pM-1
+      \end{cases}
+    \end{equation*}
+    という条件で$\tilde{a} \in \mathbb{C}^{2pM-1}$を作る．
+    \begin{equation*}
+      \tilde{a}_j^{(l)} = ( \underbrace{0,\cdots,0}_{p(M-1)},\underbrace{a_{-M+1}^{(l)},\cdots,a_{M-1}^{(l)}}_{2M-1},\underbrace{0,\cdots,0}_{p(M-1)} ) \in \mathbb{C}^{2pM-1}
+    \end{equation*}
   \item[Step2:]
-  \quad \\
-  $\tilde{b}^{(l)} = \left( \tilde{b}_j^{(l)} \right)_{j=0,\cdots,2pM-2}$を$\tilde{a}^{(l)}$の逆離散フーリエ変換を行い，
-  \begin{equation*}
-    \tilde{b}_j^{(l)} := \mathcal{F}_j^{-1} \left( \tilde{a}^{(l)} \right) = \sum_{k=-pM+1}^{pM-1} \tilde{a}_k^{(l)} \exp\left(2\pi i \frac{kj}{2pM-1}\right)
-  \end{equation*}
-  で定める．
+    \quad \\
+    $\tilde{b}^{(l)} = \left( \tilde{b}_j^{(l)} \right)_{j=0,\cdots,2pM-2}$を$\tilde{a}^{(l)}$の逆離散フーリエ変換を行い，
+    \begin{equation*}
+      \tilde{b}_j^{(l)} := \mathcal{F}_j^{-1} \left( \tilde{a}^{(l)} \right) = \sum_{k=-pM+1}^{pM-1} \tilde{a}_k^{(l)} \exp\left(2\pi i \frac{kj}{2pM-1}\right)
+    \end{equation*}
+    で定める．
   \item[Step3:]
-  \quad \\
-  ベクトルの要素毎の積を計算する．
-  \begin{equation*}
-    \left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right)_j := \tilde{b}_j^{(1)} \cdots \tilde{b}_j^{(p)},\ j=0,\cdots,2pM-2
-  \end{equation*}
+    \quad \\
+    ベクトルの要素毎の積を計算する．
+    \begin{equation*}
+      \left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right)_j := \tilde{b}_j^{(1)} \cdots \tilde{b}_j^{(p)},\ j=0,\cdots,2pM-2
+    \end{equation*}
   \item[Step4:]
-  \quad \\
-  Step3で計算した$\left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right)$の逆離散フーリエ変換を行うと，$k=-pM+1,\cdots,pM-1$で，
-  \begin{align*}
-    &\mathcal{F}_k \left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right) \\
-    &= \sum_{j=0}^{2pM-2}  \tilde{b}^{(1)}_j \hat{*} \cdots \hat{*} \tilde{b}^{(p)}_j \exp\left(-2\pi i \frac{kj}{2pM-1}\right) \\
-    &= \sum_{j=0}^{2pM-2} \underbrace{ \prod_{l=1}^p  \left( \sum_{k_l=-pM+1}^{pM-1} \tilde{a}_{k_l}^{(l)} \exp\left(2\pi i \frac{k_lj}{2pM-1} \right) \right) \exp\left(2\pi i \frac{kj}{2pM-1}\right)}_{:=S_k(j)}
-  \end{align*}
+    \quad \\
+    Step3で計算した$\left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right)$の逆離散フーリエ変換を行うと，$k=-pM+1,\cdots,pM-1$で，
+    \begin{align*}
+       & \mathcal{F}_k \left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right)                                                                                                                            \\
+       & = \sum_{j=0}^{2pM-2}  \tilde{b}^{(1)}_j \hat{*} \cdots \hat{*} \tilde{b}^{(p)}_j \exp\left(-2\pi i \frac{kj}{2pM-1}\right)                                                                                     \\
+       & = \sum_{j=0}^{2pM-2} \underbrace{ \prod_{l=1}^p  \left( \sum_{k_l=-pM+1}^{pM-1} \tilde{a}_{k_l}^{(l)} \exp\left(2\pi i \frac{k_lj}{2pM-1} \right) \right) \exp\left(2\pi i \frac{kj}{2pM-1}\right)}_{:=S_k(j)}
+    \end{align*}
 
-  いま
-  \begin{align*}
-    S_k(j) :=& \prod_{l=1}^p  \left( \sum_{k_l=-pM+1}^{pM-1} \tilde{a}_{k_l}^{(l)} \exp\left(2\pi i \frac{k_lj}{2pM-1} \right) \right) \exp\left(2\pi i \frac{kj}{2pM-1}\right) \\
-    =& \underbrace{\sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} + \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right) }_{k_1+\cdots+k_p-k \equiv 0 \mod pM-1,\ \exp(\pi ij)\equiv 1} \\
-    & + \underbrace{\sum_{\substack{k_1+\cdots+k_p \notin \left\{ k \pm m(2pM-1)\textcolor{red}{:m=0,\cdots,p} \right\} \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)}_{k_1+\cdots+k_p-k \not\equiv 0 \mod 2pM-1}
-  \end{align*}
+    いま
+    \begin{align*}
+      S_k(j) := & \prod_{l=1}^p  \left( \sum_{k_l=-pM+1}^{pM-1} \tilde{a}_{k_l}^{(l)} \exp\left(2\pi i \frac{k_lj}{2pM-1} \right) \right) \exp\left(2\pi i \frac{kj}{2pM-1}\right) \\
+      =         & \underbrace{\sum_{\substack{{k_1+\cdots+k_p=k}                                                                                                                   \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} + \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right) }_{k_1+\cdots+k_p-k \equiv 0 \mod pM-1,\ \exp(\pi ij)\equiv 1} \\
+                & + \underbrace{\sum_{\substack{k_1+\cdots+k_p \notin \left\{ k \pm m(2pM-1)\textcolor{red}{:m=0,\cdots,p} \right\}                                                \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)}_{k_1+\cdots+k_p-k \not\equiv 0 \mod 2pM-1}
+    \end{align*}
 
-  として，
-  \begin{align*}
-    \mathcal{F}\left(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}\right) =& \sum_{j=0}^{2pM-2} S_k(j)\\
-    =& (2pM-1) \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} \\
-    &+ (2pM-1) \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right)  \\
-    &+  \sum_{\substack{( k_1+\cdots+k_p \\ \notin \left\{ k \pm m(2pM-1) \textcolor{red}{:m=0,\cdots,p} \right\} ) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \left( \sum_{j=0}^{2pM-2} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)\right)
-  \end{align*}
+    として，
+    \begin{align*}
+      \mathcal{F}\left(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}\right) = & \sum_{j=0}^{2pM-2} S_k(j)                                                     \\
+      =                                                                            & (2pM-1) \sum_{\substack{{k_1+\cdots+k_p=k}                                    \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} \\
+                                                                                   & + (2pM-1) \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right)  \\
+                                                                                   & +  \sum_{\substack{( k_1+\cdots+k_p                                           \\ \notin \left\{ k \pm m(2pM-1) \textcolor{red}{:m=0,\cdots,p} \right\} ) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \left( \sum_{j=0}^{2pM-2} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)\right)
+    \end{align*}
 
-  このとき，オイラーの公式より，$k_1+\cdots+k_p-k \equiv 0 \mod 2pM-1$のとき
-  \begin{equation*}
-    \sum_{j=0}^{2pM-2} \exp(2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j) = 0
-  \end{equation*}
+    このとき，オイラーの公式より，$k_1+\cdots+k_p-k \equiv 0 \mod 2pM-1$のとき
+    \begin{equation*}
+      \sum_{j=0}^{2pM-2} \exp(2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j) = 0
+    \end{equation*}
 
-  そして，$|k_1|,\cdots,|k_p|<M$と$|k|\leq p(M-1)$（最高次）から
-  \begin{equation*}
-    k_1+\cdots+k_p-k \in \{ -2pM-1, \cdots 2p(M-1) \}
-  \end{equation*}
+    そして，$|k_1|,\cdots,|k_p|<M$と$|k|\leq p(M-1)$（最高次）から
+    \begin{equation*}
+      k_1+\cdots+k_p-k \in \{ -2pM-1, \cdots 2p(M-1) \}
+    \end{equation*}
 
-  となり，$k_1,\cdots,k_p = k \pm m(2pM-1),\ (m=1,\cdots, p)$から
-  \begin{equation*}
-    m(2pM-1) = k_1 + \cdots + k_p - k \in \{ -2p(M-1),\cdots, 2p(M-1)\}
-  \end{equation*}
+    となり，$k_1,\cdots,k_p = k \pm m(2pM-1),\ (m=1,\cdots, p)$から
+    \begin{equation*}
+      m(2pM-1) = k_1 + \cdots + k_p - k \in \{ -2p(M-1),\cdots, 2p(M-1)\}
+    \end{equation*}
 
-  となる．しかし，これはありえない．なぜなら
-  \begin{equation*}
-    2pM-1 > 2p(M-1)
-  \end{equation*}
+    となる．しかし，これはありえない．なぜなら
+    \begin{equation*}
+      2pM-1 > 2p(M-1)
+    \end{equation*}
 
-  なので，$M=1$としても，上の式は偽となる．すなわち，$0$となる．最終的に，
-  \begin{equation*}
-    \sum_{\substack{k_1+\cdots+k_p=k \\ |k_m|<M}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} = \frac{1}{pM-1}\mathcal{F}_k(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}),\ |k|\leq p(M-1)
-  \end{equation*}
-  を得る．
+    なので，$M=1$としても，上の式は偽となる．すなわち，$0$となる．最終的に，
+    \begin{equation*}
+      \sum_{\substack{k_1+\cdots+k_p=k \\ |k_m|<M}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} = \frac{1}{pM-1}\mathcal{F}_k(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}),\ |k|\leq p(M-1)
+    \end{equation*}
+    を得る．
 \end{description}
 
 まとめると，FFTアルゴリズムは以下になる．
@@ -1404,26 +1404,40 @@ $X,Y$をBanach空間とし，非線形方程式
 \begin{thm}[Newton-Kantorovich type argument]
   有界線形作用素$A^\dagger \in \mathcal{L}(X,Y),\ A\in \mathcal{L}(Y,X)$を考え，作用素$F:X\rightarrow Y$が$C^1$-Fr\'{e}chet微分可能とする．また，$A$が単射で$AF:X\rightarrow X$とする．いま，$\bar{x} \in X$に対して%\overline{x}は，F(x) \approx 0となる近似解とする．
   \begin{align*}
-    \|AF(\bar{x})\|_X &\leq Y_0 \\
-    \|I-A^\dagger\|_{\mathcal{L}(X)} &\leq Z_0 \\
-    \|A(DF(\bar{x})-A^\dagger)\|_{\mathcal{L}(X)} &\leq Z_1 \\
-    \|A(DF(b)-A^\dagger)\|_{\mathcal{L}(X)} &\leq Z_2(r)r,\ \forall b \in \overline{B(\bar{x},r)} \\
+    \|AF(\bar{x})\|_X                             & \leq Y_0                                             \\
+    \|I-A^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
+    \|A(DF(\bar{x})-A^\dagger)\|_{\mathcal{L}(X)} & \leq Z_1                                             \\
+    \|A(DF(b)-A^\dagger)\|_{\mathcal{L}(X)}       & \leq Z_2(r)r,\ \forall b \in \overline{B(\bar{x},r)} \\
   \end{align*}
   が成り立つとする．このとき
-    \begin{equation*}
-      p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r+Y_0
-    \end{equation*}
+  \begin{equation*}
+    p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r+Y_0
+  \end{equation*}
   をradii polynomialといい，もし$p(r_0)<0$となる$r_0>0$が存在すれば，$F(\tilde{x})=0$をみたす$\tilde{x}$が$\overline{B(\tilde{x},r_0)}$内に一意存在する．
 \end{thm}
+
+\begin{proof}
+  写像$T$が閉球$\overline{B(\bar{x},r_0)}$において縮小写像になることを示す．
+
+  まず，
+  \begin{equation*}
+    DT(x)=I-ADF(x),\ x\in X
+  \end{equation*}
+  から，任意の$x\in \overline{B(\bar{x},r_0)}$に対して，仮定より
+  \begin{align*}
+    \|DT(x)\|_{\mathcal{L}(X)} & = \|I-ADF(x)\|_{\mathcal{L}(X)}                                                                                                  \\
+                               & \leq \|I-AA^\dagger\|_\mathcal{L(X)} + \|A(A^\dagger-DF(\bar{x}))\|_{\mathcal{L}(X)} + \|A(DF(\bar{x})-DF(x))\|_{\mathcal{L}(X)} \\
+                               & \leq Z_0 + Z_1 + Z_2(r_0)r_0
+  \end{align*}
+\end{proof}
 
 %-----------------
 
 \begin{comment}
 \mathcal{L}(X,Y)
 点列$(A_n)$
-
-  \\
-    &
+\\
+&
 \end{comment}
 %% 定義 dfn
 %% 定理 thm
