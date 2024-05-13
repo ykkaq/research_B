@@ -1494,8 +1494,67 @@ $X,Y$をBanach空間とし，非線形方程式
     &\Leftrightarrow w = -AF(\bar{x}) + w - A(F(\bar{x}+w)-F(\bar{x}))\\
   \end{align*}
   $\mathcal{T}: V \rightarrow V$を
-\end{proof}
+  \begin{equation*}
+    \mathcal{T}(w) := -AF(\bar{x}) + w - A(F(\bar{x}+w)-F(\bar{x}))
+  \end{equation*}
+  となる非線形作用素とし，不動産方程式$w=\mathcal{F}(w)$の解の存在をBanachの不動点定理（$\ref{thm:Banachの不動点定理}$）を用いて示す．
 
+  Banachの不動点定理（\ref{thm:Banachの不動点定理}）では$M$を決めて，$\mathcal{T}がMからMへ$の縮小写像になることを確認しなければならない．特に，ポイントの1つは$\mathcal{T}$の定義域を$M$としたときに，値域が$M$に含まれることを確かめなければならない．すなわち，$\mathcal{T}(M) \ subset M$となるように$M$を選ぶことが重要である．この定理では，$M=\overline{B(0,\rho)},\ \rho = \frac{\eta}{1-(K+\delta)}$と選ぶ．まず，$M$として選んだ閉球$\overline{B(0,\rho)}$と定理で出てくるもう1つの閉球$B\left(0, \frac{\eta}{1-\delta}\right)$の関係性を確認する．定理の仮定より$1-\delta>0$と$1-\left(\delta + 2K\geq 0\right)$を持つため，
+  \begin{align*}
+    \rho - \frac{2\eta}{1-\delta} &= \frac{\eta(1-\delta)}{(1-(\delta+K))(1-\delta)}-\frac{2\eta(1-(\delta +K))}{(1-(\delta+K))(1-\delta)}\\
+    &= \frac{\eta((1-\delta)-2(1-\delta)+2K)}{(1-(\delta+2K))(1-\delta)}\\
+    &= \frac{-\eta(1-\delta-2K)}{(1-(\delta+K))(1-\delta)}
+    \leq 0
+  \end{align*}
+  となる．よって，$\rho\leq\frac{2\eta}{1-\delta}$から$\overline{B(\bar{x},\rho)}\subset \overline{B\left(0,\rho\right)}$となる．
+
+  次に，$\mathcal{T}(\overline{B(0,\rho)}) \subset \overline{B(0,\rho)}$を示す．任意の$w\in \overline{B(0,\rho)}$に対し，Fr\'{e}chet微分とBochner積分に対する微分積分学の定理を用いることで
+  \begin{align*}
+    \|\mathcal{T}(w)\|_X &\leq \|AF(\bar{x})\|_X + \|w-A(F(\bar{x}+w)-F(\bar{x}))\|_X\\
+    &\leq \eta + \|w - R\int_0^1 DF((1-t)\bar{x})+t(\bar{x}+w)wdt\|_X\\
+    &\leq \eta + \int_0^1 \|w - ADF(\bar{x}+tw))w\|_X dt\\
+    &\leq \eta + \int_0^1 \|I - ADF(\bar{x}+tw)\|_{\mathcal{L}(V,V)}\|w\|_X dt\\
+    &\leq \eta + \int_0^1 \|A(DF(\bar{x})-DF(\bar{x}+tw))\|_{\mathcal{L}(X)} + \|I-ADF(\bar{x})\|_{\mathcal{L}(X)}\|w\|_X dt\\
+    &\leq \eta + \int_0^1 (\|A(DF(\bar{x})-DF(\bar{x}+tw))\|_{\mathcal{L}(X)} +m) \|w\|_{X}dt\\
+  \end{align*}
+  を得る．さらに，$t\in[0,1]$に対し$tw\in\overline{B(0,\rho)}\subset\overline{B\left(0,\frac{2\eta}{1-\delta}\right)}$となるため，定理の仮定$\|R(DF(\bar{x})-DF(\bar{x}+tw))\|_{\mathcal{L}(X)}\leq K$から，
+  \begin{align*}
+    \|\mathcal{T}(w)\|_X &\leq \eta + (K+\delta)\|w\|_X\\
+    &\leq \eta + (K+\delta)\rho\\
+    &= \eta + \frac{\eta(K+\delta)}{1-(K+\delta)}\\
+    &= \frac{\eta-\eta(\delta+K)}{1-(\delta+K)}+{\eta(K+\delta)}{1-(\delta+K)}\\
+    &= \rho
+  \end{align*}
+  となる．よって，任意の$w\in \overline{B(0,\rho)}$に対して$\|\mathcal{T}(w)\|_X \leq \rho$となることから，$\mathcal{T}\left(\overline{B(0,\rho)}\right) \subset \overline{B(0,\rho)}$となる．
+
+  次に，$\mathcal{T}:\overline{B(0,\rho)}\rightarrow \overline{B(0,\rho)}$が縮小写像になることを確認する．すなわち
+  \begin{equation*}
+    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X \leq k \|w_1-w_2\|_X,\ \forall w_1,w_2\in \overline{B(0,\rho)}
+  \end{equation*}
+  となる定数$k$が1未満になることを確認しなければならない．この定理では，一意性の範囲を広げるために，$\overline{B(0,\rho)}\subset \overline{B\left(\frac{2\eta}{1-m}\right)}$であることを用いて
+  \begin{equation*}
+    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X \leq k \|w_1-w_2\|_X,\ \forall w_1,w_2\in \overline{B\left(0,\frac{2\eta}{1-\delta}\right)}
+  \end{equation*}
+  となる定数$k$が$1$未満になることを確かめる．その上，任意の$\overline{B(0,\rho)}\in\overline{B\left(\frac{2\eta}{1-m}\right)}$に対し，
+  \begin{align*}
+    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X &= \|w_1-w_2-A(D(\bar{x}+w_1)-F(\bar)+w_2)\|_X\\
+    &= \|(w_1-w_2)-A\int_{0}^{1}DF(\bar{x}+(1-t)w_2+tw_1)\|_{\mathcal{L}(X)}dt\|w_1-w_2\|_X\\
+    &\leq \int_{0}^{1} \|I-ADF(\bar{u}+(1-t)w_2+tw_1)\|_{\mathcal{L}(X)}dt\|w_1-w_2\|_X\\
+    &\leq \int_{0}^{1} \|A(DF(\bar{x})-DF(\bar{x}+(1-t)w_2+tw_1)\|_{\mathcal{L}(X)}+\delta)dt\|w_1-w_2\|_X\\
+  \end{align*}
+  となる．任意の$w_1,w_2\in\overline{B\left(0,\frac{2\eta}{1-\delta}\right)}$と$0\leq t \leq 1$に対し，$\|(1-t)w_2+tw_1\|_X\leq(1-t)\|w_2\|_x+t\|w_1\|_X\leq \frac{2\eta}{1-\delta}$となるため，
+  \begin{equation*}
+    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X \leq (K+\delta)\|w_1-w_2\|_X
+  \end{equation*}
+  となる．その上，仮定$2K+\delta\leq 1かつ\delta<1$より$K+\delta < 1$も満たすため，$\mathcal{T}は\overline{B(0,\rho)}から\overline{B(0,\rho)}$への縮小写像となる．よって，Banachの不動点定理（\ref{thm:Banachの不動点定理}）より不動点方程式$w=\mathcal{T}(w)$の$F(u)=0$を満たす解が$\overline{B(0,\rho)}$に一意に存在する．$w=\tilde{x}-\bar{x}$であったことから，作用素方程式$F(x)=0$を満たす解が$\overline{B(\bar{x}),\rho}$内に一意に存在する．
+
+  最後に，$\overline{B\left(\bar{x},\frac{2\eta}{1-\delta}\right)}$内で一意に存在することを示す．$\overline{B\left(0,\frac{2\eta}{1-\delta}\right)}$内に不動点方程式$w=\mathcal{T}(w)$の解が2つあったとする．すなわち，2つの解$\tilde{z_1},\tilde{w_2}\in\overline{\bar{x},\frac{2\eta}{1-\delta}}$とし，$\tilde{x_1}=\mathcal{T}(\tilde{w_1})$と$\tilde{x_2}=\mathcal{T}(\tilde{w_2})$を満たすとする．そのとき，
+  \begin{equation*}
+    \|\tilde{w_1}-\tilde{w_2}\|_X = \|\mathcal{T}(\tilde{w_1})-\mathcal{T}(\tilde{w_2})\|_X \leq (K+m)\|\tilde{w_1}-\tilde{w_2}\|_X
+  \end{equation*}
+  となる．ここで，$2K+m<1$であるため，不等式を満たすものは$\tilde{w_1}=\tilde{w_2}$の場合のみである．すなわち，不動点方程式$w=\mathcal{T}(w)$を満たす解は$\overline{B\left(\bar{x},\rho\right)}$内に一意である．よって，作用素方程式$F(x)=0$を満たす解が$\overline{text{B}(\bar{x},\frac{2\eta}{1-\delta})}$内に一意に存在する．
+  
+\end{proof}
 %-----------------
 
 \begin{comment}
