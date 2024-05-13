@@ -9,13 +9,12 @@
 // fesetround(FE_TOWARDZERO);
 // fesetround(FE_TONEAREST);
 
-template <typename T>
-
-struct iadd : public element<T> {
-  void add(const iadd<T>& b) {
-    volatile T ainf = this->inf, asup = this->sup;
-    volatile T binf = b.inf, bsup = b.sup;
-    volatile T rinf, rsup;
+template <typename _T>
+struct iadd : public element<_T> {
+  void add(const iadd<_T>& b) {
+    volatile _T ainf = this->inf, asup = this->sup;
+    volatile _T binf = b.inf, bsup = b.sup;
+    volatile _T rinf, rsup;
 
     fesetround(FE_DOWNWARD);
     rinf = ainf + binf;

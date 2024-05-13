@@ -7,8 +7,8 @@
 // fesetround(FE_TOWARDZERO);
 // fesetround(FE_TONEAREST);
 
-template <typename T>
+template <typename _T>
 struct element {
-  T inf;
-  T sup;
+  _T inf;
+  _T sup;
 };
