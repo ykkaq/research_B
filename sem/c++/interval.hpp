@@ -23,6 +23,14 @@ class interval : protected isubs<T> {
   }
 
   friend interval<T> operator+(const interval<T>& a, const interval<T>& b) {
+    interval<T> res = a;
+    res.add(b);
+    return res;
+  }
+
+  friend interval<T> operator-(const interval)
+
+      friend interval<T> operator+(const interval<T>& a, const interval<T>& b) {
     interval res = a;
     res.add(b);
     return res;
@@ -49,4 +57,8 @@ class interval : protected isubs<T> {
     res.inf = rinf;
     return res;
   }
+};
+
+struct F {
+  friend double operator()(double a) { return a * a; }
 };

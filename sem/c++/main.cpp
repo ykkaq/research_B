@@ -13,10 +13,10 @@ int main(void) {
   A.sup = 10.0;
 
   interval<double> a, b, c;
-  a.setting(1.0, 2.0);
-  b.setting(2.0, 3.0);
+  a.setting(1.0f, 2.0f);
+  b.setting(2.0f, 3.0f);
 
-  c = a - b;
+  c = -a - b;
   // c = a.add(b);
   c.disp();
   c = sqrt(c);
