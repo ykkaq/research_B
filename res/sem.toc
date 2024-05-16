@@ -17,3 +17,6 @@
 \contentsline {section}{\numberline {2}Newton Kantrovichの定理を用いた精度保証付き数値計算}{31}{}%
 \contentsline {subsection}{\numberline {2.1}radii polynomal approach \cite {rpa}}{31}{}%
 \contentsline {subsection}{\numberline {2.2}Newton-Kantorovichの定理の特徴\cite {}}{32}{}%
+\contentsline {section}{\numberline {3}既存のvan der Pol方程式の精度保証付き数値計算}{36}{}%
+\contentsline {subsection}{\numberline {3.1}van der Pol方程式}{36}{}%
+\contentsline {subsection}{\numberline {3.2}フーリエ・スペクトル法}{36}{}%
