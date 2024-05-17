@@ -1648,8 +1648,198 @@ van der Pol方程式とは，ある発振現象をもつ電気回路の方程式
 \end{equation*}
 このことから，$DF^{(N)}\left(x_n\right)^{-1}$と$F^{(N)}\left(x_n\right)$を計算することができれば，近似解を得ることができる．はじめに，離散畳み込みの関数を用意する．
 
+$F^{(x)}(X^{(N)})$のヤコビ行列は
+\begin{equation*}
+  DF^{(N)}\left(x^{(N)}\right)=\begin{bmatrix}
+    \multicolumn{1}{c|}{0}  & 1 & \cdots & 1\\
+    \multicolumn{1}{c|}{\vdots} & & \vdots& \\
+    \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots \\
+    \multicolumn{1}{c|}{\vdots} & & \vdots & \\
+  \end{bmatrix} \in \mathbb{C}^{2N\times 2N}\ \left(|k|,|j|<N\right)
+\end{equation*}
+ここで，
+
+\begin{align*}
+  &\begin{cases}
+    \partial_w f_k = (-2k^2\omega - \mu ik)a_k + \frac{\mu ik}(a*a*a)_k & (|k|<N)\\
+    \partial_{a_j} f_k = (k^2\omega^2 - \mu ik\omega)\delta_{k_j} + \mu ik\omega(a*a)_{k-j} & (|k|<N)
+  \end{cases}
+  \\
+  &\delta_{k_j} = \begin{cases}
+    1 & (k=j) \\
+    0 & (k\neq j)
+    \end{cases}
+\end{align*}
+
+である．ヤコビ行列の各要素との対応は
+\begin{align*}
+  &\left(DF^{(N)}\left(x^{(N)}\right)\right)_{l,m} \\
+  & = \begin{cases}
+    0 & \left(l=m=1\right) \\
+    1 & \left(l=1,\ m= 2,\cdots,2N\right) \\
+    \partial_\omega f_k & \left(l=2,\cdots,2N,\ m=1, \ \mathrm{i.e.},\ l=k+N+1 \ \mathrm{for} \ |k|<N\right) \\
+    \partial_{a_j}f_k & \left(l,m=2,\cdots,2N, \ \mathrm{i.e.}, l=k+N+1 \ \mathrm{for} \ |k|<N,\ m=j+N+1 \ \mathrm{for} \ |j|<N\right)
+  \end{cases}
+\end{align*}
 
 
+\subsection{重み付き空間と作用素の決定}
+\begin{dfn}[許容重み]
+  点列$\omega = \left(\omega_k\right)_{k\in\mathbb{Z}}$について，
+  \begin{align}
+    \omega_k>0,\ &\forall \in \mathbb{Z}\\
+    \omega_{n+k} \leq \omega_n \omega_k,\ &\forall n,k\in\mathbb{Z}
+  \end{align}
+  が成立するとき，許容重み（admissible wights）であるという．
+\end{dfn}
+
+\begin{thm}[重み付き$l^1$空間]
+  \begin{equation*}
+    l_\omega^1 := \left\{ a = (a_k)_{k\in\mathbb{Z}}:a_k\in\mathbb{C},\ \|a\|_\omega:=\sum_{k\in\mathbb{Z}}|a_k|\omega_k < \infty\right\}
+  \end{equation*}
+
+  点列$\omega$を許容重みとする．$\left(l_m^1, *\right)$は可換なBanach環となる．すなわち，点列$a,b\in l^1_m$として，離散畳み込み$*$に対して
+  \begin{equation*}
+    \|a*b\|_\omega \leq \|a\|_\omega\|b\|_\omega
+  \end{equation*}
+  が成立する．
+\end{thm}
+
+\begin{proof}
+  $a,b\in l_{\omega}^1$として，
+  \begin{equation*}
+    \begin{split}
+      \|a*b\|_\omega &= \sum_{k\in\mathbb{Z}} \|(a*b)\|\omega_k \\
+      &= \sum_{k\in\mathbb{Z}} \left\|\sum_{\substack{k_1+k_2=k \\ k_1,k_2\in\mathbb{Z}}}a_{k_1} a_{k_2}\right\| \omega_k \\
+      &\leq \sum_{k\in\mathbb{Z}} \left(\sum_{\substack{k_1+k_2=k \\ k_1,k_2\in\mathbb{Z}}}|a_{k_1}||a_{k_2}|\omega_k\right)\\
+      &\leq \sum_{k\in\mathbb{Z}} \left(\sum_{\substack{k_1+k_2=k \\ k_1,k_2\in\mathbb{Z}}}|a_{k_1}|\omega_{k_1}|a_{k_2}|\omega_{k_2}\right)\\
+      &\leq \left(\sum_{k_1\in\mathbb{Z}}|a_{k_1}|\omega_{k_1}\right) \left(\sum_{k_\in\mathbb{Z}}|a_{k_2}|\omega_{k_2}\right) \\
+      &= \|a\|_\omega\|b\|_\omega
+    \end{split}
+  \end{equation*}
+\end{proof}
+
+\begin{dfn}[Banach空間$X$]
+  Banach空間の$X$を次のように定める．はじめに重み付き$l^1$空間を重み$w_k=\nu=\nu^{|k|}\ (\nu=1.05)$として次のように定める．
+  \begin{equation*}
+    l_{\nu}^1 := \left\{ a = (a_k)_{k\in\mathbb{Z}}:a_k\in\mathbb{C},\ \|a\|_{w} := \sum_{k\in\mathbb{Z}}|a_k|\nu^{|k|} < \infty\right\}
+  \end{equation*}
+
+  そして，検証に用いいる関数空間$X$はBanach空間となる．
+  \begin{equation*}
+    X:=\mathbb{C}\times l_{\nu}^1,\ x=(x,a),\ \omega \in \mathbb{C},\ a\in l_{\nu}^1
+  \end{equation*}
+  と定め，そのノルムを
+  \begin{equation*}
+    \|x\|_X:=\max |\omega|,\ \|a\|_{\omega}
+  \end{equation*}
+  として，定義する．このとき，XはBanach空間となる．
+\end{dfn}
+
+\begin{dfn}[ヤコビ行列$F^{(N)}\left(x^{(N)}\right)$]
+  $F^{(N)}\left(x^{(N)}\right)$のヤコビ行列は，次のような形をしている．
+  \begin{equation*}
+    DF^{(N)}\left(x^{(N)}\right)=\begin{bmatrix}
+      & \multicolumn{1}{c|}{0}  & 1 & \cdots & 1&\\ \cline{2-5}
+      & \multicolumn{1}{c|}{\vdots} & & \vdots& &\\
+      & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & \\
+      & \multicolumn{1}{c|}{\vdots} & & \vdots & &\\
+    \end{bmatrix}
+     \in \mathbb{C}^{2N\times 2N},\ \left(|k|,|j|<N\right)
+  \end{equation*}
+  ここで，
+  \begin{align*}
+    &\begin{cases}
+      \partial_w f_k = (-2k^2\omega - \mu ik)a_k + \frac{\mu ik}(a*a*a)_k & (|k|<N)\\
+      \partial_{a_j} f_k = (k^2\omega^2 - \mu ik\omega)\delta_{k_j} + \mu ik\omega(a*a)_{k-j} & (|k|<N)
+    \end{cases}
+    \\
+    &\delta_{k_j} = \begin{cases}
+      1 & (k=j) \\
+      0 & (k\neq j)
+      \end{cases}
+  \end{align*}
+\end{dfn}
+である．ヤコビ行列の各要素の伏せ字とその対応は
+\begin{align*}
+  &\left(DF^{(N)}\left(x^{(N)}\right)\right)_{l,m} \\
+  & = \begin{cases}
+    0 & \left(l=m=1\right) \\
+    1 & \left(l=1,\ m= 2,\cdots,2N\right) \\
+    \partial_\omega f_k & \left(l=2,\cdots,2N,\ m=1, \ \mathrm{i.e.},\ l=k+N+1 \ \mathrm{for} \ |k|<N\right) \\
+    \partial_{a_j}f_k & \left(l,m=2,\cdots,2N, \ \mathrm{i.e.}, l=k+N+1 \ \mathrm{for} \ |k|<N,\ m=j+N+1 \ \mathrm{for} \ |j|<N\right)
+  \end{cases}
+\end{align*}
+
+\begin{dfn}[作用素$A^\dagger,A$の定義]
+  まず，Banach空間$X=\mathbb{C}\times l_\nu^1$から$Y=\mathbb{C}\times l_\nu^1,\ (\nu^\prime<\nu)$と設定し，$A^\dagger$を$A^\dagger\in (X,Y)$として，$b=(b_0,b_1)\in \mathbb{C}\times l_\nu^1=X$に対して，$A^\dagger b=\left(\left(A^\dagger b\right)_0,\left(A^\dagger b\right)_1\right)$と作用素するように定義する．ここで，$A^\dagger$を形式的に見ると，
+  \begin{equation*}
+    A^\dagger = 
+    \begin{bmatrix}
+      & \multicolumn{1}{c|}{0}  & 1 & \cdots & 1 & \cdots & 0 & \cdots &\\ \cline{2-8}
+      & \multicolumn{1}{c|}{\vdots} & & \vdots& & &  & &\\
+      & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & & \text{\huge{0}} & \\
+      & \multicolumn{1}{c|}{\vdots} & & \vdots & & & &\\
+      & \multicolumn{1}{c|}{\vdots} & & & & \lambda_N & & \text{\Large{0}} & \\
+      & \multicolumn{1}{c|}{0} & & \text{\huge{0}} & & & \lambda_{N+1} &\\
+      & \multicolumn{1}{c|}{\vdots} & & & & \text{\Large{0}}& &
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      & \multicolumn{1}{c|}{0} & A_{a,0}^\dagger &\\ \cline{2-3}
+      & \multicolumn{1}{c|}{A_{\omega,1}^\dagger} & A_{a,0}^\dagger &
+    \end{bmatrix}
+  \end{equation*}
+
+  このことから，$A^\dagger b$は
+  \begin{equation*}
+    A^\dagger b = \begin{bmatrix}
+      0 & A^\dagger_{a,0}\\
+      A^\dagger_{\omega,1} & A^\dagger_{a,1}
+    \end{bmatrix}
+    \begin{bmatrix}
+      b_0 \\
+      b_1
+    \end{bmatrix}
+    = \begin{bmatrix}
+      A_{a,0}^\dagger b_1 \\
+      A_{\omega,1}^\dagger b_0 + A_{a,1}^\dagger b_1
+    \end{bmatrix}
+    =: \begin{bmatrix}
+      \left(A^\dagger b\right)_0 \\
+      \left(A^\dagger b\right)_1
+      \end{bmatrix}
+  \end{equation*}
+  と表すことができ，
+  \begin{align*}
+    \left(A^\dagger b\right)_0 &= \sum_{|k|<N} (b_1)_k \\
+    \left(\left(A^\dagger b\right)_1\right)_k &:= \begin{cases}
+      \partial_\omega f_k b_0 + \sum_{|j|<N} \partial_{a_j} f_k (b_1)_j&,\ |k|<N\\
+      \lambda_k (b_1)_k&,\ |k|\geq N,\ \lambda_k := -k^1\omega^2 - \mu ik\omega + 1 \\
+    \end{cases}
+  \end{align*}
+  と書ける．またこのとき，$(A^\dagger b)_0$と$(A^\dagger b)_1$はそれぞれ
+  \begin{align*}
+    \left(A^\dagger b\right)_0 &= A_{a,0}^\dagger = \sum_{|k|<N} (b_1)_k \in \mathbb{C} \\
+    \left(A^\dagger b\right)_1 &= A_{\omega,1}^\dagger b_0 + A_{a,1}^\dagger \in l_{\nu^\prime}^1
+  \end{align*}
+
+  次に，作用素$A$について考える．
+  \begin{equation*}
+    A^{N} = \begin{bmatrix}
+      A_{\omega,0}^{(N)} & A_{a,0}^{(N)} \\
+      A_{\omega,1}^{(N)} & A_{a,1}^{(N)}
+    \end{bmatrix}
+    \approx DF^{(N)} \left(\bar{x}^{-1}\right) \in \mathbb{C}^{2N\times 2N}
+  \end{equation*}
+  をヤコビ行列の近似逆行列とする．$A\in\mathbb{L}(Y,X)$として，$b=\left(b_0,b_1\right)\in X$に対して，$Ab=\left((Ab)_0,(Ab)_1\right)$と作用するように定義する．ここで，
+  \begin{align*}
+    (Ab)_0 &= A_{\omega,0}^{(N)}b_0 + A_{a,0}^{(N)} b_1^{(N)}\\
+    (Ab)_1 &= A_{\omega,1}^{(N)}b_0 + A_{a,1}^{(N)} b_1
+  \end{align*}
+
+  ただし，
+\end{dfn}
 
 %---------------------
 
