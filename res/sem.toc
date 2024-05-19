@@ -23,3 +23,6 @@
 \contentsline {subsection}{\numberline {3.3}重み付き空間と作用素の決定}{38}{}%
 \contentsline {subsection}{\numberline {3.4}$Y_0,Z_0,Z_1,Z_2$の評価}{41}{}%
 \contentsline {subsubsection}{\numberline {3.4.1}$Y_0$を計算する}{42}{}%
+\contentsline {subsubsection}{\numberline {3.4.2}$Z_0$を計算する}{42}{}%
+\contentsline {subsubsection}{\numberline {3.4.3}$Z_1$を計算する}{43}{}%
+\contentsline {subsubsection}{\numberline {3.4.4}$Z_2$を計算する}{45}{}%

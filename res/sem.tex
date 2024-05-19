@@ -15,7 +15,6 @@
 \usepackage[dvipdfmx]{color}
 \usepackage{colortbl}
 \usepackage{float}
-%\usepackage{fancybx}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{multicol}
 \usepackage{latexsym}
@@ -36,6 +35,7 @@
 \theoremstyle{definition}
 \newtheorem{dfn}{定義}
 \newtheorem{thm}{定理}
+\newtheorem{lmm}{補題}
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \renewcommand{\proofname}{\textbf{証明}}
@@ -1525,7 +1525,7 @@ $X,Y$をBanach空間とし，非線形方程式
                          & = \frac{\eta-\eta(\delta+K)}{1-(\delta+K)}+{\eta(K+\delta)}{1-(\delta+K)} \\
                          & = \rho
   \end{align*}
-  となる．よって，任意の$w\in \overline{B(0,\rho)}$に対して$\|\mathcal{T}(w)\|_X \leq \rho$となることから，$\mathcal{T}\left(\overline{B(0,\rho)}\right) \subset \overline{B(0,\rho)}$となる．
+  となる．よって，任意の$w\in \overline{B(0,\rho)}$に対して$\|\mathcal{T}(w)\|_X \leq \rho$とな��ことから，$\mathcal{T}\left(\overline{B(0,\rho)}\right) \subset \overline{B(0,\rho)}$となる．
 
   次に，$\mathcal{T}:\overline{B(0,\rho)}\rightarrow \overline{B(0,\rho)}$が縮小写像になることを確認する．すなわち
   \begin{equation*}
@@ -1907,7 +1907,182 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
     \delta_1^{(\infty)} & (k \geq |N|)
   \end{cases}
 \end{equation*}
+と表す．
 
+\subsubsection{$Z_0$を計算する}
+\begin{equation*}
+  B := I - AA^\dagger = \begin{bmatrix}
+    B_{\omega,0} & B_{a,0} \\
+    B_{\omega,1} & B_{a,1}
+  \end{bmatrix}
+\end{equation*}
+
+この$Bをc\in \overline{B(0,1)},\ \|c\|_X \leq 1$である$c=(c_0,c_1)$に作用させると，
+\begin{align*}
+  (Bc)_0 & = B_{\omega,0} c_0 + B_{a,0} c_1 \\
+  (Bc)_1 & = B_{\omega,1} c_0 + B_{a,1} c_1
+\end{align*}
+
+$Bc_0$はスカラ値なので，
+\begin{align*}
+  \left| B_{a,0}c_1 \right| & \leq \sum_{k \in \mathbb{Z}} \left|(B_{a,0})_k\right| \left|(c_1)_k \right|                                                            \\
+                            & = \sum_{k \in \mathbb{Z}} \frac{|(B_{a,0})_k|}{\omega_k} |(c_1)_k| \omega_k                                                            \\
+                            & \leq \max_{k < |N|} \frac{|(B_{a,0})_k|}{\omega_k} \sum_{k \in \mathbb{Z}} |(c_1)_k| \omega_k                                          \\
+                            & \leq \max_{k < |N|} \frac{|(B_{a,0})_k|}{\omega_k},\ \left( \sum_{k \in \mathbb{Z}} |(c_1)_k| \omega_k = \|c_1\|_\omega \leq 1 \right)
+\end{align*}
+
+以上より，
+\begin{equation*}
+  |(Bc)_0| \leq |B_{\omega,0}| + \max_{|k| < N} \frac{|(B_{a,0})|_k}{\omega_k} = Z_0^{(0)}
+\end{equation*}
+
+またここで，作用素$M:l_\nu^1 \Rightarrow l_\nu^1 $の作用素ノルムについて以下の補題を陣日する．
+
+\begin{lmm}
+  行列$M^{(N)}$を$M^{(N)} \in \mathbb{C}^{(2N-1) \times (2N-1)}$，双方向の複素無限点列を$(\delta_k)_{|k| \geq N}$と定義する．ここで，$\delta_N > 0$であり，
+  \begin{equation*}
+    |\delta_k| \leq \delta_N,\ \forall |k| \geq N
+  \end{equation*}
+  を満たすとする．そして，$a=(a_k)_{k<\mathbb{Z}} \in l_\nu^1$に対して$a^{(N)}=(a_{-N+1},\cdots,a_{N-1})\in \mathbb{C}^{2N-1}$と表し，作用素$M:l_\nu^1 \Rightarrow l_\nu^1$を
+  以下のように定義する．
+  \begin{equation*}
+    [Ma]_k := \begin{cases}
+      [M^{(N)}a^{(N)}]_k & (|k|<N)     \\
+      \delta_k a_k       & (|k|\geq N)
+    \end{cases}
+  \end{equation*}
+
+  このとき，$M$は有界線形作用素であり，
+  \begin{equation*}
+    \|M\|_{\mathcal{L}(l_\nu^1)} \leq \max \left( K,\delta_N \right),\ K:=\max_{|n|<N} \frac{1}{\nu^{|n|}} \sum_{|k|<N} |M_{n,k}| \nu^{|k|}
+  \end{equation*}
+  と評価させる．
+\end{lmm}
+
+上の補題を利用すると，
+\begin{eqnarray}
+  \|(Bc)_1\|_\omega \leq \|B_{\omega,1}\|_\omega + \|B_{a,1}\|_{\mathcal{L}(l_\nu^1)} = Z_0^{(1)}
+\end{eqnarray}
+が評価可能となり，結論としては，求めたい$Z_0はZ_0:=\{Z_0^{(0)},Z_0^{(0)}\}$となる．
+
+% ---------------------
+\subsubsection{$Z_1$を計算する}
+\begin{equation*}
+  \left\| A \left( DF \left( \bar{x} \right) - A^\dagger \right) c \right\|_X \leq Z_1,\ c=(c_0,c_1) \in \overline{B(0,1)} \Leftrightarrow \|c\|_X \leq 1
+\end{equation*}
+
+点列$z$を下記のように定義する．
+\begin{equation}
+  z := \left(DF(\bar{x})-A^\dagger\right)c = \begin{bmatrix}
+    z_0 \\
+    z_1
+  \end{bmatrix}
+\end{equation}
+
+ここで，$DF(\bar{x})とA^\dagger$は
+\begin{align*}
+  DF(\bar{x}) & = \begin{bmatrix}
+                     & \multicolumn{0}{c|}{0}                         & \cdots & 0      & \cdots & \\ \cline{2-5}
+                     & \multicolumn{1}{c|}{\partial_\omega f_k^{(N)}} & \cdots & 0      & \cdots & \\
+                     & \multicolumn{1}{c|}{\vdots}                    &        & \vdots &        &
+                  \end{bmatrix}                                         \\
+  A^\dagger   & = \begin{bmatrix}
+                     & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \cdots    & 0                & \cdots & \\ \cline{2-8}
+                     & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &           &                  &        & \\
+                     & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &           &                  &          \\
+                     & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &           & \text{\Large{0}} &          \\
+                     & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \lambda_N &                  &        & \\
+                     & \multicolumn{1}{c|}{0}              &        & \text{\Large{0}}  &        &           & \lambda_{N+1}    &          \\
+                     & \multicolumn{1}{c|}{\vdots}         &        &                   &        &           &                  &
+                  \end{bmatrix} \\
+  \lambda_k   & := -k^2\omega^2 - \mu ik\omega + 1
+\end{align*}
+と表される．すると$z_0$は，
+\begin{align*}
+  z_0 & = \sum_{|k|<N} (c_1)_k, \\
+  |z_0| \leq \frac{1}{\omega_N} \sum_{|k|<N} |(c_1)_k| \omega_k \leq \frac{1}{\omega_N}
+\end{align*}
+
+次に，$z_1$について考える．$DF(\bar{x})c$部分は，
+\begin{equation*}
+  \begin{split}
+    \left(\left(DF(\bar{x})c\right)_1 \right)_k &= \partial_\omega f_k c_0 + \partial_a f_k c_1 \\
+    &= \frac{\partial \lambda_k}{\partial} c_0 \bar{a}_k + \frac{\mu ik}{3} \left( \bar{a} * \bar{a} * \bar{a} \right)_k c_0 + \lambda_k (c_1)_k + \mu ik \omega \left( \bar{a} * \bar{a} * c_1 \right)_k,\ k \in \mathbb{Z}
+  \end{split}
+\end{equation*}
+
+と書け，$|k| \geq N で \bar{a_k} = 0$より，$c_1 = c_1^{(N)} + c_1^{(N)}$として，
+\begin{align*}
+  |(z_1)_k| & \leq |\mu ik \omega| \max \left\{ \max_{k-N+1\leq j \leq -N} \frac{|\left( \bar{a} * \bar{a} \right)_{k-j}|}{\omega_j} ,\ \max_{N \leq j \leq k+N-1 \frac{|\left( \bar{a} * \bar{a}\right)_{k-j} |}{\omega_j}} \right\} := \zeta, \\
+  \zeta     & = (\zeta_k)_{k < N} \in \mathbb{R}^{2N-1}
+\end{align*}
+
+最後に，$Z_1$を評価していく．$Z_1^{(0)}$の評価は
+\begin{align*}
+  |(A(DF(\bar{x})-A^\dagger)c)_0| & = |(Az)_0|                                                                                                \\
+                                  & \leq \left|A_{\omega,0}^{(N)}\right| \left|Z_0\right| + \left|A_{a,0}^{(N)}\right| \left|Z_1^{(N)}\right| \\
+                                  & \leq \frac{|A_{\omega, 0}^{(N)}|}{\omega_N} + \left|A_{a,0}^{(N)}\right| \zeta                            \\
+                                  & =: z_1^{(0)}
+\end{align*}
+
+$Z_1^{(1)}$の評価は
+\begin{equation*}
+  \begin{split}
+    \left \| (A(DF(\bar{x})-A^\dagger)c)_1 \right\|_\omega =& \left\| (Az)_1 \right\|_\omega \\
+    =& \left\| A_{\omega,1}^{(N)} z_0 + A_{a,1} z_1 \right\|_\omega \\
+    \leq& \frac{\left\| A_{\omega,1}^{(N)} \right\|_\omega}{\omega_N} + \sum_{|k|<N} \left( \left| A_{a,1}^{(N)} \right| \zeta \right)_k \omega_k + \sum_{N \leq |k| \leq 3(N-1)} \frac{\left| \mu ik \left( \bar{a} * \bar{a} * \bar{a} \right)_k \right|}{3\left| \lambda_k \right|} \omega_k \\
+    &+ \sum_{|k| \geq N} \frac{\left| \mu ik \omega \left(\bar{a}*\bar{a}*\bar{x}\right) \right|}{\left| \lambda_k \right|} \omega_k \\
+    \leq& \frac{\left\| A_{\omega,1}^{(N)} \right\|_\omega}{\omega_N} + \left\| \left| A_{a,1}^{(N)} \right| \zeta \right\|_\omega + \sum_{N\leq|k|\leq 3(N-1)} \frac{\left| \mu ik \left( \bar{a} * \bar{a} * \bar{a} \right)_k \right|}{3\left| \lambda_k \right|} \omega_k \\
+    &+ \frac{1}{N} \frac{\mu \omega \left\|\bar{a}\right\|_\omega^2}{\omega^2-\frac{1}{N^2}}\\
+    =:& Z_1^{(1)}
+  \end{split}
+\end{equation*}
+
+よって，
+\begin{equation*}
+  Z_1 := \max \left\{ Z_1^{(0)}, Z_1^{(1)} \right\}
+\end{equation*}
+
+%---------------------
+\subsubsection{$Z_2$を計算する}
+$b \in \overline{B\left(\bar{x},r\right)},\ c=\left(c_0,c_1\right)\in\overline{Z(0,1)}$について
+\begin{equation*}
+  \left\| A \left( DF \left( b \right) - DF \left( \bar{x} \right) \right) c \right\|_X \leq Z_2(r)r
+\end{equation*}
+を考える．まず$z$を
+\begin{equation*}
+  z := \left( DF(b) - DF(\bar{x}) \right) c = \begin{bmatrix}
+    z_0 \\
+    z_1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    0 \\
+    z_1
+  \end{bmatrix}
+\end{equation*}
+と定義する．$z_0=0$となるので，$z_1$だけを考えればよく
+\begin{equation*}
+  \left(z_1\right)_k := \left(\partial_\omega f_k \left(b\right) - \partial_\omega f_k \left(\bar{x}\right) \right)c_0 + \left[ \left(\partial_a f\left(b\right) - \partial_a f \left(\bar{x}\right) \right) c_1 \right]_k,\ k \in \mathbb{Z}
+\end{equation*}
+と書ける．$b=\left( \omega, \left(a_k\right)_{k\in\mathbb{Z}} \right), \bar{x}=\left( \bar{\omega}, \left(\bar{a_k}\right)_{|k|<N} \right)$として，第1項は
+\begin{equation*}
+  \begin{split}
+    &\left(\partial_\omega f_k \left(b\right) - \partial_\omega f_k \left(\bar{x}\right) \right)c_0 \\
+    =& \left[ \left( \left( -2k^2\omega - \mu ik \right) a_k + \frac{\mu ik}{3} \left( a*a*a \right)_k \right) - \left( \left( -2k^2\bar{\omega} - \mu ik \right) \bar{a}_k       + \frac{\mu ik}{3} \left( \bar{a}*\bar{a}*\bar{a} \right)_k \right) \right]c_0 \\
+    =& \left[  -2k^2\omega \left( a_k - \bar{a}_k \right) -2k^2\left( \omega - \bar{\omega} \right)\bar{a}_k - \mu ik \left( a_k - \bar{a}_k \right) + \frac{\mu ik}{3} \left( \left( a*a*a \right)_k - \left(\bar{a}*\bar{a}*\bar{a}\right)_k \right) \right] c_0
+  \end{split}
+\end{equation*}
+と書ける．そして，第2項は，
+\begin{equation*}
+  \begin{split}
+    &\left[ \left( \partial_a f(b) - \partial_a f(\bar{x}) \right)_c_1 \right]_k \\
+    =& \left( -k^2\omega^2 - \mu ik \omega + 1 \right) \left( c_1 \right)_k + \mu ik \omega (a * a * c_1)_k \\
+    &- \left( -k^2\bar{\omega}^2 - \mu ik \bar{\omega} + 1 \right) \left( c_1 \right)_k + \mu ik \bar{\omega} (\bar{a} * \bar{a} * c_1)_k \\
+    =& \left[ -k^2\left(\omega + \bar{\omega}\right) \left(\omega - \bar{\omega}\right) - \mu ik \left(\omega - \bar{\omega}\right) \right] \left(c_1\right)_k  \\
+    &+ \mu ik \omega \left(\left(a+\bar{a}\right)*\left(a-\bar{a}\right)*c_1\right)_k \\
+    &+ \mu ik \left(\omega - \bar{\omega}\right) \left( \bar{a} * \bar{a} * c_1 \right)_k
+  \end{split}
+\end{equation*}
 
 %---------------------
 
@@ -1920,6 +2095,7 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
 %% 定義 dfn
 %% 定理 thm
 %% 証明 proof
+%% 補題 lmm
 
 %---------------
 

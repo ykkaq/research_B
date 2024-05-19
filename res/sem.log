@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  19 MAY 2024 15:37
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  20 MAY 2024 03:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -436,15 +436,16 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
 )
 \c@dfn=\count304
 \c@thm=\count305
+\c@lmm=\count306
  (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 File: l3backend-dvips.def 2022-01-12 L3 backend support: dvips
 \l__pdf_internal_box=\box135
-\g__pdf_backend_object_int=\count306
+\g__pdf_backend_object_int=\count307
 \l__pdf_backend_content_box=\box136
 \l__pdf_backend_model_box=\box137
-\g__pdf_backend_annotation_int=\count307
-\g__pdf_backend_link_int=\count308
-\g__pdf_backend_link_sf_int=\count309
+\g__pdf_backend_annotation_int=\count308
+\g__pdf_backend_link_int=\count309
+\g__pdf_backend_link_sf_int=\count310
 ) (./sem.aux)
 \openout1 = `sem.aux'.
 
@@ -471,7 +472,7 @@ Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count310
+\c@lstlisting=\count311
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
 (Font)              scaled to size 16.60605pt on input line 51.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
@@ -594,32 +595,79 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 LaTeX Warning: Citation `rpa' on page 31 undefined on input line 1406.
 
-[31] [32] [33] [34] [35] [36] [37] [38] [39]
+[31] [32] [33] 
+
+! LaTeX Error: Unicode character 鐃� (U+3BB3FD)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1528 ...cal{T}(w)\|_X \leq \rho$とな^^ef^^bf^^bd
+                                                  ^^ef^^bf^^bdことから，$\ma...
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+ 
+! LaTeX Error: Unicode character 鐃� (U+3BB3FD)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1528 ...X \leq \rho$とな^^ef^^bf^^bd^^ef^^bf^^bd
+                                                  ことから，$\mathcal{T}\lef...
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+[34] [35] [36] [37] [38] [39]
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
 (Font)              scaled to size 19.9311pt on input line 1781.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
 (Font)              scaled to size 19.9311pt on input line 1781.
- [40] [41] Excluding 'comment' comment.
+ [40] [41] [42] [43]
+Overfull \hbox (1.10962pt too wide) detected at line 2039
+[]
+ []
 
-Package caption Warning: Unused \captionsetup[figure] on input line 33.
+[44]
+! Double subscript.
+_... \ifx \protect \@typeset@protect \ifmmode \sb 
+                                                  \else \BreakableUnderscore...
+l.2084   \end{split}
+                    
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Double subscript.
+_... \ifx \protect \@typeset@protect \ifmmode \sb 
+                                                  \else \BreakableUnderscore...
+l.2084   \end{split}
+                    
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+[45] Excluding 'comment' comment.
+
+Package caption Warning: Unused \captionsetup[figure] on input line 32.
 See the caption package documentation for explanation.
 
 
-Package caption Warning: Unused \captionsetup[table] on input line 34.
+Package caption Warning: Unused \captionsetup[table] on input line 33.
 See the caption package documentation for explanation.
 
-[42] (./sem.aux)
+[46] (./sem.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 8418 strings out of 478741
- 134320 string characters out of 5860983
- 476080 words of memory out of 5000000
- 26689 multiletter control sequences out of 15000+600000
+ 8425 strings out of 478741
+ 134357 string characters out of 5860983
+ 477108 words of memory out of 5000000
+ 26696 multiletter control sequences out of 15000+600000
  492432 words of font info for 133 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  55i,27n,63p,685b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sem.dvi (42 pages, 165368 bytes).
+Output written on sem.dvi (46 pages, 182196 bytes).
