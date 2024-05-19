@@ -1651,35 +1651,35 @@ van der Pol方程式とは，ある発振現象をもつ電気回路の方程式
 $F^{(x)}(X^{(N)})$のヤコビ行列は
 \begin{equation*}
   DF^{(N)}\left(x^{(N)}\right)=\begin{bmatrix}
-    \multicolumn{1}{c|}{0}  & 1 & \cdots & 1\\
-    \multicolumn{1}{c|}{\vdots} & & \vdots& \\
+    \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      \\
+    \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        \\
     \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots \\
-    \multicolumn{1}{c|}{\vdots} & & \vdots & \\
+    \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        \\
   \end{bmatrix} \in \mathbb{C}^{2N\times 2N}\ \left(|k|,|j|<N\right)
 \end{equation*}
 ここで，
 
 \begin{align*}
-  &\begin{cases}
-    \partial_w f_k = (-2k^2\omega - \mu ik)a_k + \frac{\mu ik}(a*a*a)_k & (|k|<N)\\
-    \partial_{a_j} f_k = (k^2\omega^2 - \mu ik\omega)\delta_{k_j} + \mu ik\omega(a*a)_{k-j} & (|k|<N)
-  \end{cases}
+   & \begin{cases}
+       \partial_w f_k = (-2k^2\omega - \mu ik)a_k + \frac{\mu ik}(a*a*a)_k                     & (|k|<N) \\
+       \partial_{a_j} f_k = (k^2\omega^2 - \mu ik\omega)\delta_{k_j} + \mu ik\omega(a*a)_{k-j} & (|k|<N)
+     \end{cases}
   \\
-  &\delta_{k_j} = \begin{cases}
-    1 & (k=j) \\
-    0 & (k\neq j)
-    \end{cases}
+   & \delta_{k_j} = \begin{cases}
+                      1 & (k=j)     \\
+                      0 & (k\neq j)
+                    \end{cases}
 \end{align*}
 
 である．ヤコビ行列の各要素との対応は
 \begin{align*}
-  &\left(DF^{(N)}\left(x^{(N)}\right)\right)_{l,m} \\
-  & = \begin{cases}
-    0 & \left(l=m=1\right) \\
-    1 & \left(l=1,\ m= 2,\cdots,2N\right) \\
-    \partial_\omega f_k & \left(l=2,\cdots,2N,\ m=1, \ \mathrm{i.e.},\ l=k+N+1 \ \mathrm{for} \ |k|<N\right) \\
-    \partial_{a_j}f_k & \left(l,m=2,\cdots,2N, \ \mathrm{i.e.}, l=k+N+1 \ \mathrm{for} \ |k|<N,\ m=j+N+1 \ \mathrm{for} \ |j|<N\right)
-  \end{cases}
+   & \left(DF^{(N)}\left(x^{(N)}\right)\right)_{l,m}                                                                                        \\
+   & = \begin{cases}
+         0                   & \left(l=m=1\right)                                                                                             \\
+         1                   & \left(l=1,\ m= 2,\cdots,2N\right)                                                                              \\
+         \partial_\omega f_k & \left(l=2,\cdots,2N,\ m=1, \ \mathrm{i.e.},\ l=k+N+1 \ \mathrm{for} \ |k|<N\right)                             \\
+         \partial_{a_j}f_k   & \left(l,m=2,\cdots,2N, \ \mathrm{i.e.}, l=k+N+1 \ \mathrm{for} \ |k|<N,\ m=j+N+1 \ \mathrm{for} \ |j|<N\right)
+       \end{cases}
 \end{align*}
 
 
@@ -1687,8 +1687,8 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
 \begin{dfn}[許容重み]
   点列$\omega = \left(\omega_k\right)_{k\in\mathbb{Z}}$について，
   \begin{align}
-    \omega_k>0,\ &\forall \in \mathbb{Z}\\
-    \omega_{n+k} \leq \omega_n \omega_k,\ &\forall n,k\in\mathbb{Z}
+    \omega_k>0,\                           & \forall \in \mathbb{Z}   \\
+    \omega_{n+k} \leq \omega_n \omega_k,\  & \forall n,k\in\mathbb{Z}
   \end{align}
   が成立するとき，許容重み（admissible wights）であるという．
 \end{dfn}
@@ -1740,61 +1740,61 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
   $F^{(N)}\left(x^{(N)}\right)$のヤコビ行列は，次のような形をしている．
   \begin{equation*}
     DF^{(N)}\left(x^{(N)}\right)=\begin{bmatrix}
-      & \multicolumn{1}{c|}{0}  & 1 & \cdots & 1&\\ \cline{2-5}
-      & \multicolumn{1}{c|}{\vdots} & & \vdots& &\\
-      & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & \\
-      & \multicolumn{1}{c|}{\vdots} & & \vdots & &\\
+       & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \\ \cline{2-5}
+       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        & \\
+       & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & \\
+       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        & \\
     \end{bmatrix}
-     \in \mathbb{C}^{2N\times 2N},\ \left(|k|,|j|<N\right)
+    \in \mathbb{C}^{2N\times 2N},\ \left(|k|,|j|<N\right)
   \end{equation*}
   ここで，
   \begin{align*}
-    &\begin{cases}
-      \partial_w f_k = (-2k^2\omega - \mu ik)a_k + \frac{\mu ik}(a*a*a)_k & (|k|<N)\\
-      \partial_{a_j} f_k = (k^2\omega^2 - \mu ik\omega)\delta_{k_j} + \mu ik\omega(a*a)_{k-j} & (|k|<N)
-    \end{cases}
+     & \begin{cases}
+         \partial_w f_k = (-2k^2\omega - \mu ik)a_k + \frac{\mu ik}(a*a*a)_k                     & (|k|<N) \\
+         \partial_{a_j} f_k = (k^2\omega^2 - \mu ik\omega)\delta_{k_j} + \mu ik\omega(a*a)_{k-j} & (|k|<N)
+       \end{cases}
     \\
-    &\delta_{k_j} = \begin{cases}
-      1 & (k=j) \\
-      0 & (k\neq j)
-      \end{cases}
+     & \delta_{k_j} = \begin{cases}
+                        1 & (k=j)     \\
+                        0 & (k\neq j)
+                      \end{cases}
   \end{align*}
 \end{dfn}
 である．ヤコビ行列の各要素の伏せ字とその対応は
 \begin{align*}
-  &\left(DF^{(N)}\left(x^{(N)}\right)\right)_{l,m} \\
-  & = \begin{cases}
-    0 & \left(l=m=1\right) \\
-    1 & \left(l=1,\ m= 2,\cdots,2N\right) \\
-    \partial_\omega f_k & \left(l=2,\cdots,2N,\ m=1, \ \mathrm{i.e.},\ l=k+N+1 \ \mathrm{for} \ |k|<N\right) \\
-    \partial_{a_j}f_k & \left(l,m=2,\cdots,2N, \ \mathrm{i.e.}, l=k+N+1 \ \mathrm{for} \ |k|<N,\ m=j+N+1 \ \mathrm{for} \ |j|<N\right)
-  \end{cases}
+   & \left(DF^{(N)}\left(x^{(N)}\right)\right)_{l,m}                                                                                        \\
+   & = \begin{cases}
+         0                   & \left(l=m=1\right)                                                                                             \\
+         1                   & \left(l=1,\ m= 2,\cdots,2N\right)                                                                              \\
+         \partial_\omega f_k & \left(l=2,\cdots,2N,\ m=1, \ \mathrm{i.e.},\ l=k+N+1 \ \mathrm{for} \ |k|<N\right)                             \\
+         \partial_{a_j}f_k   & \left(l,m=2,\cdots,2N, \ \mathrm{i.e.}, l=k+N+1 \ \mathrm{for} \ |k|<N,\ m=j+N+1 \ \mathrm{for} \ |j|<N\right)
+       \end{cases}
 \end{align*}
 
 \begin{dfn}[作用素$A^\dagger,A$の定義]
   まず，Banach空間$X=\mathbb{C}\times l_\nu^1$から$Y=\mathbb{C}\times l_\nu^1,\ (\nu^\prime<\nu)$と設定し，$A^\dagger$を$A^\dagger\in (X,Y)$として，$b=(b_0,b_1)\in \mathbb{C}\times l_\nu^1=X$に対して，$A^\dagger b=\left(\left(A^\dagger b\right)_0,\left(A^\dagger b\right)_1\right)$と作用素するように定義する．ここで，$A^\dagger$を形式的に見ると，
   \begin{equation*}
-    A^\dagger = 
+    A^\dagger =
     \begin{bmatrix}
-      & \multicolumn{1}{c|}{0}  & 1 & \cdots & 1 & \cdots & 0 & \cdots &\\ \cline{2-8}
-      & \multicolumn{1}{c|}{\vdots} & & \vdots& & &  & &\\
-      & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & & \text{\huge{0}} & \\
-      & \multicolumn{1}{c|}{\vdots} & & \vdots & & & &\\
-      & \multicolumn{1}{c|}{\vdots} & & & & \lambda_N & & \text{\Large{0}} & \\
-      & \multicolumn{1}{c|}{0} & & \text{\huge{0}} & & & \lambda_{N+1} &\\
-      & \multicolumn{1}{c|}{\vdots} & & & & \text{\Large{0}}& &
+       & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \cdots           & 0               & \cdots           & \\ \cline{2-8}
+       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &                  &                 &                  & \\
+       & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &                  & \text{\huge{0}} &                    \\
+       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &                  &                 &                    \\
+       & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \lambda_N        &                 & \text{\Large{0}} & \\
+       & \multicolumn{1}{c|}{0}              &        & \text{\huge{0}}   &        &                  & \lambda_{N+1}   &                    \\
+       & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \text{\Large{0}} &                 &
     \end{bmatrix}
     =
     \begin{bmatrix}
-      & \multicolumn{1}{c|}{0} & A_{a,0}^\dagger &\\ \cline{2-3}
-      & \multicolumn{1}{c|}{A_{\omega,1}^\dagger} & A_{a,0}^\dagger &
+       & \multicolumn{1}{c|}{0}                    & A_{a,0}^\dagger & \\ \cline{2-3}
+       & \multicolumn{1}{c|}{A_{\omega,1}^\dagger} & A_{a,0}^\dagger &
     \end{bmatrix}
   \end{equation*}
 
   このことから，$A^\dagger b$は
   \begin{equation*}
     A^\dagger b = \begin{bmatrix}
-      0 & A^\dagger_{a,0}\\
+      0                    & A^\dagger_{a,0} \\
       A^\dagger_{\omega,1} & A^\dagger_{a,1}
     \end{bmatrix}
     \begin{bmatrix}
@@ -1808,23 +1808,23 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
     =: \begin{bmatrix}
       \left(A^\dagger b\right)_0 \\
       \left(A^\dagger b\right)_1
-      \end{bmatrix}
+    \end{bmatrix}
   \end{equation*}
   と表すことができ，
   \begin{align*}
-    \left(A^\dagger b\right)_0 &= \sum_{|k|<N} (b_1)_k \\
-    \left(\left(A^\dagger b\right)_1\right)_k &:= \begin{cases}
-      \partial_\omega f_k b_0 + \sum_{|j|<N} \partial_{a_j} f_k (b_1)_j&,\ |k|<N\\
-      \lambda_k (b_1)_k&,\ |k|\geq N,\ \lambda_k := -k^1\omega^2 - \mu ik\omega + 1 \\
-    \end{cases}
+    \left(A^\dagger b\right)_0                & = \sum_{|k|<N} (b_1)_k                                                                                                             \\
+    \left(\left(A^\dagger b\right)_1\right)_k & := \begin{cases}
+                                                     \partial_\omega f_k b_0 + \sum_{|j|<N} \partial_{a_j} f_k (b_1)_j & ,\ |k|<N                                                    \\
+                                                     \lambda_k (b_1)_k                                                 & ,\ |k|\geq N,\ \lambda_k := -k^1\omega^2 - \mu ik\omega + 1 \\
+                                                   \end{cases}
   \end{align*}
   と書ける．またこのとき，$(A^\dagger b)_0$と$(A^\dagger b)_1$はそれぞれ
   \begin{align*}
-    \left(A^\dagger b\right)_0 &= A_{a,0}^\dagger = \sum_{|k|<N} (b_1)_k \in \mathbb{C} \\
-    \left(A^\dagger b\right)_1 &= A_{\omega,1}^\dagger b_0 + A_{a,1}^\dagger \in l_{\nu^\prime}^1
+    \left(A^\dagger b\right)_0 & = A_{a,0}^\dagger = \sum_{|k|<N} (b_1)_k \in \mathbb{C}           \\
+    \left(A^\dagger b\right)_1 & = A_{\omega,1}^\dagger b_0 + A_{a,1}^\dagger \in l_{\nu^\prime}^1
   \end{align*}
 
-  次に，作用素$A$について考える．
+  次に，$作用素A$について考える．
   \begin{equation*}
     A^{N} = \begin{bmatrix}
       A_{\omega,0}^{(N)} & A_{a,0}^{(N)} \\
@@ -1834,12 +1834,80 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
   \end{equation*}
   をヤコビ行列の近似逆行列とする．$A\in\mathbb{L}(Y,X)$として，$b=\left(b_0,b_1\right)\in X$に対して，$Ab=\left((Ab)_0,(Ab)_1\right)$と作用するように定義する．ここで，
   \begin{align*}
-    (Ab)_0 &= A_{\omega,0}^{(N)}b_0 + A_{a,0}^{(N)} b_1^{(N)}\\
-    (Ab)_1 &= A_{\omega,1}^{(N)}b_0 + A_{a,1}^{(N)} b_1
+    (Ab)_0 & = A_{\omega,0}^{(N)}b_0 + A_{a,0}^{(N)} b_1^{(N)} \\
+    (Ab)_1 & = A_{\omega,1}^{(N)}b_0 + A_{a,1}^{(N)} b_1
   \end{align*}
 
-  ただし，
+  ただし，無限次元の$A_{a,1}b_1$は以下のようになる．
+  \begin{equation*}
+    \left(A_{a,1}b_1\right)=\begin{dcases}
+      \left(A_{a,1}^{(N)}b_1{(N)}\right)_k & \ (|k|<N)     \\
+      \frac{(b_1)_k}{\lambda_k}            & \ (|k|\geq N)
+    \end{dcases}
+  \end{equation*}
+
+  この定義を形式的に見ると，
+  \begin{equation*}
+    A =
+    \begin{bmatrix}
+       & \multicolumn{1}{c|}{A_{\omega,0}^{(N)}} & A_{a,0}^{(N)} & 0                   & \cdots                  & 0      & \\ \cline{2-6}
+       & \multicolumn{1}{c|}{A_{\omega,1}^{(N)}} & A_{a,1}^{(N)} &                     & \text{\large{0}}        &        & \\
+       & \multicolumn{1}{c|}{0}                  &               & \frac{1}{\lambda_N} &                         &        & \\
+       & \multicolumn{1}{c|}{\vdots}             &               &                     & \frac{1}{\lambda_{N+1}} &        & \\
+       & \multicolumn{1}{c|}{0}                  &               & \text{\large{0}}    &                         & \ddots & \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+       & \multicolumn{1}{c|}{0}            & A_{a,0} & \\ \cline{2-3}
+       & \multicolumn{1}{c|}{A_{\omega,1}} & A_{a,0} &
+    \end{bmatrix}
+  \end{equation*}
+  と表記できる．
 \end{dfn}
+
+\subsection{$Y_0,Z_0,Z_1,Z_2$の評価}
+\begin{description}
+  \item[$Y_0$]
+    \begin{equation*}
+      \left\| AF\left(\bar{x}\right)\right\|_x \leq Y_0
+    \end{equation*}
+  \item[$Z_0$]
+    \begin{equation*}
+      \left\| I-AA^\dagger \right\|_{\mathcal{L}\left(
+      X
+      \right)} \leq Z_0
+    \end{equation*}
+  \item[$Z_1$]
+    \begin{equation*}
+      \left\| A \left(DF \left( \bar{x} \right) A^\dagger \right) c \right\|_X \leq Z_1,\ c\in \overline{B(0,1)}
+    \end{equation*}
+    また，ここでの$\overline{B(0,1)}$とは$\|c\|_X=1$ということである．
+  \item[$Z_2$]
+    \quad \\
+    $b\in \overline{B\left(\bar{x},r\right)},\ h\in \overline{B(0,1)}$として，
+    \begin{equation*}
+      \left\| A \left(DF \left( b \right) - DF \left( \bar{x} \right) h \right) \right\|_{X} \leq Z_2 (r)r
+    \end{equation*}
+\end{description}
+
+\subsubsection{$Y_0$を計算する}
+\begin{equation*}
+  F(\bar{x}) = (\delta_0, \delta_1) \in \mathbb{C}\times l_\nu^\prime
+\end{equation*}
+とすると，$A$の定義より，
+\begin{equation*}
+  \left\| AF(\bar{x}) \right\|_X \leq \max \left\{ \left| A_{\omega, 0}^{(N)} \delta_0 + A_{a,0}^{(N)} \delta_1^{(N)} \right|,\  \left\| A_{\omega,1}^{(N)} \delta_0 + A_{a,1} \delta_1^{(N)} \right\|_\omega + \sum_{\textcolor{red}{|k|>N}} \left\| \frac{\left(\delta_1^\infty\right)_k}{\lambda_k}  \right\| \nu^{|k|} \right\}
+\end{equation*}
+
+ここで，$\delta_1 = \left( \delta_1^{(N)}, \delta_1^{(\infty)} \right) \in \mathbb{C}^{2 \times 3(N-1)+1}$であり，
+
+\begin{equation*}
+  \left( \delta_1 \right)_k = \begin{cases}
+    \delta_1^{(N)}      & (k<|N|)      \\
+    \delta_1^{(\infty)} & (k \geq |N|)
+  \end{cases}
+\end{equation*}
+
 
 %---------------------
 
