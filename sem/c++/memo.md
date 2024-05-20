@@ -30,8 +30,3 @@ template <typename _T>
 
 ### memo
 ひし形継承
-
-
-## 2024-04-22
-
-##
