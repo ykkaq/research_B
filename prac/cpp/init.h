@@ -22,4 +22,18 @@ class Student {
   Info info;
 };
 
+class Car {
+ public:
+  Car();
+  ~Car();
+  void setSpeed(double speed);
+  double getSpeed();
+  double getMigration();
+  void drive(double hour);
+
+ private:
+  double speed;
+  double migration;
+};
+
 #endif  // _INIT_H_

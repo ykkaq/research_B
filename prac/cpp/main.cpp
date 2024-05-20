@@ -8,20 +8,12 @@ using namespace std;
 void input(Info* student_info);
 
 int main(int argc, char** argv) {
-  int num = 2;
-  Student student[num];
-
-  for (int i = 0; i < num; i++) {
-    Info student_info;  // Add this line
-
-    input(&student_info);
-
-    student[i].setter(student_info);  // Change this line
-  }
-
-  for (int i = 0; i < num; i++) {
-    student[i].showInformation();
-  }
+  Car car;
+  car.setSpeed(60);
+  car.drive(1.5);
+  car.setSpeed(100);
+  car.drive(2.5);
+  cout << "sum: " << car.getMigration() << " km" << endl;
 
   return 0;
 }
