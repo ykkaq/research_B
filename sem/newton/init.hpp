@@ -15,10 +15,12 @@ double newton(double (*f)(double), double (*df)(double), double x0) {
 }  // namespace pt
 
 // object
-namespace oj {
+namespace obj {
+// 方針：
+// - newton関数に，fとdfをオブジェクトとして渡したい．
 
 struct Object {
   double operator()(double xn) { return xn - pt::f(xn) / pt::df(xn); }
 };
 
-}  // namespace oj
+}  // namespace obj
