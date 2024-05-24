@@ -16,11 +16,34 @@ double newton(double (*f)(double), double (*df)(double), double x0) {
 
 // object
 namespace obj {
-// 方針：
-// - newton関数に，fとdfをオブジェクトとして渡したい．
-
-struct Object {
-  double operator()(double xn) { return xn - pt::f(xn) / pt::df(xn); }
+struct f {
+  double operator()(double x) { return x * x + 2 * x - 4; }
 };
 
+struct df {
+  double operator()(double x) { return 2 * x + 2; }
+};
+
+template <typename F, typename DF>
+double newton(F g, DF dg, double x) {
+  return x - g(x) / dg(x);
+}
 }  // namespace obj
+
+namespace vt {
+class base {
+ public:
+  double virtual f(double x) { return 1; }
+
+  double virtual df(double x) { return 0; }
+
+  double newton(double x) { return x - f(x) / df(x); }
+};
+
+class advanced : public base {
+ public:
+  double f(double x) override { return x * x - 3 * x - 5; }
+
+  double df(double x) override { return 2 * x - 3; }
+};
+}  // namespace vt

@@ -3,8 +3,9 @@
 #include "func.hpp"
 
 int main(void) {
-  // nanika
-  pointer();
+  // pointer();
+  // object();
+  virfunc();
 
   return 0;
 }
