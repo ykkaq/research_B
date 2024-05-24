@@ -26,3 +26,5 @@
 \contentsline {subsubsection}{\numberline {3.4.2}$Z_0$を計算する}{42}{}%
 \contentsline {subsubsection}{\numberline {3.4.3}$Z_1$を計算する}{43}{}%
 \contentsline {subsubsection}{\numberline {3.4.4}$Z_2$を計算する}{45}{}%
+\contentsline {subsection}{\numberline {3.5}radii polynomalの零点探索の精度保証}{47}{}%
+\contentsline {subsection}{\numberline {3.6}Krawczyk（クラフチック）法}{47}{}%

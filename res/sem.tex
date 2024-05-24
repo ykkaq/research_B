@@ -1525,7 +1525,7 @@ $X,Y$をBanach空間とし，非線形方程式
                          & = \frac{\eta-\eta(\delta+K)}{1-(\delta+K)}+{\eta(K+\delta)}{1-(\delta+K)} \\
                          & = \rho
   \end{align*}
-  となる．よって，任意の$w\in \overline{B(0,\rho)}$に対して$\|\mathcal{T}(w)\|_X \leq \rho$とな��ことから，$\mathcal{T}\left(\overline{B(0,\rho)}\right) \subset \overline{B(0,\rho)}$となる．
+  となる．よって，任意の$w\in \overline{B(0,\rho)}$に対して$\|\mathcal{T}(w)\|_X \leq \rho$となることから，$\mathcal{T}\left(\overline{B(0,\rho)}\right) \subset \overline{B(0,\rho)}$となる．
 
   次に，$\mathcal{T}:\overline{B(0,\rho)}\rightarrow \overline{B(0,\rho)}$が縮小写像になることを確認する．すなわち
   \begin{equation*}
@@ -2028,7 +2028,7 @@ $Bc_0$はスカラ値なので，
 $Z_1^{(1)}$の評価は
 \begin{equation*}
   \begin{split}
-    \left \| (A(DF(\bar{x})-A^\dagger)c)_1 \right\|_\omega =& \left\| (Az)_1 \right\|_\omega \\
+    \left\| (A(DF(\bar{x})-A^\dagger)c)_1 \right\|_\omega =& \left\| (Az)_1 \right\|_\omega \\
     =& \left\| A_{\omega,1}^{(N)} z_0 + A_{a,1} z_1 \right\|_\omega \\
     \leq& \frac{\left\| A_{\omega,1}^{(N)} \right\|_\omega}{\omega_N} + \sum_{|k|<N} \left( \left| A_{a,1}^{(N)} \right| \zeta \right)_k \omega_k + \sum_{N \leq |k| \leq 3(N-1)} \frac{\left| \mu ik \left( \bar{a} * \bar{a} * \bar{a} \right)_k \right|}{3\left| \lambda_k \right|} \omega_k \\
     &+ \sum_{|k| \geq N} \frac{\left| \mu ik \omega \left(\bar{a}*\bar{a}*\bar{x}\right) \right|}{\left| \lambda_k \right|} \omega_k \\
@@ -2075,14 +2075,73 @@ $b \in \overline{B\left(\bar{x},r\right)},\ c=\left(c_0,c_1\right)\in\overline{Z
 と書ける．そして，第2項は，
 \begin{equation*}
   \begin{split}
-    &\left[ \left( \partial_a f(b) - \partial_a f(\bar{x}) \right)_c_1 \right]_k \\
-    =& \left( -k^2\omega^2 - \mu ik \omega + 1 \right) \left( c_1 \right)_k + \mu ik \omega (a * a * c_1)_k \\
-    &- \left( -k^2\bar{\omega}^2 - \mu ik \bar{\omega} + 1 \right) \left( c_1 \right)_k + \mu ik \bar{\omega} (\bar{a} * \bar{a} * c_1)_k \\
-    =& \left[ -k^2\left(\omega + \bar{\omega}\right) \left(\omega - \bar{\omega}\right) - \mu ik \left(\omega - \bar{\omega}\right) \right] \left(c_1\right)_k  \\
-    &+ \mu ik \omega \left(\left(a+\bar{a}\right)*\left(a-\bar{a}\right)*c_1\right)_k \\
+    &\left[ \left( \partial_a f(b) - \partial_a f(\bar{x}) \right)_{c_1} \right]_k \\
+    =& \left( -k^2\omega^2 - \mu ik \omega + 1 \right) \left( c_1 \right)_k + \mu ik \omega (a * a * c_1)_k - \left( -k^2\bar{\omega}^2 - \mu ik \bar{\omega} + 1 \right) \left( c_1 \right)_k \\
+    &+ \mu ik \bar{\omega} (\bar{a} * \bar{a} * c_1)_k \\
+    =& \left[ -k^2\left(\omega + \bar{\omega}\right) \left(\omega - \bar{\omega}\right) - \mu ik \left(\omega - \bar{\omega}\right) \right] \left(c_1\right)_k + \mu ik \omega \left(\left(a+\bar{a}\right)*\left(a-\bar{a}\right)*c_1\right)_k \\
     &+ \mu ik \left(\omega - \bar{\omega}\right) \left( \bar{a} * \bar{a} * c_1 \right)_k
   \end{split}
 \end{equation*}
+と書ける．$(Az)_0,(Az)_1$は，
+\begin{align*}
+  (Az)_0 & = A_{a,0}^{(N)} + z_1^{(N)} \\
+  (Az)_1 & = A_{a,1} + z_1
+\end{align*}
+より，
+\begin{equation*}
+  \|Az\|_X = \max\left\{ \left| A_{a,0}^{(N)} z_1^{(N)} \right|,\ \left\| A_a,1 z_1 \right\| \right\}
+\end{equation*}
+となる．
+
+$\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに，$\tilde{A}_{a,0}, \tilde{B}_{a,0}$を以下のように定義する．
+\begin{align*}
+  \tilde{A}_{a,0} &:= \left( \left| k \right| \left( A_{a,0}^{(N)} \right)_k \right)_{|k|<N} \\
+  \tilde{B}_{a,0} &:= \left( k^2 \left( A_{a,0}^{(N)} \right)_k \right)_{|k|<N}
+\end{align*}
+すると，
+\begin{equation*}
+  \begin{split}
+    \left| A_{a,0}^{(N)} z_1^{(N)} \right| &\leq 2\left(\tilde{\omega} + r\right) \left\| \tilde{B}_{a,0} \right\|_\omega r + 2 \left\| \tilde{B}_{a,0} \right\|_\omega \left\| \tilde{a} \right\|_\omega r + \mu \left\| \tilde{A}_{a,0} \right\|_\omega r \\
+    &+ \frac{\mu}{3} \left\| \tilde{A}_{a,0} \right\|_\omega \left( r^2 * 3 \left\| \bar{a} \right\|_\omega r + 3 \left\| \bar{a} \right\|^2_\omega \right) r + \left\| \tilde{B}_{a,0} \right\|_\omega \left( 2\bar{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,0} \right\|_\omega r \\
+    &+ \mu\left(\bar{\omega}+r\right)\left\| \tilde{A}_{a,0} \right\|_\omega \left( 2 \left\| \bar{a} \right\|_{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,0} \right\|_\omega \left\| a \right\|_\omega^2 r\\
+    &= Z_2^{(4,0)} r^3 + Z_2^{(3,0)} r^2 + Z_2^{(2,0)} r
+  \end{split}
+\end{equation*}
+となる．同様に，$\left\| A_{a,1} z_1 \right\|_\omega$を上から評価する．$\tilde{A}_{a,1}, \tilde{B}_{a,1}$を以下のように定義する．
+\begin{align*}
+  \tilde{A}_{a,1} &:= \left( \left| j \right| \left( A_{a,1} \right)_{k,j} \right)_{k,j\in\mathbb{Z}} \\
+  \tilde{B}_{a,1} &:= \left( j^2 \left( A_{a,1} \right)_{k,j} \right)_{k,j\in\mathbb{Z}}
+\end{align*}
+すると，
+\begin{equation*}
+  \begin{split}
+    \left\| A_{a,1} z_1 \right\|_{\omega} &\leq 2\left(\tilde{\omega} + r\right) \left\| \tilde{B}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} r + 2 \left\| \tilde{B}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left\| \tilde{a} \right\|_\omega r + \mu \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} r \\
+    &+ \frac{\mu}{3} \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left( r^2 + 3 \left\| \bar{a} \right\|_\omega r + 3 \left\| \bar{a} \right\|^2_\omega \right) r + \left\| \tilde{B}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left( 2\bar{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} r \\
+    &+ \mu\left(\bar{\omega}+r\right)\left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left( 2 \left\| \bar{a} \right\|_{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left\| a \right\|_\omega^2 r\\
+    &= Z_2^{(4,1)} r^3 + Z_2^{(3,1)} r^2 + Z_2^{(2,1)} r
+  \end{split}
+\end{equation*}
+と書ける．$Z_2^{(4,1)},Z_2^{(3,1)},Z_2^{(2,1)}$は，先ほどの$\tilde{A}_{a,0},\tilde{B}_{a,0}を\tilde{A}_{a,1},\tilde{B}_{a,1}$に置き換えたものになる．$j=2,3,4$で
+\begin{equation*}
+  Z_2^{(j)} := \max \left\{ Z_2^{(j,0)}, Z_2^{(j,1)} \right\}
+\end{equation*}
+とすれば，
+\begin{equation*}
+  Z_2(r) := Z_2^{(4,1)} r^2 + Z_2^{(3,1)} r + Z_2^{(2,1)}
+\end{equation*}
+となる．
+
+\subsection{radii polynomalの零点探索の精度保証}
+以上で，$Y_0,\cdots,Z_2$の評価を区間演算で求めた．これらの評価を用いて$p(r_0)<0$となる$r_0$を求める．精度保証の方法は，Newton法を反復させることで，$p(r_0)=0$となる$r_0$の近似会を求め，これをKrawczyk法で検証する．
+
+\subsection{Krawczyk（クラフチック）法}
+\begin{thm}[Krawczyk法\cite{}]
+  $X \subset \mathbb{R}^n$を区間ベクトル，$c=\mathrm{mid}(X),\ R\simeq Df(c)^{-1} = j(c)^{-1}, E$を単位行列とし，
+  \begin{equation*}
+    K(X) = c- Rf(c) + (E-RDf(X))(X-c)
+  \end{equation*}
+  としたとき，$K(X) \subset \mathrm{int}(X)$（$\mathrm{int}(X):X$の内部）ならば$Xにf(x)=0$の解が唯一存在する．
+\end{thm}
 
 %---------------------
 
