@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024/Arch Linux) (preloaded format=platex 2024.5.20)  24 MAY 2024 13:32
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024/Arch Linux) (preloaded format=platex 2024.5.20)  24 MAY 2024 16:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -599,35 +599,35 @@ Overfull \hbox (1.19026pt too wide) detected at line 1235
  []
 
 [26] [27] [28]
-Overfull \hbox (47.97006pt too wide) detected at line 1355
+Overfull \hbox (47.97006pt too wide) detected at line 1360
 []
  []
 
 [29] [30]
 LaTeX Font Info:    Font shape `JT1/gt/bx/n' in size <12> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 1406.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 1411.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 1406.
+(Font)              scaled to size 11.53198pt on input line 1411.
 LaTeX Font Info:    Font shape `JY1/gt/bx/n' in size <12> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 1406.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 1411.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 1406.
+(Font)              scaled to size 11.53198pt on input line 1411.
 
 
-LaTeX Warning: Citation `rpa' on page 31 undefined on input line 1406.
+LaTeX Warning: Citation `rpa' on page 31 undefined on input line 1411.
 
 [31] [32] [33] [34] [35] [36] [37] [38] [39]
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 19.9311pt on input line 1781.
+(Font)              scaled to size 19.9311pt on input line 1786.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 19.9311pt on input line 1781.
+(Font)              scaled to size 19.9311pt on input line 1786.
  [40] [41] [42] [43]
-Overfull \hbox (1.10962pt too wide) detected at line 2039
+Overfull \hbox (1.10962pt too wide) detected at line 2044
 []
  []
 
 [44] [45]
-Overfull \hbox (5.1071pt too wide) detected at line 2123
+Overfull \hbox (5.1071pt too wide) detected at line 2128
 []
  []
 
@@ -660,4 +660,4 @@ Here is how much of TeX's memory you used:
  19 hyphenation exceptions out of 8191
  57i,27n,65p,685b,375s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on sem.dvi (47 pages, 191492 bytes).
+Output written on sem.dvi (47 pages, 191416 bytes).

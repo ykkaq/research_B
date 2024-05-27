@@ -1174,7 +1174,7 @@
 
   チェビシェフ多項式のもう1つの表現方法として，$|z|=1$を満たす複素平面の単位円上で定義される複素変数$z$を用いる方法がある．いま，
   \begin{equation*}
-    F(z) \equiv f(x),\ x=\frac{z+z^{-1}}{2},\ \textcolor{red}{z\in\{z\in\mathbb{C}:|z|=1\}}
+    F(z) \equiv f(x),\ x=\frac{z+z^{-1}}{2},\ z\in\{z\in\mathbb{C}:|z|=1\}
   \end{equation*}
   を満たすような複素関数$F$を考える．変換$x=(z+z^{-1})/2$は$x$の1つの値に対して$z$の2つの値$(z,z^{-1})$を対応させる．すなわち$F$は$F(z)=F(z^{-1})$の対処性を持つ．関数$F$ローラン展開を考えると
   \begin{equation*}
@@ -1236,7 +1236,7 @@
     と近似できる．ここで$f(\cos \theta_j)$はチェビシェフ点$x_j=\cos \theta_j$における関数$f$の値を表す．
 \end{description}
 
-\subsection{高速フーリエ変換}
+\subsection{離散フーリエ変換}
 \begin{dfn}[離散フーリエ変換]
   $b=(b_0,b_1,\cdots,b_{2M-2}) \in \mathbb{C}^{2M-1}$に対して，$a=\mathcal{F}(b)\in \mathbb{C}^{2M-1}$を
   \begin{equation*}
@@ -1284,15 +1284,20 @@ $u_1,u_2$：周期$L$の周期関数とする．
 \end{equation*}
 と表される．
 
-畳み込みをフーリエ変換下もには，それぞれのフーリエ変換の積になる．これを畳み込み定理という．
-\begin{align*}
-  \mathcal{F} \left( a^{(1)} * a^{(2)} * \cdots * a^{(p)} \right)= \mathcal{F} \left( a^{(1)} \right) \mathcal{F} \left( a^{(2)} \right) \cdots \mathcal{F} \left( a^{(p)} \right) \\
-  = b^{(1)}b^{(2)}\cdots b^{(p)}
-\end{align*}
-ただし，ベクトルの積は要素ごとの積を表す．
+\begin{description}
+  \item[畳み込み定理] 
+  \quad \\
+  畳み込みをフーリエ変換下もには，それぞれのフーリエ変換の積になる．これを畳み込み定理という．
+  \begin{align*}
+    \mathcal{F} \left( a^{(1)} * a^{(2)} * \cdots * a^{(p)} \right)= \mathcal{F} \left( a^{(1)} \right) \mathcal{F} \left( a^{(2)} \right) \cdots \mathcal{F} \left( a^{(p)} \right) \\
+    = b^{(1)}b^{(2)}\cdots b^{(p)}
+  \end{align*}
+  ただし，ベクトルの積は要素ごとの積を表す．
+\end{description}
+
 
 \subsubsection{畳み込みのFFTアルゴリズム}
-$p$個の有限点列$\{a_(k)^{(l)}\}_{|k|<M}$に対して，FFTを使って
+$p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使って
 \begin{equation*}
   \left(a^{(1)} * a^{(2)} * \cdots * a^{(p)}\right)_k = \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)},\ |k| \leq p(M-1)
 \end{equation*}
@@ -1343,7 +1348,7 @@ $p$個の有限点列$\{a_(k)^{(l)}\}_{|k|<M}$に対して，FFTを使って
     \begin{align*}
       S_k(j) := & \prod_{l=1}^p  \left( \sum_{k_l=-pM+1}^{pM-1} \tilde{a}_{k_l}^{(l)} \exp\left(2\pi i \frac{k_lj}{2pM-1} \right) \right) \exp\left(2\pi i \frac{kj}{2pM-1}\right) \\
       =         & \underbrace{\sum_{\substack{{k_1+\cdots+k_p=k}                                                                                                                   \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} + \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right) }_{k_1+\cdots+k_p-k \equiv 0 \mod pM-1,\ \exp(\pi ij)\equiv 1} \\
-                & + \underbrace{\sum_{\substack{k_1+\cdots+k_p \notin \left\{ k \pm m(2pM-1)\textcolor{red}{:m=0,\cdots,p} \right\}                                                \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)}_{k_1+\cdots+k_p-k \not\equiv 0 \mod 2pM-1}
+                & + \underbrace{\sum_{\substack{k_1+\cdots+k_p \notin \left\{ k \pm m(2pM-1)m=0,\cdots,p \right\}                                                \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)}_{k_1+\cdots+k_p-k \not\equiv 0 \mod 2pM-1}
     \end{align*}
 
     として，
@@ -1351,7 +1356,7 @@ $p$個の有限点列$\{a_(k)^{(l)}\}_{|k|<M}$に対して，FFTを使って
       \mathcal{F}\left(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}\right) = & \sum_{j=0}^{2pM-2} S_k(j)                                                     \\
       =                                                                            & (2pM-1) \sum_{\substack{{k_1+\cdots+k_p=k}                                    \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} \\
                                                                                    & + (2pM-1) \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right)  \\
-                                                                                   & +  \sum_{\substack{( k_1+\cdots+k_p                                           \\ \notin \left\{ k \pm m(2pM-1) \textcolor{red}{:m=0,\cdots,p} \right\} ) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \left( \sum_{j=0}^{2pM-2} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)\right)
+                                                                                   & +  \sum_{\substack{( k_1+\cdots+k_p                                           \\ \notin \left\{ k \pm m(2pM-1) :m=0,\cdots,p\right\} ) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \left( \sum_{j=0}^{2pM-2} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)\right)
     \end{align*}
 
     このとき，オイラーの公式より，$k_1+\cdots+k_p-k \equiv 0 \mod 2pM-1$のとき
@@ -1896,7 +1901,7 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
 \end{equation*}
 とすると，$A$の定義より，
 \begin{equation*}
-  \left\| AF(\bar{x}) \right\|_X \leq \max \left\{ \left| A_{\omega, 0}^{(N)} \delta_0 + A_{a,0}^{(N)} \delta_1^{(N)} \right|,\  \left\| A_{\omega,1}^{(N)} \delta_0 + A_{a,1} \delta_1^{(N)} \right\|_\omega + \sum_{\textcolor{red}{|k|>N}} \left\| \frac{\left(\delta_1^\infty\right)_k}{\lambda_k}  \right\| \nu^{|k|} \right\}
+  \left\| AF(\bar{x}) \right\|_X \leq \max \left\{ \left| A_{\omega, 0}^{(N)} \delta_0 + A_{a,0}^{(N)} \delta_1^{(N)} \right|,\  \left\| A_{\omega,1}^{(N)} \delta_0 + A_{a,1} \delta_1^{(N)} \right\|_\omega + \sum_{|k|>N} \left\| \frac{\left(\delta_1^\infty\right)_k}{\lambda_k}  \right\| \nu^{|k|} \right\}
 \end{equation*}
 
 ここで，$\delta_1 = \left( \delta_1^{(N)}, \delta_1^{(\infty)} \right) \in \mathbb{C}^{2 \times 3(N-1)+1}$であり，

@@ -10,7 +10,7 @@
 \contentsline {subsection}{\numberline {1.6}チェビシェフ級数}{24}{}%
 \contentsline {subsubsection}{\numberline {1.6.1}チェビシェフ級数の導出}{24}{}%
 \contentsline {subsubsection}{\numberline {1.6.2}チェビシェフ級数の性質}{25}{}%
-\contentsline {subsection}{\numberline {1.7}高速フーリエ変換}{26}{}%
+\contentsline {subsection}{\numberline {1.7}離散フーリエ変換}{26}{}%
 \contentsline {subsection}{\numberline {1.8}畳み込みのFFTアルゴリズム}{27}{}%
 \contentsline {subsubsection}{\numberline {1.8.1}畳み込み定理}{27}{}%
 \contentsline {subsubsection}{\numberline {1.8.2}畳み込みのFFTアルゴリズム}{28}{}%
