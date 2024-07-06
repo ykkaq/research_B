@@ -1,11 +1,7 @@
 // --------- ちょっとした設定 ---------
 
 // font 
-#set text(lang:"ja", font: "Harano Aji Mincho")
-//#set text(font: "Noto Serif CJK JP")
-//#show emph: set text(font: "Noto Sans CJK JP")
-//#show strong: set text(font: "Noto Sans CJK JP")
-//#show regex("[\p{scx:Han}\p{scx:Hira}\p{scx:Kana}]"): set text(font: "Noto Sans CJK JP") // 漢字かなカナのみ指定（ゴシック体＝サンセリフ体）
+#set text(lang:"ja", font: "Noto Serif CJK JP")
 
 
 // 段落での両端揃えを有効化・行送りの長さを指定
