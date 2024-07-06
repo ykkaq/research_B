@@ -1,8 +1,7 @@
 // --------- ちょっとした設定 ---------
 
 // font 
-#set text(lang:"ja", font: "Noto Serif CJK JP")
-
+#set text(lang:"ja", font: "Harano Aji Mincho")
 
 // 段落での両端揃えを有効化・行送りの長さを指定
 #set par(justify: true, leading: 0.75em)
@@ -58,7 +57,7 @@
 
 = はじめに
 
-
+radii polynomial approachにおける無限次元ガウスの消去法
 
 #theorem(kind: "定義", title: [$sigma$-加法族])[
   $Omega$ の部分集合族 $cF$ が以下の性質を満たすとき、 $Omega$ を $sigma$-加法族という。
