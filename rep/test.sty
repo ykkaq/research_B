@@ -1,0 +1,68 @@
+\documentclass[12pt,twocolumn]{jsarticle} % 12ptフォント、2列組のjsarticleクラスを使用
+\usepackage[margin=5mm]{geometry}         % ページの余白を上下左右5mmに設定
+
+\voffset = 10pt                           % ページ上端からの本文領域の垂直方向オフセットを10ptに設定
+\setlength{\headsep}{-30pt}                % ヘッダーと本文の間隔を調整
+\textheight = 710pt                       % 本文領域の高さを710ptに設定
+
+\usepackage[dvipdfmx]{graphicx}            % dvipdfmxドライバで画像を扱う
+\PassOptionsToPackage{dvipsnames}{xcolor}  % xcolorパッケージにdvipsnamesオプションを渡す（色の名前を増やす）
+\usepackage{amsfonts,amsmath,amsthm,mathtools,amssymb,mathrsfs,bm,physics} % 数式用のパッケージを読み込み
+
+\usepackage{tcolorbox}                     % 色付きボックスなどを作成するパッケージ
+\tcbuselibrary{breakable,skins}           % tcolorboxのライブラリを読み込み
+
+\usepackage{titlesec}                      % セクションタイトルの書式設定用パッケージ
+
+\usepackage[deluxe]{otf}                  % 日本語OpenTypeフォントを使用するためのパッケージ
+\renewcommand{\kanjifamilydefault}{\gtdefault} % 和文フォントをゴシック体に設定
+\renewcommand{\familydefault}{\sfdefault}    % 欧文フォントをサンセリフ体に設定
+\renewcommand{\headfont}{\sffamily\mgfamily}% ヘッダーのフォントを設定
+
+\renewcommand{\baselinestretch}{0.8}      % 行間を狭くする
+\renewcommand{\labelitemi}{・}             % 箇条書きの記号を「・」に変更
+\newcommand{\redunderline}[1]{\textcolor{red}{\underline{\textcolor{black}{#1}}}} % 赤色の下線付き文字列を定義
+
+\makeatletter                             % LaTeXの内部コマンドを再定義するための開始記号
+% \M@LTIPLYコマンドの定義（太字のサイズ調整用？）
+\newdimen\f@keboldsize
+\def\M@LTIPLY#1#2#3{\f@keboldsize=#1\p@\relax
+\f@keboldsize=#2\f@keboldsize\relax
+\edef#3{\expandafter\strip@pt\f@keboldsize}\ignorespaces}
+
+\newtheoremstyle{mystyle}%                 % 定理環境のスタイルを定義
+    {}%
+    {}%
+    {}%
+    {}%
+    {\bfseries}%
+    {}%
+    { }%
+    {\thmname{#1}\thmnumber{#2}\thmnote{(#3)}}%
+\theoremstyle{mystyle}
+\newtheorem{definition}{定義}[section]     % 定義環境
+\newtheorem{theorem}{定理}[section]       % 定理環境
+\newtheorem{lemma}{補題}[section]         % 補題環境
+\newtheorem{assumption}{仮定}[section]     % 仮定環境
+
+\renewcommand{\proofname}{\textbf{証明}}  % 証明の開始を示す文字列を太字に変更
+
+\pagestyle{empty}                        % ページ番号を非表示にする
+
+\begin{document}                           % 文書の開始
+
+\columnseprule=0.2mm                      % 2列間の線の太さを設定
+
+\twocolumn[                              % 2列組の開始
+    \title{*}                            % タイトル
+    \author{*}                           % 発表者名
+    \date{\vspace{-10mm}}                 % 日付（空白）
+    \maketitle                           % タイトル、発表者名、日付を表示
+    \hrulefill                           % 水平線
+]
+
+\section{*}                              % セクション1
+
+% ここにポスターの内容を記述する
+
+\end{document}                             % 文書の終了
