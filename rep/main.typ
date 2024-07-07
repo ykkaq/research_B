@@ -3,14 +3,16 @@
 #set page(
   paper: "a4",
   margin: (
-    x:20mm,
-    y:15mm
+    x:15mm,
+    y:10mm
   )
 )
 
 #set par(
   first-line-indent: 1em,
   //linebreaks: "optimized",
+  justify: false,
+  leading: 0.75em
 )
 
 #show par: set block(
@@ -43,8 +45,11 @@
 // math numbering
 #set math.equation(
   numbering: "(1)",
-  number-align: 
+  number-align: right
 )
+
+// shortcut
+#let fc() = "Fr"+str.from-unicode(233)+"chet"
 
 
 // --- main content ---
@@ -74,11 +79,37 @@
 
 = Newton-Kantorovichの定理
 
-　$X,Y$をBanach空間，$cal(L) paren.l X,Y paren.r $を$X$から$Y$への有界線形作用素の集合とする．有界線形作用素$A^dagger in cal(L)(X,Y), A in cal(L)(X,Y)$を考え，作用素$F:X arrow.r Y$が$C^1 - "Fr"acute(e)"chet"$微分可能とする．いま，$tilde(x) in X$に対して，正定数$Y_0, Z_0, Z_1$および非減少関数$Z_2(r)(r>0)$が存在して，次に不等式を満たすとする．
-
+$X,Y$をBanach空間，$cal(L) paren.l X,Y paren.r $を$X$から$Y$への有界線形作用素の集合とする．有界線形作用素$A^dagger in cal(L)(X,Y), A in cal(L)(Y,X)$を考え，作用素$F:X arrow.r Y$が$C^1$-#fc()微分可能とする．いま，$tilde(x) in X$に対して，正定数$Y_0, Z_0, Z_1$および非減少関数$Z_2(r)(r>0)$が存在して，次に不等式を満たすとする．
 $
-||A F (tilde(x))||_X &lt.eq Y_0 \
+||A F (tilde(x))||_X &lt.eq Y_0
+$
+$
 ||I-A A^dagger||_(cal(L)(X)) &lt.eq Z_0 \
-||A (D F(tilde(x))-A^dagger)||_(cal(L)(X)) &lt.eq Z_1 \
-||A (D F(b)-D F (tilde(x)))||_(cal(L)(X)) &lt.eq Z_2(r) \
 $
+$
+||A (D F(tilde(x))-A^dagger)||_(cal(L)(X)) &lt.eq Z_1 \
+$
+$
+||A (D F(b)-D F (tilde(x)))||_(cal(L)(X)) lt.eq Z_2(r)& \
+"for all" b in overline(B(tilde(x),r))&
+$
+
+　このとき，radii polynomialを以下で定義する．
+$
+p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r + Y_0
+$
+
+これに対し，$p(r_0)<0$となる$r_0>0$が存在するならば，$F(tilde(x))=0$を満たす解$tilde(x)$が$b in overline(B(tilde(x),r))$内に一意に存在する．
+
+Newton-Kantorovich型定理を利用する数値検証の際には，$D F (tilde(x))$を$F$の$tilde(x)$における#fc()微分，$A^dagger$を$D F (tilde(x))$の近似，$A$を$A^dagger$の近似左逆作用素とする($A A^dagger approx I$)とするのが一般的である．
+
+= 提案手法
+
+= 今後の課題
+
+// 参考文献
+#set heading(numbering: none)
+#set enum(numbering: "[1]")
+= 参考文献
++ 某ZR．メッチャすごい論文，2020．
++ 某ZR．メッチャすごい本，2022．
