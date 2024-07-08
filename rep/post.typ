@@ -51,6 +51,7 @@
 // shortcut
 #let fc() = "Fr"+str.from-unicode(233)+"chet"
 #let nk() = "Newton-Kantorovich"
+#let rp() = "radii-polynomial approach"
 
 #show ref: it => {
   let eq = math.equation
@@ -72,7 +73,7 @@
 #align(center, text(
   20pt, font: "Harano Aji Gothic"
   )[
-  Newton-Kantorovich型定理における\
+  #rp()における\
   無限次元ガウスの消去法
 ])
 
@@ -108,7 +109,7 @@ $
 $
 $
 ||A (D F(b)-D F (tilde(x)))||_(cal(L)(X)) lt.eq Z_2(r)& \
-"for all" b in overline(B(tilde(x),r))&
+forall b in overline(B(tilde(x),r))&
 $
 
 　このとき，radii polynomialを以下で定義する．
@@ -128,10 +129,19 @@ $
 
 
 ここで，$phi.alt := D F^(-1) F (tilde(x))$とし，式@tf0 のように変形して，ガウスの消去法を適用する．
+$Pi_N$は射影作用素とする．
 
 $
-D F phi.alt = F(tilde(x))
+  D F phi.alt = F(tilde(x))\
 $<tf0>
+$
+  cases(
+    Pi_N D F &(Pi_N phi.alt + (I-Pi_N) phi.alt), &= Pi_N F(tilde(x)),
+    (I-Pi_N) &D F (Pi_N phi.alt + (I-Pi_N) phi.alt) , &= (I-Pi_N) F(tilde(x)) ,
+  )
+$<tf1>
+
+/*
 $
 mat(
 Pi_N D F Pi_N, Pi_N D F (I-Pi_N);
@@ -145,6 +155,7 @@ Pi_N F(tilde(x)) ;
 (I-Pi_N) F(tilde(x))
 )&
 $<tf1>
+*/
 
 /*
 $
@@ -164,10 +175,10 @@ $
 */
 
 = 今後の課題
-提案手法で提示した式@tf1 の発展や，Juliaを用いたプログラムの実証を行う．
+提案手法で提示した式@tf1 のガウスの消去法による展開や，Juliaを用いたプログラムの実証を行う．
 
 // 参考文献
 #set heading(numbering: none)
 #set enum(numbering: "[1]")
 = 参考文献
-+ 高安亮紀　Julia言語を使った精度保証付き数値計算のチュートリアル
++ 高安亮紀，，Julia言語を使った精度保証付き数値計算のチュートリアル
