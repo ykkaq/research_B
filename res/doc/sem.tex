@@ -1285,14 +1285,14 @@ $u_1,u_2$：周期$L$の周期関数とする．
 と表される．
 
 \begin{description}
-  \item[畳み込み定理] 
-  \quad \\
-  畳み込みをフーリエ変換下もには，それぞれのフーリエ変換の積になる．これを畳み込み定理という．
-  \begin{align*}
-    \mathcal{F} \left( a^{(1)} * a^{(2)} * \cdots * a^{(p)} \right)= \mathcal{F} \left( a^{(1)} \right) \mathcal{F} \left( a^{(2)} \right) \cdots \mathcal{F} \left( a^{(p)} \right) \\
-    = b^{(1)}b^{(2)}\cdots b^{(p)}
-  \end{align*}
-  ただし，ベクトルの積は要素ごとの積を表す．
+  \item[畳み込み定理]
+    \quad \\
+    畳み込みをフーリエ変換下もには，それぞれのフーリエ変換の積になる．これを畳み込み定理という．
+    \begin{align*}
+      \mathcal{F} \left( a^{(1)} * a^{(2)} * \cdots * a^{(p)} \right)= \mathcal{F} \left( a^{(1)} \right) \mathcal{F} \left( a^{(2)} \right) \cdots \mathcal{F} \left( a^{(p)} \right) \\
+      = b^{(1)}b^{(2)}\cdots b^{(p)}
+    \end{align*}
+    ただし，ベクトルの積は要素ごとの積を表す．
 \end{description}
 
 
@@ -1348,7 +1348,7 @@ $p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使�
     \begin{align*}
       S_k(j) := & \prod_{l=1}^p  \left( \sum_{k_l=-pM+1}^{pM-1} \tilde{a}_{k_l}^{(l)} \exp\left(2\pi i \frac{k_lj}{2pM-1} \right) \right) \exp\left(2\pi i \frac{kj}{2pM-1}\right) \\
       =         & \underbrace{\sum_{\substack{{k_1+\cdots+k_p=k}                                                                                                                   \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} + \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right) }_{k_1+\cdots+k_p-k \equiv 0 \mod pM-1,\ \exp(\pi ij)\equiv 1} \\
-                & + \underbrace{\sum_{\substack{k_1+\cdots+k_p \notin \left\{ k \pm m(2pM-1)m=0,\cdots,p \right\}                                                \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)}_{k_1+\cdots+k_p-k \not\equiv 0 \mod 2pM-1}
+                & + \underbrace{\sum_{\substack{k_1+\cdots+k_p \notin \left\{ k \pm m(2pM-1)m=0,\cdots,p \right\}                                                                  \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)}_{k_1+\cdots+k_p-k \not\equiv 0 \mod 2pM-1}
     \end{align*}
 
     として，
@@ -2100,8 +2100,8 @@ $b \in \overline{B\left(\bar{x},r\right)},\ c=\left(c_0,c_1\right)\in\overline{Z
 
 $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに，$\tilde{A}_{a,0}, \tilde{B}_{a,0}$を以下のように定義する．
 \begin{align*}
-  \tilde{A}_{a,0} &:= \left( \left| k \right| \left( A_{a,0}^{(N)} \right)_k \right)_{|k|<N} \\
-  \tilde{B}_{a,0} &:= \left( k^2 \left( A_{a,0}^{(N)} \right)_k \right)_{|k|<N}
+  \tilde{A}_{a,0} & := \left( \left| k \right| \left( A_{a,0}^{(N)} \right)_k \right)_{|k|<N} \\
+  \tilde{B}_{a,0} & := \left( k^2 \left( A_{a,0}^{(N)} \right)_k \right)_{|k|<N}
 \end{align*}
 すると，
 \begin{equation*}
@@ -2114,8 +2114,8 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 \end{equation*}
 となる．同様に，$\left\| A_{a,1} z_1 \right\|_\omega$を上から評価する．$\tilde{A}_{a,1}, \tilde{B}_{a,1}$を以下のように定義する．
 \begin{align*}
-  \tilde{A}_{a,1} &:= \left( \left| j \right| \left( A_{a,1} \right)_{k,j} \right)_{k,j\in\mathbb{Z}} \\
-  \tilde{B}_{a,1} &:= \left( j^2 \left( A_{a,1} \right)_{k,j} \right)_{k,j\in\mathbb{Z}}
+  \tilde{A}_{a,1} & := \left( \left| j \right| \left( A_{a,1} \right)_{k,j} \right)_{k,j\in\mathbb{Z}} \\
+  \tilde{B}_{a,1} & := \left( j^2 \left( A_{a,1} \right)_{k,j} \right)_{k,j\in\mathbb{Z}}
 \end{align*}
 すると，
 \begin{equation*}
@@ -2147,6 +2147,15 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   \end{equation*}
   としたとき，$K(X) \subset \mathrm{int}(X)$（$\mathrm{int}(X):X$の内部）ならば$Xにf(x)=0$の解が唯一存在する．
 \end{thm}
+
+%======
+%
+%=====
+
+\section{無限次元ガウスの消去法}
+\subsection*{}
+
+\color[諸定理は後々記述]{blue}
 
 %---------------------
 
