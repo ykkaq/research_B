@@ -1,0 +1,68 @@
+%ctrl+alt+b -> build, ctrl+alt+v => preview at new tab
+%ctrl+click -> highlight line
+
+%\documentclass[titlepage]{jsarticle}
+\documentclass[11pt,a4paper]{jsarticle}
+%\documentclass[11pt,a4paper]{jsreport}
+
+\usepackage{algorithmic}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,,mathtools}
+\usepackage{ascmac}
+\usepackage{bm}
+\usepackage{caption}
+\usepackage{cite}
+\usepackage{comment}
+\usepackage[dvipdfmx]{color}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{multicol}
+\usepackage{latexsym}
+\usepackage{listings}
+\usepackage[dvipdfmx]{pict2e}
+\usepackage[ipaex]{pxchfon}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{underscore}
+\usepackage{ulem}
+\usepackage{url}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+
+\captionsetup[figure]{labelsep=space}
+\captionsetup[table]{labelsep=space}
+
+\theoremstyle{definition}
+\newtheorem{dfn}{定義}
+\newtheorem{thm}{定理}
+\newtheorem{lmm}{補題}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\proofname}{\textbf{証明}}
+%============
+
+%\newtheo
+
+%============
+\begin{document}
+
+\section{無限次元ガウスの消去法}
+
+\textcolor{blue}{(とりあえず)}
+
+\begin{align*}
+   & A \simeq DF^{-1} \rightarrow A = DF^{-1} \\
+   & \phi = DF^{-1}F(\tilde{x})               \\
+   & DF\phi = F(\tilde{x})                    \\
+   & \left\{ \,
+  \begin{aligned}
+     & \Pi_N DF ( \Pi_N \phi + (I-\Pi_N) \phi ) = \Pi_N F(\tilde{x})             \\
+     & (I-\Pi_N) DF (\Pi_N DF (\Pi_N + (I-\Pi_N) \phi)) = (I-\Pi_N) F(\tilde{x})
+  \end{aligned}
+  \right.                                     \\
+   & ||DF^-1(x)F(\tilde{x})||_X \leq Y_0      \\
+   & DF \phi = F(\tilde{x})
+\end{align*}
+
+
+\end{document}
