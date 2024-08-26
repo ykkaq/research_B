@@ -94,7 +94,7 @@
 
 非線形微分方程式の精度保証付き数値計算の手法の一つに，/*#nk()型定理*/#rp()がある．この定理は，非線形方程式を有限次元の問題として解を導出している．
 
-本研究では，非線形方程式を有限次元として解を導出する#nk()型定理を改良し，無限次元として解を導出できる手法を提案することを目的とする．
+本研究では，解の導出精度向上のために，#rp()無限次元ガウスの消去法を用いた改良手法を提案する．
 
 //= #nk()型定理
 = #rp()
@@ -127,58 +127,34 @@ $
 
 
 = 提案手法
-->有限次元における#nk()型定理の作用素$A$は，作用素$A^dagger$の近似逆作用素であった．無限次元を用いる場合，この$A^dagger$を真の作用素$A$作用素となる．$A=D F^(-1)$より，式@y0 は以下になる．
+#rp()で定義された作用素$A$は，有限次元上では作用素$A^dagger$の近似逆作用素である．無限次元上の場合，この$A^dagger$は真の逆作用素$A$となる．$A=D F^(-1)$より，式@y0 は以下になる．
 
 $
 ||D F^(-1) F (tilde(x))||_X &lt.eq Y_0
-$
+$<tf0>
 
 
-ここで，$phi.alt := D F^(-1) F (tilde(x))$とし，式@tf0 のように変形して，ガウスの消去法を適用する．
+ここで，$phi.alt := D F^(-1) F (tilde(x))$とし，式@tf0 を以下のように変形して，ガウスの消去法を適用する．
 $Pi_N$は射影作用素とする．
 
 $
   D F phi.alt = F(tilde(x))\
-$<tf0>
 $
-  cases(
-    Pi_N D F &(Pi_N phi.alt + (I-Pi_N) phi.alt), &= Pi_N F(tilde(x)),
-    (I-Pi_N) &D F (Pi_N phi.alt + (I-Pi_N) phi.alt) , &= (I-Pi_N) F(tilde(x)) ,
+
+$
+  mat(
+    Pi_N D F Pi_N, Pi_N D F (I-Pi_N) phi.alt;
+    (I-Pi_N) D F Pi_N, (I-Pi_N) D F Pi_N;
+  )&\
+  mat(
+    Pi_N phi.alt;
+    (I-Pi_N) phi.alt;
   )
+  =mat(
+    Pi_N F(tilde(x));
+    (I-Pi_N) F(tilde(x));
+  )&
 $<tf1>
-
-/*
-$
-mat(
-Pi_N D F Pi_N, Pi_N D F (I-Pi_N);
-(I - Pi_N) D F Pi_N, (I - Pi_N) D F (I-Pi_N);
-)&\
-mat(
-Pi_N phi.alt;
-(I-Pi_N) phi.alt
-)=mat(
-Pi_N F(tilde(x)) ;
-(I-Pi_N) F(tilde(x))
-)&
-$<tf1>
-*/
-
-/*
-$
-A D F phi.alt = A F(tilde(x))
-$
-$
-mat(
-Pi_N D F ( Pi_N phi.alt + (I-Pi_N) phi.alt ) ;
-Pi_N D F ( Pi_N phi.alt + (I-Pi_N) phi.alt )
-)&\
-=
-mat(
-Pi_N F(tilde(x)) ;
-Pi_N F(tilde(x))
-)&
-$
-*/
 
 = 今後の課題
 提案手法で提示した式@tf1 のガウスの消去法による展開や，Juliaを用いたプログラムの実証を行う．
@@ -191,6 +167,7 @@ $
 
 
 //初めにの一貫性　全体の話を書く
+//具体性？かな
 
 //式６がおも
 //式1を式６に <- 1.に書く
