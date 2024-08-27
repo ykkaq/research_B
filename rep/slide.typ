@@ -14,13 +14,18 @@
 #set text(
   lang:"ja",
   font: "Harano Aji Mincho",
-  size: 26pt,
+  size: 22pt,
 )
 
 #show heading: set text(
   //  headingのフォントを変更
   font: "Harano Aji Gothic"
 )
+
+
+#show figure.where(
+  kind: table
+): set figure.caption(position: top)
 
 // shortcut
 #let fc() = "Fr"+str.from-unicode(233)+"chet"
@@ -29,6 +34,7 @@
 #set underline(
   offset: 3pt
 )
+
 
 // --- maintain ---
 
@@ -42,43 +48,74 @@
   関根研究室　2131701　齋藤 悠希
 ]
 
+// 3枚目
+#slide[
+  == 背景
+  #set align(horizon)
+  #underline[*radii polynomial approach* 非線形方程式の解の精度保証に使われる定理]
+
+  \
+
+  $tilde(x) in X$に対して、正定数$Y_0,Z_0,Z_1$および、非減少関数$Z_2(r)(r>0)$が存在して、次の式を満たすとする．
+
+  $
+  ||A F (tilde(x))||_X &lt.eq Y_0 \
+  ||I-A A^dagger||_(cal(L)(X)) &lt.eq Z_0 \
+  ||A (D F(tilde(x))-A^dagger)||_(cal(L)(X)) &lt.eq Z_1 \
+  ||A (D F(b)-D F (tilde(x)))||_(cal(L)(X)) &lt.eq Z_2(r), #h(10pt) forall b &in overline(B(tilde(x),r))
+  $
+]
+
+#slide[
+  == 背景
+  #set align(horizon)
+  このとき，radii polynomialを以下で定義する．
+  $
+  p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r + Y_0
+  $
+
+  これに対し、$p(r_0)<0$となる$r_0>0$が存在するならば、$F(tilde(x))=0$を満たす解 $tilde(x)$ が $b in overline(B(tilde(x),r))$ 内に一意に存在する．
+]
+
 // 2枚目
 #slide[
-  ==  背景と目的
-  //#set align(left + horizon)
-  #set align(center + horizon)
-
-  #rp()・・・非線形方程式の解の精度保証に使われる定理
+  ==  目的
 
   // table
   #set align(center + horizon)
-  既存手法と提案手法の比較#table(
-    columns: 3,
-    align: center,
-    inset:10pt,
-    header(
-      [],
-      [*計算*],
-      [*精度*],
-    ),
-    [既存手法],
-    [簡略化],
-    cell(
+
+  #figure(
+    supplement: [],
+    numbering: none,
+    caption: [既存手法と提案手法の比較],
+    table(
+      columns: 3,
       align: center,
-      fill: blue.lighten(80%),
-      [悪い],//[#sym.arrow.b],
-    ),
-    [提案手法],
-    [無限次元ガウスの消去法],
-    cell(
-      align: center,
-      fill: red.lighten(80%),
-      [良い],//[#sym.arrow.t],
-    ),
+      inset:10pt,
+      header(
+        [],
+        [*計算*],
+        [*精度*],
+      ),
+      [既存手法],
+      [簡略化],
+      cell(
+        align: center,
+        fill: blue.lighten(80%),
+        [悪い],//[#sym.arrow.b],
+      ),
+      [提案手法],
+      [無限次元ガウスの\ 消去法],
+      cell(
+        align: center,
+        fill: red.lighten(80%),
+        [良い],//[#sym.arrow.t],
+      ),
+    )
   )
 
   \
-  簡略化部分を、無限次元ガウスの消去法で計算する\ #sym.arrow.r 精度を改善する
+  #underline[*簡略化部分を、無限次元ガウスの消去法で計算する*]\ #sym.arrow.r 精度を改善する
 
 
 /*
@@ -96,30 +133,7 @@
 ]
 
 
-// 3枚目
-#slide[
-  == #rp()
-  #set align(horizon)
-  $tilde(x) in X$に対して、正定数$Y_0,Z_0,Z_1$および、非減少関数$Z_2(r)(r>0)$が存在して、次の式を満たすとする．
 
-  $
-  ||A F (tilde(x))||_X &lt.eq Y_0 \
-  ||I-A A^dagger||_(cal(L)(X)) &lt.eq Z_0 \
-  ||A (D F(tilde(x))-A^dagger)||_(cal(L)(X)) &lt.eq Z_1 \
-  ||A (D F(b)-D F (tilde(x)))||_(cal(L)(X)) &lt.eq Z_2(r), #h(10pt) forall b &in overline(B(tilde(x),r))
-  $
-]
-
-#slide[
-  == #rp()
-  #set align(horizon)
-  このとき，radii polynomialを以下で定義する．
-  $
-  p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r + Y_0
-  $
-
-  これに対し、$p(r_0)<0$となる$r_0>0$が存在するならば、$F(tilde(x))=0$を満たす解 $tilde(x)$ が $b in overline(B(tilde(x),r))$ 内に一意に存在する．
-]
 
 
 // --- tmp --- //
@@ -171,11 +185,11 @@
 #slide[
   == 提案手法
 
-  #set align(horizon+left)
+  #set align(horizon + left)
   #rp()の一部， $Y_0$の評価式 \
 
   #set align(center)
-  $||A F (tilde(x))||_X $\
+  $||A F (tilde(x))||_X <= Y_0$\
 
   #set align(horizon+left)
   に対して，無限次元ガウスの消去法を適用する．
@@ -204,9 +218,8 @@
 ]
 
 #slide[
-  #set text(size:22pt)
   == 今後の課題
-  #set align(horizon + center)
+  #set align(horizon + left)
 
   - 無限次元ガウスの消去法を用いた$Y_0$の展開
 
