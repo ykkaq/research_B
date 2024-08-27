@@ -14,7 +14,7 @@
 #set text(
   lang:"ja",
   font: "Harano Aji Mincho",
-  size: 22pt,
+  size: 26pt,
 )
 
 #show heading: set text(
@@ -38,7 +38,7 @@
   #set text(size:32pt)
   == 無限次元ガウスの消去法を用いた\ #rp()の改良
   \
-  #set text(size:22pt)
+  #set text(size:25pt)
   関根研究室　2131701　齋藤 悠希
 ]
 
