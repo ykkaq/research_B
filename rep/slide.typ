@@ -34,37 +34,56 @@
 // タイトルスライド
 #slide[
   #set align(horizon + center)
-  == 無限次元ガウスの消去法を用いた\
-  #rp()の改良
-
+  == 無限次元ガウスの消去法を用いた\ #rp()の改良
+  \
   関根研究室　2131701　齋藤 悠希
 ]
 
 // 2枚目
 #slide[
-  == 背景と目的
+  ==  目的と背景
   #set align(left + horizon)
 
-  - 非線形微分方程式の解の精度保証の保証#rp()の\
-    解の保証精度を向上させる
+  - #rp()とは
+  　非線形方程式の解の精度保証に使われる定理
 
-  #set align(center + horizon)
-  $+$
+  \
 
-  #set align(left + horizon)
-  - 無限次元上で定理を進めることで精度が向上する
+  - 既存の#rp()では，計算が簡略化されている \ #sym.arrow.r 精度に難がある
 
   /*
   #set align(center + horizon)
   #sym.arrow.b
+  */
 
   #set align(left + horizon)
-  - #rp()を無限次元
-  */
+  - 無限次元ガウスの消去法を用いて，#rp()の\ 精度を改善する．
+
 ]
 
 
+// 3枚目
+#slide[
+  == #rp()
+  #set align(horizon)
 
+   $
+  ||A F (tilde(x))||_X &lt.eq Y_0 \
+  ||I-A A^dagger||_(cal(L)(X)) &lt.eq Z_0 \
+  ||A (D F(tilde(x))-A^dagger)||_(cal(L)(X)) &lt.eq Z_1 \
+  ||A (D F(b)-D F (tilde(x)))||_(cal(L)(X)) &lt.eq Z_2(r) \
+  forall b &in overline(B(tilde(x),r))
+  $
+
+  このとき，radii polynomialを以下で定義する．
+  $
+  p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r + Y_0
+  $
+]
+
+
+// --- tmp --- //
+/*
 // 3枚目
 #slide[
   == #rp()
@@ -106,29 +125,32 @@
 
   これに対し，$p(r_0)<0$となる$r_0>0$が存在するならば，$F(tilde(x))=0$を満たす解$tilde(x)$が$b in overline(B(tilde(x),r))$内に一意に存在する．
 ]
+*/
+// --- tmp-end --- //
 
 #slide[
   == 提案手法
-  #set align(horizon)
 
-  $Y_0$の評価式
-  $||A F (tilde(x))||_X &lt.eq Y_0$
-  に対して，ガウスの無限次元消去法を適用する．$Pi_N$は射影作用素とする．
+  #set align(horizon+left)
+  #rp()の一部， $Y_0$の評価式 \
+
+  #set align(center)
+  $||A F (tilde(x))||_X $\
+
+  #set align(horizon+left)
+  に対して，無限次元ガウスの消去法を適用する．
+
+  $A = D F (macron(x)) ^(-1), #h(30pt) phi.alt := D F (macron(x))^(-1) F(tilde(x))$より
 
   $
-  A = D F^(-1),  phi.alt := D F^(-1) F(tilde(x))\
-  D F phi.alt = F(tilde(x))\
-  cases(
-    Pi_N D F (Pi_N phi.alt + (I-Pi_N) phi.alt) &= Pi_N F(tilde(x)) ,
-    (I-Pi_N) D F (Pi_N phi.alt + (I-Pi_N) phi.alt) &= (I-Pi_N) F(tilde(x)) ,
-  )
+  D F (macron(x)) phi.alt = F(tilde(x))\
   $
 
-　/*
+  #set text(size:20pt)
   $
   mat(
-    Pi_N D F Pi_N, Pi_N D F (I-Pi_N);
-    (I - Pi_N) D F Pi_N, (I - Pi_N) D F (I-Pi_N);
+    Pi_N D F (macron(x)) Pi_N, Pi_N D F (macron(x)) (I-Pi_N);
+    (I - Pi_N) D F (macron(x)) Pi_N, (I - Pi_N) D F (macron(x)) (I-Pi_N);
   )
   mat(
     Pi_N phi.alt;
@@ -138,14 +160,17 @@
     (I-Pi_N) F(tilde(x))
   )
   $
-  */
+
 ]
 
 #slide[
+  #set text(size:22pt)
   == 今後の課題
   #set align(horizon + center)
 
-  - ガウスの消去法を用いた$Y_0$の展開
+  - 無限次元ガウスの消去法を用いた$Y_0$の展開
 
-  - Juliaを用いた，プログラムの実証
+  \
+
+  - Juliaを用いたプログラムの実証
 ]
