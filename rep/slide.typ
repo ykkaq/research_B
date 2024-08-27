@@ -3,6 +3,7 @@
 //https://typst.app/universe/package/polylux/
 #import "@preview/cetz:0.2.2"
 //https://github.com/cetz-package/cetz
+#import table: cell, header
 
 // Make the paper dimensions fit for a presentation and the text larger
 #set page(
@@ -34,21 +35,53 @@
 // タイトルスライド
 #slide[
   #set align(horizon + center)
+  #set text(size:32pt)
   == 無限次元ガウスの消去法を用いた\ #rp()の改良
   \
+  #set text(size:22pt)
   関根研究室　2131701　齋藤 悠希
 ]
 
 // 2枚目
 #slide[
-  ==  目的と背景
-  #set align(left + horizon)
+  ==  背景と目的
+  //#set align(left + horizon)
+  #set align(center + horizon)
 
-  - #rp()とは
-  　非線形方程式の解の精度保証に使われる定理
+  #rp()・・・非線形方程式の解の精度保証に使われる定理
+
+  // table
+  #set align(center + horizon)
+  既存手法と提案手法の比較#table(
+    columns: 3,
+    align: center,
+    inset:10pt,
+    header(
+      [],
+      [*計算*],
+      [*精度*],
+    ),
+    [既存手法],
+    [簡略化],
+    cell(
+      align: center,
+      fill: blue.lighten(80%),
+      [悪い],//[#sym.arrow.b],
+    ),
+    [提案手法],
+    [無限次元ガウスの消去法],
+    cell(
+      align: center,
+      fill: red.lighten(80%),
+      [良い],//[#sym.arrow.t],
+    ),
+  )
 
   \
+  簡略化部分を、無限次元ガウスの消去法で計算する\ #sym.arrow.r 精度を改善する
 
+
+/*
   - 既存の#rp()では，計算が簡略化されている \ #sym.arrow.r 精度に難がある
 
   /*
@@ -58,6 +91,7 @@
 
   #set align(left + horizon)
   - 無限次元ガウスの消去法を用いて，#rp()の\ 精度を改善する．
+*/
 
 ]
 
@@ -67,7 +101,7 @@
   == #rp()
   #set align(horizon)
 
-   $
+  $
   ||A F (tilde(x))||_X &lt.eq Y_0 \
   ||I-A A^dagger||_(cal(L)(X)) &lt.eq Z_0 \
   ||A (D F(tilde(x))-A^dagger)||_(cal(L)(X)) &lt.eq Z_1 \
