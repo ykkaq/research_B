@@ -100,19 +100,25 @@
 #slide[
   == #rp()
   #set align(horizon)
+  $tilde(x) in X$に対して、正定数$Y_0,Z_0,Z_1$および、非減少関数$Z_2(r)(r>0)$が存在して、次の式を満たすとする．
 
   $
   ||A F (tilde(x))||_X &lt.eq Y_0 \
   ||I-A A^dagger||_(cal(L)(X)) &lt.eq Z_0 \
   ||A (D F(tilde(x))-A^dagger)||_(cal(L)(X)) &lt.eq Z_1 \
-  ||A (D F(b)-D F (tilde(x)))||_(cal(L)(X)) &lt.eq Z_2(r) \
-  forall b &in overline(B(tilde(x),r))
+  ||A (D F(b)-D F (tilde(x)))||_(cal(L)(X)) &lt.eq Z_2(r), #h(10pt) forall b &in overline(B(tilde(x),r))
   $
+]
 
+#slide[
+  == #rp()
+  #set align(horizon)
   このとき，radii polynomialを以下で定義する．
   $
   p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r + Y_0
   $
+
+  これに対し、$p(r_0)<0$となる$r_0>0$が存在するならば、$F(tilde(x))=0$を満たす解 $tilde(x)$ が $b in overline(B(tilde(x),r))$ 内に一意に存在する．
 ]
 
 
