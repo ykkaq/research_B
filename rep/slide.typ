@@ -34,7 +34,8 @@
 // タイトルスライド
 #slide[
   #set align(horizon + center)
-  == #rp()における\ 無限次元ガウスの消去法
+  == 無限次元ガウスの消去法を用いた\
+  #rp()の改良
 
   関根研究室　2131701　齋藤 悠希
 ]
@@ -42,18 +43,27 @@
 // 2枚目
 #slide[
   == 背景と目的
+  #set align(left + horizon)
+
+  - 非線形微分方程式の解の精度保証の保証#rp()の\
+    解の保証精度を向上させる
+
   #set align(center + horizon)
+  $+$
 
-  既存の#rp()は，\ #underline[有限次元]の非線形方程式の精度保証付き数値計算に利用できる．
+  #set align(left + horizon)
+  - 無限次元上で定理を進めることで精度が向上する
 
-  $arrow.b$
+  /*
+  #set align(center + horizon)
+  #sym.arrow.b
 
-  #underline[近似解]での保証が可能だが，真の解ではない．
-
-  $arrow.b$
-
-  定理を無限次元に拡張し，\ #underline[真の解]での精度保証を可能にする．
+  #set align(left + horizon)
+  - #rp()を無限次元
+  */
 ]
+
+
 
 // 3枚目
 #slide[
