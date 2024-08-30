@@ -30,7 +30,6 @@
 #set heading(
   //  headingに1.をつける
   numbering: "1.",
-  //numbering: none,
 )
 #show heading: set text(
   //  headingのフォントを変更
@@ -94,11 +93,16 @@
 = 背景と目的
 非線形微分方程式は，さまざまな現象を数学モデル化することができる．この非線形微分方程式を解くことで，数学モデルの現象の解析を行うことができる．
 
-#rp()は，非線形方程式の解の精度保証付き数値計算に関する定理である．
+#rp()は，非線形方程式の解の精度保証付き数値計算に関する定理である．従来の#rp()は，難しい計算部分を簡略化している．そのため，精度保証の性能が低くなる．そこで，この簡略化部分を無限次元ガウスの消去法を用いて，精度保証の性能を向上させる．
 
 = #rp()
 
-$X,Y$をBanach空間，$cal(L) paren.l X,Y paren.r $を$X$から$Y$への有界線形作用素の集合とする．有界線形作用素$A^dagger in cal(L)(X,Y), A in cal(L)(Y,X)$を考え，作用素$F:X arrow.r Y$が$C^1$-#fc()微分可能とする．いま，$tilde(x) in X$に対して，正定数$Y_0, Z_0, Z_1$および非減少関数$Z_2(r)(r>0)$が存在して，次に不等式を満たすとする．
+- $X,Y$はBanach空間
+- $cal(L) paren.l X,Y paren.r $は$X$から$Y$への有界線形作用素集合
+- 有界線形作用素$A^dagger in cal(L)(X,Y), A in cal(L)(Y,X)$
+- 作用素$F:X arrow.r Y$が$C^1$-#fc()微分可能
+
+$tilde(x) in X$に対して，正定数$Y_0, Z_0, Z_1$および非減少関数$Z_2(r)(r>0)$が存在して，次の不等式を満たすとする．
 $
 ||A F (tilde(x))||_X &lt.eq Y_0
 $<y0>
@@ -113,28 +117,32 @@ $
 forall b in overline(B(tilde(x),r))&
 $
 
-\
-
 このとき，radii polynomialを以下で定義する．
 $
 p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r + Y_0
 $
 
-これに対し，$p(r_0)<0$となる$r_0>0$が存在するならば，$F(tilde(x))=0$を満たす解$tilde(x)$が$b in overline(B(tilde(x),r))$内に一意に存在する．
+これに対し，$p(r_0)<0$となる$r_0>0$が存在するならば，$F(x)=0$を満たす解$tilde(x)$が$overline(B(x,r))$内に一意に存在する．
 
 ここで，$D F (macron(x))$を$F$の $macron(x)$における#fc()微分，$A^dagger$を$D F (macron(x))$の近似，$A$を$A^dagger$の近似左逆作用素($A A^dagger approx I$)とする．
 
 
 = 提案手法
-有限次元での非線形方程式の精度保証をする#rp()での作用素$A$は，作用素$A^dagger$の近似逆作用素である．無限次元上の場合，$A$は真の逆作用素となる．$A=D F(macron(x))^(-1)$より，式@y0 は以下になる．
+従来の#rp()では，$A^dagger,A$は，簡略化のために近似な作用素としていた．
+
+提案手法では，$A^dagger,A$を以下のように，近似な作用素でない作用素として計算をする．
+$
+A^dagger = D F(macron(x)), #h(10pt) A = D F(macron(x))^(-1)
+$<cor0>
+
+この式@cor0 を，#rp()の式@y0 に代入する．
 
 $
 ||D F(macron(x))^(-1) F (tilde(x))||_X &lt.eq Y_0
 $<tf0>
 
 
-ここで，$phi.alt := D F (macron(x))^(-1) F (tilde(x))$とし，式@tf0 を以下のように変形して，ガウスの消去法を適用する．
-$Pi_N$は射影作用素とする．
+ここで，$phi.alt := D F (macron(x))^(-1) F (tilde(x))$とする．この式に，無限次元ガウス消去法を用いて変形する．（$Pi_N$は射影作用素とする．）
 
 $
   D F (macron(x)) phi.alt = F(tilde(x))\
@@ -159,7 +167,8 @@ $<tf1>
 
 #set text(size: 12pt)
 = 今後の課題
-提案手法で提示した式@tf1 のガウスの消去法による展開や，Juliaを用いたプログラムの実証を行う．
+- 提案手法で提示した式@tf1 のガウスの消去法による展開
+- Juliaを用いたプログラムの実証
 
 // 参考文献
 #set heading(numbering: none)
