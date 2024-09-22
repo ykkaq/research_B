@@ -58,11 +58,12 @@
      & (I-\Pi_N) DF (\Pi_N DF (\Pi_N + (I-\Pi_N) \phi)) = (I-\Pi_N) F(\tilde{x})
   \end{aligned}
   \right.                                     \\
-   & ||DF^-1(x)F(\tilde{x})||_X \leq Y_0
+   & ||DF^-1(x)F(\tilde{x})||_X \leq Y_0\\
    & DF \phi = F(\tilde{x})
 \end{align*}
 
 \section{無限次元ガウスの消去法}
+\subsection{前提知識}
 
 \begin{dfn}[代数的直和]
   Banach空間$X$とする．また，$X_1,X_2$をXの線形部分空間とする．ただし，$X_1$と$X_2$のノルムは，$X$のノルムと同一とする．そのとき，$X$が$X_1$と$X_2$の代数的直和であるとは
@@ -75,10 +76,77 @@
 
 \begin{dfn}[射影]
   $X$をノルム空間とする．定義域を$X$とした$X$上の線形作用素$P$が
-  \begin{equation}
+  \begin{equation*}
     P^2=P
-  \end{equation}
+  \end{equation*}
   となるとき，線形作用素，あるいは，単に射影と呼ぶ．
 \end{dfn}
+
+\begin{thm}
+  Banach空間$X$がその線形部分空間$X_1,X_2$の代数的直和であるとする．そのとき，$x\in X$について
+  \begin{equation*}
+    x=x_1+x_2,\ x_1 \in X_1,\ x_2 \in X_2
+  \end{equation*}
+\end{thm}
+とし，$\mathcal{D}(P)=X$となる$X$上の線形作用素$P$を
+\begin{equation*}
+  Px=x_1,\ (I-P)x=x_2
+\end{equation*}
+とすると，線形作用素$P$と$I-P$は射影になる．
+
+\subsection{手法}
+radii-polynomal approachの$Y_0$の評価式に，無限次元ガウスの消去法を用いる．
+
+$X,Y$をBanach空間，$\mathcal{L}(X,Y)$を$X$から$Y$への有界線形作用素$A^\dagger \in \mathcal{L}(X,Y),\ A \in \mathcal{L}(Y,X)$を考え，作用素$F:X \rightarrow Y$がC$^1$-Fr\'{e}chet微分可能とする．ここで，$\tilde{x}\in X$に対して，正定数$Y_0$が存在して，次の式を考える．
+\begin{equation}
+  \left\| AF(\bar{x}) \right\|_X \leq Y_0
+  \label{eq:y0}
+\end{equation}
+
+$A=DF(\bar{x})$とすると，式(\ref{eq:y0})より，
+\begin{equation}
+  \left\| AF(\bar{x}) \right\|_X = \left\| DF(\bar{x}) F(\bar{x}) \right\| \leq Y_0
+\end{equation}
+
+となる．$\phi:=DF(\bar{x}) F(\bar{x})$とし，これを変形する．$\Pi_N$を射影演算子とすると，
+\begin{gather*}
+  DF(\bar{x}) \phi = F(\bar{x})
+  \\
+  \begin{pmatrix}
+    \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
+    (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I-\Pi_N) \phi
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \Pi_N F(\bar{x}) \\
+    (I - \Pi_N) F(\bar{x})
+  \end{pmatrix}
+  \\A
+  \begin{pmatrix}
+    \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
+    (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I-\Pi_N) \phi
+  \end{pmatrix}
+  =A
+  \begin{pmatrix}
+    \Pi_N F(\bar{x}) \\
+    (I - \Pi_N) F(\bar{x})
+  \end{pmatrix}
+\end{gather*}
+
+となる．ここで，線形作用素$T,B,C,E$それぞれに対し，以下のように定義する．
+\begin{equation}
+  \begin{split}
+    T:= \Pi_N ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_1,\quad & B:= \Pi_N ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_2, \\
+    C:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_2,\quad & E:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_1
+  \end{split}
+\end{equation}
 
 \end{document}
