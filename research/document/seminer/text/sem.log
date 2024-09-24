@@ -1,9 +1,9 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  9 SEP 2024 12:59
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.7.5)  24 SEP 2024 16:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/qsu/workspace/research_B/res/doc/semi/sem
-(/home/qsu/workspace/research_B/res/doc/semi/sem.tex
+**/home/qsu/workspace/research_B/research/document/seminer/text/sem
+(/home/qsu/workspace/research_B/research/document/seminer/text/sem.tex
 pLaTeX2e <2021-11-15> (based on LaTeX2e <2021-11-15> patch level 1)
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/platex/jsclasses/jsarticle.cls
 Document Class: jsarticle 2021/06/28 jsclasses (okumura, texjporg)
@@ -610,7 +610,7 @@ Overfull \hbox (5.1071pt too wide) detected at line 2128
 []
  []
 
-[46] Excluding 'comment' comment.
+[46] [47] Excluding 'comment' comment.
 
 Package caption Warning: Unused \captionsetup[figure] on input line 32.
 See the caption package documentation for explanation.
@@ -619,18 +619,18 @@ See the caption package documentation for explanation.
 Package caption Warning: Unused \captionsetup[table] on input line 33.
 See the caption package documentation for explanation.
 
-[47] (./sem.aux)
+[48] (./sem.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
  8424 strings out of 478741
- 134378 string characters out of 5860983
+ 134432 string characters out of 5860983
  477108 words of memory out of 5000000
  26695 multiletter control sequences out of 15000+600000
  492432 words of font info for 133 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 55i,27n,63p,694b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,27n,63p,712b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sem.dvi (47 pages, 191408 bytes).
+Output written on sem.dvi (48 pages, 196036 bytes).

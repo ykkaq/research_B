@@ -2152,6 +2152,79 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 %
 %=====
 
+\section{無限次元ガウスの消去法}
+\subsection{射影}
+
+\begin{dfn}[代数的直和]
+  Banach空間$X$とする．また，$X_1,X_2$をXの線形部分空間とする．ただし，$X_1$と$X_2$のノルムは，$X$のノルムと同一とする．そのとき，$X$が$X_1$と$X_2$の代数的直和であるとは
+  \begin{itemize}
+    \item $X=X_1+X_2:=\{x_1+x_2 | \  \forall x_1 \in X_1, \ \forall x_2 \in X_2 \}$
+    \item $X_1 \cap X_2 = \{0\}$
+  \end{itemize}
+  が成立することをいう．
+\end{dfn}
+
+\begin{dfn}[射影]
+  $X$をノルム空間とする．定義域を$X$とした$X$上の線形作用素$P$が
+  \begin{equation*}
+    P^2=P
+  \end{equation*}
+  となるとき，線形作用素，あるいは，単に射影と呼ぶ．
+\end{dfn}
+
+\begin{thm}
+  Banach空間$X$がその線形部分空間$X_1,X_2$の代数的直和であるとする．そのとき，$x\in X$について
+  \begin{equation*}
+    x=x_1+x_2,\ x_1 \in X_1,\ x_2 \in X_2
+  \end{equation*}
+\end{thm}
+とし，$\mathcal{D}(P)=X$となる$X$上の線形作用素$P$を
+\begin{equation*}
+  Px=x_1,\ (I-P)x=x_2
+\end{equation*}
+とすると，線形作用素$P$と$I-P$は射影になる．
+
+\proof{}
+まず，$P{x_2}=0$を証明する．$P{x_2} \neq 0$ となる$x_2 \in X_2$が存在すると仮定し，矛盾を示す．
+
+定義より，
+\begin{equation*}
+  x = x_1 + x_2 = x_1 + P{x_2} + (I-P)x_2
+\end{equation*}
+
+に対して，$P$の閾値$\mathcal{R}(P)=X_1$であることと，$X_1$が線形空間であることに注意すると，$x_1+Px_2 \in x_2 $である．しかし，これは代数的直和の定義より$x$の分解の一意性に矛盾する．よって$P{x_2}=0$となる．
+
+そのうえで，
+\begin{equation*}
+  Px_2 = P(I-P)x = Px - P^2x = 0
+\end{equation*}
+より
+\begin{equation*}
+  Px = P^2x
+\end{equation*}
+となるため，$P$は射影となる．
+
+また，
+\begin{equation*}
+  (I-P)(I-P)x = (I-2P+P^2)x = (I - 2P + P)x = (I-P)x
+\end{equation*}
+となるため，$I-P$も射影となる．
+
+\begin{thm}
+  Banach空間$X$が$X_1$と$X_2$の代数的直和であるとする．$x \in X$について
+  \begin{equation*}
+    x = x_1 + x_2,\ x_1 \in X_1,\ x_2\in X_2
+  \end{equation*}
+  とし，$\mathcal{D}(P)=X$となる$X$となる$X$上の線形作用素$P$を
+  \begin{equation*}
+    Px = x_1, (I-P)x = x_2
+  \end{equation*}
+  とすると以下が成立する．
+  \begin{equation*}
+    Pが連続 \leftrightarrow X_1, X_2 が
+  \end{equation*}
+\end{thm}
+
 
 
 %---------------------
