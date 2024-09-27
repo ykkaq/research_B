@@ -180,13 +180,28 @@ $A=DF(\bar{x})$とすると，式(\ref{eq:y0})より，
   \end{pmatrix}
 \end{equation}
 
-定理\ref{thm:s}より，線形作用素Sを
+定理\ref{thm:s}より，線形作用素$S$を
 
 \begin{equation}
   S := E-CT^{-1}B:X_2\rightarrow X_2
 \end{equation}
 
-とする．もし，Sが全単射ならば，
+とする．もし，$S$が全単射ならば，
+\begin{equation*}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I -\Pi_N) \phi
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    T^{-1}+T^{-1}BS^{-1}CT^{-1} & -T^{-1}BS^{-1} \\
+    -S^{-1}CT^{-1} S^{-1}
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N F(\bar{x}) \\
+    (I - \Pi_N) F(\bar{x})
+  \end{pmatrix}
+\end{equation*}
 
 
 
