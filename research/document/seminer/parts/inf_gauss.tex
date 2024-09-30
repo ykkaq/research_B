@@ -1,4 +1,4 @@
-%ctrl+alt+b -> build, ctrl+alt+v => preview at new tab
+  %ctrl+alt+b -> build, ctrl+alt+v => preview at new tab
 %ctrl+click -> highlight line
 
 %\documentclass[titlepage]{jsarticle}
@@ -108,7 +108,7 @@
 \subsection{計算}
 radii-polynomal approachの$Y_0$の評価式に，無限次元ガウスの消去法を用いる．
 
-$X,Y$をBanach空間，$\mathcal{L}(X,Y)$を$X$から$Y$への有界線形作用素$A^\dagger \in \mathcal{L}(X,Y),\ A \in \mathcal{L}(Y,X)$を考え，作用素$F:X \rightarrow Y$がC$^1$-Fr\'{e}chet微分可能とする．ここで，$\tilde{x}\in X$に対して，正定数$Y_0$が存在して，次の式を考える．
+$X,Y$をBanach空間，$\mathcal{L}(X,Y)$を$X$から$Y$への有界線形作用素，$A^\dagger \in \mathcal{L}(X,Y),\ A \in \mathcal{L}(Y,X)$を考え，作用素$F:X \rightarrow Y$がC$^1$-Fr\'{e}chet微分可能とする．ここで，$\tilde{x}\in X$に対して，正定数$Y_0$が存在して，次の式を考える．
 \begin{equation}
   \left\| AF(\bar{x}) \right\|_X \leq Y_0
   \label{eq:y0}
@@ -117,6 +117,7 @@ $X,Y$をBanach空間，$\mathcal{L}(X,Y)$を$X$から$Y$への有界線形作用
 $A=DF(\bar{x})$とすると，式(\ref{eq:y0})より，
 \begin{equation}
   \left\| AF(\bar{x}) \right\|_X = \left\| DF(\bar{x}) F(\bar{x}) \right\| \leq Y_0
+  \label{eq:y1}
 \end{equation}
 
 となる．$\phi:=DF(\bar{x}) F(\bar{x})$とし，これを変形する．$\Pi_N$を射影演算子とすると，$DF(\bar{x}) \phi = F(\bar{x})$  より，
@@ -180,7 +181,7 @@ $A=DF(\bar{x})$とすると，式(\ref{eq:y0})より，
   \end{pmatrix}
 \end{equation}
 
-定理\ref{thm:s}より，線形作用素$S$を
+定理\ref{thm:}より，線形作用素$S$を
 
 \begin{equation}
   S := E-CT^{-1}B:X_2\rightarrow X_2
@@ -195,13 +196,15 @@ $A=DF(\bar{x})$とすると，式(\ref{eq:y0})より，
   =
   \begin{pmatrix}
     T^{-1}+T^{-1}BS^{-1}CT^{-1} & -T^{-1}BS^{-1} \\
-    -S^{-1}CT^{-1} S^{-1}
+    -S^{-1}CT^{-1} S^{-1} & S^{-1}
   \end{pmatrix}
   \begin{pmatrix}
     \Pi_N F(\bar{x}) \\
     (I - \Pi_N) F(\bar{x})
   \end{pmatrix}
 \end{equation*}
+
+となり，有限線形作用素$ADF(\bar{x})$は全単射となる．
 
 
 
