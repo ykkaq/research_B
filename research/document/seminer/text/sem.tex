@@ -28,6 +28,7 @@
 \usepackage{url}
 \usepackage{wrapfig}
 \usepackage{xcolor}
+%\usepackage{physics2}
 
 \captionsetup[figure]{labelsep=space}
 \captionsetup[table]{labelsep=space}
@@ -2225,7 +2226,120 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   \end{equation*}
 \end{thm}
 
+\section{計算手法}
 
+\subsection{1st}
+
+radii-polynomal approachの$Y_0$の評価式に，無限次元ガウスの消去法を用いる．
+
+$X,Y$をBanach空間，$\mathcal{L}(X,Y)$を$X$から$Y$への有界線形作用素，$A^\dagger \in \mathcal{L}(X,Y),\ A \in \mathcal{L}(Y,X)$を考え，作用素$F:X \rightarrow Y$がC$^1$-Fr\'{e}chet微分可能とする．ここで，$\tilde{x}\in X$に対して，正定数$Y_0$が存在して，次の式を考える．
+\begin{equation}
+  \left\| AF(\bar{x}) \right\|_X \leq Y_0
+  \label{eq:y0}
+\end{equation}
+
+$A=DF(\bar{x})$とすると，式(\ref{eq:y0})より，
+\begin{equation}
+  \left\| AF(\bar{x}) \right\|_X = \left\| DF(\bar{x}) F(\bar{x}) \right\| \leq Y_0
+  \label{eq:y1}
+\end{equation}
+
+となる．$\phi:=DF(\bar{x}) F(\bar{x})$とし，これを変形する．$\Pi_N$を射影演算子とすると，$DF(\bar{x}) \phi = F(\bar{x})$  より，
+\begin{equation}
+    \begin{pmatrix}
+      \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
+      (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
+    \end{pmatrix}
+    \begin{pmatrix}
+      \Pi_N \phi \\
+      (I-\Pi_N) \phi
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \Pi_N F(\bar{x}) \\
+      (I - \Pi_N) F(\bar{x})
+    \end{pmatrix}
+\end{equation}
+
+となり，両辺に$A$をかけて
+\begin{equation}
+  A
+  \begin{pmatrix}
+    \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
+    (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I-\Pi_N) \phi
+  \end{pmatrix}
+  =A
+  \begin{pmatrix}
+    \Pi_N F(\bar{x}) \\
+    (I - \Pi_N) F(\bar{x})
+  \end{pmatrix}
+  \label{eq:y0-2}
+\end{equation}
+
+となる．ここで，線形作用素$T,B,C,E$それぞれに対し，
+\begin{equation}
+  \begin{split}
+    T:= \Pi_N ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_1,\quad & B:= \Pi_N ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_2, \\
+    C:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_2,\quad & E:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_1
+  \end{split}
+\end{equation}
+
+と定義すると，式(\ref{eq:y0-2})は以下のように変形できる．
+
+\begin{equation}
+  \begin{pmatrix}
+    T & B \\
+    C & E
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I -\Pi_N) \phi
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \Pi_N A F(\bar{x}) \\
+    (I - \Pi_N) A F(\bar{x})
+  \end{pmatrix}
+\end{equation}
+
+定理\ref{thm:}より，線形作用素$S$を
+
+\begin{equation}
+  S := E-CT^{-1}B:X_2\rightarrow X_2
+\end{equation}
+
+とする．もし，$S$が全単射ならば，
+\begin{equation*}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I -\Pi_N) \phi
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    T^{-1}+T^{-1}BS^{-1}CT^{-1} & -T^{-1}BS^{-1} \\
+    -S^{-1}CT^{-1} S^{-1} & S^{-1}
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N A F(\bar{x}) \\
+    (I - \Pi_N) A F(\bar{x})
+  \end{pmatrix}
+\end{equation*}
+
+となり，有界線形作用素$ADF(\bar{x})$は全単射となる．
+
+\subsection{2nd}
+ここで，$S$について計算する．線形作用素の定義より，
+
+\begin{equation}
+  \begin{split}
+    S &= E-CT^{-1}B \\
+    &= \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right) - \left( I-\Pi_N \right) ADF( \bar{x} )
+  \end{split}
+\end{equation}
 
 %---------------------
 
