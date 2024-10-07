@@ -2226,6 +2226,7 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   \end{equation*}
 \end{thm}
 
+% 5.1
 \section{計算手法}
 
 \subsection{1st}
@@ -2238,13 +2239,13 @@ $X,Y$をBanach空間，$\mathcal{L}(X,Y)$を$X$から$Y$への有界線形作用
   \label{eq:y0}
 \end{equation}
 
-$A=DF(\bar{x})$とすると，式(\ref{eq:y0})より，
+$A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
 \begin{equation}
-  \left\| AF(\bar{x}) \right\|_X = \left\| DF(\bar{x}) F(\bar{x}) \right\| \leq Y_0
+  \left\| AF(\bar{x}) \right\|_X = \left\| DF^{-1}(\bar{x}) F(\bar{x}) \right\| \leq Y_0
   \label{eq:y1}
 \end{equation}
 
-となる．$\phi:=DF(\bar{x}) F(\bar{x})$とし，これを変形する．$\Pi_N$を射影演算子とすると，$DF(\bar{x}) \phi = F(\bar{x})$  より，
+となる．$\phi:=DF(\bar{x})^{-1} F(\bar{x})$とし，これを変形する．$\Pi_N$を射影演算子とすると，$DF(\bar{x}) \phi = F(\bar{x})$  より，
 \begin{equation}
     \begin{pmatrix}
       \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
@@ -2283,8 +2284,10 @@ $A=DF(\bar{x})$とすると，式(\ref{eq:y0})より，
 となる．ここで，線形作用素$T,B,C,E$それぞれに対し，
 \begin{equation}
   \begin{split}
-    T:= \Pi_N ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_1,\quad & B:= \Pi_N ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_2, \\
-    C:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_2,\quad & E:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_1
+    T:= \Pi_N ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_1,\quad &
+    B:= \Pi_N ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_1, \\
+    C:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_2,\quad &
+    E:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_2
   \end{split}
 \end{equation}
 
@@ -2331,15 +2334,122 @@ $A=DF(\bar{x})$とすると，式(\ref{eq:y0})より，
 
 となり，有界線形作用素$ADF(\bar{x})$は全単射となる．
 
-\subsection{2nd}
+% 5.2
+\subsection{_}
 ここで，$S$について計算する．線形作用素の定義より，
-
 \begin{equation}
   \begin{split}
     S &= E-CT^{-1}B \\
-    &= \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right) - \left( I-\Pi_N \right) ADF( \bar{x} )
+    &= \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right) - (\left( I-\Pi_N \right) ADF( \bar{x} )) (\Pi_N ADF(\bar{x}))^{-1} ((I-\Pi_N)ADF(\bar{x}))
+  \end{split}
+  \label{eq:s-def}
+\end{equation}
+
+\subsubsection*{$ADF(\bar{x})$}
+式(\ref{eq:s-def})を分割して計算する．
+
+
+\begin{comment}
+\begin{equation}
+  \begin{split}
+    DF(\bar{x}) & =
+    \begin{bmatrix}
+      & \multicolumn{0}{c|}{0} & 1 & \cdots & 1 & \cdots 0 \cdots \\ \cline{2-6}
+      & \multicolumn{1}{c|}{\vdots}  &  & \vdots & \\
+      & \multicolumn{1}{c|}{\partial_\omega f_k} & \cdots & \partial_{a_j} f_k & \cdots & 0 & \\
+      & \multicolumn{1}{c|}{\vdots}                    &        & \vdots &        &
+   \end{bmatrix}
   \end{split}
 \end{equation}
+\end{comment}
+
+
+
+\textcolor{blue}{1.$DF(\bar{x})\simeq A^\dagger$としてみる．}
+
+\begin{equation*}
+  DF(\bar{x})  =
+  \begin{bmatrix}
+     & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \cdots           & 0               & \cdots           & \\ \cline{2-8}
+     & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &                  &                 &                  & \\
+     & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &                  & \text{\huge{0}} &                    \\
+     & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &                  &                 &                    \\
+     & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \lambda_N        &                 & \text{\Large{0}} & \\
+     & \multicolumn{1}{c|}{0}              &        & \text{\huge{0}}   &        &                  & \lambda_{N+1}   &                    \\
+     & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \text{\Large{0}} &                 & \ddots
+  \end{bmatrix}
+\end{equation*}
+
+これより，
+
+\begin{equation}
+  \begin{split}
+    &ADF(\bar{x}) \\
+    &= \begin{bmatrix}
+      & A_N & 0  & \cdots & 0  \\
+      & 0 & (\lambda_{N+1})^{-1} & & 0 \\
+      & \vdots &               & (\lambda_{N+2})^{-1} & \\
+      & 0 & 0 & & \ddots
+    \end{bmatrix}
+    \begin{bmatrix}
+      & DF^{(N)}(\bar{x}) & 0  & \cdots & 0  \\
+      & 0 & \lambda_{N+1} & & 0 \\
+      & \vdots & & \lambda_{N+2} & \\
+      & 0 & 0 & & \ddots
+    \end{bmatrix}\\
+    &=
+    \begin{bmatrix}
+        A_N DF^{(N)}(\bar{x}) & 0 & \cdots & 0 \\
+        0 & 1 & & \vdots \\
+        0 & & 1 & \\
+        0 & \cdots & & \ddots \\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+よって，式(\ref{eq:s-def})より，
+\begin{equation}
+  \begin{split}
+    S &= ((I-\Pi_N)ADF(\bar{x}))\mid_{X_2} - (\Pi_N ADF(\bar{x}))\mid_{X_2} (\Pi_N ADF(\bar{x}))^{-1}\mid_{X_1} ((I-\Pi_N)ADF(\bar{x}))\mid_{X_1} \\
+    &= I_{X_2} - I_{X_2}(A_N DF^{(N)}(\bar{x}))^{-1}\mid_{X_1} I_{X_2} \\
+    &= I_{X_2} - (A_N DF^{(N)}(\bar{x}))^{-1}
+  \end{split}
+\end{equation}
+
+\textcolor{blue}{2. $\bar{x}$を拡張する．}
+\\フーリエ係数をサイズ$N$で打ち切らないようにしてみる．つまり，サイズ$\infty$で考える
+
+\begin{equation}
+  \begin{split}
+    &ADF(\bar{x}) \\
+    &= \begin{bmatrix}
+      & A_{\omega,0}^{(N)} & \multicolumn{1}{c|}{A_{a,0}^{(N)}} & 0 & \cdots &  0 & \\
+      & A_{\omega,1}^{(N)} & \multicolumn{1}{c|}{A_{a,1}^{(N)}} & & & & \\ \cline{2-6}
+      & 0 & \multicolumn{1}{c|}{} & (\lambda_N)^{-1} & & \text{\large{0}}\\
+      & \vdots & \multicolumn{1}{c|}{} & & (\lambda_{N+1})^{-1} & & \\
+      & 0 & \multicolumn{1}{c|}{} & \text{\large{0}} & & \ddots & \\
+    \end{bmatrix}
+    \begin{bmatrix}
+      & 0 & 1 & \cdots & \cdots & \multicolumn{1}{c|}{} & \cdots & \\
+      & \vdots & & \vdots & & \multicolumn{1}{c|}{} & \\
+      & \partial_w f_k & \cdots & \partial_{a_j} f_k &  \cdots & \multicolumn{1}{c|}{} & \cdots & \\
+      & \vdots & & \vdots & & \multicolumn{1}{c|}{} & & \\ \cline{2-7}
+      & \vdots & & \vdots & & \multicolumn{1}{c|}{} & \ddots &
+    \end{bmatrix}\\
+    &=
+    \begin{bmatrix}
+      A_N DF^{(N)} & 0 \\
+      0 &
+      \begin{bmatrix}
+        & \vdots & \\
+        \cdots & \partial_{a_j} f_k & \cdots \\
+        & \vdots &
+      \end{bmatrix}
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+
 
 %---------------------
 
