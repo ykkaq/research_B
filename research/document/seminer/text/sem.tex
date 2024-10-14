@@ -2334,7 +2334,7 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
 
 となり，有界線形作用素$ADF(\bar{x})$は全単射となる．
 
-% 5.2
+% ===== 5.2 =====
 \subsection{_}
 ここで，$S$について計算する．線形作用素の定義より，
 \begin{equation}
@@ -2345,40 +2345,41 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
   \label{eq:s-def}
 \end{equation}
 
-\subsubsection*{$ADF(\bar{x})$}
+\subsubsection*{$ADF(\bar{x})$を計算する．}
 式(\ref{eq:s-def})を分割して計算する．
 
-
-\begin{comment}
-\begin{equation}
+以下の定義より，計算をする．
+\begin{align}
+  \bar{x} &= \left( \omega, a_{-N+1}, \cdots, a_{N-1}, 0, \cdots \right) \\
+  (D_xf)_{ij} &= \partial_{x_i} f_j \\
   \begin{split}
-    DF(\bar{x}) & =
-    \begin{bmatrix}
-      & \multicolumn{0}{c|}{0} & 1 & \cdots & 1 & \cdots 0 \cdots \\ \cline{2-6}
-      & \multicolumn{1}{c|}{\vdots}  &  & \vdots & \\
-      & \multicolumn{1}{c|}{\partial_\omega f_k} & \cdots & \partial_{a_j} f_k & \cdots & 0 & \\
-      & \multicolumn{1}{c|}{\vdots}                    &        & \vdots &        &
-   \end{bmatrix}
+    F(\bar{x}) &= \begin{bmatrix}
+      \eta(a) \\
+      (f_k(a))_k\in \mathbb{Z}
+    \end{bmatrix}, \\
+    \eta(a) &= \sum_{k\in\mathbb{Z}} a_k - \eta_0 \\
+    f_k(a) &= -k^2\omega^2a_k - \mu i k \omega a_k + \frac{\mu}{3}(ik\omega)(a*a*a)_k + a_k\quad (\text{van der Pol})
   \end{split}
-\end{equation}
-\end{comment}
+\end{align}
 
-
-
-\textcolor{blue}{1.$DF(\bar{x})\simeq A^\dagger$としてみる．}
-
+これらより，
 \begin{equation*}
-  DF(\bar{x})  =
-  \begin{bmatrix}
-     & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \cdots           & 0               & \cdots           & \\ \cline{2-8}
-     & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &                  &                 &                  & \\
-     & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &                  & \text{\huge{0}} &                    \\
-     & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &                  &                 &                    \\
-     & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \lambda_N        &                 & \text{\Large{0}} & \\
-     & \multicolumn{1}{c|}{0}              &        & \text{\huge{0}}   &        &                  & \lambda_{N+1}   &                    \\
-     & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \text{\Large{0}} &                 & \ddots
-  \end{bmatrix}
+  \begin{split}
+    DF(\bar{x}) &=
+    \begin{bmatrix}
+       & \multicolumn{1}{c|}{0} & 1  & \cdots & 1 & 0 & \cdots & \\ \cline{2-7}
+       & \multicolumn{1}{c|}{\vdots} & & \vdots & & & & \\
+       & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & & & \\
+       & \multicolumn{1}{c|}{\vdots} & & \vdots & & & & \\
+       & \multicolumn{1}{c|}{0} & & & & & &  & \\
+       & \multicolumn{1}{c|}{\vdots} & & & & & 0 &
+    \end{bmatrix}\\
+    \partial_\omega f_k &= (-2k^2\omega-\mu ik)a_k + \frac{\mu ik}{3} (a*a*a)_k \\
+    \partial_{a_j} f_k &= (k^2\omega^2-\mu ik\omega +1)\delta_{kj} + \mu ik \omega (a*a)_{k-j}
+  \end{split}
 \end{equation*}
+
+となる．なお，$\delta_{kj}$はクロネッカーのデルタである．
 
 これより，
 
@@ -2386,27 +2387,93 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
   \begin{split}
     &ADF(\bar{x}) \\
     &= \begin{bmatrix}
-      & A_N & 0  & \cdots & 0  \\
-      & 0 & (\lambda_{N+1})^{-1} & & 0 \\
-      & \vdots &               & (\lambda_{N+2})^{-1} & \\
-      & 0 & 0 & & \ddots
+      A_N & 0  & \cdots & \cdots  \\
+      0 & (\lambda_{N+1})^{-1} & & 0 \\
+      \vdots &               & (\lambda_{N+2})^{-1} & \\
+      \vdots & 0 & & \ddots
     \end{bmatrix}
     \begin{bmatrix}
-      & DF^{(N)}(\bar{x}) & 0  & \cdots & 0  \\
-      & 0 & \lambda_{N+1} & & 0 \\
-      & \vdots & & \lambda_{N+2} & \\
-      & 0 & 0 & & \ddots
-    \end{bmatrix}\\
+      0 & 1  & \cdots & 1 & 0 & \cdots \\
+      \vdots & & \vdots & & & \\
+      \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots & & \\
+      \vdots & & \vdots & & & \\
+      0 & & & & &  \\
+      \vdots & & & &0 &
+   \end{bmatrix}\\
+    &= \begin{bmatrix}
+      A_N & 0  & \cdots & \cdots  \\
+      0 & (\lambda_{N+1})^{-1} & & 0 \\
+      \vdots & & (\lambda_{N+2})^{-1} & \\
+      \vdots & 0 & & \ddots
+    \end{bmatrix}
+    \begin{bmatrix}
+      DF^{(N)}{(\bar{x})} & 0  & \cdots & \cdots \\
+      0 & & & \\
+      \vdots & & 0 & \\
+      \vdots & & &
+   \end{bmatrix}\\
     &=
     \begin{bmatrix}
-        A_N DF^{(N)}(\bar{x}) & 0 & \cdots & 0 \\
-        0 & 1 & & \vdots \\
-        0 & & 1 & \\
-        0 & \cdots & & \ddots \\
+        A_N DF^{(N)}(\bar{x}) & 0 & \cdots \\
+        0 & & \\
+        \vdots & & 0 \\
     \end{bmatrix}
   \end{split}
 \end{equation}
 
+\textcolor{blue}{($DF$が違うかも)}
+
+\begin{equation*}
+  \begin{split}
+    DF(\bar{x}) &=
+    \begin{bmatrix}
+      0 & 1  & \cdots & \cdots \\
+      \vdots & & \vdots &  \\
+      \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots  \\
+      \vdots & & \vdots &  \\
+    \end{bmatrix}\\
+    \partial_\omega f_k &= (-2k^2\omega-\mu ik)a_k + \frac{\mu ik}{3} (a*a*a)_k \\
+    \partial_{a_j} f_k &= (k^2\omega^2-\mu ik\omega +1)\delta_{kj} + \mu ik \omega (a*a)_{k-j}
+  \end{split}
+\end{equation*}
+とすると，
+\begin{equation}
+  \begin{split}
+    &ADF(\bar{x}) \\
+    &= \begin{bmatrix}
+      A_N & 0  & \cdots & \cdots  \\
+      0 & (\lambda_{N+1})^{-1} & & 0 \\
+      \vdots &               & (\lambda_{N+2})^{-1} & \\
+      \vdots & 0 & & \ddots
+    \end{bmatrix}
+    \begin{bmatrix}
+      0 & 1  & \cdots & \cdots\\
+      \vdots & & \vdots & & \\
+      \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots & \\
+      \vdots & & \vdots & & \\
+   \end{bmatrix}\\
+    &= \begin{bmatrix}
+      A_N & 0  & \cdots & \cdots  \\
+      0 & (\lambda_{N+1})^{-1} & & 0 \\
+      \vdots & & (\lambda_{N+2})^{-1} & \\
+      \vdots & 0 & & \ddots
+    \end{bmatrix}
+    \begin{bmatrix}
+      DF^{(N)}{(\bar{x})} & 1  & \cdots & \cdots \\
+      1 & & \vdots & \\
+      \vdots & \cdots & \partial_{a_j}f_k & \cdots \\
+      \vdots & & \vdots &
+   \end{bmatrix}\\
+    &=
+    \begin{bmatrix}
+        A_N DF^{(N)}(\bar{x}) & 0 & \cdots \\
+        0 & & \\
+        \vdots & & 0 \\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+\begin{comment}
 よって，式(\ref{eq:s-def})より，
 \begin{equation}
   \begin{split}
@@ -2415,39 +2482,7 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
     &= I_{X_2} - (A_N DF^{(N)}(\bar{x}))^{-1}
   \end{split}
 \end{equation}
-
-\textcolor{blue}{2. $\bar{x}$を拡張する．}
-\\フーリエ係数をサイズ$N$で打ち切らないようにしてみる．つまり，サイズ$\infty$で考える
-
-\begin{equation}
-  \begin{split}
-    &ADF(\bar{x}) \\
-    &= \begin{bmatrix}
-      & A_{\omega,0}^{(N)} & \multicolumn{1}{c|}{A_{a,0}^{(N)}} & 0 & \cdots &  0 & \\
-      & A_{\omega,1}^{(N)} & \multicolumn{1}{c|}{A_{a,1}^{(N)}} & & & & \\ \cline{2-6}
-      & 0 & \multicolumn{1}{c|}{} & (\lambda_N)^{-1} & & \text{\large{0}}\\
-      & \vdots & \multicolumn{1}{c|}{} & & (\lambda_{N+1})^{-1} & & \\
-      & 0 & \multicolumn{1}{c|}{} & \text{\large{0}} & & \ddots & \\
-    \end{bmatrix}
-    \begin{bmatrix}
-      & 0 & 1 & \cdots & \cdots & \multicolumn{1}{c|}{} & \cdots & \\
-      & \vdots & & \vdots & & \multicolumn{1}{c|}{} & \\
-      & \partial_w f_k & \cdots & \partial_{a_j} f_k &  \cdots & \multicolumn{1}{c|}{} & \cdots & \\
-      & \vdots & & \vdots & & \multicolumn{1}{c|}{} & & \\ \cline{2-7}
-      & \vdots & & \vdots & & \multicolumn{1}{c|}{} & \ddots &
-    \end{bmatrix}\\
-    &=
-    \begin{bmatrix}
-      A_N DF^{(N)} & 0 \\
-      0 &
-      \begin{bmatrix}
-        & \vdots & \\
-        \cdots & \partial_{a_j} f_k & \cdots \\
-        & \vdots &
-      \end{bmatrix}
-    \end{bmatrix}
-  \end{split}
-\end{equation}
+\end{comment}
 
 
 

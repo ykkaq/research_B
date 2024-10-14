@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  12 OCT 2024 15:08
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  14 OCT 2024 08:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -614,7 +614,7 @@ Overfull \hbox (5.1071pt too wide) detected at line 2129
 
 LaTeX Warning: Reference `thm:' on page 49 undefined on input line 2312.
 
-Excluding 'comment' comment. [49] [50] Excluding 'comment' comment.
+[49] [50] [51] Excluding 'comment' comment. Excluding 'comment' comment.
 
 Package caption Warning: Unused \captionsetup[figure] on input line 33.
 See the caption package documentation for explanation.
@@ -623,7 +623,7 @@ See the caption package documentation for explanation.
 Package caption Warning: Unused \captionsetup[table] on input line 34.
 See the caption package documentation for explanation.
 
-[51] (./sem.aux)
+[52] (./sem.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -635,6 +635,6 @@ Here is how much of TeX's memory you used:
  26701 multiletter control sequences out of 15000+600000
  492432 words of font info for 133 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 55i,30n,63p,712b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,27n,63p,712b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sem.dvi (51 pages, 208804 bytes).
+Output written on sem.dvi (52 pages, 211232 bytes).
