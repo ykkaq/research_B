@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  14 OCT 2024 08:57
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  21 OCT 2024 11:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -449,24 +449,24 @@ File: l3backend-dvips.def 2022-01-12 L3 backend support: dvips
 ) (./sem.aux)
 \openout1 = `sem.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
@@ -474,45 +474,45 @@ Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count311
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 16.60605pt on input line 52.
+(Font)              scaled to size 16.60605pt on input line 54.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 16.60605pt on input line 52.
+(Font)              scaled to size 16.60605pt on input line 54.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 52.
+(Font)              scaled to size 11.53198pt on input line 54.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 52.
+(Font)              scaled to size 11.53198pt on input line 54.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 5.76599pt on input line 52.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
+(Font)              scaled to size 5.76599pt on input line 54.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 54.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 54.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 52.
+(Font)              scaled to size 11.53198pt on input line 54.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 52.
+(Font)              scaled to size 7.68799pt on input line 54.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 5.76599pt on input line 52.
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 52.
+(Font)              scaled to size 5.76599pt on input line 54.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 54.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 54.
+(Font)              scaled to size 9.60999pt on input line 56.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 54.
+(Font)              scaled to size 9.60999pt on input line 56.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 54.
+(Font)              scaled to size 13.83836pt on input line 56.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 54.
+(Font)              scaled to size 13.83836pt on input line 56.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 54.
+(Font)              scaled to size 13.83836pt on input line 56.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 54.
+(Font)              scaled to size 13.83836pt on input line 56.
  (./sem.toc
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
 (Font)              scaled to size 6.72699pt on input line 2.
@@ -542,85 +542,95 @@ LaTeX Warning: Citation `rpa' on page 1 undefined on input line 18.
 
 ]
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 58.
+(Font)              scaled to size 11.53198pt on input line 60.
  [2
 
 ]
 LaTeX Font Info:    Font shape `JT1/mc/m/it' in size <10> not available
-(Font)              Font shape `JT1/mc/m/n' tried instead on input line 134.
+(Font)              Font shape `JT1/mc/m/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 134.
+(Font)              scaled to size 9.60999pt on input line 136.
 LaTeX Font Info:    Font shape `JY1/mc/m/it' in size <10> not available
-(Font)              Font shape `JY1/mc/m/n' tried instead on input line 134.
+(Font)              Font shape `JY1/mc/m/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 134.
+(Font)              scaled to size 9.60999pt on input line 136.
 LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 134.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 134.
+(Font)              scaled to size 9.60999pt on input line 136.
 LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 134.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 134.
+(Font)              scaled to size 9.60999pt on input line 136.
  [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14]
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 776.
+(Font)              scaled to size 6.72699pt on input line 778.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 776.
+(Font)              scaled to size 4.805pt on input line 778.
  [15] [16] [17] [18] [19] [20] [21]
-Overfull \hbox (9.10873pt too wide) detected at line 1084
+Overfull \hbox (9.10873pt too wide) detected at line 1086
 \OML/cmm/m/it/10 c[] \OT1/cmr/m/n/10 = [] [][] \OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) [](\OMS/cmsy/m/n/10 ^^@\OML/cmm/m/it/10 kx\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 dx \U/msb/m/n/10 t [] [] \OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 ) [] [] = []\OML/cmm/m/it/10 ;  \OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 k\OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 < N\OT1/cmr/m/n/10 )
  []
 
 [22] [23] [24] [25]
-Overfull \hbox (1.19026pt too wide) detected at line 1236
+Overfull \hbox (1.19026pt too wide) detected at line 1238
 \OML/cmm/m/it/10 c[] \OMS/cmsy/m/n/10 ^^Y [] [] \OML/cmm/m/it/10 f [] [] [] ;  []
  []
 
 [26] [27] [28]
-Overfull \hbox (47.97006pt too wide) detected at line 1361
+Overfull \hbox (47.97006pt too wide) detected at line 1363
 []
  []
 
 [29] [30]
 LaTeX Font Info:    Font shape `JT1/gt/bx/n' in size <12> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 1412.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 1414.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 1412.
+(Font)              scaled to size 11.53198pt on input line 1414.
 LaTeX Font Info:    Font shape `JY1/gt/bx/n' in size <12> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 1412.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 1414.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 1412.
+(Font)              scaled to size 11.53198pt on input line 1414.
 
 
-LaTeX Warning: Citation `rpa' on page 31 undefined on input line 1412.
+LaTeX Warning: Citation `rpa' on page 31 undefined on input line 1414.
 
 [31] [32] [33] [34] [35] [36] [37] [38] [39]
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 19.9311pt on input line 1787.
+(Font)              scaled to size 19.9311pt on input line 1789.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 19.9311pt on input line 1787.
+(Font)              scaled to size 19.9311pt on input line 1789.
  [40] [41] [42] [43]
-Overfull \hbox (1.10962pt too wide) detected at line 2045
+Overfull \hbox (1.10962pt too wide) detected at line 2047
 []
  []
 
 [44] [45]
-Overfull \hbox (5.1071pt too wide) detected at line 2129
+Overfull \hbox (5.1071pt too wide) detected at line 2131
 []
  []
 
 [46] [47] [48]
 
-LaTeX Warning: Reference `thm:' on page 49 undefined on input line 2312.
+LaTeX Warning: Reference `thm:' on page 49 undefined on input line 2314.
 
-[49] [50] [51] Excluding 'comment' comment. Excluding 'comment' comment.
+[49] [50]
+Overfull \hbox (3.74994pt too wide) detected at line 2500
+[]
+ []
 
-Package caption Warning: Unused \captionsetup[figure] on input line 33.
+
+Overfull \hbox (10.96022pt too wide) detected at line 2529
+[]
+ []
+
+[51] Excluding 'comment' comment.
+
+Package caption Warning: Unused \captionsetup[figure] on input line 35.
 See the caption package documentation for explanation.
 
 
-Package caption Warning: Unused \captionsetup[table] on input line 34.
+Package caption Warning: Unused \captionsetup[table] on input line 36.
 See the caption package documentation for explanation.
 
 [52] (./sem.aux)
@@ -629,12 +639,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 8430 strings out of 478741
- 134489 string characters out of 5860983
- 481108 words of memory out of 5000000
- 26701 multiletter control sequences out of 15000+600000
+ 8431 strings out of 478741
+ 134499 string characters out of 5860983
+ 487108 words of memory out of 5000000
+ 26702 multiletter control sequences out of 15000+600000
  492432 words of font info for 133 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  55i,27n,63p,712b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sem.dvi (52 pages, 211232 bytes).
+Output written on sem.dvi (52 pages, 218304 bytes).
