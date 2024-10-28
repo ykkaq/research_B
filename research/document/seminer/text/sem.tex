@@ -2484,8 +2484,8 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
   \end{split}
 \end{equation}
 
+% lambda M10
 \begin{equation}
-  \tiny
   \begin{split}
     &\Lambda M_{10} \\
     &= \begin{bmatrix}
@@ -2494,27 +2494,30 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
       \mathbf{0} &  & \ddots &
     \end{bmatrix}
     \begin{bmatrix}
-      \partial_{\omega} f_{N} & \partial_{a_{-N+1}} f_{N}  & \cdots \\
+      \partial_{\omega} f_{N} & \partial_{a_{-N+1}} f_{N} &  & \cdots \\
       \partial_{\omega} f_{N+1} & \partial_{a_{-N+1}} f_{N+1}  & \cdots \\
       \vdots & \vdots & \ddots \\
     \end{bmatrix}\\
-    &=\begin{bmatrix}
-      \lambda^{-1}_{N}\partial_{\omega} f_{N} & \lambda^{-1}_{N}\partial_{a_{-N+1}} f_{N}  & \cdots \\
-      \lambda^{-1}_{N+1}\partial_{\omega} f_{N+1} & \lambda^{-1}_{N+1}\partial_{a_{-N+1}} f_{N+1}  & \cdots \\
-      \vdots & \vdots & \ddots \\
+    &= \begin{bmatrix}
+      \lambda^{-1}_N & & \mathbf{0} \\
+      & \lambda^{-1}_{N+1} & \\
+      \mathbf{0} &  & \ddots &
     \end{bmatrix}\\
-    &=\begin{bmatrix}
-      \lambda^{-1}_{N} 3^{-1}\mu i N (a*a*a)_N & 0 & \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-2} & \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3} & \cdots & \lambda^{-1}_{N} \mu i N \omega (a*a)_{1} \\
-      \lambda^{-1}_{N+1} 3^{-1}\mu i (N+1) (a*a*a)_N & 0 & 0 & \lambda^{-1}_{N+1} \mu i (N+1) \omega (a*a)_{2N-2} & \cdots \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}\\
-      \vdots & \vdots & \vdots & \vdots & \cdots \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}\\
-      \lambda^{-1}_{3N-3} 3^{-1}\mu i (3N-3) (a*a*a)_N & 0 & 0 & 0 & \cdots \\
-      0 & 0 & 0 & 0 & \cdots \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}\\
-      \vdots & \vdots & \vdots & \vdots & \cdots & \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}
+    & \begin{bmatrix}
+      3^{-1}\mu i N (a*a*a)_{N} & 0 & \mu i N \omega (a*a)_{2N-2} & \mu i N \omega (a*a)_{2N-1} & \cdots & \mu i N \omega (a*a)_1 &\\
+      3^{-1}\mu i (N+1) (a*a*a)_{N+1} & 0 & 0 & \mu i (N+1) \omega (a*a)_{2N-2} & \cdots & \mu i (N+1) \omega (a*a)_2 &\\
+      \vdots & \vdots & \vdots & \ddots & \ddots & \vdots\\
+      3^{-1}\mu i (3N-3) (a*a*a)_{3N-3} & 0 & 0 & 0 & \cdots & 0\\
+      0 & 0 & 0 & 0 & \cdots & 0 \\
+      \vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\
     \end{bmatrix}
   \end{split}
 \end{equation}
 
+
+%lambda M11
 \begin{equation}
+  \tiny
   \begin{split}
     &\Lambda M_{11}\\
     &=\begin{bmatrix}
@@ -2528,21 +2531,128 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
       \vdots & \vdots & \ddots \\
     \end{bmatrix}\\
     &=\begin{bmatrix}
-      \lambda^{-1}_N \lambda_N & & \mathbf{0} & \\
-      \lambda^{-1}_{N+1} (\mu i (N+1) \omega) (a*a)_1 & \lambda^{-1}_{N+1} \lambda_{N+1} \\
-      \lambda^{-1}_{N+2} (\mu i (N+2) \omega) (a*a)_2 & \lambda^{-1}_{N+2} (\mu i (N+1) \omega) (a*a)_1 &\lambda^{-1}_{N+2} \lambda_{N+2} \\
-      \vdots & \vdots & \vdots & \ddots
+      \lambda^{-1}_N &  & \mathbf{0} \\
+      & \lambda^{-1}_{N+1} &\\
+      \mathbf{0} &  & \ddots
     \end{bmatrix}\\
-    &=\begin{bmatrix}
-      1 & & \mathbf{0} & \\
-      \lambda^{-1}_{N+1} (\mu i (N+1) \omega) (a*a)_1 & 1 \\
-      \lambda^{-1}_{N+2} (\mu i (N+2) \omega) (a*a)_2 & \lambda^{-1}_{N+2} (\mu i (N+1) \omega) (a*a)_1 & 1 \\
-      \vdots & \vdots & \vdots & \ddots
+    &\begin{bmatrix}
+      \lambda_{N} & \mu i N \omega (a*a)_{-1} & \cdots & \mu i N \omega (a*a)_{-2N+2} & 0 & \cdots \\
+      \mu i (N+1) \omega (a*a)_{1} & \lambda_{N+1} & \cdots & \mu i (N+1) \omega (a*a)_{-2N+1} & \mu i (N+1) \omega (a*a)_{-2N+2} & \cdots \\
+      \vdots & \ddots & \ddots & \ddots & \ddots & \ddots \\
+      \mu i (3N-2) \omega (a*a)_{2N-2} & \mu i (3N-2) \omega (a*a)_{2N-1} & \ddots & \lambda_{3N-2} & \mu i (3N-2) \omega (a*a)_{-1} & \cdots \\
+      0 & \mu i (3N-3) \omega (a*a)_{2N-2} & \ddots & \mu i (3N-3) \omega (a*a)_{1} & \ddots & \ddots \\
+      \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
     \end{bmatrix}
   \end{split}
 \end{equation}
 
-\hrulefill
+\subsection{$M_{01}^T \stackrel{\mathrm{?}}{=} M_{10}$}
+
+
+
+\subsection{$M_{01}^T \stackrel{\mathrm{?}}{=} M_{10}$}
+\begin{equation}
+  \tiny
+  \begin{split}
+    &M_{01}
+    =\begin{bmatrix}
+      1 & 1 & 1 & \cdots\\
+      0 & 0 & 0 & \cdots\\
+      \mu i (-N+1) \omega (a*a)_{-2N+2} & 0 & 0 & \cdots\\
+      \mu i (-N+2) \omega (a*a)_{-2N+1} & \mu i (-N+2) \omega (a*a)_{-2N+2} & 0 & \cdots \\
+      \vdots & \ddots & \ddots & \ddots \\
+      \mu i (N-1) \omega (a*a)_{-1} & \mu i (N-1) \omega (a*a)_{-2}  & \cdots & \cdots
+    \end{bmatrix}\\
+    &M_{10}
+    = \begin{bmatrix}
+      3^{-1}\mu i N (a*a*a)_{N} & 0 & \mu i N \omega (a*a)_{2N-2} & \mu i N \omega (a*a)_{2N-1} & \cdots & \mu i N \omega (a*a)_1 &\\
+      3^{-1}\mu i (N+1) (a*a*a)_{N+1} & 0 & 0 & \mu i (N+1) \omega (a*a)_{2N-2} & \cdots & \mu i (N+1) \omega (a*a)_2 &\\
+      \vdots & \vdots & \vdots & \ddots & \ddots & \vdots\\
+      3^{-1}\mu i (3N-3) (a*a*a)_{3N-3}  & 0 & 0 & 0 & \cdots & 0\\
+      0 & 0 & 0 & 0 & \cdots & 0 \\
+      \vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+$\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x}$について考える．
+
+\begin{equation}
+  \begin{split}
+    &\mu i (-x) \omega (a*a)_{-x}\\
+    &= -\mu ix \sum_{\substack{k_1+k_2=-x \\ k_i\in\mathbb{Z}}} a_{k_1}a_{k_2}\\
+    &= -\mu ix (a_{-N+1}a_{N-1-x}+a_{-N+2}a_{N-2-x}+\cdots)
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &\mu i x \omega (a*a)_{x}\\
+    &= \mu ix \sum_{\substack{k_1+k_2=x \\ k_i\in\mathbb{Z}}} a_{k_1}a_{k_2}\\
+    &= \mu ix (a_{-N+1}a_{N-1+x}+a_{-N+2}a_{N-2+x}+\cdots)
+  \end{split}
+\end{equation}
+
+より，
+
+\begin{equation}
+  \begin{split}
+    &\mu i x \omega (a*a)_{x} - \mu i (-x) \omega (a*a)_{-x} \\
+    &= \mu ix (a_{-N+1}a_{N-1+x}+a_{-N+2}a_{N-2+x}+\cdots) + \mu ix (a_{-N+1}a_{N-1-x}+a_{-N+2}a_{N-2-x}+\cdots)\\
+    &= \mu ix (a_{-N+1}a_{N-1+x}+a_{-N+2}a_{N-2+x}+\cdots + a_{-N+1}a_{N-1-x}+a_{-N+2}a_{N-2-x}+\cdots)\\
+    &= \mu ix (a_{-N+1}a_{N-1+x}+a_{-N+1+1}a_{N-1-1+x}+\cdots + a_{-N+1}a_{N-1-x}+a_{-N+1+1}a_{N-1-1-x}+\cdots)\\
+    &= \mu ix (a_{-N+1}(a_{N-1+x}+a_{N-1-x})+a_{-N+1+1}(a_{N-1-1+x}+a_{N-1-1-x})+\cdots )\\
+  \end{split}
+\end{equation}
+
+これらより，畳み込みの等号が成り立つ条件は，$j\in \mathbb{N}$とすると，
+\begin{equation}
+  a_{N-1-j+x} = a_{N-1-j-x}
+\end{equation}
+
+よって，$M_{01}^T \stackrel{\mathrm{?}}{=} M_{10}$が成り立つ条件は，$j,x,y\in \mathbb{N}$としとき，
+\begin{equation}
+  \begin{cases}
+    a_{N-1+x-j} = a_{N-1-x-j}\\
+    3^{-1}\mu i (a*a*a)_y = 1
+  \end{cases}
+\end{equation}
+であると考えられる．
+
+
+\subsection{ゲルシュゴリンの定理}
+[http://www.oishi.info.waseda.ac.jp/~oishi/lec2003/lec7.pdf] \\
+
+
+\dfn[ゲルシュゴリンの定理]
+行列$A$の固有値は複素$\lambda$平面の中の次の集合の中に存在する．
+\begin{equation}
+  K=\bigcup_{i=1}^{n} \left\{ \mu \in C \middle| |\mu - a_{ii}| \leq \sum_{k=1,k\neq i}^{n} |a_k| \right\}
+\end{equation}
+右辺の和集合の中の各集合は中心を$a_{ii}$とする半径
+\begin{equation}
+  r=\sum_{k=1,k\neq i}^{n} |a_{ik}|
+\end{equation}
+の複素平面内の閉円板である．
+
+\begin{proof}
+  $x$が行列$A$の固有値$\lambda$に対する固有ベクトルであるとする．$n \times n$行列$B$を任意に選び，$\lambda$は$B$の固有値でないとする．このとき，
+  \begin{equation}
+    (A-B)x = (\lambda I - B)x
+  \end{equation}
+  となる．$\lambda$が$B$の固有値でないことから$(\lambda I - B)^{-1}$が存在することがわかる．よって
+  \begin{equation}
+    x=(\lambda I - B)(A-B)x
+  \end{equation}
+  となる．これから，
+  \begin{equation}
+    || (\lambda I - B)(A-B) || \geq 1
+  \end{equation}
+  を得る．
+
+  ここで，
+\end{proof}
+
 
 
 %---------------------

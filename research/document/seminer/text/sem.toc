@@ -1,35 +1,38 @@
-\contentsline {section}{\numberline {1}Preparation}{2}{}%
-\contentsline {subsection}{\numberline {1.1}Banach Space}{2}{}%
-\contentsline {subsection}{\numberline {1.2}Operator}{5}{}%
-\contentsline {subsection}{\numberline {1.3}Banachの不動点定理}{16}{}%
-\contentsline {subsection}{\numberline {1.4}簡易ニュートン写像}{18}{}%
-\contentsline {subsection}{\numberline {1.5}フーリエ級数}{19}{}%
-\contentsline {subsubsection}{\numberline {1.5.1}フーリエ級数の導出}{19}{}%
-\contentsline {subsubsection}{\numberline {1.5.2}フーリエ級数の性質}{21}{}%
-\contentsline {subsubsection}{\numberline {1.5.3}フーリエ変換の数値計算}{22}{}%
-\contentsline {subsection}{\numberline {1.6}チェビシェフ級数}{24}{}%
-\contentsline {subsubsection}{\numberline {1.6.1}チェビシェフ級数の導出}{24}{}%
-\contentsline {subsubsection}{\numberline {1.6.2}チェビシェフ級数の性質}{25}{}%
-\contentsline {subsection}{\numberline {1.7}離散フーリエ変換}{26}{}%
-\contentsline {subsection}{\numberline {1.8}畳み込みのFFTアルゴリズム}{27}{}%
-\contentsline {subsubsection}{\numberline {1.8.1}畳み込み定理}{27}{}%
-\contentsline {subsubsection}{\numberline {1.8.2}畳み込みのFFTアルゴリズム}{28}{}%
-\contentsline {section}{\numberline {2}Newton Kantrovichの定理を用いた精度保証付き数値計算}{31}{}%
-\contentsline {subsection}{\numberline {2.1}radii polynomal approach \cite {rpa}}{31}{}%
-\contentsline {subsection}{\numberline {2.2}Newton-Kantorovichの定理の特徴\cite {}}{32}{}%
-\contentsline {section}{\numberline {3}既存のvan der Pol方程式の精度保証付き数値計算}{36}{}%
-\contentsline {subsection}{\numberline {3.1}van der Pol方程式}{36}{}%
-\contentsline {subsection}{\numberline {3.2}フーリエ・スペクトル法}{36}{}%
-\contentsline {subsection}{\numberline {3.3}重み付き空間と作用素の決定}{38}{}%
-\contentsline {subsection}{\numberline {3.4}$Y_0,Z_0,Z_1,Z_2$の評価}{41}{}%
-\contentsline {subsubsection}{\numberline {3.4.1}$Y_0$を計算する}{42}{}%
-\contentsline {subsubsection}{\numberline {3.4.2}$Z_0$を計算する}{42}{}%
-\contentsline {subsubsection}{\numberline {3.4.3}$Z_1$を計算する}{43}{}%
-\contentsline {subsubsection}{\numberline {3.4.4}$Z_2$を計算する}{45}{}%
-\contentsline {subsection}{\numberline {3.5}radii polynomalの零点探索の精度保証}{47}{}%
-\contentsline {subsection}{\numberline {3.6}Krawczyk（クラフチック）法}{47}{}%
-\contentsline {section}{\numberline {4}無限次元ガウスの消去法}{47}{}%
-\contentsline {subsection}{\numberline {4.1}射影}{47}{}%
-\contentsline {section}{\numberline {5}計算手法}{48}{}%
-\contentsline {subsection}{\numberline {5.1}1st}{48}{}%
-\contentsline {subsection}{\numberline {5.2}_}{49}{}%
+\contentsline {section}{\numberline {1}Preparation}{3}{}%
+\contentsline {subsection}{\numberline {1.1}Banach Space}{3}{}%
+\contentsline {subsection}{\numberline {1.2}Operator}{6}{}%
+\contentsline {subsection}{\numberline {1.3}Banachの不動点定理}{17}{}%
+\contentsline {subsection}{\numberline {1.4}簡易ニュートン写像}{19}{}%
+\contentsline {subsection}{\numberline {1.5}フーリエ級数}{20}{}%
+\contentsline {subsubsection}{\numberline {1.5.1}フーリエ級数の導出}{20}{}%
+\contentsline {subsubsection}{\numberline {1.5.2}フーリエ級数の性質}{22}{}%
+\contentsline {subsubsection}{\numberline {1.5.3}フーリエ変換の数値計算}{23}{}%
+\contentsline {subsection}{\numberline {1.6}チェビシェフ級数}{25}{}%
+\contentsline {subsubsection}{\numberline {1.6.1}チェビシェフ級数の導出}{25}{}%
+\contentsline {subsubsection}{\numberline {1.6.2}チェビシェフ級数の性質}{26}{}%
+\contentsline {subsection}{\numberline {1.7}離散フーリエ変換}{27}{}%
+\contentsline {subsection}{\numberline {1.8}畳み込みのFFTアルゴリズム}{28}{}%
+\contentsline {subsubsection}{\numberline {1.8.1}畳み込み定理}{28}{}%
+\contentsline {subsubsection}{\numberline {1.8.2}畳み込みのFFTアルゴリズム}{29}{}%
+\contentsline {section}{\numberline {2}Newton Kantrovichの定理を用いた精度保証付き数値計算}{32}{}%
+\contentsline {subsection}{\numberline {2.1}radii polynomal approach \cite {rpa}}{32}{}%
+\contentsline {subsection}{\numberline {2.2}Newton-Kantorovichの定理の特徴\cite {}}{33}{}%
+\contentsline {section}{\numberline {3}既存のvan der Pol方程式の精度保証付き数値計算}{37}{}%
+\contentsline {subsection}{\numberline {3.1}van der Pol方程式}{37}{}%
+\contentsline {subsection}{\numberline {3.2}フーリエ・スペクトル法}{37}{}%
+\contentsline {subsection}{\numberline {3.3}重み付き空間と作用素の決定}{39}{}%
+\contentsline {subsection}{\numberline {3.4}$Y_0,Z_0,Z_1,Z_2$の評価}{42}{}%
+\contentsline {subsubsection}{\numberline {3.4.1}$Y_0$を計算する}{43}{}%
+\contentsline {subsubsection}{\numberline {3.4.2}$Z_0$を計算する}{43}{}%
+\contentsline {subsubsection}{\numberline {3.4.3}$Z_1$を計算する}{44}{}%
+\contentsline {subsubsection}{\numberline {3.4.4}$Z_2$を計算する}{46}{}%
+\contentsline {subsection}{\numberline {3.5}radii polynomalの零点探索の精度保証}{48}{}%
+\contentsline {subsection}{\numberline {3.6}Krawczyk（クラフチック）法}{48}{}%
+\contentsline {section}{\numberline {4}無限次元ガウスの消去法}{48}{}%
+\contentsline {subsection}{\numberline {4.1}射影}{48}{}%
+\contentsline {section}{\numberline {5}計算手法}{49}{}%
+\contentsline {subsection}{\numberline {5.1}1st}{49}{}%
+\contentsline {subsection}{\numberline {5.2}_}{50}{}%
+\contentsline {subsection}{\numberline {5.3}$M_{01}^T \stackrel {\mathrm {?}}{=} M_{10}$}{54}{}%
+\contentsline {subsection}{\numberline {5.4}$M_{01}^T \stackrel {\mathrm {?}}{=} M_{10}$}{54}{}%
+\contentsline {subsection}{\numberline {5.5}ゲルシュゴリンの定理}{55}{}%
