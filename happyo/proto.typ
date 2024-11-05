@@ -14,19 +14,20 @@
 #set text(
   lang:"ja",
   font: "Harano Aji Mincho",
-  size: 22pt,
+  size: 23pt,
 )
 
 #show heading: set text(
   //  headingのフォントを変更
   font: "Harano Aji Gothic",
-  size: 30pt,
+  size: 33pt,
 )
 
 
 #show figure.where(
   kind: table
 ): set figure.caption(position: top)
+#show figure: set block(breakable: false)
 
 // shortcut
 #let fc() = "Fr"+str.from-unicode(233)+"chet"
@@ -49,13 +50,38 @@
 ]
 
 #slide[
-  #rect(
-    radius: 7pt,
-    inset: 10pt,
-    [
-    $A$を$D F (macron(x))^(-1)$の近似した作用素で代替 \ #sym.arrow.r 無限次元ガウスの消去法で $D F (macron(x))^(-1)$ を計算
-    ],
-  )
+  == おしながき
+  #set align(horizon)
+
+  - 自己紹介
+  - 無限次元ガウスの消去法
+  - 自分の研究テーマの紹介
+
+  #set align(right)
+  #figure(image("img/challenge_mokuhyou_businessman.png", width: 20%))
+]
+
+#slide[
+  == 自己紹介
+  #set align(horizon)
+
+  - 名前
+    - 齋藤　悠希
+
+  - 趣味
+    - ゲーム (Valorant, Apex, SF6, など)
+    - まれにプログラミングとかLinuxとかなどなど
+    #figure(image("img/valo.png", width: 15%))
+    #figure(image("img/linux_penguin.jpg", width: 15%))
+]
+
+#slide[
+  == 自己紹介
+  #set align(horizon)
+
+  - #strike[進路]
+
+  - WindowsはゲーミングOS
 ]
 
 #slide[
