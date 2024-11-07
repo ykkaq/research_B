@@ -83,9 +83,9 @@
       - 名前
         - 齋藤 悠希
     ],
-    (
-      image("img/x.png", width: 50%)
-    ),
+    [
+      //image("img/x.png", width: 50%)
+    ],
     [
       - 趣味
         - ゲーム (Valorantとか)
@@ -374,7 +374,7 @@
 
     #emph(text(font: "Harano Aji Gothic")[*定義*])　全微分可能
 
-  関数$f(x)$が微分可能であるとは，
+  関数$f(x)$が全微分可能であるとは，
 
   $
     frac(f(x+h)-f(x)- c dot h, norm(h)) arrow.r 0, (h arrow.r 0)
