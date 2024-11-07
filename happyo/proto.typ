@@ -63,13 +63,13 @@
         - 有界線形作用素
         - #fc()微分
       - 研究テーマの紹介
+      - おわりに
     ],[
       #align(right + bottom)[
         #image("img/challenge_mokuhyou_businessman.png", width: 50%)
       ]
     ]
   )
-
 ]
 
 #slide[
@@ -116,6 +116,7 @@
         - 有界線形作用素
         - #emph(text(gray)[#fc()微分])
       - #emph(text(gray)[研究テーマの紹介])
+      - #emph(text(gray)[おわりに])
     ],[
       #align(right + bottom)[
         #image("img/mathsha.png", width: 50%)
@@ -260,6 +261,7 @@
         - #emph(text(gray)[有界線形作用素])
         - #fc()微分
       - #emph(text(gray)[研究テーマの紹介])
+      - #emph(text(gray)[おわりに])
     ],[
       #align(right + bottom)[
         #image("img/mathsha.png", width: 50%)
@@ -478,8 +480,17 @@
 
   #grid(columns: 2,
     gutter: 14pt,
-    align(center,image("img/diff2.png", width: 110%)),
+    align(center,image("img/diff2.png", width: 100%)),
     [
+      #set align(center)
+      #rect(
+        inset: 15pt,
+        [
+          $
+          frac(norm(f(v+h)-f(v)-f'[v]h)_Y,norm(h)_X)
+          $
+        ],
+      )
       #rect(
         inset: 15pt,
         [
@@ -516,10 +527,11 @@
     columns: 2,
     [
       - #emph(text(gray)[自己紹介])
-      - #emph(text(gray)[#fc()知識])
-        - #emph(text(gray)[#fc()有界線形作用素])
+      - #emph(text(gray)[知識])
+        - #emph(text(gray)[有界線形作用素])
         - #emph(text(gray)[#fc()微分])
       - 研究テーマの紹介
+      - #emph(text(gray)[おわりに])
     ],[
       #align(right + bottom)[
         #image("img/mathsha.png", width: 50%)
@@ -605,14 +617,31 @@
 ]
 
 #slide[
+  == おしながき
+  #set align(horizon)
+
+  #grid(
+    columns: 2,
+    [
+      - #emph(text(gray)[自己紹介])
+      - #emph(text(gray)[知識])
+        - #emph(text(gray)[有界線形作用素])
+        - #emph(text(gray)[#fc()微分])
+      - #emph(text(gray)[研究テーマの紹介])
+      - おわりに
+    ],[
+      #align(right + bottom)[
+        #image("img/mathsha.png", width: 50%)
+      ]
+    ]
+  )
+]
+
+#slide[
   == おわりに
 
-  今回の内容
+  今回の内容の，有界線形作用素，#fc()微分は，
+  #align(center,image("img/jss.jpg", height: 60%))
+  の174ページに記載があります．
 
-  - 有界線形作用素
-  - #fc()微分
-
-  は，
-
-
-
+]
