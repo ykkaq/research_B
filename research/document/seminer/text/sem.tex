@@ -2699,6 +2699,43 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
   \end{split}
 \end{equation}
 
+
+\subsubsection{$\|D\|$}
+
+\begin{equation}
+  \begin{split}
+    & D \\
+    &=\left\|
+    \begin{bmatrix}
+      1 & \lambda_N^{-1} \mu i N \omega (a*a)_{1} & \lambda_N^{-1} \mu i N \omega (a*a)_{2} & \cdots & \lambda_N^{-1} \mu i N \omega (a*a)_{-2N+2} & 0 & \cdots\\
+      \lambda_{N+1}^{-1} \mu i (N+1) \omega (a*a)_{-1} & 1 & \lambda_{N+1}^{-1} \mu i (N+1) \omega (a*a)_{1} & \ddots & \lambda_{N+1}^{-1} \mu i (N+1) \omega (a*a)_{2N-1} & \ddots & \ddots\\
+      \lambda_{N+2}^{-1} \mu i (N+2) \omega (a*a)_{-2}  & \lambda_{N+2}^{-1} \mu i (N+2) \omega (a*a)_{-1} & 1 & \ddots & \ddots & \ddots & \ddots\\
+      \vdots & \ddots & \ddots & \ddots & \ddots & \ddots & \ddots\\
+      \lambda_{3N-1}^{-1} \mu i (3N-1) \omega (a*a)_{-2N+2}  & \lambda_{3N-1}^{-1} \mu i (3N-1) \omega (a*a)_{-2N+3} & \ddots & \ddots & \ddots & \ddots & \ddots\\
+      0 & \lambda_{3N-2}^{-1} \mu i (3N-2) \omega (a*a)_{-2N+2} & \ddots & \ddots & \ddots & \ddots & \ddots\\
+      \vdots & \ddots & \ddots & \ddots & \ddots & \ddots & \ddots\\
+    \end{bmatrix}\right\|
+  \end{split}
+\end{equation}
+
+
+\begin{equation}
+  \begin{split}
+    \| D \| =
+    \sup \left\lbrace \right. &\\
+      &1 + \frac{\mu i (N+1) \omega (a*a)_{-1} }{-(N+1)^2 \omega^2 - \mu i (N+1) \omega +1} + \frac{ \mu i (N+2) \omega (a*a)_{-2} }{-(N+2)^2 \omega^2 - \mu i (N+2)\omega + 1} + \cdots  \\ & \quad + \frac{ \mu i (3N-1) \omega (a*a)_{2N-2} }{-(3N-1)^2 \omega^2 - \mu i (3N-1)\omega + 1 }, \\
+      &\frac{\mu i N \omega (a*a)_{1} }{-N^2 \omega^2 - \mu i N \omega +1} + 1 + \frac{\mu i (N+2) \omega (a*a)_{-1} }{-(N+2)^2 \omega^2 - \mu i (N+2) \omega +1} + \cdots \\ & + \frac{ \mu i (3N-2) \omega (a*a)_{2N-2} }{-(3N-2)^2 \omega^2 - \mu i (3N-2)\omega + 1 }, \\
+      & \qquad \vdots \\
+      &\frac{\mu i N \omega (a*a)_{-2N+2} }{-N^2 \omega^2 - \mu i N \omega +1} + \cdots + \frac{ \mu i (5N-3) \omega (a*a)_{2N-2} }{-(5N-3)^2 \omega^2 - \mu i (5N-3)\omega + 1 }, \\
+      &\frac{\mu i (N+1) \omega (a*a)_{-2N+2} }{-N^2 \omega^2 - \mu i (N+1) \omega +1} + \cdots + \frac{ \mu i (5N-2) \omega (a*a)_{2N-2} }{-(5N-2)^2 \omega^2 - \mu i (5N-2)\omega + 1 }, \\
+      & \qquad \vdots \\
+    \left. \right\rbrace \geq 1 &
+  \end{split}
+\end{equation}
+
+
+$(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
+
 %---------------------
 
 \begin{comment}

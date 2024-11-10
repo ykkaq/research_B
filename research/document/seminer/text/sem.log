@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  4 NOV 2024 07:18
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2024.4.2)  11 NOV 2024 06:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -629,7 +629,12 @@ Overfull \hbox (8.59402pt too wide) detected at line 2606
 []
  []
 
-[54] [55] Excluding 'comment' comment.
+[54] [55]
+Overfull \hbox (232.35834pt too wide) detected at line 2719
+[]
+ []
+
+[56] Excluding 'comment' comment.
 
 Package caption Warning: Unused \captionsetup[figure] on input line 36.
 See the caption package documentation for explanation.
@@ -638,7 +643,7 @@ See the caption package documentation for explanation.
 Package caption Warning: Unused \captionsetup[table] on input line 37.
 See the caption package documentation for explanation.
 
-[56] (./sem.aux)
+[57] (./sem.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -652,4 +657,4 @@ Here is how much of TeX's memory you used:
  934 hyphenation exceptions out of 8191
  55i,27n,63p,712b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sem.dvi (56 pages, 229368 bytes).
+Output written on sem.dvi (57 pages, 234960 bytes).
