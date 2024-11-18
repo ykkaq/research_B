@@ -2230,9 +2230,9 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 \end{thm}
 
 % 5.1
-\section{計算手法}
+\section{提案手法}
 
-\subsection{1st}
+\subsection*{1st}
 
 radii-polynomal approachの$Y_0$の評価式に，無限次元ガウスの消去法を用いる．
 
@@ -2338,7 +2338,7 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
 となり，有界線形作用素$ADF(\bar{x})$は全単射となる．
 
 % ===== 5.2 =====
-\subsection{_}
+\subsection*{_}
 ここで，$S$について計算する．線形作用素の定義より，
 \begin{equation}
   \begin{split}
@@ -2546,7 +2546,7 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
   \end{split}
 \end{equation}
 
-\subsection{$M_{01}^T \stackrel{\mathrm{?}}{=} M_{10}$}
+\subsection*{$M_{01}^T \stackrel{\mathrm{?}}{=} M_{10}$}
 \begin{equation}
   \tiny
   \begin{split}
@@ -2616,7 +2616,7 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
 であると考えられる．
 
 
-\subsection{ゲルシュゴリンの定理}
+\subsection*{ゲルシュゴリンの定理}
 [http://www.oishi.info.waseda.ac.jp/~oishi/lec2003/lec7.pdf] \\
 
 
@@ -2649,7 +2649,7 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
   ここで，
 \end{proof}
 
-\subsection{$I-S$}
+\subsection*{$I-S$}
 行列の積の解を$\begin{bmatrix} A & B \\ C & D\end{bmatrix},\ t,r\in \mathbb{Z}$とする．
 
 \begin{equation}
@@ -2696,7 +2696,7 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
 \end{equation}
 
 
-\subsubsection{$\|D\|$}
+\subsubsection*{$\|D\|$}
 
 \begin{equation}
   \begin{split}
@@ -2732,7 +2732,7 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
 
 $(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
 
-\subsubsection{11/19}
+\subsubsection*{11/19}
 1. $\sum < \sum$
 
 \begin{equation}
@@ -2743,15 +2743,15 @@ $(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
     & \ - \frac{ (N+a+1+t)}{-(N+a+1+t)^2-\mu i \omega (N+a+1+t)+1} \left. \right\rbrace \mu i \omega(a*a)_{-2N+2+t} \left. \right\rbrace \\
     &\text{(分母を合わせる)} \\
     & = \left\lbrace \right. \frac{ (N+a) (a*a)_{-2N+2} }{ -(N+a)^2-\mu i \omega (N+a)+1} \\
-    & \ + \sum_{\substack{t=1 \\ t \neq 2t-1}}^{4t-2} \left\lbrace \right. \frac{ (N+a+t) (a*a)_{-2N+3+t} }{ -(N+a+t)^2-\mu i \omega (N+a+t)+1 } - \frac{ (N+a+t) (a*a)_{-2N+2+t} }{-(N+a+t)^2-\mu i \omega (N+a+t)+1} \left. \right\rbrace
+    & \ + \sum_{\substack{t=1 \\ t \neq 2t-1}}^{4t-2} \left\lbrace \right. \frac{ (N+a+t) (a*a)_{-2N+3+t} }{ -(N+a+t)^2-\mu i \omega (N+a+t)+1 } - \frac{ (N+a+t) (a*a)_{-2N+2+t} }{-(N+a+t)^2-\mu i \omega (N+a+t)+1} \left. \right\rbrace \\
+    & \ + \frac{ (N+a+4N-2) (a*a)_{(2N-1)} }{ -(N+a+4N-2)^2-\mu i \omega (N+a+4N-2)+1 } \left. \right\rbrace (\mu i \omega)\\
+    & = \left\lbrace \right. \frac{ (N+a) (a*a)_{-2N+2} }{ -(N+a)^2-\mu i \omega (N+a)+1} \\
+    & \ + \sum_{\substack{t=1 \\ t \neq 2t-1}}^{4t-2} \left\lbrace \right. \frac{ (N+a+t)  }{ -(N+a+t)^2-\mu i \omega (N+a+t)+1 } ( (a*a)_{-2N+3+t} - (a*a)_{-2N+2+t} ) \left. \right\rbrace \\
+    & \ + \frac{ (N+a+4N-2) (a*a)_{(2N-1)} }{ -(N+a+4N-2)^2-\mu i \omega (N+a+4N-2)+1 } \left. \right\rbrace (\mu i \omega)\\
+    & = ?
   \end{split}
 \end{equation}
 
-\begin{equation}
-  \begin{split}
-    &+ \sum_{\substack{t=1 \\ t \neq 2t-1}}^{4t-2} \left\lbrace \right. 
-  \end{split}
-\end{equation}
 %---------------------
 
 2. $\|C\|, \|T^{-1}\|, \|M_{01}\|$
@@ -2791,6 +2791,12 @@ $(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
   \end{split}
 \end{equation}
 
+
+\section{実験}
+
+\section{結果・考察}
+
+\section{最後に}
 
 \begin{comment} \begin{equation}
   \begin{split}
