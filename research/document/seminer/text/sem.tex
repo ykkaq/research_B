@@ -2791,6 +2791,54 @@ $(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
   \end{split}
 \end{equation}
 
+\subsubsection{11/25}
+1. $\sum < \sum$
+
+\begin{equation}
+  \begin{split}
+    \| \frac(\mu i \omega N (a*a)_{-2N+2})(-N^2 \omega^2 - \mu i \omega N + 1) \|
+  \end{split}
+\end{equation}
+
+%---------------------
+
+2. $\|C\|, \|T^{-1}\|, \|M_{01}\|$
+\begin{equation}
+  \begin{split}
+    \|C\| =& \sup \left\lbrace \right. \\
+    & \| \sum_{t=0}^{2N-3} \frac{\mu i \omega (N+t) (a*a*a)_{N+t}}{3(-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1)} \|,\\
+    & 0,\\
+    & \| \sum_{t=0}^{0} \frac{ \mu i \omega (N+t) (a*a)_{2N-2 + t}}{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1} \|,\\
+    & \| \sum_{t=0}^{1} \frac{ \mu i \omega (N+t) (a*a)_{2N-1 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\|,\\
+    & \vdots , \\
+    & \| \sum_{t=0}^{2N-3} \frac{ \mu i \omega (N+t) (a*a)_{1 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\|,\\
+    \left. \right\rbrace&
+  \end{split}
+\end{equation}
+
+
+\begin{equation}
+  \begin{split}
+    \|T^{-1}\| =& \sup \left\lbrace \right. \\
+    & \|\sum_{t=0}^{2N} T_{0\ t}^{-1}\|, \\
+    & \vdots \\
+    & \|\sum_{t=0}^{2N} T_{2N\ t}^{-1}\|, \\
+    \left. \right\rbrace&
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    \|M_{01}\| =& \sup \left\lbrace \right. \\
+    &\| 1 + \mu i \omega \sum_{t=0}^{2N-3} (-N+1 + t) (a*a)_{-2N+2+t} \| , \\
+    &\| 1 + \mu i \omega \sum_{t=0}^{2N-4} (-N+2 + t) (a*a)_{-2N+2+t} \| , \\
+    & \vdots \\
+    &\| 1 + \mu i \omega \sum_{t=0}^{0} (N-1 + t) (a*a)_{-2N+2+t} \| , \\
+    & 1 \\
+    \left. \right\rbrace&
+  \end{split}
+\end{equation}
+
 
 \section{実験}
 
