@@ -2791,14 +2791,42 @@ $(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
   \end{split}
 \end{equation}
 
-\subsubsection{11/25}
+\subsubsection*{11/25}
 1. $\sum < \sum$
 
 \begin{equation}
   \begin{split}
-    \| \frac(\mu i \omega N (a*a)_{-2N+2})(-N^2 \omega^2 - \mu i \omega N + 1) \|
+    \left\| \frac{\mu i \omega N (a*a)_{-2N+2}}{-N^2 \omega^2 - \mu i \omega N + 1} \right\| - \left\| \frac{\mu i \omega (N+1) (a*a)_{-2N+2}}{-(N+1)^2 \omega^2 - \mu i \omega (N+1) + 1} \right\|
   \end{split}
 \end{equation}
+
+差分が正になることを確かめる．各項の共通部分を（くくり出したテイで）削除すると
+\begin{equation}
+  \begin{split}
+    &\left\| \frac{N}{-N^2 \omega^2 - \mu i \omega N + 1} \right\| - \left\| \frac{N+1}{-(N+1)^2 \omega^2 - \mu i \omega (N+1) + 1} \right\| \\
+    = &  \frac{N}{\sqrt{(-N^2 \omega^2 + 1 )^2- (\mu \omega N)^2}}  -  \frac{N+1}{\sqrt{(-(N+1)^2 \omega^2 + 1 )^2- (\mu \omega (N+1))^2}}  \\
+    = &  \frac{1}{\sqrt{(-N \omega^2 + N^{-1} )^2- (\mu \omega)^2}}  -  \frac{1}{\sqrt{(-(N+1) \omega^2 + (N+1)^{-1} )^2- (\mu \omega)^2}}  \\
+  \end{split}
+\end{equation}
+
+分母を比較する．左の項の分母が小さくなると嬉しい．つまり，次の式が負になってほしい．
+\begin{equation}
+  \begin{split}
+    \sqrt{(-N \omega^2 + N^{-1} )^2- (\mu \omega)^2}  -  \sqrt{(-(N+1) \omega^2 + (N+1)^{-1} )^2- (\mu \omega)^2}
+  \end{split}
+\end{equation}
+
+各項は正であるため，大小関係は二乗しても変わらない．
+\begin{equation}
+  \begin{split}
+    &((-N \omega^2 + N^{-1} )^2 - (\mu \omega)^2) - ((-(N+1) \omega^2 + (N+1)^{-1} )^2- (\mu \omega)^2) \\
+    = & (N^2 \omega^4 - 2 \omega^2 + N^{-2} ) - ((N+1)^2\omega^4 -2 \omega^2 + (N+1)^{-2}) \\
+    = & (-2N+1)\omega^4 + \frac{-2N-1}{N^2(N+1)^2}
+  \end{split}
+\end{equation}
+
+$N$はサイズ数であるため，上式は明らかに負である．よって，確かめられた．
+
 
 %---------------------
 
@@ -2806,12 +2834,16 @@ $(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
 \begin{equation}
   \begin{split}
     \|C\| =& \sup \left\lbrace \right. \\
-    & \| \sum_{t=0}^{2N-3} \frac{\mu i \omega (N+t) (a*a*a)_{N+t}}{3(-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1)} \|,\\
+    &  \sum_{t=0}^{2N-3} \left\| \frac{\mu i \omega (N+t) (a*a*a)_{N+t}}{3(-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1)} \right\|,\\
     & 0,\\
-    & \| \sum_{t=0}^{0} \frac{ \mu i \omega (N+t) (a*a)_{2N-2 + t}}{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1} \|,\\
-    & \| \sum_{t=0}^{1} \frac{ \mu i \omega (N+t) (a*a)_{2N-1 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\|,\\
+    & \sum_{t=0}^{0} \left\| \frac{ \mu i \omega (N+t) (a*a)_{2N-2 + t}}{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1} \right\|,\\
+    & \sum_{t=0}^{1} \left\| \frac{ \mu i \omega (N+t) (a*a)_{2N-3 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\right\|,\\
     & \vdots , \\
-    & \| \sum_{t=0}^{2N-3} \frac{ \mu i \omega (N+t) (a*a)_{1 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\|,\\
+    & \sum_{t=0}^{2N-3} \left\| \frac{ \mu i \omega (N+t) (a*a)_{1 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\right\|,\\
+    \left. \right\rbrace \\
+    = & \sup \left\lbrace \right. \\
+    &  \sum_{t=0}^{2N-3} \left\| \frac{\mu i \omega (N+t) (a*a*a)_{N+t}}{3(-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1)} \right\|,\\
+    & \sum_{t=0}^{2N-3} \left\| \frac{ \mu i \omega (N+t) (a*a)_{1 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\right\|,\\
     \left. \right\rbrace&
   \end{split}
 \end{equation}
@@ -2820,9 +2852,9 @@ $(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
 \begin{equation}
   \begin{split}
     \|T^{-1}\| =& \sup \left\lbrace \right. \\
-    & \|\sum_{t=0}^{2N} T_{0\ t}^{-1}\|, \\
+    & \left\|\sum_{t=0}^{2N} T_{0\ t}^{-1}\right\|, \\
     & \vdots \\
-    & \|\sum_{t=0}^{2N} T_{2N\ t}^{-1}\|, \\
+    & \left\|\sum_{t=0}^{2N} T_{2N\ t}^{-1}\right\|, \\
     \left. \right\rbrace&
   \end{split}
 \end{equation}
