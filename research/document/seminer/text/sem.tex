@@ -2412,7 +2412,7 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
       & \multicolumn{1}{c|}{\vdots} & & \vdots & &
     \end{bmatrix}\\
     &= \begin{bmatrix}
-      & \multicolumn{1}{c|}{T} & \mathbf{0} &  \\ \cline{2-3}
+      & \multicolumn{1}{c|}{T^{-1}} & \mathbf{0} &  \\ \cline{2-3}
       & \multicolumn{1}{c|}{\mathbf{0}} & \Lambda &
     \end{bmatrix}
     \begin{bmatrix}
@@ -2719,11 +2719,11 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
   \begin{split}
     \| D \| =
     \sup \left\lbrace \right. &\\
-      &1 + \frac{\mu i (N+1) \omega (a*a)_{-1} }{-(N+1)^2 \omega^2 - \mu i (N+1) \omega +1} + \frac{ \mu i (N+2) \omega (a*a)_{-2} }{-(N+2)^2 \omega^2 - \mu i (N+2)\omega + 1} + \cdots  \\ & \quad + \frac{ \mu i (3N-1) \omega (a*a)_{2N-2} }{-(3N-1)^2 \omega^2 - \mu i (3N-1)\omega + 1 }, \\
-      &\frac{\mu i N \omega (a*a)_{1} }{-N^2 \omega^2 - \mu i N \omega +1} + 1 + \frac{\mu i (N+2) \omega (a*a)_{-1} }{-(N+2)^2 \omega^2 - \mu i (N+2) \omega +1} + \cdots \\ & + \frac{ \mu i (3N-2) \omega (a*a)_{2N-2} }{-(3N-2)^2 \omega^2 - \mu i (3N-2)\omega + 1 }, \\
+      &1 + \frac{\mu i (N+1) \omega (a*a)_{-1} }{-(N+1)^2 \omega^2 - \mu i (N+1) \omega +1} + \frac{ \mu i (N+2) \omega (a*a)_{-2} }{-(N+2)^2 \omega^2 - \mu i (N+2)\omega + 1} + \cdots  \\ & \quad + \frac{ \mu i (3N-1) \omega (a*a)_{-2N+2} }{-(3N-1)^2 \omega^2 - \mu i (3N-1)\omega + 1 }, \\
+      &\frac{\mu i N \omega (a*a)_{1} }{-N^2 \omega^2 - \mu i N \omega +1} + 1 + \frac{\mu i (N+2) \omega (a*a)_{-1} }{-(N+2)^2 \omega^2 - \mu i (N+2) \omega +1} + \cdots \\ & + \frac{ \mu i (3N-2) \omega (a*a)_{-2N+2} }{-(3N-2)^2 \omega^2 - \mu i (3N-2)\omega + 1 }, \\
       & \qquad \vdots \\
-      &\frac{\mu i N \omega (a*a)_{-2N+2} }{-N^2 \omega^2 - \mu i N \omega +1} + \cdots + \frac{ \mu i (5N-3) \omega (a*a)_{2N-2} }{-(5N-3)^2 \omega^2 - \mu i (5N-3)\omega + 1 }, \\
-      &\frac{\mu i (N+1) \omega (a*a)_{-2N+2} }{-(N+1)^2 \omega^2 - \mu i (N+1) \omega +1} + \cdots + \frac{ \mu i (5N-2) \omega (a*a)_{2N-2} }{-(5N-2)^2 \omega^2 - \mu i (5N-2)\omega + 1 }, \\
+      &\frac{\mu i N \omega (a*a)_{2N-2} }{-N^2 \omega^2 - \mu i N \omega +1} + \cdots + \frac{ \mu i (5N-3) \omega (a*a)_{-2N+2} }{-(5N-3)^2 \omega^2 - \mu i (5N-3)\omega + 1 }, \\
+      &\frac{\mu i (N+1) \omega (a*a)_{2N-2} }{-(N+1)^2 \omega^2 - \mu i (N+1) \omega +1} + \cdots + \frac{ \mu i (5N-2) \omega (a*a)_{-2N+2} }{-(5N-2)^2 \omega^2 - \mu i (5N-2)\omega + 1 }, \\
       & \qquad \vdots \\
     \left. \right\rbrace \geq 1 &
   \end{split}
@@ -2871,6 +2871,97 @@ $N$はサイズ数であるため，上式は明らかに負である．よっ�
   \end{split}
 \end{equation}
 
+\subsubsection*{12/2}
+プログラムの際に，周期解のインデックスをJuliaに合わせたら，計算結果が変わった？
+
+\begin{equation}
+  \begin{split}
+    &ADF(\bar{x}) \\
+    &= \begin{bmatrix}
+      A_N & 0  & \cdots & \cdots  \\
+      0 & \lambda_{N+1}^{-1} & & \mathbf{0} \\
+      \vdots & & \lambda_{N+2}^{-1} & \\
+      \vdots & \mathbf{0} & & \ddots
+    \end{bmatrix}
+    \begin{bmatrix}
+      0 & 1  & \cdots & \cdots \\
+      \vdots & & \vdots &\\
+      \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
+      \vdots & & \vdots &
+   \end{bmatrix}\\
+    &= \begin{bmatrix}
+      & \multicolumn{1}{c|}{A_N} & 0 & \cdots & \cdots  & \\ \cline{2-5}
+      & \multicolumn{1}{c|}{0} & \lambda_{N+1}^{-1} & & \mathbf{0} & \\
+      & \multicolumn{1}{c|}{\vdots} & & \lambda_{N+2}^{-1} & & \\
+      & \multicolumn{1}{c|}{\vdots} & \mathbf{0} & & \ddots &
+    \end{bmatrix}
+    \begin{bmatrix}
+      & \multicolumn{1}{c|}{DF^{(N)}(\bar{x})^{-1}} & 1  & \cdots & \cdots &\\ \cline{2-5}
+      & \multicolumn{1}{c|}{\vdots} & & \vdots & &\\
+      & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &\\
+      & \multicolumn{1}{c|}{\vdots} & & \vdots & &
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      & \multicolumn{1}{c|}{T^{-1}} & \mathbf{0} &  \\ \cline{2-3}
+      & \multicolumn{1}{c|}{\mathbf{0}} & \Lambda &
+    \end{bmatrix}
+    \begin{bmatrix}
+      & \multicolumn{1}{c|}{T} & M_{01} &  \\ \cline{2-3}
+      & \multicolumn{1}{c|}{M_{10}} & M_{11} &
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      T^{-1}T & T^{-1}M_{01} \\
+      \Lambda M_{10} & \Lambda M_{11}
+    \end{bmatrix}
+    = \begin{bmatrix}
+      I & B \\
+      C & D
+    \end{bmatrix}
+  \end{split}
+  \label{eq:ADF-1}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &M_{01} = 
+    \begin{bmatrix}
+      1 & 1 & \cdots \\
+      0 & 0 & \cdots \\
+      0 & 0 & \cdots \\
+      \vdots & \vdots & \ddots \\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &M_{10} \\
+    &= \begin{bmatrix}
+      \partial_{\omega} f_{N+1} & \partial_{a_{1}} f_{N+1}  & \cdots & \partial_{a_{N-1}} f_{N+1} & 0\\
+      \partial_{\omega} f_{N+2} & \partial_{a_{1}} f_{N+2}  & \cdots & \partial_{a_{N-1}} f_{N+2} &\partial_{a_{N}} f_{N+2}\\
+      \vdots & \vdots & \cdots & \vdots & \vdots \\
+      \partial_{\omega} f_{3N-3} & 0  & \cdots &  \partial_{a_{N-1}} f_{3N-3} & \partial_{a_{N}} f_{3N-3} \\
+      0 & 0 & \cdots & 0 & \partial_{a_{N}} f_{3N-2} \\
+      \vdots & \vdots  & \cdots & \vdots & 0 \\
+      \vdots & \vdots & \cdots & \vdots & \vdots \\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &M_{11} \\
+    &= \begin{bmatrix}
+      \lambda_{N+1} & 0 & \cdots \\
+      0 & \lambda_{N+2} & \cdots \\
+      \partial_{a_{N+1}} f_{N+3} & 0 & \ddots \\
+      \partial_{a_{N+1}} f_{N+4} & \partial_{a_{N+2}} f_{N+4} & \ddots \\
+      \vdots & \vdots & \vdots \\
+      \partial_{a_{N+1}} f_{3N-3} & 0 & \vdots \\
+      \vdots & \vdots & \vdots \\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
 
 \section{実験}
 
