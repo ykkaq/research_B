@@ -7,9 +7,9 @@ function fouriercoeffs(f, N, I=[0, 2π])
   b = I[2]
   h = (b - a) / (2N - 1)
   j = 0:2N-2
-  x_j = a .+ j * h
-  f_j = f.(x)
-  return fftshift(fft(f_j)) / (2N - 1)
+  xⱼ = a .+ j * h
+  fⱼ = f.(xⱼ)
+  return fftshift(fft(fⱼ)) / (2N - 1)
 end
 
 function odefouriercoeffs(f, N, I, n=1)
@@ -17,9 +17,9 @@ function odefouriercoeffs(f, N, I, n=1)
   b = I[2]
   h = (b - a) / (2N - 1)
   j = 0:2N-2
-  x_j = a .+ j * h
-  f_j = f(x_j)[n, :]
-  return fftshift(fft(f_j)) / (2N - 1)
+  xⱼ = a .+ j * h
+  fⱼ = f(xⱼ)[n, :]
+  return fftshift(fft(fⱼ)) / (2N - 1)
 end
 
 function plot_fourier(bc, I=[0, 2π])
@@ -60,10 +60,10 @@ function plot_fouriercoeffs(bc)
   )
 end
 
-function plot_solution(u, index) # u = [ω, a_{-N+1}, ..., a_0, ..., a_{N-1}],length(u) = 2N
+function plot_solution(u, index) # u = [ω, a_{-N+1}, ..., a_0, ..., a_{N-1}], length(u) = 2N
   # index = 1: profile of solution
-  # 2: Fourier mode
-  # 3: phase profile
+  #         2: Fourier mode
+  #         3: phase profile
   ω = real(u[1])
   L = 2π / ω
   a = u[2:end]
@@ -127,16 +127,16 @@ function powerconvfourier(a::Vector{Complex{T}}, p) where {T}
   N = (p - 1) * M
   ta = [zeros(N, 1); a; zeros(N, 1)] # 1. Padding zeros: size(ta) = 2pM-1
   tb = ifft(ifftshift(ta)) # 2. IFFT of ta
-  tb = tb .^ p # 3. tb*^tb
-  c = fftshift(fft(tb)) * (2.0 * p * M - 1)^(p - 1)
-  return c[N+1:end-N], c[p:end-(p-1)]# return (truncated, full) version
+  tbᵖ = tb .^ p # 3. tb*^tb
+  cᵖ = fftshift(fft(tbᵖ)) * (2.0 * p * M - 1)^(p - 1)
+  return cᵖ[N+1:end-N], cᵖ[p:end-(p-1)]# return (truncated, full) version
 end
 
 
 ### Chebyshev functions
-function chebpts(n, a=-1, b=1) # n: maximum order of Chebyshev polynomials
-  tt = range(0, stop=π, length=n + 1)
-  x = cos.(tt)
+function chebpts(n, a=-1, b=1) # n: order of Chebyshev polynomials
+  m = -n:2:n
+  x = sinpi.(m / (2 * n))
   return (1.0 .- x) .* a / 2 + (1.0 .+ x) .* b / 2
 end
 
@@ -146,14 +146,27 @@ function chebcoeffs(f, M, I=[-1, 1])
   n = M - 1
   cpts = chebpts(n, a, b)
   fvals = f.(cpts)
-  FourierCoeffs = real(fft([fvals; reverse(fvals[2:end-1])]))
+  FourierCoeffs = real(fft([reverse(fvals); fvals[2:end-1]]))
   ChebCoeffs = FourierCoeffs[1:n+1] / n
   ChebCoeffs[1] = ChebCoeffs[1] / 2
   ChebCoeffs[end] = ChebCoeffs[end] / 2
   return ChebCoeffs # return Two-sided Chebyshev
 end
 
-function cheb(f, I=[-1; 1]; tol=5e-15, Nmax=10000)
+function chebcoeffs_complex(f, M, I=[-1, 1])
+  a = I[1]
+  b = I[2]
+  n = M - 1
+  cpts = chebpts(n, a, b)
+  fvals = f.(cpts)
+  FourierCoeffs = fft([reverse(fvals); fvals[2:end-1]])
+  ChebCoeffs = FourierCoeffs[1:n+1] / n
+  ChebCoeffs[1] = ChebCoeffs[1] / 2
+  ChebCoeffs[end] = ChebCoeffs[end] / 2
+  return ChebCoeffs # return Two-sided Chebyshev
+end
+
+function cheb(f, I=[-1, 1]; tol=5e-15, Nmax=10000)
   a = I[1]
   b = I[2]
   m = 0.5 * (a + b)
@@ -164,7 +177,7 @@ function cheb(f, I=[-1; 1]; tol=5e-15, Nmax=10000)
   if f.(x1) ≈ f.(x2)
     odd_even = 1 # even function: 1
   elseif f.(x1) ≈ -f.(x2)
-    odd_even = -1 # odd function: -1
+    odd_even = -1 #  odd function: -1
   else
     odd_even = 0 # otherwise: 0
   end
@@ -178,13 +191,65 @@ function cheb(f, I=[-1; 1]; tol=5e-15, Nmax=10000)
     i += 1
   end
   M = findlast(abs.(schbc) .> tol)
-  cc = chebcoeffs(f, M, I)
+  cc = schbc[1:M]
+  # cc = chebcoeffs(f,M,I)
   if odd_even == 1 # even function
     cc[2:2:end] .= 0
   elseif odd_even == -1 # odd function
     cc[1:2:end] .= 0
   end
   return cc # return Two-sided Chebyshev
+end
+
+using GenericFFT
+function bigcheb(f, I=[-1, 1]; tol=5e-15, Nmax=10000)
+  a = I[1]
+  b = I[2]
+  m = 0.5 * (a + b)
+  r = 0.5 * (b - a)
+  x = rand(5)
+  x1 = m .+ x * r
+  x2 = m .- x * r
+  if f.(x1) ≈ f.(x2)
+    odd_even = 1 # even function: 1
+  elseif f.(x1) ≈ -f.(x2)
+    odd_even = -1 #  odd function: -1
+  else
+    odd_even = 0 # otherwise: 0
+  end
+  i = 3
+  schbc = 0 # sampling chebyshev coefficients
+  while true
+    schbc = chebcoeffs(f, big(2^i + 1), I)
+    if all(abs.(schbc[end-2:end]) .< tol) || (2^i + 1 > Nmax)
+      break
+    end
+    i += 1
+  end
+  M = findlast(abs.(schbc) .> tol)
+  cc = schbc[1:M]
+  # cc = chebcoeffs(f,M,I)
+  if odd_even == 1 # even function
+    cc[2:2:end] .= 0
+  elseif odd_even == -1 # odd function
+    cc[1:2:end] .= 0
+  end
+  return cc # return Two-sided Chebyshev
+end
+
+function cheb_complex(f, I=[-1; 1]; tol=5e-15, Nmax=10000)
+  i = 3
+  schbc = 0 # sampling chebyshev coefficients
+  while true
+    schbc = chebcoeffs_complex(f, 2^i + 1, I)
+    if all(abs.(schbc[end-2:end]) .< tol) || (2^i + 1 > Nmax)
+      break
+    end
+    i += 1
+  end
+  M = findlast(abs.(schbc) .> tol)
+  return schbc[1:M]
+  # return cc # return Two-sided Chebyshev
 end
 
 function plot_chebcoeffs(f)
@@ -249,14 +314,14 @@ function eval_cheb_naive(ChebCoeffs_twosided, x; I=[-1, 1])
   return cos.(Vector(k)' .* acos.(ξ)) * ChebCoeffs_twosided
 end
 
-function eval_cheb_bc(ChebCoeffs_twosided, x, n=200; I=[-1, 1]) # Barycentricinterportion formula
+function eval_cheb_bc(ChebCoeffs_twosided, x, n=200; I=[-1, 1]) # Barycentric interportion formula
   M = length(ChebCoeffs_twosided) # M: size of chebyshev
   a = I[1]
   b = I[2]
   k = 0:M-1
-  ξ = chebpts(n)
-  xc = (1.0 .- ξ) * a / 2 + (1.0 .+ ξ) * b / 2 # Chebyshev points in [a,b]
-  fxc = cos.(Vector(k)' .* acos.(ξ)) * ChebCoeffs_twosided
+  ξⱼ = chebpts(n)
+  xc = (1.0 .- ξⱼ) * a / 2 + (1.0 .+ ξⱼ) * b / 2 # Chebyshev points in [a,b]
+  fxc = cos.(Vector(k)' .* acos.(ξⱼ)) * ChebCoeffs_twosided
   valnum = length(x)
   ξ = 2 * (x .- a) / (b - a) .- 1
   # ξ = range(-1,stop=1,length=valnum)
@@ -282,18 +347,18 @@ function eval_cheb_bc(ChebCoeffs_twosided, x, n=200; I=[-1, 1]) # Barycentricint
   return fx
 end
 
-function plot_cheb(ChebCoeffs_twosided; I=[-1, 1], title="", label="", legend=true) #Input: Two-sided Chebyshev
+function plot_cheb(ChebCoeffs_twosided; I=[-1, 1], title="", label="", legend=true) # Input: Two-sided Chebyshev
   # M = length(ChebCoeffs_twosided) # M: size of chebyshev
-  # a = I[1]; b = I[2];
+  # a = I[1]; b = I[2]; 
   x = range(I[1], stop=I[2], length=5000)
   # ξ = 2*(x.-a)/(b-a) .- 1
   fx = eval_cheb(ChebCoeffs_twosided, x, I=I)
   plot(x, fx, legend=legend, label=label, title=title, xlabel="\$x\$", ylabel="\$f(x)\$")
 end
 
-function plot_cheb!(ChebCoeffs_twosided; I=[-1, 1], title="", label="", legend=true) #Input: Two-sided Chebyshev
+function plot_cheb!(ChebCoeffs_twosided; I=[-1, 1], title="", label="", legend=true) # Input: Two-sided Chebyshev
   # M = length(ChebCoeffs_twosided) # M: size of chebyshev
-  # a = I[1]; b = I[2];
+  # a = I[1]; b = I[2]; 
   x = range(I[1], stop=I[2], length=5000)
   # ξ = 2*(x.-a)/(b-a) .- 1
   fx = eval_cheb(ChebCoeffs_twosided, x, I=I)
@@ -319,13 +384,13 @@ function chebdiff_oneside(a; I=[-1, 1])# Input is One-sided
   return b[setdiff(1:end, end)] * (2 / (I[2] - I[1])) # Output is One-sided
 end
 
-function chebdiff_secondkind(a; I=[-1, 1]) # Input is Two-sided
+function chebdiff_secondkind(a; I=[-1, 1])# Input is Two-sided
   M = length(a)
   b = zeros(M - 1)
   for n = 0:M-2
     b[n+1] = (n + 1) * a[n+2]
   end
-  return b * (2 / (I[2] - I[1])) # Output is second kind (Two-sided)
+  return b * (2 / (I[2] - I[1]))# Output is second kind (Two-sided)
 end
 
 function chebindefint(a; I=[-1, 1])# Input is Two-sided
@@ -337,7 +402,7 @@ function chebindefint(a; I=[-1, 1])# Input is Two-sided
   for n = 1:M
     A[n+1] = (a_ext[n] - a_ext[n+2]) / (2n)
   end
-  # A[1] = sum(A[2:2:end]) - sum(A[3:2:end]) # takes the value 0 at the leftendpoint
+  # A[1] = sum(A[2:2:end]) - sum(A[3:2:end]) # takes the value 0 at the left endpoint
   return A * (I[2] - I[1]) / 2
 end
 
@@ -345,4 +410,61 @@ function chebint(a; I=[-1, 1])# Input is Two-sided
   M = length(a)
   n = 0:2:M-1
   return sum(2a[1:2:end] ./ (1.0 .- n .^ 2)) * ((I[2] - I[1]) / 2)
+end
+
+function chebroots(a, I=[-1, 1]) # Input is two-sided Chebyshev
+  I_lo = I[1]
+  I_up = I[2]
+  n = length(a)
+  # create colleague matrix
+  du = [1; ones(n - 3) * 0.5]
+  dl = ones(n - 2) * 0.5
+  d = zeros(n - 1)
+  A = Tridiagonal(dl, d, du)
+  B = zeros(n - 1, n - 1)
+  B[end, :] = a[1:end-1]
+  C = A - (1 / (2 * a[n])) * B
+  x = eigvals(C)
+  ε = 100 * eps() * (I_up - I_lo) * 0.5
+  if I_lo == -1.0 && I_up == 1.0
+    return real(x[(-1-ε.≤real(x).≤1+ε).&(imag(x).≈0)])
+  else
+    x = real(x[(-1-ε.≤real(x).≤1+ε).&(imag(x).≈0)])
+    return (1.0 .- x) .* I_lo / 2 + (1.0 .+ x) .* I_up / 2
+  end
+end
+
+function endpoints_of_cheb(a) # Input is two-sided Chebyshev
+  n = length(a)
+  atm1 = dot((-1) .^ (0:n-1), a) # endpoint at -1
+  at1 = sum(a) # endpoint at 1
+  return atm1, at1
+end
+
+function chebmax(a, I=[-1, 1]) # Input is two-sided Chebyshev
+  M = length(a)
+  b = chebdiff(a)
+  x = chebroots(b)
+  fxc = eval_cheb(a, x)
+  # k = 0:M-1
+  # fxc = cos.((Vector(k))' .* acos.(x)) * a
+  ep = endpoints_of_cheb(a)
+  fvals = [ep[1]; fxc[1:end]; ep[2]]
+  x = [interval(-1); x; interval(1)]
+  ind = argmax(fvals)
+  return x[ind], fvals[ind]
+end
+
+function chebmin(a, I=[-1, 1]) # Input is two-sided Chebyshev
+  M = length(a)
+  b = chebdiff(a)
+  x = chebroots(b)
+  fxc = eval_cheb(a, x)
+  # k = 0:M-1
+  # fxc = cos.((Vector(k))' .* acos.(x)) * a
+  ep = endpoints_of_cheb(a)
+  fvals = [ep[1]; fxc[1:end]; ep[2]]
+  x = [interval(-1); x; interval(1)]
+  ind = argmin(fvals)
+  return x[ind], fvals[ind]
 end
