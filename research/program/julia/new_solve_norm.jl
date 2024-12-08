@@ -1,5 +1,4 @@
 using LinearAlgebra, DifferentialEquations, FFTW
-include("IntervalFunctions.jl")
 include("FourierChebyshev.jl")
 
 # van der Pol方程式
@@ -99,6 +98,7 @@ N = 50 # size of Fourier
 println("size of Fourier = $N")
 a_0 = odefouriercoeffs(sol, N, [a, b])
 
+include("IntervalFunctions.jl")
 # Initial value of Newton method
 η_0 = 0.0
 x = [2 * pi / (b - a); a_0]
@@ -120,10 +120,10 @@ while num_itr ≤ 100
 end
 
 # A^(N)
-ix = map(Interval, x)
-iω̄ = map(Interval, real(x[1]))
-iā = map(Interval, x[2:end])
-ν = 1.05
+ix = map(interval, x)
+iω̄ = map(interval, real(x[1]))
+iā = map(interval, x[2:end])
+
 function DF_fourier(x::Vector{Complex{Interval{T}}}, μ) where {T}
   N = Int((length(x)) / 2)
   ω = x[1]
@@ -142,6 +142,7 @@ function DF_fourier(x::Vector{Complex{Interval{T}}}, μ) where {T}
   DF[2:end, 2:end] = L + M
   return DF
 end
+
 iDF = DF_fourier(ix, μ);
 iA = inv(iDF) # map(Interval,inv(mid.(iDF)))
 
