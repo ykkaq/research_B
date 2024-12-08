@@ -1,31 +1,31 @@
 \contentsline {section}{\numberline {1}はじめに}{2}{}%
-\contentsline {section}{\numberline {2}準備}{2}{}%
-\contentsline {subsection}{\numberline {2.1}バナッハ空間}{2}{}%
-\contentsline {subsection}{\numberline {2.2}作用素}{5}{}%
-\contentsline {subsection}{\numberline {2.3}Banachの不動点定理}{16}{}%
-\contentsline {subsection}{\numberline {2.4}簡易ニュートン写像}{18}{}%
-\contentsline {subsection}{\numberline {2.5}フーリエ級数}{19}{}%
-\contentsline {subsubsection}{\numberline {2.5.1}フーリエ級数の導出}{19}{}%
-\contentsline {subsubsection}{\numberline {2.5.2}フーリエ級数の性質}{21}{}%
-\contentsline {subsubsection}{\numberline {2.5.3}フーリエ変換の数値計算}{22}{}%
-\contentsline {subsection}{\numberline {2.6}離散フーリエ変換}{24}{}%
-\contentsline {subsection}{\numberline {2.7}畳み込みのFFTアルゴリズム}{24}{}%
-\contentsline {subsubsection}{\numberline {2.7.1}畳み込み定理}{24}{}%
-\contentsline {subsubsection}{\numberline {2.7.2}畳み込みのFFTアルゴリズム}{25}{}%
-\contentsline {section}{\numberline {3}Newton Kantrovichの定理を用いた精度保証付き数値計算}{29}{}%
-\contentsline {subsection}{\numberline {3.1}radii polynomal approach \cite {rpa}}{29}{}%
-\contentsline {subsection}{\numberline {3.2}Newton-Kantorovichの定理の特徴\cite {}}{30}{}%
-\contentsline {section}{\numberline {4}既存のvan der Pol方程式の精度保証付き数値計算\cite {github}}{34}{}%
-\contentsline {subsection}{\numberline {4.1}van der Pol方程式}{34}{}%
-\contentsline {subsection}{\numberline {4.2}フーリエ・スペクトル法}{34}{}%
-\contentsline {subsection}{\numberline {4.3}重み付き空間と作用素の決定}{36}{}%
-\contentsline {subsection}{\numberline {4.4}$Y_0,Z_0,Z_1,Z_2$の評価}{39}{}%
-\contentsline {subsubsection}{\numberline {4.4.1}$Y_0$を計算する}{40}{}%
-\contentsline {subsubsection}{\numberline {4.4.2}$Z_0$を計算する}{40}{}%
-\contentsline {subsubsection}{\numberline {4.4.3}$Z_1$を計算する}{41}{}%
-\contentsline {subsubsection}{\numberline {4.4.4}$Z_2$を計算する}{43}{}%
-\contentsline {section}{\numberline {5}無限次元ガウスの消去法}{45}{}%
-\contentsline {subsection}{\numberline {5.1}射影}{45}{}%
-\contentsline {section}{\numberline {6}提案手法}{46}{}%
-\contentsline {section}{\numberline {7}実験結果}{59}{}%
-\contentsline {section}{\numberline {8}おわりに}{59}{}%
+\contentsline {section}{\numberline {2}準備}{3}{}%
+\contentsline {subsection}{\numberline {2.1}バナッハ空間}{3}{}%
+\contentsline {subsection}{\numberline {2.2}作用素}{6}{}%
+\contentsline {subsection}{\numberline {2.3}Banachの不動点定理}{18}{}%
+\contentsline {subsection}{\numberline {2.4}簡易ニュートン写像}{21}{}%
+\contentsline {subsection}{\numberline {2.5}フーリエ級数}{22}{}%
+\contentsline {subsubsection}{\numberline {2.5.1}フーリエ級数の導出}{22}{}%
+\contentsline {subsubsection}{\numberline {2.5.2}フーリエ級数の性質}{24}{}%
+\contentsline {subsubsection}{\numberline {2.5.3}フーリエ変換の数値計算}{26}{}%
+\contentsline {subsection}{\numberline {2.6}離散フーリエ変換}{28}{}%
+\contentsline {subsection}{\numberline {2.7}畳み込みのFFTアルゴリズム}{28}{}%
+\contentsline {subsubsection}{\numberline {2.7.1}畳み込み定理}{28}{}%
+\contentsline {subsubsection}{\numberline {2.7.2}畳み込みのFFTアルゴリズム}{29}{}%
+\contentsline {section}{\numberline {3}Newton Kantorovichの定理を用いた精度保証付き数値計算}{33}{}%
+\contentsline {subsection}{\numberline {3.1}radii polynomal approach \cite {rpa}}{33}{}%
+\contentsline {subsection}{\numberline {3.2}Newton-Kantorovichの定理の特徴\cite {}}{34}{}%
+\contentsline {section}{\numberline {4}既存のvan der Pol方程式の精度保証付き数値計算\cite {github}}{39}{}%
+\contentsline {subsection}{\numberline {4.1}van der Pol方程式}{39}{}%
+\contentsline {subsection}{\numberline {4.2}フーリエ・スペクトル法}{39}{}%
+\contentsline {subsection}{\numberline {4.3}重み付き空間と作用素の決定}{42}{}%
+\contentsline {subsection}{\numberline {4.4}$Y_0,Z_0,Z_1,Z_2$の評価}{46}{}%
+\contentsline {subsubsection}{\numberline {4.4.1}$Y_0$を計算する}{46}{}%
+\contentsline {subsubsection}{\numberline {4.4.2}$Z_0$を計算する}{46}{}%
+\contentsline {subsubsection}{\numberline {4.4.3}$Z_1$を計算する}{48}{}%
+\contentsline {subsubsection}{\numberline {4.4.4}$Z_2$を計算する}{49}{}%
+\contentsline {section}{\numberline {5}無限次元ガウスの消去法}{51}{}%
+\contentsline {subsection}{\numberline {5.1}射影}{51}{}%
+\contentsline {section}{\numberline {6}提案手法}{53}{}%
+\contentsline {section}{\numberline {7}実験結果}{67}{}%
+\contentsline {section}{\numberline {8}おわりに}{67}{}%
