@@ -1,8 +1,7 @@
 %ctrl+alt+b -> build, ctrl+alt+v => preview at new tab
 %ctrl+click -> highlight line
 
-%\documentclass[titlepage]{jsarticle}
-\documentclass[11pt,a4paper]{jsarticle}
+\documentclass[11pt,a4paper,titlepage]{jsarticle}
 %\documentclass[11pt,a4paper]{jsreport}
 
 \usepackage{algorithmic}
@@ -48,17 +47,34 @@
 %\newtheo
 
 %============
-\begin{document}
-\pagestyle{plain}
-\title{タイトル}
-\author{2131701 齋藤悠希}
-\date{}\maketitle
 
+\title{無限次元ガウスの消去法を用いた\ radii polynomal approachの改良}
+\author{2131701 齋藤悠希}
+\date{}
+
+\begin{document}
+
+\pagestyle{empty}
+\maketitle
 \tableofcontents
 \clearpage
+\pagestyle{plain}
 
-\section{Preparation}
-\subsection{Banach Space}
+
+\section{はじめに}
+今日まで理工学において，実在する現象から物理モデルをつくり，これから導かれる数学モデルを解いてきた．
+このことによって，実在する現象の予測や工学製品を設計することが可能になり，理工学の発展を促してきた．
+
+精度保証付き数値計算
+
+
+本研究では，
+
+本論文の構成は，以下のとおりである．
+
+
+\section{準備}
+\subsection{バナッハ空間}
 \begin{dfn}[線形空間の公理]
   \label{dfn:線形空間の公理}
   空でない集合$X$が，係数体$\mathbb{K}$上の線形空間であるとは，任意の$u+v \in X$とスカラー$\alpha \in \mathbb{K}$に対して，加法$u+v \in X$とスカラー乗法$\alpha u \in X$が定義されていて，任意の$u,v,w \in X$とスカラー$\alpha, \beta \in \mathbb{K}$に対して次のことが成り立つことである．
@@ -215,24 +231,24 @@
 \end{dfn}
 
 \begin{dfn}[ノルム空間の閉集合]
-  Xをノルム空間とし，MをXの部分集合とする．Mが閉集合であるとは，Mの任意の点列$(u_n)$の極限$u\in X$がMにも属することである．すなわち，点列$(u_n)\subset M$について
+  $X$をノルム空間とし，$M$を$X$の部分集合とする．$M$が閉集合であるとは，$M$の任意の点列$(u_n)$の極限$u\in X$がMにも属することである．すなわち，点列$(u_n)\subset M$について
   \begin{equation*}
     u_n\rightarrow u, \quad \left(n\rightarrow \infty\right) \Rightarrow u\in M
   \end{equation*}
-  であるとき，Mは閉集合であるという．
+  であるとき，$M$は閉集合であるという．
 \end{dfn}
 
 \begin{dfn}[閉部分空間]
-  Xをノルム空間とし，MをXの線形部分空間が閉集合であるとき，Mを閉部分空間である．
+  $X$をノルム空間とし，$M$を$X$の線形部分空間が閉集合であるとき，$M$を閉部分空間である．
 \end{dfn}
 
-\subsection{Operator}
+\subsection{作用素}
 \begin{dfn}[作用素]
-  ある線形空間Xから別の線形空間Yへの作用素Aとは，
+  ある線形空間$X$から別の線形空間$Y$への作用素$A$とは，
   \begin{equation*}
     \mathcal{D}(A) := \{u \in X \mid Au \in Y\}
   \end{equation*}
-  としたとき，$\mathcal{D}(A)$のどんな元に対しても，それぞれ集合Yのただ一つの元を指定する規則のことである.また，$\mathcal{D}(A)$はAの定義域と呼ばれ
+  としたとき，$\mathcal{D}(A)$のどんな元に対しても，それぞれ集合$Y$のただ一つの元を指定する規則のことである.また，$\mathcal{D}(A)$は$A$の定義域と呼ばれ
   \begin{equation*}
     \mathcal{R}(A) := \{Au \in Y \mid u\in\mathcal{D}(A)\}
   \end{equation*}
@@ -241,22 +257,22 @@
 
 \begin{dfn}[単射]
   \label{injection}
-  線形空間Xから線形空間Yへの作用素Aが
+  線形空間$X$から線形空間$Y$への作用素$A$が
   \begin{equation*}
     u_1 \neq u_2, \quad \forall u_1,u_2 \in \mathcal{D}(A) \Rightarrow A(u_1)\neq A(u_2)
   \end{equation*}
 \end{dfn}
 
 \begin{dfn}[全射]
-  線形空間Xから線形空間Yへの作用素Aが
+  線形空間$X$から線形空間$Y$への作用素$A$が
   \begin{equation*}
     Y=\mathcal{R}(A)
   \end{equation*}
-  を満たすときに作用素Aは全単射であるという．
+  を満たすときに作用素$A$は全単射であるという．
 \end{dfn}
 
 \begin{dfn}[全射]
-  線形空間Xから線形空間Yへの作用素Aとし，その定義域を$\mathcal{D}(A)\subset X$，値域を$\mathcal{R}(A)\subset Y$とする．そのとき，
+  線形空間$X$から線形空間$Y$への作用素$A$とし，その定義域を$\mathcal{D}(A)\subset X$，値域を$\mathcal{R}(A)\subset Y$とする．そのとき，
   \begin{align*}
     A^{-1}\left( A\left( u \right) \right) & =u, \  u\in\mathcal{D}\left( A \right) \\
     A(A^{-1}(u))                           & =u, \  u\in\mathcal{R}(A)
@@ -266,11 +282,11 @@
     \mathcal{D}(A^{-1}) & =\mathcal{R}(A) \\
     \mathcal{R}(A^{-1}) & =\mathcal{D}(A)
   \end{align*}
-  となるYからXへの作用素$A^{-1}$をAの逆作用素と呼ぶ．
+  となる$Y$から$X$への作用素$A^{-1}$を$A$の逆作用素と呼ぶ．
 \end{dfn}
 
 \begin{thm}[単射と逆作用素の環境]
-  線形空間Xから線形空間Yへの作用素Aとすると．
+  線形空間$X$から線形空間$Y$への作用素$A$とすると．
   \begin{equation*}
     Aが逆作用素を持つ \Leftrightarrow Aが単射である
   \end{equation*}
@@ -279,7 +295,7 @@
 \begin{proof}
   「$Aが逆作用素を持つ \Rightarrow Aが単射である$」の証明
 
-  単射の定義\ref{injection}の待遇「$任意のu_1,u_2\in\mathcal{D}(A)に対しA(u_1)=A(u_2) \Rightarrow u_1=u_2$」を満たすことを確かめる．Aの逆作用素を$A^{-1}$とすると，任意の$u_1,u_2\in\mathcal{D}(A)$に対し
+  単射の定義\ref{injection}の待遇「$任意のu_1,u_2\in\mathcal{D}(A)に対しA(u_1)=A(u_2) \Rightarrow u_1=u_2$」を満たすことを確かめる．$A$の逆作用素を$A^{-1}$とすると，任意の$u_1,u_2\in\mathcal{D}(A)$に対し
   \begin{align*}
                 & A(u_1) = A(u_2)               \\
     \Rightarrow & A^{-1}(A(u_1))=A^{-1}(A(u_2)) \\
@@ -292,23 +308,23 @@
   \begin{equation*}
     A(u)=v
   \end{equation*}
-  となる$u\in\mathcal{D}(A)$が存在する．その上，Aが単射であるため，単射の定義の対偶より$u\in\mathcal{D}(A)$はどんな$u\in\mathcal{R}(A)$に対してもただ一つの元である．そのため，作用素の定義より，上記の$u\in\mathcal{R}(A)$に対してただ一つの元$u\in\mathcal{D}(A)$を指定する規則として
+  となる$u\in\mathcal{D}(A)$が存在する．その上，$A$が単射であるため，単射の定義の対偶より$u\in\mathcal{D}(A)$はどんな$u\in\mathcal{R}(A)$に対してもただ一つの元である．そのため，作用素の定義より，上記の$u\in\mathcal{R}(A)$に対してただ一つの元$u\in\mathcal{D}(A)$を指定する規則として
   \begin{equation*}
     B(v)=u
   \end{equation*}
   となる定義域$\mathcal{D}(B)=\mathcal{R}(A)$と値域$\mathcal{R}(B)=\mathcal{D}(A)$となるYからXへの作用素Bが定義できる．その上，$B(v)=u$の$v=A(u)$を代入すると
   \begin{equation*}
-    B(A(u))=u
+    B(A(u))=u`'
   \end{equation*}
   となる．同様に，$A(u)=v$の$u$に$u=B(v)$を代入すると
   \begin{equation*}
     A(B(v))=v
   \end{equation*}
-  となる．よって，定義域$\mathcal{D}(B)=\mathcal{R}(A)$と値域$\mathcal{R}(B)=\mathcal{D}(A)$となるYからXへの作用素BはAの逆作用素であるため，Aは逆作用素を持つ．
+  となる．よって，定義域$\mathcal{D}(B)=\mathcal{R}(A)$と値域$\mathcal{R}(B)=\mathcal{D}(A)$となる$Y$から$X$への作用素$B$は$A$の逆作用素であるため，$A$は逆作用素を持つ．
 \end{proof}
 
 \begin{dfn}[作用素の等号]
-  線形空間Xから線形空間Yへの作用素AとBが等しいとは
+  線形空間$X$から線形空間$Y$への作用素$A$と$B$が等しいとは
   \begin{equation*}
     \mathcal{D}(A) = \mathcal{D}(B)
   \end{equation*}
@@ -324,7 +340,7 @@
 \end{dfn}
 
 \begin{dfn}[作用素の連続]
-  ノルム空間Xからノルム空間Yへの作用素Aが$u\in\mathcal{D}(A)$で連続であるとは
+  ノルム空間$X$からノルム空間$Y$への作用素$A$が$u\in\mathcal{D}(A)$で連続であるとは
   \begin{equation*}
     u_n \rightarrow u, \ (n\rightarrow \infty)
   \end{equation*}
@@ -332,26 +348,26 @@
   \begin{equation*}
     Au_n\rightarrow Au, \ (n\rightarrow \infty)
   \end{equation*}
-  を満たすときである．さらに，Aが任意の$u\in\mathcal{D}(A)$において連続であるとき，Aは連続であるという．
+  を満たすときである．さらに，$A$が任意の$u\in\mathcal{D}(A)$において連続であるとき，$A$は連続であるという．
 \end{dfn}
 
 \begin{dfn}[線形作用素]
-  線形空間Xから線形空間Yへの作用素Aが，任意の$u,v\in\mathcal{D}(A)\subset X$と$\alpha\in\mathbb{K}$に対し，
+  線形空間$X$から線形空間$Y$への作用素$A$が，任意の$u,v\in\mathcal{D}(A)\subset X$と$\alpha\in\mathbb{K}$に対し，
   \begin{align*}
      & \mathcal{D}(A)がXの線形部分空間 \\
      & A(u+v)=Au+Av                    \\
      & A(\alpha u)=\alpha Au
   \end{align*}
-  を満たすとき，Aを作用素と呼ぶ．
+  を満たすとき，$A$を作用素と呼ぶ．
 \end{dfn}
 
 \begin{dfn}[線形作用素の加法]
   \label{dfn:線形作用素の加法}
-  線形空間Xから線形空間Yへの線形作用素AとBの和を
+  線形空間$X$から線形空間$Y$への線形作用素$A$と$B$の和を
   \begin{equation*}
     (A+B)u := Au+Bu, \ u\in\mathcal{D}(A)\cup\mathcal{D}(B)
   \end{equation*}
-  と定義する．このとき，XからYへの作用素$A+B$の定義域は
+  と定義する．このとき，$X$から$Y$への作用素$A+B$の定義域は
   \begin{equation*}
     \mathcal{D}(A+B) = \mathcal{D}(A)\cup\mathcal{D}(B)
   \end{equation*}
@@ -360,11 +376,11 @@
 
 \begin{dfn}[線形作用素のスカラー乗法]
   \label{dfn:線形作用素のスカラー乗法}
-  線形空間Xから線形空間Yへの線形作用素Aの$\alpha\in\mathbb{K}$によるスカラー倍を
+  線形空間$X$から線形空間$Y$への線形作用素Aの$\alpha\in\mathbb{K}$によるスカラー倍を
   \begin{equation*}
     (\alpha A)u := \alpha Au, \ u\in\mathcal{D}(A)
   \end{equation*}
-  と定義する．このとき，XからYへの作用素$\alpha A$の定義域は
+  と定義する．このとき，$X$から$Y$への作用素$\alpha A$の定義域は
   \begin{equation*}
     \mathcal{D}(\alpha A):= \mathcal{D}(A)
   \end{equation*}
@@ -373,11 +389,11 @@
 
 \begin{dfn}[合成作用素]
   \label{dfn:合成作用素}
-  X,Y,Zを線形空間とする．AをYからZへの線形作用素とし，BをXからYへの線形作用素とする．そのとき，AとBの合成作用素ABは
+  $X,Y,Z$を線形空間とする．$A$を$Y$から$Z$への線形作用素とし，$B$を$X$から$Y$への線形作用素とする．そのとき，$A$と$B$の合成作用素$AB$は
   \begin{equation*}
     (AB)u:=A(Bu),\ u\in\{v\in\mathcal{D}(B)\mid Bv\in\mathcal{D}(A)\}
   \end{equation*}
-  と定義する．このとき，XからZへの合成作用素ABの定義域は
+  と定義する．このとき，$X$から$Z$への合成作用素$AB$の定義域は
   \begin{equation*}
     \mathcal{D}(AB):=\{v\in\mathcal{D}(B)\mid Bv\in\mathcal{D}(A)\}
   \end{equation*}
@@ -386,9 +402,9 @@
 
 \begin{thm}[線形作用素に対する単射性(1)]
   \label{thm:線形作用素に対する単射性(1)}
-  線形空間Xから線形空間Yへの線形作用素Aにおいて以下は同値である．
+  線形空間$X$から線形空間$Y$への線形作用素$A$において以下は同値である．
   \begin{enumerate}
-    \item 線形作用素がAの単射である．
+    \item 線形作用素が$A$の単射である．
     \item $Au=0,\ u\in\mathcal{D}(A)\Rightarrow u=0$
   \end{enumerate}
 \end{thm}
@@ -398,7 +414,7 @@
   \begin{equation*}
     Au_1 = Au_2,\ \forall u_1,u_2\in\mathcal{D}(A)\Rightarrow u_1=u_2
   \end{equation*}
-  となる．その上，Aは線形作用素であるため，
+  となる．その上，$A$は線形作用素であるため，
   \begin{equation*}
     Au_1=Au_2\Leftrightarrow A(u_1-u_2)=0
   \end{equation*}
@@ -406,15 +422,15 @@
 \end{proof}
 
 \begin{thm}[線形作用素に対する単射性(2)]
-  ノルム空間Xからノルム空間Yへの線形作用素Aとする．不等式
+  ノルム空間Xからノルム空間Yへの線形作用素$A$とする．不等式
   \begin{equation*}
     \|u\|_X \leq K\|Au\|_Y,\ u\in\mathcal{D}(A)
   \end{equation*}
-  を満たす定数$K>0$が存在するならば，線形作用素Aは単射である．
+  を満たす定数$K>0$が存在するならば，線形作用素$A$は単射である．
 \end{thm}
 
 \begin{proof}
-  Aが線形作用素であるため，$Au=0,\ u\in\mathcal{D}(A)\Rightarrow u=0$を使って証明する．ノルムの定義より
+  $A$が線形作用素であるため，$Au=0,\ u\in\mathcal{D}(A)\Rightarrow u=0$を使って証明する．ノルムの定義より
   \begin{equation*}
     Au=0,\ \forall u\in\mathcal{D}(A)\Leftrightarrow\|Au\|_Y=0
   \end{equation*}
@@ -430,15 +446,15 @@
 \end{proof}
 
 \begin{dfn}[有界な線形作用素]
-  ノルム空間Xからノルム空間Yへの作用素Aに対し，
+  ノルム空間$X$からノルム空間$Y$への作用素$A$に対し，
   \begin{equation*}
     \|Au\|_Y\leq K\|u\|_X,\ \mathcal{D}(A)
   \end{equation*}
-  を満たす正の定数Kが存在する時，線形作用素Aを有界な作用素と呼ぶ．
+  を満たす正の定数$K$が存在する時，線形作用素$A$を有界な作用素と呼ぶ．
 \end{dfn}
 
 \begin{thm}[有界な線形作用素と連続な線形作用素]
-  ノルム空間Xからノルム空間Yへの作用素Aに対し，
+  ノルム空間$X$からノルム空間$Y$への作用素$A$に対し，
   \begin{equation*}
     Aが有界\Leftrightarrow Aが連続
   \end{equation*}
@@ -447,11 +463,11 @@
 \begin{proof}
   「$Aが有界\Rightarrow Aが連続$」の証明
 
-  連続性の定義より，$u_n\rightarrow u$となる任意の$u_n\in\mathcal{D}(A)$に対して$Au_n\rightarrow Au$となることを確かめる．$u_n\rightarrow u$となる任意の$u_n\in \mathcal{D}(A)$から$\|u_n-u\|_X\rightarrow 0,\ (n\rightarrow \infty)$を持つ．その上，Aは有界であることから
+  連続性の定義より，$u_n\rightarrow u$となる任意の$u_n\in\mathcal{D}(A)$に対して$Au_n\rightarrow Au$となることを確かめる．$u_n\rightarrow u$となる任意の$u_n\in \mathcal{D}(A)$から$\|u_n-u\|_X\rightarrow 0,\ (n\rightarrow \infty)$を持つ．その上，$A$は有界であることから
   \begin{equation*}
     \|Au_n-Au\|_Y\leq M\|u_n-u\|_X\rightarrow 0,\ (n\rightarrow\infty)
   \end{equation*}
-  よって，$u_n\rightarrow u,\ (n\rightarrow \infty)$ならば，$Au_n\rightarrow Au$であるため，Aは連続である．
+  よって，$u_n\rightarrow u,\ (n\rightarrow \infty)$ならば，$Au_n\rightarrow Au$であるため，$A$は連続である．
 
   \vskip\baselineskip
 
@@ -481,7 +497,7 @@
 \end{proof}
 
 \begin{dfn}[定義域が$X$の全体となる有界な線形作用素全体の集合$\mathcal{L}(X,Y)$]
-  定義域がBanach空間X全体となるXからYへの有界線形作用素全体を
+  定義域がBanach空間$X$全体となる$X$から$Y$への有界線形作用素全体を
   \begin{equation*}
     \mathcal{L}(X,Y)
   \end{equation*}
@@ -489,7 +505,7 @@
 \end{dfn}
 
 \begin{thm}[$\mathcal{L}(X,Y)$はBanach空間]
-  Xをノルム空間とし，YをBanach空間とする．定義域がX全体となるXからYへの有界な線形作用素全体の集合$\mathcal{L}(X,Y)$のノルムを
+  $X$をノルム空間とし，$Y$をBanach空間とする．定義域が$X$全体となる$X$から$Y$への有界な線形作用素全体の集合$\mathcal{L}(X,Y)$のノルムを
   \begin{equation*}
     \|A\|_{\mathcal{L}(X,Y)}:=\sup_{u\in X\backslash\{0\}} \frac{\|Au\|_Y}{\|X\|_X}, \ A\in\mathcal{L}(X,Y)
   \end{equation*}
@@ -1055,7 +1071,7 @@
     \end{equation*}
     などのパターンがあり，それぞれ$f(x)$の滑らかさによって決まる．例えば，$f(x)$が$k$次オーダーの収束をする場合は，関数$f$は$C^k-級$の関数である．指数オーダーの収束の場合は実解析関数（曲や分岐点を持つ一般的な有限区間・無限区間上の関数），超幾何収束の場合は複素平面上で$\infty$以外で特異点を持たない関数（整関数）とそれぞれ知られている．
 
-    ランダウの記号$\mathcal{O}$は，例えば，$a_n=\mathcal{O}(n^{-2})\ (n\rightarrow\infty)$は，左辺の絶対値が右辺の絶対値の定数倍以下であることを表す．すなわち，ある定数$C$があって，$n$が十分大きいすべての$n\geq 0$に対して，$|a_n|\leq Cn^{-2}$\textcolor{red}{（memo：$n>0 か n\geq 1$かも，参考見てない）}が成立することを意味する．
+    ランダウの記号$\mathcal{O}$は，例えば，$a_n=\mathcal{O}(n^{-2})\ (n\rightarrow\infty)$は，左辺の絶対値が右辺の絶対値の定数倍以下であることを表す．すなわち，ある定数$C$があって，$n$が十分大きいすべての$n\geq 0$に対して，$|a_n|\leq Cn^{-2}$が成立することを意味する．
 
   \item[微分とシフト]
     \quad\\
@@ -1088,7 +1104,7 @@
 
     この$\overline{c_k}$の式は，離散フーリエ変換$a_k=\mathcal{F}(b)=\sum_{b_j}^{2N-2} f(x_j) \exp\left(-2\pi i \frac{kj}{2N-1}\right)$そのものである．したがって，高速フーリエ変換（FFT）を用いて近似フーリエ係数$\overline{c_k}$を計算できる．そして，$\overline{c_k}$を使って，元の関数$f(x)$の近似$f^{(N)}(x)$が
     \begin{equation*}
-      f(x) \approx ^{(N)}(x) = \sum_{|k|<N} \overline{c_k} \exp(ikx)
+      f(x) \approx f^{(N)}(x) = \sum_{|k|<N} \overline{c_k} \exp(ikx)
     \end{equation*}
     と得られる．
 
@@ -1131,6 +1147,7 @@
     ここで，$t_j=a+\frac{jL}{2N-1}(j=0,1,\cdots,2N-1)$から，周期が$2\pi$の周期関数のフーリエ係数の近似が同じ式になるため，フーリエ係数の計算方法は変わらない．
 \end{description}
 
+\begin{comment}
 \subsection{チェビシェフ級数}
 \subsubsection{チェビシェフ級数の導出}
 \begin{dfn}[チェビシェフ級数]
@@ -1239,6 +1256,8 @@
     \end{equation*}
     と近似できる．ここで$f(\cos \theta_j)$はチェビシェフ点$x_j=\cos \theta_j$における関数$f$の値を表す．
 \end{description}
+\end{comment}
+
 
 \subsection{離散フーリエ変換}
 \begin{dfn}[離散フーリエ変換]
@@ -1567,7 +1586,7 @@ $X,Y$をBanach空間とし，非線形方程式
 %-----------------
 
 \newpage
-\section{既存のvan der Pol方程式の精度保証付き数値計算}
+\section{既存のvan der Pol方程式の精度保証付き数値計算\cite{github}}
 
 \subsection{van der Pol方程式}
 van der Pol方程式とは，ある発振現象をもつ電気回路の方程式であり，以下のように表す．
@@ -2140,6 +2159,8 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 \end{equation*}
 となる．
 
+\begin{comment}
+  
 \subsection{radii polynomalの零点探索の精度保証}
 以上で，$Y_0,\cdots,Z_2$の評価を区間演算で求めた．これらの評価を用いて$p(r_0)<0$となる$r_0$を求める．精度保証の方法は，Newton法を反復させることで，$p(r_0)=0$となる$r_0$の近似会を求め，これをKrawczyk法で検証する．
 
@@ -2151,6 +2172,8 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   \end{equation*}
   としたとき，$K(X) \subset \mathrm{int}(X)$（$\mathrm{int}(X):X$の内部）ならば$Xにf(x)=0$の解が唯一存在する．
 \end{thm}
+\end{comment}
+
 
 %======
 %
@@ -2963,11 +2986,18 @@ $N$はサイズ数であるため，上式は明らかに負である．よっ�
   \end{split}
 \end{equation}
 
-\section{実験}
+\section{実験結果}
 
-\section{結果・考察}
+\section{おわりに}
 
-\section{最後に}
+\section*{謝辞}
+
+\begin{thebibliography}{99}
+  \bibitem{github} 舩越康太, 井藤佳奈子, 大谷俊輔, 近藤慎佑, 高橋和暉, 瀬戸翔太, 二平泰知, 高安亮紀,\
+  ``Julia 言語を使った精度保証付き数値計算のチュートリアル'',\linebreak
+  \verb|https://github.com/tak-lab/rigorous_numerics_tutorial_julia,|,(2023/4/13)
+  \bibitem{lit:name} 著者名, ``題名'',\linebreak \verb|http://www.kisarazu.ac.jp/|
+\end{thebibliography}
 
 \begin{comment} \begin{equation}
   \begin{split}
@@ -2987,10 +3017,7 @@ $N$はサイズ数であるため，上式は明らかに負である．よっ�
 
 %---------------
 
-%\begin{thebibliography}{9}
-%  \bibitem{ラベル} 著者名, ``題名'', 出版社, pp.0-1.
-%  \bibitem{lit:name} 著者名, ``題名'',\linebreak \verb|http://www.kisarazu.ac.jp/|
-%\end{thebibliography}
+
 %%文章のあとに，\cite{label1, label2},\cite{lite:xxx}とつける
 %隙間ができたら，\newlineを入れ込む
 %% rpa = radii polynomial approach
