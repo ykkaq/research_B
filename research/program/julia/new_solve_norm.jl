@@ -177,8 +177,6 @@ extend_x = vcat(omega, zero_padding, a, zero_padding)
 extend_DF = DF_fourier(extend_x, mu)
 
 
-
-
 # norm_D
 DF_bottomright = extend_DF[2N+1:end, 2N+1:end]
 D = lambda_array * DF_bottomright
