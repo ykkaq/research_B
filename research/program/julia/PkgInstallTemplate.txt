@@ -1,0 +1,14 @@
+using Pkg;
+Pkg.add("IntervalArithmetic")
+Pkg.add("ForwardDiff")
+Pkg.add("DifferentialEquations")
+Pkg.add("Plots")
+Pkg.add("FFTW")
+Pkg.add("GenericFFT")
+Pkg.status()
+
+Pkg.add(Pkg.PackageSpec(;name="IntervalArithmetic", version="0.20.9"))
+Pkg.add(Pkg.PackageSpec(;name="ForwardDiff", version="0.10.36"))
+Pkg.add(Pkg.PackageSpec(;name="DifferentialEquations", version="7.10.0"))
+Pkg.add(Pkg.PackageSpec(;name="Plots", version="1.39.0"))
+Pkg.add(Pkg.PackageSpec(;name="FFTW", version="1.7.1"))

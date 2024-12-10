@@ -33,7 +33,6 @@ function F_fourier(x, μ, η₀)
   return [eta; f]
 end
 
-# DF^(N)(x_n)
 function DF_fourier(x, μ)
   N = Int((length(x)) / 2)
   ω = x[1]
@@ -120,9 +119,9 @@ while num_itr ≤ 100
 end
 
 # A^(N)
-ix = map(interval, x)
-iω̄ = map(interval, real(x[1]))
-iā = map(interval, x[2:end])
+ix = map(Interval, x)
+iω̄ = map(Interval, real(x[1]))
+iā = map(Interval, x[2:end])
 
 function DF_fourier(x::Vector{Complex{Interval{T}}}, μ) where {T}
   N = Int((length(x)) / 2)
