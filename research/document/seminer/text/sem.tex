@@ -137,6 +137,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 \end{dfn}
 
 \begin{dfn}[完備]
+  \label{dfn:完備}
   $X$をノルム空間とする．$X$が完備であるとは，任意のCauchy列$(u_n)$が$X$の中で極限をもつことである．すなわち，任意のCauchy列$(u_n\subset X)$が
   \begin{equation*}
     \|u_n-u\|\rightarrow 0\ ,\left(n\rightarrow 0\right)
@@ -2166,6 +2167,8 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 \end{equation*}
 となる．
 
+
+
 \begin{comment}
   
 \subsection{radii polynomalの零点探索の精度保証}
@@ -2255,9 +2258,14 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   \end{equation*}
   とすると以下が成立する．
   \begin{equation*}
-    Pが連続 \leftrightarrow X_1, X_2 が
+    Pが連続 \leftrightarrow X_1, X_2 がともにBanach空間
   \end{equation*}
 \end{thm}
+
+\begin{proof}
+  「Pが連続 $\Rightarrow X_1, X_2$ がともにBanach空間の証明」
+  まず，$X_1$がBanach空間であることを示す．$X$が$X_1, X_2$の代数的直和であることから，$X_1$は$X$の線形部分空間である．そのため，$X_1$が閉空間であになることを示せば，定理\ref{dfn:完備}より，$X_1$がBanach空間であることを示せる．よって，$
+\end{proof}
 
 % 5.1
 \section{提案手法}
