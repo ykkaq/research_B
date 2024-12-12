@@ -8,6 +8,7 @@ function vanderpol(du, u, μ, t)
   du[2] = μ * (1 - x^2) * y - x
 end
 
+"""
 # 畳み込み
 function powerconvfourier(a::Vector{Complex{T}}, p) where {T}
   M = Int((length(a) + 1) / 2)
@@ -18,6 +19,8 @@ function powerconvfourier(a::Vector{Complex{T}}, p) where {T}
   cᵖ = fftshift(fft(tbᵖ)) * (2.0 * p * M - 1)^(p - 1)
   return cᵖ[N+1:end-N], cᵖ[p:end-(p-1)]# return (truncated, full) version
 end
+"""
+
 
 # F^(N)(x_n)
 function F_fourier(x, μ, η₀)
@@ -128,6 +131,9 @@ function DF_fourier(x::Vector{Complex{Interval{T}}}, μ) where {T}
   ω = x[1]
   a = x[2:end]
   k = (-N+1):(N-1)
+
+  println("pcf Input: ", a, size(a), typeof(a))
+
   (a³, ~) = powerconvfourier(a, 3)
   DF = zeros(Complex{Interval{T}}, 2N, 2N)
   DF[1, 2:end] .= 1

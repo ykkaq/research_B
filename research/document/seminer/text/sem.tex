@@ -2258,14 +2258,47 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   \end{equation*}
   とすると以下が成立する．
   \begin{equation*}
-    Pが連続 \leftrightarrow X_1, X_2 がともにBanach空間
+    Pが連続 \leftrightarrow X_1, X_2 がともに\text{Banach}空間
   \end{equation*}
 \end{thm}
 
 \begin{proof}
   「Pが連続 $\Rightarrow X_1, X_2$ がともにBanach空間の証明」
-  まず，$X_1$がBanach空間であることを示す．$X$が$X_1, X_2$の代数的直和であることから，$X_1$は$X$の線形部分空間である．そのため，$X_1$が閉空間であになることを示せば，定理\ref{dfn:完備}より，$X_1$がBanach空間であることを示せる．よって，$
+  まず，$X_1$がBanach空間であることを示す．$X$が$X_1, X_2$の代数的直和であることから，$X_1$は$X$の線形部分空間である．そのため，$X_1$が閉空間であになることを示せば，定理\ref{dfn:完備}より，$X_1$がBanach空間であることを示せる．よって，$X_1$の任意の点列$(x_n) \subset X_1$に対し，極限$x^*$が$X_1$に属することを示せばよい．$x_n$は$X_1$に属することから$Px_n = x_n$になる．そのうえで，$P$が連続であることから，$Px_n = x_n$の極限は$Px^* = x^*$となる．よって，$Px^*=x^* \in X_1$から，$X_1$は閉集合となるため，Banach空間となる．
+
+  次に，$X_2$がBanach空間であることを示す．そのために，まず，$I-P$が連続になることを示す．$P$が連続であることから，$x_n \rightarrow x^*$となる任意の$x_n$に対して，$Px_n \rightarrow Px^*$となることに注意すると
+  \begin{equation}
+    (I-P)x_n = x_n - Px_n \rightarrow x^* - P x^* = (I-P)x^*
+  \end{equation}
+  となるため，$I-P$も連続となる．あとは，PとX_1のときと同様の議論をすればよい．すると，$(I-P)x^*=x^* \in X_2$から，$X_2$は閉集合となるため，Banach空間となる．
+
+
+  「Pが連続 $\Leftarrow X_1, X_2$ がともにBanach空間の証明」
+
+  Banach空間$X$の$x_n \rightarrow x^*$となる任意の点列$(x_n)$に対し，$Px_n \rightarrow y$としたとき，$y=Px^*$となることで示せば良い．上記の点列を用いて$X_1$の点列$(Px_n)$を作成すると，$X_1$がBanach空間であることから，閉集合であるため点列$(Px_n)$の極限$y$は$X_1$にも属する．よって，
+  \begin{equation}
+    y=Py
+  \end{equation}
+  となる．
+
+  さらに，同様に$X_2$の点列$((I-P)x_n)$を作成すると，その極限は
+  \begin{equation}
+    (I-P)x_n=x_n-Px_n \rightarrow x^*-y
+  \end{equation}
+  となり，$X_2$もBanach空間であることがら，閉集合であるため点列$((I_P)x_n)$の極限$x^*-y$は$X^2$にも属する．そのうえで，Banach空間$X$が$X_1$と$X_2$の代数的直和であることから，$X_1 \cup X_2={0}$に注意すると$P(x^*-y)=0$となる．よって，
+  \begin{equation}
+    0=P(x^*-y)=Px^*-Py=Px^*-y
+  \end{equation}
+  となるため，
+  \begin{equation}
+    Px^*=y
+  \end{equation}
+  となる．
 \end{proof}
+
+\begin{dfn}[位相的直和]
+  Banach空間$X$が$X_1$と$X_2$の代数的直和であるとする．その上，$X_1$と$X_2$が共 にBanach空間であるとき，Banach空間$X$が$X_1$と$X_2$の位相的直和であるという．
+\end{dfn}
 
 % 5.1
 \section{提案手法}
