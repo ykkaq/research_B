@@ -2302,7 +2302,6 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 
 % 5.1
 \section{提案手法}
-\begin{comment}
 
 \subsection*{1st}
 
@@ -2995,7 +2994,7 @@ $N$はサイズ数であるため，上式は明らかに負である．よっ�
 
 \begin{equation}
   \begin{split}
-    &M_{01} = 
+    &M_{01} =
     \begin{bmatrix}
       1 & 1 & \cdots \\
       0 & 0 & \cdots \\
@@ -3034,7 +3033,6 @@ $N$はサイズ数であるため，上式は明らかに負である．よっ�
     \end{bmatrix}
   \end{split}
 \end{equation}
-\end{comment}
 
 \section{実験結果}
 
@@ -3048,6 +3046,316 @@ $N$はサイズ数であるため，上式は明らかに負である．よっ�
   \verb|https://github.com/tak-lab/rigorous_numerics_tutorial_julia,|,(2023/4/13)
   \bibitem{lit:name} 著者名, ``題名'',\linebreak \verb|http://www.kisarazu.ac.jp/|
 \end{thebibliography}
+
+\subsection{1st}
+
+radii-polynomal approachの$Y_0$の評価式に，無限次元ガウスの消去法を用いる．
+
+$X,Y$をBanach空間，$\mathcal{L}(X,Y)$を$X$から$Y$への有界線形作用素，$A^\dagger \in \mathcal{L}(X,Y),\ A \in \mathcal{L}(Y,X)$を考え，作用素$F:X \rightarrow Y$がC$^1$-Fr\'{e}chet微分可能とする．ここで，$\tilde{x}\in X$に対して，正定数$Y_0$が存在して，次の式を考える．
+\begin{equation}
+  \left\| AF(\bar{x}) \right\|_X \leq Y_0
+  \label{eq:y0}
+\end{equation}
+
+$A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
+\begin{equation}
+  \left\| AF(\bar{x}) \right\|_X = \left\| DF^{-1}(\bar{x}) F(\bar{x}) \right\| \leq Y_0
+  \label{eq:y1}
+\end{equation}
+
+となる．$\phi:=DF(\bar{x})^{-1} F(\bar{x})$とし，これを変形する．$\Pi_N$を射影演算子とすると，$DF(\bar{x}) \phi = F(\bar{x})$  より，
+\begin{equation}
+    \begin{pmatrix}
+      \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
+      (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
+    \end{pmatrix}
+    \begin{pmatrix}
+      \Pi_N \phi \\
+      (I-\Pi_N) \phi
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \Pi_N F(\bar{x}) \\
+      (I - \Pi_N) F(\bar{x})
+    \end{pmatrix}
+\end{equation}
+
+となり，両辺に$A$をかけて
+\begin{equation}
+  A
+  \begin{pmatrix}
+    \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
+    (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I-\Pi_N) \phi
+  \end{pmatrix}
+  =A
+  \begin{pmatrix}
+    \Pi_N F(\bar{x}) \\
+    (I - \Pi_N) F(\bar{x})
+  \end{pmatrix}
+  \label{eq:y0-2}
+\end{equation}
+
+となる．ここで，線形作用素$T,B,C,E$それぞれに対し，
+\begin{equation}
+  \begin{split}
+    T:= \Pi_N ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_1,\quad &
+    B:= \Pi_N ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_1, \\
+    C:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_2,\quad &
+    E:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_2
+  \end{split}
+\end{equation}
+
+と定義すると，式(\ref{eq:y0-2})は以下のように変形できる．
+
+\begin{equation}
+  \begin{pmatrix}
+    T & B \\
+    C & E
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I -\Pi_N) \phi
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \Pi_N A F(\bar{x}) \\
+    (I - \Pi_N) A F(\bar{x})
+  \end{pmatrix}
+\end{equation}
+
+定理\ref{thm:}より，線形作用素$S$を
+
+\begin{equation}
+  S := E-CT^{-1}B:X_2\rightarrow X_2
+\end{equation}
+
+とする．もし，$S$が全単射ならば，
+\begin{equation*}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I -\Pi_N) \phi
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    T^{-1}+T^{-1}BS^{-1}CT^{-1} & -T^{-1}BS^{-1} \\
+    -S^{-1}CT^{-1} S^{-1} & S^{-1}
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N A F(\bar{x}) \\
+    (I - \Pi_N) A F(\bar{x})
+  \end{pmatrix}
+\end{equation*}
+
+となり，有界線形作用素$ADF(\bar{x})$は全単射となる．
+
+% ===== 5.2 =====
+\subsection{_}
+ここで，$S$について計算する．線形作用素の定義より，
+\begin{equation}
+  \begin{split}
+    S &= E-CT^{-1}B \\
+    &= \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right) - (\left( I-\Pi_N \right) ADF( \bar{x} )) (\Pi_N ADF(\bar{x}))^{-1} ((I-\Pi_N)ADF(\bar{x}))
+  \end{split}
+  \label{eq:s-def}
+\end{equation}
+
+\subsubsection*{$ADF(\bar{x})$を計算する．}
+式(\ref{eq:s-def})を分割して計算する．
+
+以下の定義より，計算をする．
+\begin{align}
+  \bar{x} &= \left( \omega, a_{-N+1}, \cdots, a_{N-1}, 0, \cdots \right) \\
+  (D_xf)_{ij} &= \partial_{x_i} f_j \\
+  \begin{split}
+    F(\bar{x}) &= \begin{bmatrix}
+      \eta(a) \\
+      (f_k(a))_k\in \mathbb{Z}
+    \end{bmatrix}, \\
+    \eta(a) &= \sum_{k\in\mathbb{Z}} a_k - \eta_0 \\
+    f_k(a) &= -k^2\omega^2a_k - \mu i k \omega a_k + \frac{\mu}{3}(ik\omega)(a*a*a)_k + a_k\quad (\text{van der Pol})
+  \end{split}
+\end{align}
+
+これらより，
+\begin{equation*}
+  \begin{split}
+    DF(\bar{x}) &=
+    \begin{bmatrix}
+       & \multicolumn{1}{c|}{0} & 1  & \cdots & 1  & \\ \cline{2-5}
+       & \multicolumn{1}{c|}{\vdots} & & \vdots & &  \\
+       & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & \\
+       & \multicolumn{1}{c|}{\vdots} & & \vdots & &
+    \end{bmatrix}\\
+    \partial_\omega f_k &= (-2k^2\omega-\mu ik)a_k + \frac{\mu ik}{3} (a*a*a)_k \\
+    \partial_{a_j} f_k &= (k^2\omega^2-\mu ik\omega +1)\delta_{kj} + \mu ik \omega (a*a)_{k-j}
+  \end{split}
+\end{equation*}
+
+となる．なお，$\delta_{kj}$はクロネッカーのデルタである．
+
+これより，
+
+\begin{equation}
+  \begin{split}
+    &ADF(\bar{x}) \\
+    &= \begin{bmatrix}
+      A_N & 0  & \cdots & \cdots  \\
+      0 & \lambda_{N+1}^{-1} & & \mathbf{0} \\
+      \vdots & & \lambda_{N+2}^{-1} & \\
+      \vdots & \mathbf{0} & & \ddots
+    \end{bmatrix}
+    \begin{bmatrix}
+      0 & 1  & \cdots & \cdots \\
+      \vdots & & \vdots &\\
+      \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
+      \vdots & & \vdots &
+   \end{bmatrix}\\
+    &= \begin{bmatrix}
+      & \multicolumn{1}{c|}{A_N} & 0 & \cdots & \cdots  & \\ \cline{2-5}
+      & \multicolumn{1}{c|}{0} & \lambda_{N+1}^{-1} & & \mathbf{0} & \\
+      & \multicolumn{1}{c|}{\vdots} & & \lambda_{N+2}^{-1} & & \\
+      & \multicolumn{1}{c|}{\vdots} & \mathbf{0} & & \ddots &
+    \end{bmatrix}
+    \begin{bmatrix}
+      & \multicolumn{1}{c|}{DF^{(N)}(\bar{x})^{-1}} & 1  & \cdots & \cdots &\\ \cline{2-5}
+      & \multicolumn{1}{c|}{\vdots} & & \vdots & &\\
+      & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &\\
+      & \multicolumn{1}{c|}{\vdots} & & \vdots & &
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      & \multicolumn{1}{c|}{T} & \mathbf{0} &  \\ \cline{2-3}
+      & \multicolumn{1}{c|}{\mathbf{0}} & \Lambda &
+    \end{bmatrix}
+    \begin{bmatrix}
+      & \multicolumn{1}{c|}{T} & M_{01} &  \\ \cline{2-3}
+      & \multicolumn{1}{c|}{M_{10}} & M_{11} &
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      T^{-1}T & T^{-1}M_{01} \\
+      \Lambda M_{10} & \Lambda M_{11}
+    \end{bmatrix}
+  \end{split}
+  \label{eq:ADF-0}
+\end{equation}
+
+式(\ref{eq:ADF-0})について，行列ブロックに分けて計算する．はじめに，
+\begin{equation*}
+  \begin{split}
+    T^{-1}
+    =\begin{bmatrix}
+      T^{-1}_{0\ 0} & \cdots & T^{-1}_{0\ 2N} \\
+      \vdots & \ddots & \vdots \\
+      T^{-1}_{2N\ 0} & \cdots & T^{-1}_{2N\ 2N} \\
+    \end{bmatrix}
+  \end{split}
+\end{equation*}
+とおく．
+
+\begin{equation}
+  T^{-1}T = I \mid_{2N}
+\end{equation}
+
+% T^{-1}M_{01}q
+\begin{equation}
+  \begin{split}
+    &T^{-1}M_{01} \\
+    &= T^{-1}
+    \begin{bmatrix}
+      1 & \cdots & \cdots \\
+      \partial_{a_N} f_{-N+1} & \partial_{a_{N+1}} f_{-N+1}  & \cdots \\
+      \partial_{a_N} f_{-N} & \partial_{a_{N+1}} f_{-N}  & \cdots \\
+      \vdots & \vdots & \vdots \\
+      \partial_{a_N} f_{N-1} & \partial_{a_{N+1}} f_{N-1}  & \cdots
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      T^{-1}_{0\ 0} & \cdots & T^{-1}_{0\ 2N} \\
+      \vdots & \ddots & \vdots \\
+      T^{-1}_{2N\ 0} & \cdots & T^{-1}_{2N\ 2N} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+      1 & \cdots & \cdots \\
+      \partial_{a_N} f_{-N+1} & \partial_{a_{N+1}} f_{-N+1}  & \cdots \\
+      \vdots & \vdots & \vdots \\
+      \partial_{a_N} f_{N-1} & \partial_{a_{N+1}} f_{N-1}  & \cdots
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      T^{-1}_{0\ 0} & \cdots & T^{-1}_{0\ 2N} \\
+      \vdots & \ddots & \vdots \\
+      T^{-1}_{2N\ 0} & \cdots & T^{-1}_{2N\ 2N} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+      1 & \cdots & \cdots  & \cdots\\
+      0 & \cdots & \cdots  & \cdots\\
+      \mu i (-N+1) \omega (a*a)_{-2N+2} & 0 & \cdots & \cdots\\
+      \mu i (-N+2) \omega (a*a)_{-2N+1} & \mu i (-N+2) \omega (a*a)_{-2N+2} & 0 & \cdots \\
+      \vdots & \ddots & \ddots & \ddots \\
+      \mu i (N-1) \omega (a*a)_{-1} & \mu i (N-1) \omega (a*a)_{-2}  & \cdots & \cdots
+    \end{bmatrix}\\
+    &=\cdots やっていく
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \tiny
+  \begin{split}
+    &\Lambda M_{10} \\
+    &= \begin{bmatrix}
+      \lambda^{-1}_N & & \mathbf{0} \\
+      & \lambda^{-1}_{N+1} & \\
+      \mathbf{0} &  & \ddots &
+    \end{bmatrix}
+    \begin{bmatrix}
+      \partial_{\omega} f_{N} & \partial_{a_{-N+1}} f_{N}  & \cdots \\
+      \partial_{\omega} f_{N+1} & \partial_{a_{-N+1}} f_{N+1}  & \cdots \\
+      \vdots & \vdots & \ddots \\
+    \end{bmatrix}\\
+    &=\begin{bmatrix}
+      \lambda^{-1}_{N}\partial_{\omega} f_{N} & \lambda^{-1}_{N}\partial_{a_{-N+1}} f_{N}  & \cdots \\
+      \lambda^{-1}_{N+1}\partial_{\omega} f_{N+1} & \lambda^{-1}_{N+1}\partial_{a_{-N+1}} f_{N+1}  & \cdots \\
+      \vdots & \vdots & \ddots \\
+    \end{bmatrix}\\
+    &=\begin{bmatrix}
+      \lambda^{-1}_{N} 3^{-1}\mu i N (a*a*a)_N & 0 & \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-2} & \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3} & \cdots & \lambda^{-1}_{N} \mu i N \omega (a*a)_{1} \\
+      \lambda^{-1}_{N+1} 3^{-1}\mu i (N+1) (a*a*a)_N & 0 & 0 & \lambda^{-1}_{N+1} \mu i (N+1) \omega (a*a)_{2N-2} & \cdots \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}\\
+      \vdots & \vdots & \vdots & \vdots & \cdots \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}\\
+      \lambda^{-1}_{3N-3} 3^{-1}\mu i (3N-3) (a*a*a)_N & 0 & 0 & 0 & \cdots \\
+      0 & 0 & 0 & 0 & \cdots \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}\\
+      \vdots & \vdots & \vdots & \vdots & \cdots & \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &\Lambda M_{11}\\
+    &=\begin{bmatrix}
+      \lambda^{-1}_N & & \mathbf{0} \\
+      & \lambda^{-1}_{N+1} &\\
+      \mathbf{0} &  & \ddots
+    \end{bmatrix}
+    \begin{bmatrix}
+      \partial_{a_{N}} f_{N} & \partial_{a_{N+1}} f_{N}  & \cdots \\
+      \partial_{a_{N}} f_{N+1} & \partial_{a_{N+1}} f_{N+1}  & \cdots \\
+      \vdots & \vdots & \ddots \\
+    \end{bmatrix}\\
+    &=\begin{bmatrix}
+      \lambda^{-1}_N \lambda_N & & \mathbf{0} & \\
+      \lambda^{-1}_{N+1} (\mu i (N+1) \omega) (a*a)_1 & \lambda^{-1}_{N+1} \lambda_{N+1} \\
+      \lambda^{-1}_{N+2} (\mu i (N+2) \omega) (a*a)_2 & \lambda^{-1}_{N+2} (\mu i (N+1) \omega) (a*a)_1 &\lambda^{-1}_{N+2} \lambda_{N+2} \\
+      \vdots & \vdots & \vdots & \ddots
+    \end{bmatrix}\\
+    &=\begin{bmatrix}
+      1 & & \mathbf{0} & \\
+      \lambda^{-1}_{N+1} (\mu i (N+1) \omega) (a*a)_1 & 1 \\
+      \lambda^{-1}_{N+2} (\mu i (N+2) \omega) (a*a)_2 & \lambda^{-1}_{N+2} (\mu i (N+1) \omega) (a*a)_1 & 1 \\
+      \vdots & \vdots & \vdots & \ddots
+    \end{bmatrix}
+  \end{split}
+\end{equation}
 
 \begin{comment} \begin{equation}
   \begin{split}

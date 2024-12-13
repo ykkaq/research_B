@@ -8,20 +8,6 @@ function vanderpol(du, u, μ, t)
   du[2] = μ * (1 - x^2) * y - x
 end
 
-"""
-# 畳み込み
-function powerconvfourier(a::Vector{Complex{T}}, p) where {T}
-  M = Int((length(a) + 1) / 2)
-  N = (p - 1) * M
-  ta = [zeros(N, 1); a; zeros(N, 1)] # 1. Padding zeros: size(ta) = 2pM-1
-  tb = ifft(ifftshift(ta)) # 2. IFFT of ta
-  tbᵖ = tb .^ p # 3. tb*^tb
-  cᵖ = fftshift(fft(tbᵖ)) * (2.0 * p * M - 1)^(p - 1)
-  return cᵖ[N+1:end-N], cᵖ[p:end-(p-1)]# return (truncated, full) version
-end
-"""
-
-
 # F^(N)(x_n)
 function F_fourier(x, μ, η₀)
   N = length(x) / 2
@@ -96,7 +82,7 @@ find_period = abs.(f_tmp .- sol(a))
 (~, ind) = findmin(find_period[1, :])
 b = a + app_period / 2 + timestep * (ind - 1)
 #calc fouriercoeffs
-N = 50 # size of Fourier
+N = 100 # size of Fourier
 println("size of Fourier = $N")
 a_0 = odefouriercoeffs(sol, N, [a, b])
 
@@ -122,9 +108,14 @@ while num_itr ≤ 100
 end
 
 # A^(N)
-ix = map(Interval, x)
-iω̄ = map(Interval, real(x[1]))
-iā = map(Interval, x[2:end])
+ix = map(interval, x)
+iω̄ = map(interval, real(x[1]))
+iā = map(interval, x[2:end])
+
+ix = x
+iω̄ = real(x[1])
+iā = x[2:end]
+
 
 function DF_fourier(x::Vector{Complex{Interval{T}}}, μ) where {T}
   N = Int((length(x)) / 2)
@@ -151,7 +142,6 @@ end
 iDF = DF_fourier(ix, μ);
 iA = inv(iDF) # map(Interval,inv(mid.(iDF)))
 
-
 ## =======================
 ## I get a and omega by x.
 ## =======================
@@ -176,26 +166,45 @@ for k in 1:lambda_array_size
 end
 
 # DF[]
+rate = 3
+
 DF = DF_fourier(x, mu)
-zero_padding = zeros(ComplexF64, Int(1.5 * N))
+zero_padding = zeros(ComplexF64, Int(rate * N + 1))
 extend_x = vcat(omega, zero_padding, a, zero_padding)
 extend_DF = DF_fourier(extend_x, mu)
 
 
 # norm_D
-DF_bottomright = extend_DF[2N+1:end, 2N+1:end]
+DF_bottomright = extend_DF[rate*N+1:end, rate*N+1:end]
 D = lambda_array * DF_bottomright
 normD = maximum(sum(abs.(D), dims=1))
 
 # norm_C
-DF_bottomleft = extend_DF[2N+1:end, 1:2N]
+DF_bottomleft = extend_DF[rate*N+1:end, 1:rate*N]
 C = lambda_array * DF_bottomleft
 normC = maximum(sum(abs.(C), dims=1))
 
 # norm_B
-DF_topright = extend_DF[1:2N, 2N+1:end]
+DF_topright = extend_DF[1:rate*N, rate*N+1:end]
+B = iA * DF_topright
+normDF_topright = maximum(sum(abs.(DF_topright), dims=1))
+normTinv = maximum(sum(abs.(iA), dims=1))
+normB = maximum(sum(abs.(B), dims=1))
 
+#println(size(DF_topright), typeof(DF_topright))
+#println(size(iA), typeof(iA))
+#println(size(B))
 
 println("||D|| = ", normD)
 println("||C|| = ", normC)
+println("||T^-1|| = ", normTinv)
+println("||M|| = ", normDF_topright)
+println("||B|| = ", normB)
+
+
+norm_result = normD + normC * normB
+norm_result2 = normD + normC * normTinv * normDF_topright
+
+println("||D|| + ||C|| ||B|| = ", norm_result)
+println("||D|| + ||C|| ||T^-1|| ||M|| = ", norm_result2)
 
