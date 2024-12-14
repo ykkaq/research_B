@@ -1,7 +1,7 @@
 %ctrl+alt+b -> build, ctrl+alt+v => preview at new tab
 %ctrl+click -> highlight line
 
-\documentclass[12pt,a4paper,titlepage]{jsarticle}
+\documentclass[11pt,a4paper,titlepage]{jsarticle}
 %\documentclass[11pt,a4paper]{jsreport}
 
 \usepackage{algorithmic}
@@ -264,7 +264,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 \end{dfn}
 
 \begin{dfn}[単射]
-  \label{injection}
+  \label{dfn:単射}
   線形空間$X$から線形空間$Y$への作用素$A$が
   \begin{equation*}
     u_1 \neq u_2, \quad \forall u_1,u_2 \in \mathcal{D}(A) \Rightarrow A(u_1)\neq A(u_2)
@@ -272,6 +272,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 \end{dfn}
 
 \begin{dfn}[全射]
+  \label{dfn:全射}
   線形空間$X$から線形空間$Y$への作用素$A$が
   \begin{equation*}
     Y=\mathcal{R}(A)
@@ -279,7 +280,8 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
   を満たすときに作用素$A$は全単射であるという．
 \end{dfn}
 
-\begin{dfn}[全射]
+\begin{dfn}[逆作用素]
+  \label{dfn:逆作用素}
   線形空間$X$から線形空間$Y$への作用素$A$とし，その定義域を$\mathcal{D}(A)\subset X$，値域を$\mathcal{R}(A)\subset Y$とする．そのとき，
   \begin{align*}
     A^{-1}\left( A\left( u \right) \right) & =u, \  u\in\mathcal{D}\left( A \right) \\
@@ -293,7 +295,8 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
   となる$Y$から$X$への作用素$A^{-1}$を$A$の逆作用素と呼ぶ．
 \end{dfn}
 
-\begin{thm}[単射と逆作用素の環境]
+\begin{thm}[単射と逆作用素の関係]
+  \label{thm:単射と逆作用素の関係}
   線形空間$X$から線形空間$Y$への作用素$A$とすると．
   \begin{equation*}
     Aが逆作用素を持つ \Leftrightarrow Aが単射である
@@ -303,7 +306,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 \begin{proof}
   「$Aが逆作用素を持つ \Rightarrow Aが単射である$」の証明
 
-  単射の定義\ref{injection}の待遇「$任意のu_1,u_2\in\mathcal{D}(A)に対しA(u_1)=A(u_2) \Rightarrow u_1=u_2$」を満たすことを確かめる．$A$の逆作用素を$A^{-1}$とすると，任意の$u_1,u_2\in\mathcal{D}(A)$に対し
+  単射の定義\ref{dfn:単射}の待遇「$任意のu_1,u_2\in\mathcal{D}(A)に対しA(u_1)=A(u_2) \Rightarrow u_1=u_2$」を満たすことを確かめる．$A$の逆作用素を$A^{-1}$とすると，任意の$u_1,u_2\in\mathcal{D}(A)$に対し
   \begin{align*}
                 & A(u_1) = A(u_2)               \\
     \Rightarrow & A^{-1}(A(u_1))=A^{-1}(A(u_2)) \\
@@ -2214,38 +2217,39 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   \begin{equation*}
     x=x_1+x_2,\ x_1 \in X_1,\ x_2 \in X_2
   \end{equation*}
-\end{thm}
 とし，$\mathcal{D}(P)=X$となる$X$上の線形作用素$P$を
 \begin{equation*}
   Px=x_1,\ (I-P)x=x_2
 \end{equation*}
 とすると，線形作用素$P$と$I-P$は射影になる．
+\end{thm}
 
-\proof{}
-まず，$P{x_2}=0$を証明する．$P{x_2} \neq 0$ となる$x_2 \in X_2$が存在すると仮定し，矛盾を示す．
+\begin{proof}
+  まず，$P{x_2}=0$を証明する．$P{x_2} \neq 0$ となる$x_2 \in X_2$が存在すると仮定し，矛盾を示す．
 
-定義より，
-\begin{equation*}
-  x = x_1 + x_2 = x_1 + P{x_2} + (I-P)x_2
-\end{equation*}
+  定義より，
+  \begin{equation*}
+    x = x_1 + x_2 = x_1 + P{x_2} + (I-P)x_2
+  \end{equation*}
 
-に対して，$P$の閾値$\mathcal{R}(P)=X_1$であることと，$X_1$が線形空間であることに注意すると，$x_1+Px_2 \in x_2 $である．しかし，これは代数的直和の定義より$x$の分解の一意性に矛盾する．よって$P{x_2}=0$となる．
+  に対して，$P$の閾値$\mathcal{R}(P)=X_1$であることと，$X_1$が線形空間であることに注意すると，$x_1+Px_2 \in x_2 $である．しかし，これは代数的直和の定義より$x$の分解の一意性に矛盾する．よって$P{x_2}=0$となる．
 
-そのうえで，
-\begin{equation*}
-  Px_2 = P(I-P)x = Px - P^2x = 0
-\end{equation*}
-より
-\begin{equation*}
-  Px = P^2x
-\end{equation*}
-となるため，$P$は射影となる．
+  そのうえで，
+  \begin{equation*}
+    Px_2 = P(I-P)x = Px - P^2x = 0
+  \end{equation*}
+  より
+  \begin{equation*}
+    Px = P^2x
+  \end{equation*}
+  となるため，$P$は射影となる．
 
-また，
-\begin{equation*}
-  (I-P)(I-P)x = (I-2P+P^2)x = (I - 2P + P)x = (I-P)x
-\end{equation*}
-となるため，$I-P$も射影となる．
+  また，
+  \begin{equation*}
+    (I-P)(I-P)x = (I-2P+P^2)x = (I - 2P + P)x = (I-P)x
+  \end{equation*}
+  となるため，$I-P$も射影となる．
+\end{proof}
 
 \begin{thm}
   Banach空間$X$が$X_1$と$X_2$の代数的直和であるとする．$x \in X$について
@@ -2258,7 +2262,7 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   \end{equation*}
   とすると以下が成立する．
   \begin{equation*}
-    Pが連続 \leftrightarrow X_1, X_2 がともに\text{Banach}空間
+    Pが連続 \Leftrightarrow X_1, X_2 がともに\text{Banach}空間
   \end{equation*}
 \end{thm}
 
@@ -2267,38 +2271,530 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   まず，$X_1$がBanach空間であることを示す．$X$が$X_1, X_2$の代数的直和であることから，$X_1$は$X$の線形部分空間である．そのため，$X_1$が閉空間であになることを示せば，定理\ref{dfn:完備}より，$X_1$がBanach空間であることを示せる．よって，$X_1$の任意の点列$(x_n) \subset X_1$に対し，極限$x^*$が$X_1$に属することを示せばよい．$x_n$は$X_1$に属することから$Px_n = x_n$になる．そのうえで，$P$が連続であることから，$Px_n = x_n$の極限は$Px^* = x^*$となる．よって，$Px^*=x^* \in X_1$から，$X_1$は閉集合となるため，Banach空間となる．
 
   次に，$X_2$がBanach空間であることを示す．そのために，まず，$I-P$が連続になることを示す．$P$が連続であることから，$x_n \rightarrow x^*$となる任意の$x_n$に対して，$Px_n \rightarrow Px^*$となることに注意すると
-  \begin{equation}
+  \begin{equation*}
     (I-P)x_n = x_n - Px_n \rightarrow x^* - P x^* = (I-P)x^*
-  \end{equation}
-  となるため，$I-P$も連続となる．あとは，PとX_1のときと同様の議論をすればよい．すると，$(I-P)x^*=x^* \in X_2$から，$X_2$は閉集合となるため，Banach空間となる．
+  \end{equation*}
+  となるため，$I-P$も連続となる．あとは，$P$と$X_1$のときと同様の議論をすればよい．すると，$(I-P)x^*=x^* \in X_2$から，$X_2$は閉集合となるため，Banach空間となる．
 
 
   「Pが連続 $\Leftarrow X_1, X_2$ がともにBanach空間の証明」
 
   Banach空間$X$の$x_n \rightarrow x^*$となる任意の点列$(x_n)$に対し，$Px_n \rightarrow y$としたとき，$y=Px^*$となることで示せば良い．上記の点列を用いて$X_1$の点列$(Px_n)$を作成すると，$X_1$がBanach空間であることから，閉集合であるため点列$(Px_n)$の極限$y$は$X_1$にも属する．よって，
-  \begin{equation}
+  \begin{equation*}
     y=Py
-  \end{equation}
+  \end{equation*}
   となる．
 
   さらに，同様に$X_2$の点列$((I-P)x_n)$を作成すると，その極限は
-  \begin{equation}
+  \begin{equation*}
     (I-P)x_n=x_n-Px_n \rightarrow x^*-y
-  \end{equation}
+  \end{equation*}
   となり，$X_2$もBanach空間であることがら，閉集合であるため点列$((I_P)x_n)$の極限$x^*-y$は$X^2$にも属する．そのうえで，Banach空間$X$が$X_1$と$X_2$の代数的直和であることから，$X_1 \cup X_2={0}$に注意すると$P(x^*-y)=0$となる．よって，
-  \begin{equation}
+  \begin{equation*}
     0=P(x^*-y)=Px^*-Py=Px^*-y
-  \end{equation}
+  \end{equation*}
   となるため，
-  \begin{equation}
+  \begin{equation*}
     Px^*=y
-  \end{equation}
+  \end{equation*}
   となる．
 \end{proof}
 
 \begin{dfn}[位相的直和]
   Banach空間$X$が$X_1$と$X_2$の代数的直和であるとする．その上，$X_1$と$X_2$が共 にBanach空間であるとき，Banach空間$X$が$X_1$と$X_2$の位相的直和であるという．
 \end{dfn}
+
+\subsection{射影を用いたBanach空間上のガウスの消去法}
+
+\begin{thm}
+  \label{thm:6.2.1-L全単射}
+  $X,X_1,X_2,L,g,P,\phi_1,\phi_2,T,B,C,D$を以下で定義し，用いる．
+
+  Banach空間$X$とし，有界な線形作用素$L \in \mathcal{B}(X)$と$g\in X$に対して問題
+  \begin{equation*}
+    \text{Find}\ \phi \in X \ \text{s.t.}\ L\phi = g
+  \end{equation*}
+  の解を求める方法を考える．
+
+  Banach空間$X$が$X_1$と$X_2$の代数的直和であるとし，$x \in X$について
+  \begin{equation*}
+    x=x_1+x_2, x_1 \in X_1, x_2 \in X_2
+  \end{equation*}
+  とし，$P$を$\mathcal{D}(P)=X$
+  \begin{equation*}
+    Px=x_1, (I-P)x=x_2
+  \end{equation*}
+  を満たす射影をする．
+
+  上記の式より，
+  \begin{equation*}
+    L \phi = g \Leftrightarrow
+    \left\{ \,
+    \begin{aligned}
+      PL\phi &= Pg \\
+      (I-P)L\phi &= (I-P)g
+    \end{aligned}
+    \right.
+  \end{equation*}
+
+  さらに，解$\phi$も射影を使って分解する．
+  \begin{equation*}
+    \phi = \phi_1 + \phi_2,\ \phi_1:=P\phi,\ \phi_2:=(I-P)\phi
+  \end{equation*}
+
+  この分解した解を利用すると
+  \begin{equation*}
+    \left\{ \,
+    \begin{aligned}
+      PL(\phi_1+\phi_2) &= Pg \\
+      (I-P)L\phi &= (I-P)g
+    \end{aligned}
+    \right.
+  \end{equation*}
+  となる．ここで，それぞれの線形作用素を
+  \begin{equation*}
+    \begin{array}{ll}
+      T:=PL \mid_{X_1} : X_1 \rightarrow X_1, & B:=PL \mid_{X_2} : X_2 \rightarrow X_1 \\
+      C:=(I-P)L \mid_{X_1} : X_1 \rightarrow X_2, & D:=(I-P)L \mid_{X_2} : X_2 \rightarrow X_2
+   \end{array}
+  \end{equation*}
+  と定義すると，次のように変形できる．
+  \begin{equation*}
+    \left\{ \,
+    \begin{aligned}
+      T\phi_1+B\phi_2 &= Pg \\
+      C\phi_1+D\phi_2 &= (I-P)g
+    \end{aligned}
+    \right.
+  \end{equation*}
+
+  ここで，
+  \begin{equation*}
+    \left(
+    \begin{array}{cc}
+      T & B \\
+      C & D
+    \end{array}
+    \right)
+    :X_1 \times X_2 \rightarrow  X_1 \times X_2
+  \end{equation*}
+  を定義すると
+  \begin{equation*}
+    \left(
+    \begin{array}{cc}
+      T & B \\
+      C & D
+    \end{array}
+    \right)
+    \begin{pmatrix}
+      \phi_1 \\
+      \phi_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      Pg \\
+      (I-P)g
+    \end{pmatrix}
+  \end{equation*}
+  と変形できる．
+
+  線形作用素$T$を全単射であると仮定する，作用素$S$を
+  \begin{equation*}
+    S:=D-CT^{-1}B : X_2 \rightarrow X_2
+  \end{equation*}
+  とする．もし，$S$が全単射ならば，
+  \begin{equation*}
+    \begin{pmatrix}
+      \phi_1 \\
+      \phi_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      T^{-1}+T^{-1}BS^{-1}CT^{-1} & -T^{-1}BS^{-1} \\
+      -S^{-1}CT^{-1} & S^{-1}
+    \end{pmatrix}
+    \begin{pmatrix}
+      Pg \\
+      (I-P)g
+    \end{pmatrix}
+  \end{equation*}
+  となり，有界線形作用素$L$は全単射である．
+\end{thm}
+
+\begin{proof}
+  方程式
+  \begin{equation*}
+    \begin{pmatrix}
+      T & B \\
+      C & D
+    \end{pmatrix}
+    \begin{pmatrix}
+      \phi_1 \\
+      \phi_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      Pg \\
+      (I-P)g
+    \end{pmatrix}
+  \end{equation*}
+  に対して，$T$が全単射であることから左から
+  \begin{equation*}
+    \begin{pmatrix}
+      T^{-1} & 0 \\
+      0 & I_{X_2}
+    \end{pmatrix}
+  \end{equation*}
+  を掛けると
+  \begin{equation*}
+    \begin{pmatrix}
+      I_{X_1} & T^{-1}B \\
+      C & D
+    \end{pmatrix}
+    \begin{pmatrix}
+      \phi_1 \\
+      \phi_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      T^{-1} & 0 \\
+      0 & I_{X_2}
+    \end{pmatrix}
+    \begin{pmatrix}
+      Pg \\
+      (I-P)g
+    \end{pmatrix}
+  \end{equation*}
+  となる．次に，左から
+  \begin{equation*}
+    \begin{pmatrix}
+      I_{X_1} & 0 \\
+      -C & I_{X_2}
+    \end{pmatrix}
+  \end{equation*}
+  を掛けると
+  \begin{equation}
+    \label{eq:6-4}
+    \begin{split}
+      \begin{pmatrix}
+        I_{X_1} & T^{-1}B \\
+        0 & S
+      \end{pmatrix}
+      \begin{pmatrix}
+        \phi_1 \\
+        \phi_2
+      \end{pmatrix}
+      &=
+      \begin{pmatrix}
+        I_{X_1} & 0 \\
+        -C & I_{X_2}
+      \end{pmatrix}
+      \begin{pmatrix}
+        T^{-1} & 0 \\
+        0 & I_{X_2}
+      \end{pmatrix}
+      \begin{pmatrix}
+        Pg \\
+        (I-P)g
+      \end{pmatrix}\\
+      &=
+      \begin{pmatrix}
+        T^{-1} & 0 \\
+        -CT^{-1} & I_{X_2}
+      \end{pmatrix}
+      \begin{pmatrix}
+        Pg \\
+        (I-P)g
+      \end{pmatrix}
+    \end{split}
+  \end{equation}
+  となる．次に，$S$が全単射であることから左から
+  \begin{equation*}
+    \begin{pmatrix}
+      I_{X_1} & 0 \\
+      0 & S^{-1}
+    \end{pmatrix}
+  \end{equation*}
+  を掛けると
+  \begin{equation*}
+    \begin{split}
+      \begin{pmatrix}
+        I_{X_1} & T^{-1}B \\
+        0 & S
+      \end{pmatrix}
+      \begin{pmatrix}
+        \phi_1 \\
+        \phi_2
+      \end{pmatrix}
+      &=
+      \begin{pmatrix}
+        T^{-1} & 0 \\
+        -S^{-1}CT^{-1} & S^{-1}
+      \end{pmatrix}
+      \begin{pmatrix}
+        Pg \\
+        (I-P)g
+      \end{pmatrix}
+    \end{split}
+  \end{equation*}
+  となる．最後に，
+  \begin{equation*}
+    \begin{pmatrix}
+      I_{X_1} & -T^{-1}B \\
+      0 & I_{X_2}
+    \end{pmatrix}
+  \end{equation*}
+  を左から掛けると
+  \begin{equation*}
+    \begin{split}
+      \begin{pmatrix}
+        \phi_1 \\
+        \phi_2
+      \end{pmatrix}
+      &=
+      \begin{pmatrix}
+        I_{X_1} & -T^{-1}B \\
+        0 & I_{X_2}
+      \end{pmatrix}
+      \begin{pmatrix}
+        T^{-1} & 0 \\
+        -S^{-1}CT^{-1} & S^{-1}
+      \end{pmatrix}
+      \begin{pmatrix}
+        Pg \\
+        (I-P)g
+      \end{pmatrix}\\
+      &=
+      \begin{pmatrix}
+        T^{-1}+T^{-1}BS^{-1}CT^{-1} & -T^{-1}BS^{-1} \\
+        -S^{-1}CT^{-1} & S^{-1}
+      \end{pmatrix}
+      \begin{pmatrix}
+        Pg \\
+        (I-P)g
+      \end{pmatrix}
+    \end{split}
+  \end{equation*}
+  が得られる．これは，
+  \begin{equation*}
+    \begin{pmatrix}
+      T^{-1}+T^{-1}BS^{-1}CT^{-1} & -T^{-1}BS^{-1} \\
+      -S^{-1}CT^{-1} & S^{-1}
+    \end{pmatrix}
+    \begin{pmatrix}
+      T & B \\
+      C & D
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      I_{X_1} & 0 \\
+      0 & I_{X_2}
+    \end{pmatrix}
+  \end{equation*}
+  を意味する．逆に
+  \begin{equation*}
+    \begin{split}
+      &\begin{pmatrix}
+        T & B \\
+        C & D
+      \end{pmatrix}
+      \begin{pmatrix}
+        T^{-1}+T^{-1}BS^{-1}CT^{-1} & -T^{-1}BS^{-1} \\
+        -S^{-1}CT^{-1} & S^{-1}
+      \end{pmatrix}
+      \\=&
+      \begin{pmatrix}
+        I_{X_1} & T^{-1}B + T^{-1}BS^{-1}CT^{-1}B - T^{-1}BS^{-1}D \\
+        0 & -S^{-1}CT^{-1}B+S^{-1}D
+      \end{pmatrix}
+      \\=&
+      \begin{pmatrix}
+        I_{X_1} & T^{-1}B - T^{-1}BS^{-1}(D-CT^{-1}B) \\
+        0 & -S^{-1}(D-CT^{-1}B)
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        I_{X_1} & 0 \\
+        0 & I_{X_2}
+      \end{pmatrix}
+    \end{split}
+  \end{equation*}
+  となるため，定義\ref{dfn:逆作用素}と定理\ref{thm:単射と逆作用素の関係}から
+  \begin{equation*}
+    \begin{pmatrix}
+      T & B \\
+      C & D
+    \end{pmatrix}
+  \end{equation*}
+  は単射である．また，任意の$g_1 \in X_1$と$g_2 \in X_2$に対して，
+  \begin{equation*}
+    \begin{pmatrix}
+      T & B \\
+      C & D
+    \end{pmatrix}
+    \begin{pmatrix}
+      \phi_1 \\
+      \phi_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      g_1 \\
+      g_2
+    \end{pmatrix}
+  \end{equation*}
+  は
+  \begin{equation*}
+    \begin{split}
+      \begin{pmatrix}
+        \phi_1 \\
+        \phi_2
+      \end{pmatrix}
+      =&
+      \begin{pmatrix}
+        I_{X_1} & -T^{-1}B \\
+        0 & I_{X_2}
+      \end{pmatrix}
+      \begin{pmatrix}
+        T^{-1} & 0 \\
+        -S^{-1}CT^{-1} & S^{-1}
+      \end{pmatrix}
+      \begin{pmatrix}
+        Pg \\
+        (I-P)g
+      \end{pmatrix}
+      \\=&
+      \begin{pmatrix}
+        T^{-1}+T^{-1}BS^{-1}CT^{-1} & -T^{-1}BS^{-1} \\
+        -S^{-1}CT^{-1} & S^{-1}
+      \end{pmatrix}
+      \begin{pmatrix}
+        g_1 \\
+        g_2
+      \end{pmatrix}
+    \end{split}
+  \end{equation*}
+  となる解
+  \begin{equation*}
+    \begin{pmatrix}
+      \phi_1 \\
+      \phi_2
+    \end{pmatrix}
+    \in X_1 \times X_2
+  \end{equation*}
+  を持つため，
+  \begin{equation*}
+    \begin{pmatrix}
+      T & B \\
+      C & D
+    \end{pmatrix}
+    : X_1 \times X_2 \rightarrow X_1 \times X_2
+  \end{equation*}
+  は全射でもある．
+
+  続いて，$L$が単射であることを示す．定理\ref{dfn:単射}から$L\phi =0$において，解が$\phi=0$だけであることを示せば良い．$X$が$X_1$と$X_2$の代数的直和であることから，解$\phi$は$P\phi$と$(I-P)\phi$に一意に分解できる．その上，
+  \begin{equation*}
+    \begin{pmatrix}
+      T & B \\
+      C & D
+    \end{pmatrix}
+    \begin{pmatrix}
+      P\phi\\
+      (I-P)\phi
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      0 \\
+      0
+    \end{pmatrix}
+  \end{equation*}
+  となる．ここで，
+  \begin{equation*}
+    \begin{pmatrix}
+      T & B \\
+      C & D
+    \end{pmatrix}
+  \end{equation*}
+  が全単射であることから，解は$P\phi = 0, (I-P)\phi=0$のみである．よって，$L \phi = 0$において，解は$\phi=0$のみである．
+
+  最後に，$L$が全射であることを示す．任意の$g \in X$に対して$L \phi = g$を満たす解$\phi \in X$が存在すれば，定義\ref{dfn:全射}から$L$が全射であることがいえる．$X$が$X_1$と$X_2$の代数的直和であることから，解$\phi$は$P\phi$と$(I-P)\phi$に一意に分解できる．その上，
+  \begin{equation*}
+    \begin{pmatrix}
+      T & B \\
+      C & D
+    \end{pmatrix}
+    \begin{pmatrix}
+      P\phi \\
+      (I-P)\phi
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      Pg \\
+      (I-P)g
+    \end{pmatrix}
+  \end{equation*}
+  となる．ここで，
+  \begin{equation*}
+    \begin{pmatrix}
+      T & B \\
+      C & D
+    \end{pmatrix}
+  \end{equation*}
+  が全単射であることから，解$(P\phi,\ (I-P)\phi)\in X_1 \times X_2$は常に存在する．よって，$\phi = P \phi + (I-P)\phi \in X$であるため，任意の$g \in X$に対して解$\phi \in X$は存在する．
+\end{proof}
+
+\begin{thm}
+  $X,X_1,X_2,L,g,P,\phi_1,\phi_2,T,B,C,D$はすべて本節で定義したものとする．線形作用素$T$を全単射であると仮定する．そのとき，
+  \begin{equation*}
+    Sが全単射 \Leftrightarrow Lが全単射
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  「$Sが全単射 \Rightarrow Lが全単射$」定理\ref{thm:6.2.1-L全単射}でいえる．
+
+  「$Sが全単射 \Leftarrow Lが全単射$」を示す．$L$が全単射であることから，$L\phi=0$を満たす解は$\phi = 0$のみである．また，$X$が$X_1$と$X_2$の代数的直和であることから，解$\phi=0$は$P\phi=0$と$(I-P)\phi$に一意に分解できる．その上，$T$が全単射であることを利用すると式(\ref{eq:6-4})が得られるため，以下のようになる：
+  \begin{equation*}
+    \begin{split}
+      L\phi=0 &\Leftrightarrow
+      \begin{pmatrix}
+        T & B \\
+        C & D
+      \end{pmatrix}
+      \begin{pmatrix}
+        P \phi \\
+        (I-P) \phi
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        0 \\
+        0
+      \end{pmatrix}
+      \\&\Leftrightarrow
+      \begin{pmatrix}
+        I_{X_1} & T^{-1}B \\
+        0 & S
+      \end{pmatrix}
+      \begin{pmatrix}
+        P \phi \\
+        (I-P) \phi
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        0 \\
+        0
+      \end{pmatrix}
+    \end{split}
+  \end{equation*}
+  上記の方程式を満たす解が，$P\phi=0$と$(I-P)\phi=0$のみのため，
+  \begin{equation*}
+    \begin{pmatrix}
+      I_{X_1} & T^{-1}B \\
+      0 & S
+    \end{pmatrix}
+  \end{equation*}
+  は単射である．ここで，$S$が単射でないと仮定して，矛盾を示す．
+\end{proof}
+
 
 % 5.1
 \section{提案手法}
@@ -2717,7 +3213,6 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
   \end{equation}
   を得る．
 
-  ここで，
 \end{proof}
 
 \subsection*{$I-S$}
@@ -3047,327 +3542,6 @@ $N$はサイズ数であるため，上式は明らかに負である．よっ�
   \bibitem{lit:name} 著者名, ``題名'',\linebreak \verb|http://www.kisarazu.ac.jp/|
 \end{thebibliography}
 
-\subsection{1st}
-
-radii-polynomal approachの$Y_0$の評価式に，無限次元ガウスの消去法を用いる．
-
-$X,Y$をBanach空間，$\mathcal{L}(X,Y)$を$X$から$Y$への有界線形作用素，$A^\dagger \in \mathcal{L}(X,Y),\ A \in \mathcal{L}(Y,X)$を考え，作用素$F:X \rightarrow Y$がC$^1$-Fr\'{e}chet微分可能とする．ここで，$\tilde{x}\in X$に対して，正定数$Y_0$が存在して，次の式を考える．
-\begin{equation}
-  \left\| AF(\bar{x}) \right\|_X \leq Y_0
-  \label{eq:y0}
-\end{equation}
-
-$A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
-\begin{equation}
-  \left\| AF(\bar{x}) \right\|_X = \left\| DF^{-1}(\bar{x}) F(\bar{x}) \right\| \leq Y_0
-  \label{eq:y1}
-\end{equation}
-
-となる．$\phi:=DF(\bar{x})^{-1} F(\bar{x})$とし，これを変形する．$\Pi_N$を射影演算子とすると，$DF(\bar{x}) \phi = F(\bar{x})$  より，
-\begin{equation}
-    \begin{pmatrix}
-      \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
-      (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
-    \end{pmatrix}
-    \begin{pmatrix}
-      \Pi_N \phi \\
-      (I-\Pi_N) \phi
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-      \Pi_N F(\bar{x}) \\
-      (I - \Pi_N) F(\bar{x})
-    \end{pmatrix}
-\end{equation}
-
-となり，両辺に$A$をかけて
-\begin{equation}
-  A
-  \begin{pmatrix}
-    \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
-    (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
-  \end{pmatrix}
-  \begin{pmatrix}
-    \Pi_N \phi \\
-    (I-\Pi_N) \phi
-  \end{pmatrix}
-  =A
-  \begin{pmatrix}
-    \Pi_N F(\bar{x}) \\
-    (I - \Pi_N) F(\bar{x})
-  \end{pmatrix}
-  \label{eq:y0-2}
-\end{equation}
-
-となる．ここで，線形作用素$T,B,C,E$それぞれに対し，
-\begin{equation}
-  \begin{split}
-    T:= \Pi_N ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_1,\quad &
-    B:= \Pi_N ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_1, \\
-    C:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_2,\quad &
-    E:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_2
-  \end{split}
-\end{equation}
-
-と定義すると，式(\ref{eq:y0-2})は以下のように変形できる．
-
-\begin{equation}
-  \begin{pmatrix}
-    T & B \\
-    C & E
-  \end{pmatrix}
-  \begin{pmatrix}
-    \Pi_N \phi \\
-    (I -\Pi_N) \phi
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-    \Pi_N A F(\bar{x}) \\
-    (I - \Pi_N) A F(\bar{x})
-  \end{pmatrix}
-\end{equation}
-
-定理\ref{thm:}より，線形作用素$S$を
-
-\begin{equation}
-  S := E-CT^{-1}B:X_2\rightarrow X_2
-\end{equation}
-
-とする．もし，$S$が全単射ならば，
-\begin{equation*}
-  \begin{pmatrix}
-    \Pi_N \phi \\
-    (I -\Pi_N) \phi
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-    T^{-1}+T^{-1}BS^{-1}CT^{-1} & -T^{-1}BS^{-1} \\
-    -S^{-1}CT^{-1} S^{-1} & S^{-1}
-  \end{pmatrix}
-  \begin{pmatrix}
-    \Pi_N A F(\bar{x}) \\
-    (I - \Pi_N) A F(\bar{x})
-  \end{pmatrix}
-\end{equation*}
-
-となり，有界線形作用素$ADF(\bar{x})$は全単射となる．
-
-% ===== 5.2 =====
-\subsection{_}
-ここで，$S$について計算する．線形作用素の定義より，
-\begin{equation}
-  \begin{split}
-    S &= E-CT^{-1}B \\
-    &= \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right) - (\left( I-\Pi_N \right) ADF( \bar{x} )) (\Pi_N ADF(\bar{x}))^{-1} ((I-\Pi_N)ADF(\bar{x}))
-  \end{split}
-  \label{eq:s-def}
-\end{equation}
-
-\subsubsection*{$ADF(\bar{x})$を計算する．}
-式(\ref{eq:s-def})を分割して計算する．
-
-以下の定義より，計算をする．
-\begin{align}
-  \bar{x} &= \left( \omega, a_{-N+1}, \cdots, a_{N-1}, 0, \cdots \right) \\
-  (D_xf)_{ij} &= \partial_{x_i} f_j \\
-  \begin{split}
-    F(\bar{x}) &= \begin{bmatrix}
-      \eta(a) \\
-      (f_k(a))_k\in \mathbb{Z}
-    \end{bmatrix}, \\
-    \eta(a) &= \sum_{k\in\mathbb{Z}} a_k - \eta_0 \\
-    f_k(a) &= -k^2\omega^2a_k - \mu i k \omega a_k + \frac{\mu}{3}(ik\omega)(a*a*a)_k + a_k\quad (\text{van der Pol})
-  \end{split}
-\end{align}
-
-これらより，
-\begin{equation*}
-  \begin{split}
-    DF(\bar{x}) &=
-    \begin{bmatrix}
-       & \multicolumn{1}{c|}{0} & 1  & \cdots & 1  & \\ \cline{2-5}
-       & \multicolumn{1}{c|}{\vdots} & & \vdots & &  \\
-       & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & \\
-       & \multicolumn{1}{c|}{\vdots} & & \vdots & &
-    \end{bmatrix}\\
-    \partial_\omega f_k &= (-2k^2\omega-\mu ik)a_k + \frac{\mu ik}{3} (a*a*a)_k \\
-    \partial_{a_j} f_k &= (k^2\omega^2-\mu ik\omega +1)\delta_{kj} + \mu ik \omega (a*a)_{k-j}
-  \end{split}
-\end{equation*}
-
-となる．なお，$\delta_{kj}$はクロネッカーのデルタである．
-
-これより，
-
-\begin{equation}
-  \begin{split}
-    &ADF(\bar{x}) \\
-    &= \begin{bmatrix}
-      A_N & 0  & \cdots & \cdots  \\
-      0 & \lambda_{N+1}^{-1} & & \mathbf{0} \\
-      \vdots & & \lambda_{N+2}^{-1} & \\
-      \vdots & \mathbf{0} & & \ddots
-    \end{bmatrix}
-    \begin{bmatrix}
-      0 & 1  & \cdots & \cdots \\
-      \vdots & & \vdots &\\
-      \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
-      \vdots & & \vdots &
-   \end{bmatrix}\\
-    &= \begin{bmatrix}
-      & \multicolumn{1}{c|}{A_N} & 0 & \cdots & \cdots  & \\ \cline{2-5}
-      & \multicolumn{1}{c|}{0} & \lambda_{N+1}^{-1} & & \mathbf{0} & \\
-      & \multicolumn{1}{c|}{\vdots} & & \lambda_{N+2}^{-1} & & \\
-      & \multicolumn{1}{c|}{\vdots} & \mathbf{0} & & \ddots &
-    \end{bmatrix}
-    \begin{bmatrix}
-      & \multicolumn{1}{c|}{DF^{(N)}(\bar{x})^{-1}} & 1  & \cdots & \cdots &\\ \cline{2-5}
-      & \multicolumn{1}{c|}{\vdots} & & \vdots & &\\
-      & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &\\
-      & \multicolumn{1}{c|}{\vdots} & & \vdots & &
-    \end{bmatrix}\\
-    &= \begin{bmatrix}
-      & \multicolumn{1}{c|}{T} & \mathbf{0} &  \\ \cline{2-3}
-      & \multicolumn{1}{c|}{\mathbf{0}} & \Lambda &
-    \end{bmatrix}
-    \begin{bmatrix}
-      & \multicolumn{1}{c|}{T} & M_{01} &  \\ \cline{2-3}
-      & \multicolumn{1}{c|}{M_{10}} & M_{11} &
-    \end{bmatrix}\\
-    &= \begin{bmatrix}
-      T^{-1}T & T^{-1}M_{01} \\
-      \Lambda M_{10} & \Lambda M_{11}
-    \end{bmatrix}
-  \end{split}
-  \label{eq:ADF-0}
-\end{equation}
-
-式(\ref{eq:ADF-0})について，行列ブロックに分けて計算する．はじめに，
-\begin{equation*}
-  \begin{split}
-    T^{-1}
-    =\begin{bmatrix}
-      T^{-1}_{0\ 0} & \cdots & T^{-1}_{0\ 2N} \\
-      \vdots & \ddots & \vdots \\
-      T^{-1}_{2N\ 0} & \cdots & T^{-1}_{2N\ 2N} \\
-    \end{bmatrix}
-  \end{split}
-\end{equation*}
-とおく．
-
-\begin{equation}
-  T^{-1}T = I \mid_{2N}
-\end{equation}
-
-% T^{-1}M_{01}q
-\begin{equation}
-  \begin{split}
-    &T^{-1}M_{01} \\
-    &= T^{-1}
-    \begin{bmatrix}
-      1 & \cdots & \cdots \\
-      \partial_{a_N} f_{-N+1} & \partial_{a_{N+1}} f_{-N+1}  & \cdots \\
-      \partial_{a_N} f_{-N} & \partial_{a_{N+1}} f_{-N}  & \cdots \\
-      \vdots & \vdots & \vdots \\
-      \partial_{a_N} f_{N-1} & \partial_{a_{N+1}} f_{N-1}  & \cdots
-    \end{bmatrix}\\
-    &= \begin{bmatrix}
-      T^{-1}_{0\ 0} & \cdots & T^{-1}_{0\ 2N} \\
-      \vdots & \ddots & \vdots \\
-      T^{-1}_{2N\ 0} & \cdots & T^{-1}_{2N\ 2N} \\
-    \end{bmatrix}
-    \begin{bmatrix}
-      1 & \cdots & \cdots \\
-      \partial_{a_N} f_{-N+1} & \partial_{a_{N+1}} f_{-N+1}  & \cdots \\
-      \vdots & \vdots & \vdots \\
-      \partial_{a_N} f_{N-1} & \partial_{a_{N+1}} f_{N-1}  & \cdots
-    \end{bmatrix}\\
-    &= \begin{bmatrix}
-      T^{-1}_{0\ 0} & \cdots & T^{-1}_{0\ 2N} \\
-      \vdots & \ddots & \vdots \\
-      T^{-1}_{2N\ 0} & \cdots & T^{-1}_{2N\ 2N} \\
-    \end{bmatrix}
-    \begin{bmatrix}
-      1 & \cdots & \cdots  & \cdots\\
-      0 & \cdots & \cdots  & \cdots\\
-      \mu i (-N+1) \omega (a*a)_{-2N+2} & 0 & \cdots & \cdots\\
-      \mu i (-N+2) \omega (a*a)_{-2N+1} & \mu i (-N+2) \omega (a*a)_{-2N+2} & 0 & \cdots \\
-      \vdots & \ddots & \ddots & \ddots \\
-      \mu i (N-1) \omega (a*a)_{-1} & \mu i (N-1) \omega (a*a)_{-2}  & \cdots & \cdots
-    \end{bmatrix}\\
-    &=\cdots やっていく
-  \end{split}
-\end{equation}
-
-\begin{equation}
-  \tiny
-  \begin{split}
-    &\Lambda M_{10} \\
-    &= \begin{bmatrix}
-      \lambda^{-1}_N & & \mathbf{0} \\
-      & \lambda^{-1}_{N+1} & \\
-      \mathbf{0} &  & \ddots &
-    \end{bmatrix}
-    \begin{bmatrix}
-      \partial_{\omega} f_{N} & \partial_{a_{-N+1}} f_{N}  & \cdots \\
-      \partial_{\omega} f_{N+1} & \partial_{a_{-N+1}} f_{N+1}  & \cdots \\
-      \vdots & \vdots & \ddots \\
-    \end{bmatrix}\\
-    &=\begin{bmatrix}
-      \lambda^{-1}_{N}\partial_{\omega} f_{N} & \lambda^{-1}_{N}\partial_{a_{-N+1}} f_{N}  & \cdots \\
-      \lambda^{-1}_{N+1}\partial_{\omega} f_{N+1} & \lambda^{-1}_{N+1}\partial_{a_{-N+1}} f_{N+1}  & \cdots \\
-      \vdots & \vdots & \ddots \\
-    \end{bmatrix}\\
-    &=\begin{bmatrix}
-      \lambda^{-1}_{N} 3^{-1}\mu i N (a*a*a)_N & 0 & \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-2} & \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3} & \cdots & \lambda^{-1}_{N} \mu i N \omega (a*a)_{1} \\
-      \lambda^{-1}_{N+1} 3^{-1}\mu i (N+1) (a*a*a)_N & 0 & 0 & \lambda^{-1}_{N+1} \mu i (N+1) \omega (a*a)_{2N-2} & \cdots \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}\\
-      \vdots & \vdots & \vdots & \vdots & \cdots \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}\\
-      \lambda^{-1}_{3N-3} 3^{-1}\mu i (3N-3) (a*a*a)_N & 0 & 0 & 0 & \cdots \\
-      0 & 0 & 0 & 0 & \cdots \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}\\
-      \vdots & \vdots & \vdots & \vdots & \cdots & \lambda^{-1}_{N} \mu i N \omega (a*a)_{2N-3}
-    \end{bmatrix}
-  \end{split}
-\end{equation}
-
-\begin{equation}
-  \begin{split}
-    &\Lambda M_{11}\\
-    &=\begin{bmatrix}
-      \lambda^{-1}_N & & \mathbf{0} \\
-      & \lambda^{-1}_{N+1} &\\
-      \mathbf{0} &  & \ddots
-    \end{bmatrix}
-    \begin{bmatrix}
-      \partial_{a_{N}} f_{N} & \partial_{a_{N+1}} f_{N}  & \cdots \\
-      \partial_{a_{N}} f_{N+1} & \partial_{a_{N+1}} f_{N+1}  & \cdots \\
-      \vdots & \vdots & \ddots \\
-    \end{bmatrix}\\
-    &=\begin{bmatrix}
-      \lambda^{-1}_N \lambda_N & & \mathbf{0} & \\
-      \lambda^{-1}_{N+1} (\mu i (N+1) \omega) (a*a)_1 & \lambda^{-1}_{N+1} \lambda_{N+1} \\
-      \lambda^{-1}_{N+2} (\mu i (N+2) \omega) (a*a)_2 & \lambda^{-1}_{N+2} (\mu i (N+1) \omega) (a*a)_1 &\lambda^{-1}_{N+2} \lambda_{N+2} \\
-      \vdots & \vdots & \vdots & \ddots
-    \end{bmatrix}\\
-    &=\begin{bmatrix}
-      1 & & \mathbf{0} & \\
-      \lambda^{-1}_{N+1} (\mu i (N+1) \omega) (a*a)_1 & 1 \\
-      \lambda^{-1}_{N+2} (\mu i (N+2) \omega) (a*a)_2 & \lambda^{-1}_{N+2} (\mu i (N+1) \omega) (a*a)_1 & 1 \\
-      \vdots & \vdots & \vdots & \ddots
-    \end{bmatrix}
-  \end{split}
-\end{equation}
-
-\begin{comment} \begin{equation}
-  \begin{split}
-    a
-  \end{split}
-\end{equation}
-
-\mathcal{L}(X,Y)
-点列$(A_n)$
-\\
-&
-\end{comment}
 %% 定義 dfn
 %% 定理 thm
 %% 証明 proof
