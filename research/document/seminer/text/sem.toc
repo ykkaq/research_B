@@ -28,5 +28,5 @@
 \contentsline {subsection}{\numberline {5.1}射影}{46}{}%
 \contentsline {subsection}{\numberline {5.2}射影を用いたBanach空間上のガウスの消去法}{48}{}%
 \contentsline {section}{\numberline {6}提案手法}{52}{}%
-\contentsline {section}{\numberline {7}実験結果}{65}{}%
-\contentsline {section}{\numberline {8}おわりに}{65}{}%
+\contentsline {section}{\numberline {7}実験結果}{66}{}%
+\contentsline {section}{\numberline {8}おわりに}{66}{}%

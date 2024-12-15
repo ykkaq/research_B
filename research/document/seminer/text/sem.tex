@@ -2792,12 +2792,106 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
       0 & S
     \end{pmatrix}
   \end{equation*}
-  は単射である．ここで，$S$が単射でないと仮定して，矛盾を示す．
+  は単射である．ここで，$S$が単射でないと仮定して，矛盾を示す．$S$が単射でないことから，
+  \begin{equation*}
+    S\phi_2=0
+  \end{equation*}
+  を満たす$0$以外の解$\phi_2 \in X_2$が存在する．そのうえで，
+  \begin{equation*}
+    \phi_1 = -T^{-1}B\phi_2
+  \end{equation*}
+  とすると$(\phi_1, \phi_2)$は方程式
+  \begin{equation*}
+    \begin{pmatrix}
+      I_{X_2} & T^{-1}B \\
+      0 & S
+    \end{pmatrix}
+    \begin{pmatrix}
+      \phi_1 \\
+      \phi_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      0 \\
+      0
+    \end{pmatrix}
+  \end{equation*}
+  の解となる．しかし，$L\phi=0$を満たす解は$\phi=0$のみであり，
+  \begin{equation*}
+    \begin{pmatrix}
+      I_{X_2} & T^{-1}B \\
+      0 & S
+    \end{pmatrix}
+    \begin{pmatrix}
+      \phi_1 \\
+      \phi_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      0 \\
+      0
+    \end{pmatrix}
+  \end{equation*}
+  を満たす解は$0$のみであるため，矛盾する．よって，$S$は単射である．
+
+  続いて，$L$が全単射のとき，$S$が全単射であることを示す．$L$が全単射であるため，任意の$g \in X$に対して
+  \begin{equation*}
+    \phi = L^{-1}g
+  \end{equation*}
+  となる解$\phi \in X$が一意に存在する．よって，代数的直和による分解の一意性から$P\phi \in X_1$と$(I-P)\phi \in X_2$が一意に存在する．そのうえで，
+  \begin{equation*}
+    \begin{split}
+      L\phi=0 &\Leftrightarrow
+      \begin{pmatrix}
+        T & B \\
+        C & D
+      \end{pmatrix}
+      \begin{pmatrix}
+        P \phi \\
+        (I-P) \phi
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        Pg \\
+        (I-P)g
+      \end{pmatrix}
+      \\&\Leftrightarrow
+      \begin{pmatrix}
+        I_{X_1} & T^{-1}B \\
+        0 & S
+      \end{pmatrix}
+      \begin{pmatrix}
+        P \phi \\
+        (I-P) \phi
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        T^{-1} & 0 \\
+        -CT^{-1} & I_{X_2}
+      \end{pmatrix}
+      \begin{pmatrix}
+        Pg \\
+        (I-P)g
+      \end{pmatrix}
+    \end{split}
+  \end{equation*}
+  となる．さらに，第二式
+  \begin{equation*}
+    S(I-P)\phi = -CT^{-1}Pg + (I-P)g
+  \end{equation*}
+  となる．ここで，任意の$g \in X$に対して$L\phi=g$となる解$\phi \in X$が存在し，$\phi = P\phi + (I-P)\phi$のように一意に分解できることに注意すると，任意の$g_2 \in X_2$に対しても$L\phi=g_2$となる解$\phi \in X$が存在し，$\phi = P\phi + (I-P)\phi$となる$(I-P)\phi \in X_2$が存在する．そのうえで，{\color{red}$P g_2 = -z$}より，
+  \begin{equation*}
+    S(I-P)\phi = -CT^{-1}Pg_2 + (I-P)g_2=g_2
+  \end{equation*}
+  となる解$(I-P)\phi \in X_2$が存在するため，$S$は全射である．
 \end{proof}
 
 
 % 5.1
 \section{提案手法}
+
+radii-poly
+
 
 \subsection*{1st}
 
