@@ -1442,7 +1442,7 @@ $X,Y$をBanach空間とし，非線形方程式
 \end{equation*}
 を求める問題を考える．この問題に対して近似解の品質保証を行う，定理の1つを以下に説明する．
 
-\subsection{radii polynomal approach \cite{rpa}}
+\subsection{radii polynomal approach \cite{github}}
 \begin{thm}[Newton-Kantorovich type argument]
   有界線形作用素$A^\dagger \in \mathcal{L}(X,Y),\ A\in \mathcal{L}(Y,X)$を考え，作用素$F:X\rightarrow Y$が$C^1$-Fr\'{e}chet微分可能とする．また，$A$が単射で$AF:X\rightarrow X$とする．いま，$\bar{x} \in X$に対して%\overline{x}は，F(x) \approx 0となる近似解とする．
   \begin{align*}
@@ -1854,7 +1854,7 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
     \left(A^\dagger b\right)_0                & = \sum_{|k|<N} (b_1)_k                                                                                                             \\
     \left(\left(A^\dagger b\right)_1\right)_k & := \begin{cases}
                                                      \partial_\omega f_k b_0 + \sum_{|j|<N} \partial_{a_j} f_k (b_1)_j & ,\ |k|<N                                                    \\
-                                                     \lambda_k (b_1)_k                                                 & ,\ |k|\geq N,\ \lambda_k := -k^1\omega^2 - \mu ik\omega + 1 \\
+                                                     \lambda_k (b_1)_k                                                 & ,\ |k|\geq N,\ \lambda_k := -k^2\omega^2 - \mu ik\omega + 1 \\
                                                    \end{cases}
   \end{align*}
   と書ける．またこのとき，$(A^\dagger b)_0$と$(A^\dagger b)_1$はそれぞれ
@@ -1869,9 +1869,9 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
       A_{\omega,0}^{(N)} & A_{a,0}^{(N)} \\
       A_{\omega,1}^{(N)} & A_{a,1}^{(N)}
     \end{bmatrix}
-    \approx DF^{(N)} \left(\bar{x}^{-1}\right) \in \mathbb{C}^{2N\times 2N}
+    \approx DF^{(N)} \left(\bar{x}\right)^{-1} \in \mathbb{C}^{2N\times 2N}
   \end{equation*}
-  をヤコビ行列の近似逆行列とする．$A\in\mathbb{L}(Y,X)$として，$b=\left(b_0,b_1\right)\in X$に対して，$Ab=\left((Ab)_0,(Ab)_1\right)$と作用するように定義する．ここで，
+  をヤコビ行列の近似逆行列とする．$A\in\mathcal{L}(Y,X)$として，$b=\left(b_0,b_1\right)\in X$に対して，$Ab=\left((Ab)_0,(Ab)_1\right)$と作用するように定義する．ここで，
   \begin{align*}
     (Ab)_0 & = A_{\omega,0}^{(N)}b_0 + A_{a,0}^{(N)} b_1^{(N)} \\
     (Ab)_1 & = A_{\omega,1}^{(N)}b_0 + A_{a,1}^{(N)} b_1
@@ -1908,7 +1908,7 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
 \begin{description}
   \item[$Y_0$]
     \begin{equation*}
-      \left\| AF\left(\bar{x}\right)\right\|_x \leq Y_0
+      \left\| AF\left(\bar{x}\right)\right\|_X \leq Y_0
     \end{equation*}
   \item[$Z_0$]
     \begin{equation*}
@@ -2304,11 +2304,10 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   Banach空間$X$が$X_1$と$X_2$の代数的直和であるとする．その上，$X_1$と$X_2$が共 にBanach空間であるとき，Banach空間$X$が$X_1$と$X_2$の位相的直和であるという．
 \end{dfn}
 
-\subsection{射影を用いたBanach空間上のガウスの消去法}
+\subsection{射影を用いたBanach空間上の無限次元ガウスの消去法}
+\label{sct:無限次元ガウスの消去法}
 
-\begin{thm}
-  \label{thm:6.2.1-L全単射}
-  $X,X_1,X_2,L,g,P,\phi_1,\phi_2,T,B,C,D$を以下で定義し，用いる．
+  初めに，$X,X_1,X_2,L,g,P,\phi_1,\phi_2,T,B,C,D$を定義する．
 
   Banach空間$X$とし，有界な線形作用素$L \in \mathcal{B}(X)$と$g\in X$に対して問題
   \begin{equation*}
@@ -2397,6 +2396,10 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
     \end{pmatrix}
   \end{equation*}
   と変形できる．
+
+\begin{thm}
+  \label{thm:6.2.1-L全単射}
+  $X,X_1,X_2,L,g,P,\phi_1,\phi_2,T,B,C,D$は，本節で定義したものとする．
 
   線形作用素$T$を全単射であると仮定する，作用素$S$を
   \begin{equation*}
@@ -2887,30 +2890,31 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 \end{proof}
 
 
-% 5.1
+\newpage
 \section{提案手法}
 
-radii-poly
-
-
-\subsection*{1st}
-
-radii-polynomal approachの$Y_0$の評価式に，無限次元ガウスの消去法を用いる．
-
-$X,Y$をBanach空間，$\mathcal{L}(X,Y)$を$X$から$Y$への有界線形作用素，$A^\dagger \in \mathcal{L}(X,Y),\ A \in \mathcal{L}(Y,X)$を考え，作用素$F:X \rightarrow Y$がC$^1$-Fr\'{e}chet微分可能とする．ここで，$\tilde{x}\in X$に対して，正定数$Y_0$が存在して，次の式を考える．
+radii-polynomal approachにおける，$Y_0$の評価式
 \begin{equation}
-  \left\| AF(\bar{x}) \right\|_X \leq Y_0
   \label{eq:y0}
+  \|AF(\bar{x})\|_X \leq Y_0
 \end{equation}
+について，無限次元ガウスの消去法を用いる．
 
-$A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
+$A=DF(\bar{x})^{-1}$とおき，式(\ref{eq:y0})に代入すると，節\ref{sct:無限次元ガウスの消去法}より，
 \begin{equation}
-  \left\| AF(\bar{x}) \right\|_X = \left\| DF^{-1}(\bar{x}) F(\bar{x}) \right\| \leq Y_0
-  \label{eq:y1}
+  \left \| DF(\bar{x})^{-1} F(\bar{x}) \right \| \leq Y_0
 \end{equation}
-
-となる．$\phi:=DF(\bar{x})^{-1} F(\bar{x})$とし，これを変形する．$\Pi_N$を射影演算子とすると，$DF(\bar{x}) \phi = F(\bar{x})$  より，
+となる．ここで，
+\begin{equation*}
+  \phi:=DF(\bar{x})^{-1} F(\bar{x})
+\end{equation*}
+とおくと，
+\begin{equation*}
+  DF(\bar{x}) \phi = F(\bar{x})
+\end{equation*}
+と変形できる．$\Pi_N$を射影演算子とすると，
 \begin{equation}
+    \begin{split}
     \begin{pmatrix}
       \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
       (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
@@ -2919,44 +2923,43 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
       \Pi_N \phi \\
       (I-\Pi_N) \phi
     \end{pmatrix}
-    =
+    \\=
     \begin{pmatrix}
       \Pi_N F(\bar{x}) \\
       (I - \Pi_N) F(\bar{x})
     \end{pmatrix}
+  \end{split}
 \end{equation}
-
-となり，両辺に$A$をかけて
+となり，両辺に$A$を掛けて
 \begin{equation}
+  \label{eq:y0-1}
+  \begin{split}
   A
-  \begin{pmatrix}
-    \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
-    (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
-  \end{pmatrix}
-  \begin{pmatrix}
-    \Pi_N \phi \\
-    (I-\Pi_N) \phi
-  \end{pmatrix}
-  =A
-  \begin{pmatrix}
-    \Pi_N F(\bar{x}) \\
-    (I - \Pi_N) F(\bar{x})
-  \end{pmatrix}
-  \label{eq:y0-2}
+    \begin{pmatrix}
+      \Pi_N DF(\bar{x}) \Pi_N & \Pi_N DF(\bar{x}) (I-\Pi_N) \\
+      (I-\Pi_N) DF(\bar{x}) \Pi_N & (I-\Pi_N) DF(\bar{x}) (I-\Pi_N)
+    \end{pmatrix}
+    \begin{pmatrix}
+      \Pi_N \phi \\
+      (I-\Pi_N) \phi
+    \end{pmatrix}
+    \\=A
+    \begin{pmatrix}
+      \Pi_N F(\bar{x}) \\
+      (I - \Pi_N) F(\bar{x})
+    \end{pmatrix}
+  \end{split}
 \end{equation}
-
 となる．ここで，線形作用素$T,B,C,E$それぞれに対し，
-\begin{equation}
+\begin{equation*}
   \begin{split}
     T:= \Pi_N ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_1,\quad &
     B:= \Pi_N ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_1, \\
     C:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_2,\quad &
     E:= (I-\Pi_N) ADF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_2
   \end{split}
-\end{equation}
-
-と定義すると，式(\ref{eq:y0-2})は以下のように変形できる．
-
+\end{equation*}
+と定義でき，式(\ref{eq:y0-1})を次のように変形できる．
 \begin{equation}
   \begin{pmatrix}
     T & B \\
@@ -2972,6 +2975,17 @@ $A=DF(\bar{x})^{-1}$とすると，式(\ref{eq:y0})より，
     (I - \Pi_N) A F(\bar{x})
   \end{pmatrix}
 \end{equation}
+
+線形作用素$S$を，
+定理\ref{thm:6.2.1-L全単射}より，
+\hrulefill
+
+%===================
+%===================
+
+\subsection*{1st}
+
+
 
 定理\ref{thm:}より，線形作用素$S$を
 
