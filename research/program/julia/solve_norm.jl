@@ -1,21 +1,11 @@
 using LinearAlgebra, DifferentialEquations, FFTW
+include("FourierChebyshev.jl")
 
 # van der Pol方程式
 function vanderpol(du, u, μ, t)
   x, y = u
   du[1] = y
   du[2] = μ * (1 - x^2) * y - x
-end
-
-# 畳み込み
-function powerconvfourier(a::Vector{Complex{T}}, p) where {T}
-  M = Int((length(a) + 1) / 2)
-  N = (p - 1) * M
-  ta = [zeros(N, 1); a; zeros(N, 1)] # 1. Padding zeros: size(ta) = 2pM-1
-  tb = ifft(ifftshift(ta)) # 2. IFFT of ta
-  tbᵖ = tb .^ p # 3. tb*^tb
-  cᵖ = fftshift(fft(tbᵖ)) * (2.0 * p * M - 1)^(p - 1)
-  return cᵖ[N+1:end-N], cᵖ[p:end-(p-1)]# return (truncated, full) version
 end
 
 # F^(N)(x_n)
@@ -32,7 +22,6 @@ function F_fourier(x, μ, η₀)
   return [eta; f]
 end
 
-# DF^(N)(x_n)
 function DF_fourier(x, μ)
   N = Int((length(x)) / 2)
   ω = x[1]
@@ -93,10 +82,13 @@ find_period = abs.(f_tmp .- sol(a))
 (~, ind) = findmin(find_period[1, :])
 b = a + app_period / 2 + timestep * (ind - 1)
 #calc fouriercoeffs
-N = 50 # size of Fourier
+
+N = 100 # size of Fourier
+
 println("size of Fourier = $N")
 a_0 = odefouriercoeffs(sol, N, [a, b])
 
+include("IntervalFunctions.jl")
 # Initial value of Newton method
 η_0 = 0.0
 x = [2 * pi / (b - a); a_0]
@@ -117,6 +109,39 @@ while num_itr ≤ 100
   end
 end
 
+# A^(N)
+ix = map(interval, x)
+iω̄ = map(interval, real(x[1]))
+iā = map(interval, x[2:end])
+
+ix = x
+iω̄ = real(x[1])
+iā = x[2:end]
+
+function DF_fourier(x::Vector{Complex{Interval{T}}}, μ) where {T}
+  N = Int((length(x)) / 2)
+  ω = x[1]
+  a = x[2:end]
+  k = (-N+1):(N-1)
+
+  println("pcf Input: ", a, size(a), typeof(a))
+
+  (a³, ~) = powerconvfourier(a, 3)
+  DF = zeros(Complex{Interval{T}}, 2N, 2N)
+  DF[1, 2:end] .= 1
+  DF[2:end, 1] = (-2 * ω * k .^ 2 - μ * im * k) .* a + μ * im * k .* a³ / 3
+  (~, a2) = powerconvfourier(a, 2)
+  M = zeros(Complex{Interval{T}}, 2 * N - 1, 2 * N - 1)
+  for j = (-N+1):(N-1)
+    M[k.+N, j+N] = μ * im * k * ω .* a2[k.-j.+(2*N-1)]
+  end
+  L = diagm(-k .^ 2 * ω^2 - μ * im * k * ω .+ 1)
+  DF[2:end, 2:end] = L + M
+  return DF
+end
+
+iDF = DF_fourier(ix, μ);
+iA = inv(iDF) # map(Interval,inv(mid.(iDF)))
 
 ## =======================
 ## I get a and omega by x.
@@ -125,112 +150,63 @@ end
 println("x = $x")
 println("μ = $μ")
 println("N = $N")
+
+μ
 """
+
+omega = x[1]
+a = x[2:end]
+mu = μ
+
+extend_size = 3 * N + 1
+topleft_size = 2 * N
+
+# define DF[]
+zero_padding = zeros(ComplexF64, Int(extend_size))
+extend_x = vcat(omega, zero_padding, a, zero_padding)
+extend_DF = DF_fourier(extend_x, mu)
+
+println(size(x), size(extend_x), size(extend_DF))
+
+# define A
+DF = DF_fourier(x, mu)
+T_inv = inv(DF)
+## lambda 行列
+lambda_array = zeros(ComplexF64, size(extend_DF) .- size(T_inv))
+for k in 1:size(lambda_array)[1]
+  kk = k + N - 1
+  lambda_array[k, k] = 1 / (-1 * kk * omega^2 - mu * im * kk * omega + 1)
+end
+topleft_size = size(T_inv)[1]
 
 # norm_D
-function norm_D(x, mu, N)
-  ## get necessary value
-  omega = x[1]
-  a = x[2:end]
-  finite_size = 3 * N
-
-  ## Declare value
-  (~, a_pcf2) = powerconvfourier(a, 2)
-  D_finite = zeros(ComplexF64, finite_size, finite_size)
-  ret = zeros(ComplexF64, length(a_pcf2) + 2)
-
-  ## calc sup
-  ret[1] = 1
-  for k in N+3:N+3+length(a_pcf2)-1
-    top = mu * im * k * omega * a_pcf2[k-(N+2)]
-    lambda = -1 * k^2 * omega^2 - mu * im * k * omega + 1
-    ret[k-N] = top / lambda
-  end
-
-  """
-  ### diagonal condition
-  for j in N+1:finite_size+N
-    D_finite[j-N, j-N] = ComplexF64(1)
-  end
-
-  ### declare value
-  for j in N+1:N+length(a_pcf2)+2 ##memo: fix range
-    for k in N+1:N+length(a_pcf2)+2
-      #memo: tate++ -> k++, yoko++ -> j++
-      if 2 <= k - j && k - j <= length(a_pcf2) + 2   ## pcf condition
-        top = mu * im * k * omega * a_pcf2[k-j+1]
-        lambda = -1 * k^2 * omega^2 - mu * im * k * omega + 1
-        D_finite[j-N+1, k-N+1] = top / lambda
-      end
-    end
-  end
-  """
-
-  #println(size(ret))
-  return norm(ret, 1)
-end
-
+DF_bottomright = extend_DF[topleft_size+1:end, topleft_size+1:end]
+D = lambda_array * DF_bottomright
+D = 1.0I(size(D)[1]) - D
+normD = maximum(sum(abs.(D), dims=1))
 
 # norm_C
-function norm_C(x, mu, N)
-  ## get necessary value
-  omega = x[1]
-  a = x[2:end]
-
-  ## Declare value
-  (~, a_pcf2) = powerconvfourier(a, 2)
-  (~, a_pcf3) = powerconvfourier(a, 3)
-  C_finite = zeros(ComplexF64, N, length(a_pcf3) + 3)  # 二次元配列として初期化
-
-
-  ## calc sup
-  ### differentiation omega
-  for k in N+1:length(a_pcf3)+2
-    lambda = -1 * k^2 * omega^2 - mu * im * k * omega + 1
-    C_finite[1, k-N] = mu * im * k * omega * a_pcf3[k-2] / 3 / lambda
-  end
-
-  ### differentiation a_j
-  for j in 2:N
-    for k in N+1:N+length(a_pcf3)
-      #memo: tate++ -> k++, yoko++ -> j++
-
-      if 2 <= k - j && k - j < length(a_pcf2) + 2   ## pcf condition
-        ## declare value
-        top = mu * im * k * omega * a_pcf2[k-j-1]
-        lambda = -1 * k^2 * omega^2 - mu * im * k * omega + 1
-
-        C_finite[j, k-N] = top / lambda
-      end
-    end
-  end
-
-  #println(size(C_finite))
-  return norm(C_finite, 1)
-end
-
-# norm_T_inv
-function norm_T_inv(x, mu)
-  T_inv = DF_fourier(x, mu)
-  return norm(T_inv)
-end
-
-"""
-# old_norm_M_01
-function old_norm_M_01()
-
-end
-"""
+DF_bottomleft = extend_DF[topleft_size+1:end, 1:topleft_size]
+C = lambda_array * DF_bottomleft
+normC = maximum(sum(abs.(C), dims=1))
 
 # norm_B
-function norm_B(x, mu)
-  T_inv = DF_fourier(x, mu)
-  return norm(T_inv[1, 1], 1)
-end
+DF_topright = extend_DF[1:topleft_size, topleft_size+1:end]
+B = T_inv * DF_topright
+normB = maximum(sum(abs.(B), dims=1))
+normDF_topright = maximum(sum(abs.(DF_topright), dims=1))
+normT_inv = maximum(sum(abs.(T_inv), dims=1))
 
-println("norm_D = ", norm_D(x, μ, N))
-println("norm_C = ", norm_C(x, μ, N))
-println("norm_B = ", norm_B(x, μ))
-#println("norm_T_inv = ", norm_T_inv(x, μ))
-#println("old_norm_M_01 = ", old_norm_T_inv(x, μ,N))
+println("||D|| = ", normD)
+println("||C|| = ", normC)
+println("||B|| = ", normB)
+println("||T^-1|| = ", normT_inv)
+println("||M|| = ", normDF_topright)
+
+
+norm_result = normD + normC * normB
+norm_result2 = normD + normC * normT_inv * normDF_topright
+
+println("||D|| + ||C|| ||B|| = ", norm_result)
+println("||D|| + ||C|| ||T^-1|| ||M|| = ", norm_result2)
 

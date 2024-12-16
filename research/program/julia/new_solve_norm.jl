@@ -82,7 +82,9 @@ find_period = abs.(f_tmp .- sol(a))
 (~, ind) = findmin(find_period[1, :])
 b = a + app_period / 2 + timestep * (ind - 1)
 #calc fouriercoeffs
-N = 100 # size of Fourier
+
+N = 50 # size of Fourier
+
 println("size of Fourier = $N")
 a_0 = odefouriercoeffs(sol, N, [a, b])
 
@@ -115,7 +117,6 @@ iā = map(interval, x[2:end])
 ix = x
 iω̄ = real(x[1])
 iā = x[2:end]
-
 
 function DF_fourier(x::Vector{Complex{Interval{T}}}, μ) where {T}
   N = Int((length(x)) / 2)
@@ -157,54 +158,55 @@ omega = x[1]
 a = x[2:end]
 mu = μ
 
-# lambda 行列
-lambda_array = zeros(ComplexF64, 3 * N, 3 * N) # Change to ComplexF64
-lambda_array_size = size(lambda_array)[1]
-for k in 1:lambda_array_size
-  kk = k + N - 1
-  lambda_array[k, k] = 1 / (-1 * kk^2 * omega^2 - mu * im * kk * omega + 1)
-end
+extend_size = 3 * N + 1
+topleft_size = 2 * N
 
-# DF[]
-rate = 3
-
-DF = DF_fourier(x, mu)
-zero_padding = zeros(ComplexF64, Int(rate * N + 1))
+# define DF[]
+zero_padding = zeros(ComplexF64, Int(extend_size))
 extend_x = vcat(omega, zero_padding, a, zero_padding)
 extend_DF = DF_fourier(extend_x, mu)
 
+println(size(x), size(extend_x), size(extend_DF))
+
+# define A
+DF = DF_fourier(x, mu)
+T_inv = inv(DF)
+## lambda 行列
+lambda_array = zeros(ComplexF64, size(extend_DF) .- size(T_inv))
+for k in 1:size(lambda_array)[1]
+  kk = k + N - 1
+  lambda_array[k, k] = 1 / (-1 * kk * omega^2 - mu * im * kk * omega + 1)
+end
+topleft_size = size(T_inv)[1]
 
 # norm_D
-DF_bottomright = extend_DF[rate*N+1:end, rate*N+1:end]
+DF_bottomright = extend_DF[topleft_size+1:end, topleft_size+1:end]
 D = lambda_array * DF_bottomright
+D = 1.0I(size(D)[1]) - D
 normD = maximum(sum(abs.(D), dims=1))
 
 # norm_C
-DF_bottomleft = extend_DF[rate*N+1:end, 1:rate*N]
+DF_bottomleft = extend_DF[topleft_size+1:end, 1:topleft_size]
 C = lambda_array * DF_bottomleft
 normC = maximum(sum(abs.(C), dims=1))
 
 # norm_B
-DF_topright = extend_DF[1:rate*N, rate*N+1:end]
-B = iA * DF_topright
-normDF_topright = maximum(sum(abs.(DF_topright), dims=1))
-normTinv = maximum(sum(abs.(iA), dims=1))
+DF_topright = extend_DF[1:topleft_size, topleft_size+1:end]
+B = T_inv * DF_topright
 normB = maximum(sum(abs.(B), dims=1))
+normDF_topright = maximum(sum(abs.(DF_topright), dims=1))
+normT_inv = maximum(sum(abs.(T_inv), dims=1))
 
-#println(size(DF_topright), typeof(DF_topright))
-#println(size(iA), typeof(iA))
-#println(size(B))
-
-println("||D|| = ", normD)
+println("||I - D|| = ", normD)
 println("||C|| = ", normC)
-println("||T^-1|| = ", normTinv)
-println("||M|| = ", normDF_topright)
 println("||B|| = ", normB)
+println("||T^-1|| = ", normT_inv)
+println("||M|| = ", normDF_topright)
 
 
 norm_result = normD + normC * normB
-norm_result2 = normD + normC * normTinv * normDF_topright
+norm_result2 = normD + normC * normT_inv * normDF_topright
 
-println("||D|| + ||C|| ||B|| = ", norm_result)
+println("||I - D|| + ||C|| ||B|| = ", norm_result)
 println("||D|| + ||C|| ||T^-1|| ||M|| = ", norm_result2)
 
