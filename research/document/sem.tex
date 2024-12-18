@@ -1,24 +1,25 @@
 %ctrl+alt+b -> build, ctrl+alt+v => preview at new tab
 %ctrl+click -> highlight line
 
-\documentclass[11pt,a4paper,titlepage]{jsarticle}
-%\documentclass[11pt,a4paper]{jsreport}
+\documentclass[11pt,a4paper,titlepage]{jsreport}
+
 
 \usepackage{algorithmic}
 \usepackage{amsmath,amssymb,amsfonts,amsthm,,mathtools}
 \usepackage{ascmac}
+% \usepackage{amsmath}
 \usepackage{bm}
 \usepackage{caption}
 \usepackage{cite}
 \usepackage{comment}
-\usepackage[dvipdfmx]{color}
+% \usepackage[dvipdfmx]{color}
 \usepackage{colortbl}
-\usepackage{enumerate}
 \usepackage{float}
-\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx}
+% \usepackage[dvipdfmx]{graphicx}
 \usepackage{multicol}
 \usepackage{latexsym}
-\usepackage{listings}
+% \usepackage{listings}
 \usepackage[dvipdfmx]{pict2e}
 \usepackage[ipaex]{pxchfon}
 \usepackage{tabularx}
@@ -27,8 +28,33 @@
 \usepackage{ulem}
 \usepackage{url}
 \usepackage{wrapfig}
-\usepackage{xcolor}
+\usepackage[dvipsnames,dvipdfmx]{xcolor}
+\usepackage{mdframed}
+\usepackage{makecell}
+\usepackage{SekineLabMacro}
 %\usepackage{physics2}
+% \usepackage{amsmath,amssymb}% 数式入力に数学必携のパッケージ読み込み
+\usepackage{listings,jvlisting}
+% \usepackage{here}
+\lstset{
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\smallitshape},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0zw,
+  xleftmargin=3zw,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1zw,
+  lineskip=-0.5ex
+}
+%プログラムのソースコード関連はここまで
 
 %\setcounter{secnumdepth}{4}
 %\usepackage[margin=10truemm]{geometry}
@@ -51,10 +77,14 @@
 %============
 
 \title{無限次元ガウスの消去法を用いた\ radii polynomal approachの改良}
-\author{2131701 齋藤悠希}
-\date{}
+\author{齋藤悠希}
+\date{12月25日}
 
 \begin{document}
+
+\JYear{令和6年度}
+\Kinds{卒業論文}
+\StudentNumber{2131701}
 
 \pagestyle{empty}
 \maketitle
@@ -63,7 +93,7 @@
 \pagestyle{plain}
 
 
-\section{はじめに}
+\chapter{はじめに}
 今日の理工学では, 理想化された物理モデルを微分方程式の数学モデルで表し解くことによって,
 
 今日まで理工学においては，実在する現象から物理モデルをつくり，これから導かれる微分方程式で記述される数学モデルを解いてきた．
@@ -82,8 +112,8 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 本論文の構成は，以下のとおりである．まず，
 
 \newpage
-\section{準備}
-\subsection{バナッハ空間}
+\chapter{準備}
+\section{バナッハ空間}
 \begin{dfn}[線形空間の公理]
   \label{dfn:線形空間の公理}
   空でない集合$X$が，係数体$\mathbb{K}$上の線形空間であるとは，任意の$u+v \in X$とスカラー$\alpha \in \mathbb{K}$に対して，加法$u+v \in X$とスカラー乗法$\alpha u \in X$が定義されていて，任意の$u,v,w \in X$とスカラー$\alpha, \beta \in \mathbb{K}$に対して次のことが成り立つことである．
@@ -252,7 +282,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
   $X$をノルム空間とし，$M$を$X$の線形部分空間が閉集合であるとき，$M$を閉部分空間である．
 \end{dfn}
 
-\subsection{作用素}
+\section{作用素}
 \begin{dfn}[作用素]
   ある線形空間$X$から別の線形空間$Y$への作用素$A$とは，
   \begin{equation*}
@@ -809,7 +839,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 \end{dfn}
 
 %===================%
-\subsection{Banachの不動点定理}
+\section{Banachの不動点定理}
 \begin{dfn}[不動点]
   $X$を係数帯が$\mathbb{K}$のBanach空間とする．$M$は空でない閉集合で$M\subset X$を満たすとする．$A$を$M$から$M$への写像とする．$x\in M$が$A$の不動点であるとは，$x$が
   \begin{equation*}
@@ -934,7 +964,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 
 \end{proof}
 
-\subsection{簡易ニュートン写像}
+\section{簡易ニュートン写像}
 本節では，$X,Y$をBanach空間とし，写像$F:X\rightarrow Y$に対して
 \begin{equation*}
   F(x)=0 \in Y
@@ -952,8 +982,8 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 \end{align*}
 で定義する．このとき，もし，$B(\bar{x},r)$上で写像$T$が縮小写像となれば，Banachの不動点定理から$F(\tilde{x})=0$をみたす解$\tilde{x}\in B(\bar{x},r)$がただ一つ存在することになる．このように解の存在を仮定せずに近似解近傍での収束をいう定理をNewton-Kantorovichの定理という．
 
-\subsection{フーリエ級数}
-\subsubsection{フーリエ級数の導出}
+\section{フーリエ級数}
+\subsection{フーリエ級数の導出}
 ある関数$f(x)$が有限の閉空間$[a,b]$で定義されている場合に，次の性質をもつとき区分的に連続であるという．
 \begin{enumerate}
   \item $f(x)$は有限個の不連続点を除いて連続である．
@@ -1044,7 +1074,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 \end{dfn}
 があり，変換可能である．
 
-\subsubsection{フーリエ級数の性質}
+\subsection{フーリエ級数の性質}
 \begin{description}
   \item[対称性]
     \quad\\
@@ -1103,7 +1133,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
     することでシフト$d$だけ$x$方向に平行移動できる．以降，簡単のために特に混合がなければ，複素フーリエ級数も単にフーリエ級数と呼ぶ．
 \end{description}
 
-\subsubsection{フーリエ変換の数値計算}
+\subsection{フーリエ変換の数値計算}
 \begin{description}
   \item[与えられた関数のフーリエ級数を計算する]
     \quad\\
@@ -1161,8 +1191,8 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 \end{description}
 
 \begin{comment}
-\subsection{チェビシェフ級数}
-\subsubsection{チェビシェフ級数の導出}
+\section{チェビシェフ級数}
+\subsection{チェビシェフ級数の導出}
 \begin{dfn}[チェビシェフ級数]
   チェビシェフ級数とは，フーリエ・コサイン級数に対し変換$x=\cos \theta$を与えたものである．
   \begin{equation*}
@@ -1235,7 +1265,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
   という変数変換を使う．
 \end{dfn}
 
-\subsubsection{チェビシェフ級数の性質}
+\subsection{チェビシェフ級数の性質}
 \begin{description}
   \item [対称性]
         \quad \\
@@ -1272,7 +1302,7 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
 \end{comment}
 
 
-\subsection{離散フーリエ変換}
+\section{離散フーリエ変換}
 \begin{dfn}[離散フーリエ変換]
   $b=(b_0,b_1,\cdots,b_{2M-2}) \in \mathbb{C}^{2M-1}$に対して，$a=\mathcal{F}(b)\in \mathbb{C}^{2M-1}$を
   \begin{equation*}
@@ -1289,8 +1319,8 @@ radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き�
   とし，逆離散フーリエ変換（IDFT）と呼ぶ．
 \end{dfn}
 
-\subsection{畳み込みのFFTアルゴリズム}
-\subsubsection{畳み込み定理}
+\section{畳み込みのFFTアルゴリズム}
+\subsection{畳み込み定理}
 $u_1,u_2$：周期$L$の周期関数とする．
 \begin{align*}
   u_1(t) & = \sum_{k\in\mathbb{Z}} a_k^{(1)} \exp\left( ik\omega t \right) ,\ a^{(1)}= \left( a_k^{(1)} \right)_{k\in\mathbb{Z}} \\
@@ -1332,7 +1362,7 @@ $u_1,u_2$：周期$L$の周期関数とする．
 \end{description}
 
 
-\subsubsection{畳み込みのFFTアルゴリズム}
+\subsection{畳み込みのFFTアルゴリズム}
 $p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使って
 \begin{equation*}
   \left(a^{(1)} * a^{(2)} * \cdots * a^{(p)}\right)_k = \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)},\ |k| \leq p(M-1)
@@ -1437,14 +1467,14 @@ $p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使�
 %==================
 %==================
 \newpage
-\section{Newton Kantorovichの定理を用いた精度保証付き数値計算}
+\chapter{Newton Kantorovichの定理を用いた精度保証付き数値計算}
 $X,Y$をBanach空間とし，非線形方程式
 \begin{equation*}
   F(u)=0,\ u\in X
 \end{equation*}
 を求める問題を考える．この問題に対して近似解の品質保証を行う，定理の1つを以下に説明する．
 
-\subsection{radii polynomal approach \cite{github}}
+\section{radii polynomal approach \cite{github}}
 \begin{thm}[Newton-Kantorovich type argument]
   有界線形作用素$A^\dagger \in \mathcal{L}(X,Y),\ A\in \mathcal{L}(Y,X)$を考え，作用素$F:X\rightarrow Y$が$C^1$-Fr\'{e}chet微分可能とする．また，$A$が単射で$AF:X\rightarrow X$とする．いま，$\bar{x} \in X$に対して%\overline{x}は，F(x) \approx 0となる近似解とする．
   \begin{align*}
@@ -1501,7 +1531,7 @@ $X,Y$をBanach空間とし，非線形方程式
 したがって，Banachの不動点定理より，ただ1つの不動点$\tilde{x}$が$\overline{B(\bar{x},r_0)}$内に存在し，$A$の単射性により，この不動点は写像$F$の零点となる，$\mathrm{i.e.}，F(\tilde{x})=0$
 
 % 修正：先にDFを表記しろ．
-\subsection{Newton-Kantorovichの定理の特徴\cite{}}
+\section{Newton-Kantorovichの定理の特徴\cite{}}
 \begin{thm}[Newton-Kantorovichの定理の亜種]
   XとYをBanach空間とする．$F:X\rightarrow Y$を与えられた作用素とし，$\bar{x}\in X$を与えられているとする．$A\in \mathcal{L}(Y,X)$とする．$F$は$\bar{x}$でFr\'{e}chet微分可能とし，$DF(\bar{x})$と表記する．$DF(\bar{x})$は全射であるとする．$\eta,\delta$を不等式
   \begin{align*}
@@ -1599,9 +1629,9 @@ $X,Y$をBanach空間とし，非線形方程式
 %-----------------
 
 \newpage
-\section{既存のvan der Pol方程式の精度保証付き数値計算\cite{github}}
+\chapter{既存のvan der Pol方程式の精度保証付き数値計算\cite{github}}
 
-\subsection{van der Pol方程式}
+\section{van der Pol方程式}
 van der Pol方程式とは，ある発振現象をもつ電気回路の方程式であり，以下のように表す．
 \begin{equation*}
   \frac{d^2x}{dt^2} - \mu (1-x^2)\frac{dx}{dt}+x=0
@@ -1610,7 +1640,7 @@ van der Pol方程式とは，ある発振現象をもつ電気回路の方程式
 未知関数は$x(t)$で，$\mu >0$は非線形の減衰の強さを表すパラメータである．
 
 
-\subsection{フーリエ・スペクトル法}
+\section{フーリエ・スペクトル法}
 フーリエ・スペクトル法の計算に必要な参照軌道をまず得るために，van der Pol方程式の解を数値計算する．まず，van der Pol方程式を次の連立常微分方程式系にしてODEソルバーで数値を計算する．
 
 \begin{equation*}
@@ -1724,7 +1754,7 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
 \end{align*}
 
 
-\subsection{重み付き空間と作用素の決定}
+\section{重み付き空間と作用素の決定}
 \begin{dfn}[許容重み]
   点列$\omega = \left(\omega_k\right)_{k\in\mathbb{Z}}$について，
   \begin{align}
@@ -1906,7 +1936,7 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
   と表記できる．
 \end{dfn}
 
-\subsection{$Y_0,Z_0,Z_1,Z_2$の評価}
+\section{$Y_0,Z_0,Z_1,Z_2$の評価}
 \begin{description}
   \item[$Y_0$]
     \begin{equation*}
@@ -1931,7 +1961,7 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
     \end{equation*}
 \end{description}
 
-\subsubsection{$Y_0$を計算する}
+\subsection{$Y_0$を計算する}
 \begin{equation*}
   F(\bar{x}) = (\delta_0, \delta_1) \in \mathbb{C}\times l_\nu^\prime
 \end{equation*}
@@ -1950,7 +1980,7 @@ $F^{(x)}(X^{(N)})$のヤコビ行列は
 \end{equation*}
 と表す．
 
-\subsubsection{$Z_0$を計算する}
+\subsection{$Z_0$を計算する}
 \begin{equation*}
   B := I - AA^\dagger = \begin{bmatrix}
     B_{\omega,0} & B_{a,0} \\
@@ -2007,7 +2037,7 @@ $Bc_0$はスカラ値なので，
 が評価可能となり，結論としては，求めたい$Z_0はZ_0:=\{Z_0^{(0)},Z_0^{(0)}\}$となる．
 
 % ---------------------
-\subsubsection{$Z_1$を計算する}
+\subsection{$Z_1$を計算する}
 \begin{equation*}
   \left\| A \left( DF \left( \bar{x} \right) - A^\dagger \right) c \right\|_X \leq Z_1,\ c=(c_0,c_1) \in \overline{B(0,1)} \Leftrightarrow \|c\|_X \leq 1
 \end{equation*}
@@ -2085,7 +2115,7 @@ $Z_1^{(1)}$の評価は
 \end{equation*}
 
 %---------------------
-\subsubsection{$Z_2$を計算する}
+\subsection{$Z_2$を計算する}
 $b \in \overline{B\left(\bar{x},r\right)},\ c=\left(c_0,c_1\right)\in\overline{Z(0,1)}$について
 \begin{equation*}
   \left\| A \left( DF \left( b \right) - DF \left( \bar{x} \right) \right) c \right\|_X \leq Z_2(r)r
@@ -2176,10 +2206,10 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 
 \begin{comment}
   
-\subsection{radii polynomalの零点探索の精度保証}
+\section{radii polynomalの零点探索の精度保証}
 以上で，$Y_0,\cdots,Z_2$の評価を区間演算で求めた．これらの評価を用いて$p(r_0)<0$となる$r_0$を求める．精度保証の方法は，Newton法を反復させることで，$p(r_0)=0$となる$r_0$の近似会を求め，これをKrawczyk法で検証する．
 
-\subsection{Krawczyk（クラフチック）法}
+\section{Krawczyk（クラフチック）法}
 \begin{thm}[Krawczyk法\cite{}]
   $X \subset \mathbb{R}^n$を区間ベクトル，$c=\mathrm{mid}(X),\ R\simeq Df(c)^{-1} = j(c)^{-1}, E$を単位行列とし，
   \begin{equation*}
@@ -2194,8 +2224,8 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 %
 %=====
 
-\section{無限次元ガウスの消去法}
-\subsection{射影}
+\chapter{無限次元ガウスの消去法}
+\section{射影}
 
 \begin{dfn}[代数的直和]
   Banach空間$X$とする．また，$X_1,X_2$をXの線形部分空間とする．ただし，$X_1$と$X_2$のノルムは，$X$のノルムと同一とする．そのとき，$X$が$X_1$と$X_2$の代数的直和であるとは
@@ -2306,7 +2336,7 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
   Banach空間$X$が$X_1$と$X_2$の代数的直和であるとする．その上，$X_1$と$X_2$が共 にBanach空間であるとき，Banach空間$X$が$X_1$と$X_2$の位相的直和であるという．
 \end{dfn}
 
-\subsection{射影を用いたBanach空間上の無限次元ガウスの消去法}
+\section{射影を用いたBanach空間上の無限次元ガウスの消去法}
 \label{sct:無限次元ガウスの消去法}
 
   初めに，$X,X_1,X_2,L,g,P,\phi_1,\phi_2,T,B,C,D$を定義する．
@@ -2893,7 +2923,7 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 
 
 \newpage
-\section{提案手法}
+\chapter{提案手法}
 
 radii-polynomal approachにおける，$Y_0$の評価式
 \begin{equation}
@@ -3008,7 +3038,7 @@ $A=DF(\bar{x})^{-1}$とおき，式(\ref{eq:y0})に代入すると，節\ref{sct
 %===================
 %===================
 
-\subsection*{1st}
+\section*{1st}
 
 
 
@@ -3038,7 +3068,7 @@ $A=DF(\bar{x})^{-1}$とおき，式(\ref{eq:y0})に代入すると，節\ref{sct
 となり，有界線形作用素$ADF(\bar{x})$は全単射となる．
 
 % ===== 5.2 =====
-\subsection*{_}
+\section*{_}
 ここで，$S$について計算する．線形作用素の定義より，
 \begin{equation}
   \begin{split}
@@ -3048,7 +3078,7 @@ $A=DF(\bar{x})^{-1}$とおき，式(\ref{eq:y0})に代入すると，節\ref{sct
   \label{eq:s-def}
 \end{equation}
 
-\subsubsection*{$ADF(\bar{x})$を計算する．}
+\subsection*{$ADF(\bar{x})$を計算する．}
 式(\ref{eq:s-def})を分割して計算する．
 
 以下の定義より，計算をする．
@@ -3246,7 +3276,7 @@ $A=DF(\bar{x})^{-1}$とおき，式(\ref{eq:y0})に代入すると，節\ref{sct
   \end{split}
 \end{equation}
 
-\subsection*{$M_{01}^T \stackrel{\mathrm{?}}{=} M_{10}$}
+\section*{$M_{01}^T \stackrel{\mathrm{?}}{=} M_{10}$}
 \begin{equation}
   \tiny
   \begin{split}
@@ -3316,7 +3346,7 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
 であると考えられる．
 
 
-\subsection*{ゲルシュゴリンの定理}
+\section*{ゲルシュゴリンの定理}
 [http://www.oishi.info.waseda.ac.jp/~oishi/lec2003/lec7.pdf] \\
 
 
@@ -3348,7 +3378,7 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
 
 \end{proof}
 
-\subsection*{$I-S$}
+\section*{$I-S$}
 行列の積の解を$\begin{bmatrix} A & B \\ C & D\end{bmatrix},\ t,r\in \mathbb{Z}$とする．
 
 \begin{equation}
@@ -3395,7 +3425,7 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
 \end{equation}
 
 
-\subsubsection*{$\|D\|$}
+\subsection*{$\|D\|$}
 
 \begin{equation}
   \begin{split}
@@ -3431,7 +3461,7 @@ $\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x
 
 $(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
 
-\subsubsection*{11/19}
+\subsection*{11/19}
 1. $\sum < \sum$
 
 \begin{equation}
@@ -3490,7 +3520,7 @@ $(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
   \end{split}
 \end{equation}
 
-\subsubsection*{11/25}
+\subsection*{11/25}
 1. $\sum < \sum$
 
 \begin{equation}
@@ -3570,7 +3600,7 @@ $N$はサイズ数であるため，上式は明らかに負である．よっ�
   \end{split}
 \end{equation}
 
-\subsubsection*{12/2}
+\subsection*{12/2}
 プログラムの際に，周期解のインデックスをJuliaに合わせたら，計算結果が変わった？
 
 \begin{equation}
@@ -3662,11 +3692,11 @@ $N$はサイズ数であるため，上式は明らかに負である．よっ�
   \end{split}
 \end{equation}
 
-\section{実験結果}
+\chapter{実験結果}
 
-\section{おわりに}
+\chapter{おわりに}
 
-\section*{謝辞}
+\chapter*{謝辞}
 
 \begin{thebibliography}{99}
   \bibitem{github} 舩越康太, 井藤佳奈子, 大谷俊輔, 近藤慎佑, 高橋和暉, 瀬戸翔太, 二平泰知, 高安亮紀,\
