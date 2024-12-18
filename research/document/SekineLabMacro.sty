@@ -1,0 +1,63 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% This Macro is for Sekine Lab.
+%% This was created by Munehisa Takahashi on 01/31/2023.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% If you change this Macro, please write your name and changing date.
+%% Then, a original command must not delete.
+%% Please, disable the command with '%'.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{page}{0}
+
+\newcommand{\JYear}[1]{\def\saveJY{{#1}}} %年度
+\newcommand{\Kinds}[1]{\def\saveKinds{{#1}}} %論文種別
+\newcommand{\StudentNumber}[1]{\def\saveSN{学生番号 \hskip 1zw {#1}}} %学生番号
+
+\makeatletter
+\renewcommand{\maketitle}{%
+    \begin{center}%
+        \vskip 2zw%
+        {\Large \saveJY \par}%
+        \vskip 2zw%
+        {\Large \saveKinds \par}
+        \vspace*{\stretch{30}}%
+        {\LARGE \@title \par}%
+        \vskip 2zw%        
+        {\Large \@date \par}%
+        \vspace*{\stretch{200}}%
+        {\Large 指導教員　関根 晃太　准教授 \par}%
+        \vskip 2zw%
+        {\Large 千葉工業大学　情報科学部　情報工学科 \par}%
+        \vskip 2zw%        
+        {\Large \saveSN \par}%
+        \vskip 2zw%        
+        {\Large \@author \par}%
+        \vspace*{\stretch{0}}%
+    \end{center}%
+    \thispagestyle{empty}
+  }%
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Formatting %
+\numberwithin{equation}{chapter}
+
+% Theorem environment setting %
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{Def}{定義}[chapter]
+\newtheorem{Thm}[Def]{定理}
+\newtheorem{Lem}[Def]{補題}
+\renewcommand{\proofname}{\textbf{証明}}

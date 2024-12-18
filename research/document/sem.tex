@@ -13,6 +13,7 @@
 \usepackage{comment}
 \usepackage[dvipdfmx]{color}
 \usepackage{colortbl}
+\usepackage{enumerate}
 \usepackage{float}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{multicol}
@@ -35,6 +36,7 @@
 \captionsetup[figure]{labelsep=space}
 \captionsetup[table]{labelsep=space}
 
+\mathtoolsset{showonlyrefs=true}
 \theoremstyle{definition}
 \newtheorem{dfn}{定義}
 \newtheorem{thm}{定理}
@@ -2977,7 +2979,30 @@ $A=DF(\bar{x})^{-1}$とおき，式(\ref{eq:y0})に代入すると，節\ref{sct
 \end{equation}
 
 線形作用素$S$を，
-定理\ref{thm:6.2.1-L全単射}より，
+定理\ref{thm:6.2.1-L全単射}より，線形作用素$S$を
+\begin{equation*}
+  S:=E-CT^{-1}B:X_2 \rightarrow X_2
+\end{equation*}
+とする．もし，$S$が全単射ならば，
+\begin{equation*}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I-\Pi_N)\phi 
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    T^{-1}+T^{-1}BST^{-1} & -T^{-1}BS^{-1} \\
+    -S^{-1}CT^{-1} & S^{-1}
+  \end{pmatrix}
+  \begin{pmatrix}
+    Pg \\
+    (I-P)g
+  \end{pmatrix}
+\end{equation*}
+となり，有海鮮系作用素$ADF(\bar(x))$は全単射となる．
+
+
+
 \hrulefill
 
 %===================
