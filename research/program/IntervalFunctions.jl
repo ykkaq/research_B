@@ -330,7 +330,7 @@ end
 
 ### Rigorous convolution algorithm via FFT
 function powerconvfourier(ia::Vector{Complex{Interval{T}}}, p) where {T}
-  M = Int((length(a) + 1) / 2) # length(a) = 2M-1
+  M = Int((length(ia) + 1) / 2) # length(a) = 2M-1
   N = (p - 1) * M
 
   length_ia = 2 * p * M - 1

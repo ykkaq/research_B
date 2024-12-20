@@ -78,7 +78,7 @@
 
 \title{無限次元ガウスの消去法を用いた\ radii polynomal approachの改良}
 \author{齋藤悠希}
-\date{12月25日}
+\date{\today}
 
 \begin{document}
 
@@ -1464,8 +1464,773 @@ $p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使�
   \end{description}
 \end{screen}
 
-\section{無限次元ガウスの消去法}
-\subsection{射影}
+\newpage
+
+%==================
+%==================
+\chapter{Newton Kantorovichの定理を用いた精度保証付き数値計算}
+$X,Y$をBanach空間とし，非線形方程式
+\begin{equation*}
+  F(u)=0,\ u\in X
+\end{equation*}
+を求める問題を考える．この問題に対して近似解の品質保証を行う，定理の1つを以下に説明する．
+
+\section{radii polynomal approach \cite{github}}
+\begin{thm}[Newton-Kantorovich type argument]
+  有界線形作用素$A^\dagger \in \mathcal{L}(X,Y),\ A\in \mathcal{L}(Y,X)$を考え，作用素$F:X\rightarrow Y$が$C^1$-Fr\'{e}chet微分可能とする．また，$A$が単射で$AF:X\rightarrow X$とする．いま，$\bar{x} \in X$に対して%\overline{x}は，F(x) \approx 0となる近似解とする．
+  \begin{align*}
+    \|AF(\bar{x})\|_X                             & \leq Y_0                                             \\
+    \|I-A^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
+    \|A(DF(\bar{x})-A^\dagger)\|_{\mathcal{L}(X)} & \leq Z_1                                             \\
+    \|A(DF(b)-A^\dagger)\|_{\mathcal{L}(X)}       & \leq Z_2(r)r,\ \forall b \in \overline{B(\bar{x},r)} \\
+  \end{align*}
+  が成り立つとする．このとき
+  \begin{equation*}
+    p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r+Y_0
+  \end{equation*}
+  をradii polynomialといい，もし$p(r_0)<0$となる$r_0>0$が存在すれば，$F(\tilde{x})=0$をみたす$\tilde{x}$が$\overline{B(\tilde{x},r_0)}$内に一意存在する．
+\end{thm}
+
+\begin{proof}
+  写像$T$が閉球$\overline{B(\bar{x},r_0)}$において縮小写像になることを示す．
+
+  まず，
+  \begin{equation*}
+    DT(x)=I-ADF(x),\ x\in X
+  \end{equation*}
+  から，任意の$x\in \overline{B(\bar{x},r_0)}$に対して，仮定より
+  \begin{align*}
+    \|DT(x)\|_{\mathcal{L}(X)} & = \|I-ADF(x)\|_{\mathcal{L}(X)}                                                                                                  \\
+                               & \leq \|I-AA^\dagger\|_\mathcal{L(X)} + \|A(A^\dagger-DF(\bar{x}))\|_{\mathcal{L}(X)} + \|A(DF(\bar{x})-DF(x))\|_{\mathcal{L}(X)} \\
+                               & \leq Z_0 + Z_1 + Z_2(r_0)r_0
+  \end{align*}
+\end{proof}
+
+そして，任意の$x\in \overline{B(\bar{x},r_0)}$に対して，平均値の定理より，
+\begin{align*}
+  \|T(x)-\bar{x}\|_X & = \|T(x)-T(\bar{x})\|_X + \|T(\bar{x}) - \bar{x}\|_X                                           \\
+                     & \leq \sup_{b\in B(\bar{x},r_0)} \|DT(b)\|_{\mathcal{L}(X)} \|x-\bar{x}\|_X + \|AF(\bar{x})\|_X \\
+                     & \leq (Z_0 + Z_1 + Z_2(r_0)r_0) r_0 + Y_0                                                       \\
+                     & = p(r_0)+r_0
+\end{align*}
+
+よって，$p(r_0)<0$ならば，$\|T(x)-\bar{x}\|_X<r_0$．よって，$T(x)\in\overline{B(\bar{x},r_0)}$．
+
+次に，$X$の距離として，$d(x,y):=\|x-y\|_X,\ x,y\in X$と定義すると，
+\begin{align*}
+  d(T(x),T(y))\leq \sup_{b\in B(\bar{x},r_0)} \|DT(b)\|_{\mathcal{L}(X)} d(x,y) \\
+  \leq (Z_0 + Z_1 + Z_2(r_0)r_0) d(x,y),\ x,y\in \overline{B(\bar{x},r_0)}
+\end{align*}
+
+このとき，$p(r_0)<0$より，
+\begin{equation*}
+  Z_0 + Z_1 + Z_2{r_0}r_0 + \frac{Y_0}{r_0} < 1
+\end{equation*}
+
+よって，$k:=Z_0+Z_1+Z_2(r_0)r_0<1$となるため，$T$は$\overline{B(\bar{x},r_0)}$において縮小写像になる．
+
+したがって，Banachの不動点定理より，ただ1つの不動点$\tilde{x}$が$\overline{B(\bar{x},r_0)}$内に存在し，$A$の単射性により，この不動点は写像$F$の零点となる，$\mathrm{i.e.}，F(\tilde{x})=0$
+
+% 修正：先にDFを表記しろ．
+\section{Newton-Kantorovichの定理の特徴\cite{}}
+\begin{thm}[Newton-Kantorovichの定理の亜種]
+  \label{thm:Newton-Kantorovichの定理の亜種}
+  $X$と$Y$をBanach空間とする．$F:X\rightarrow Y$を与えられた作用素とし，$\bar{x}\in X$を与えられているとする．$A\in \mathcal{L}(Y,X)$とする．$F$は$\bar{x}$でFr\'{e}chet微分可能とし，$DF(\bar{x})$と表記する．$DF(\bar{x})$は全射であるとする．$\eta,\delta$を不等式
+  \begin{align*}
+    \|AF(\bar{x})\|_X &\leq \eta \\
+    \|I-A(DF(\bar{x}))\|_{\mathcal{L}(X)} &\leq \delta < 1
+  \end{align*}
+  を満たす定数とする．
+
+  $\overline{B(0,\frac{2\eta}{1-\delta})} = \{z\in X \mid \|z\|_X \leq \frac{2\eta}{1-\delta} \}$とし，定数$K$を不等式
+  \begin{equation*}
+    \|A(DF(\bar{x})-DF(\bar{x}+z))\|_\mathcal{{L}(X)} \leq K,\ z\in \overline{B\left(0,\frac{2\eta}{1-\delta}\right)}
+  \end{equation*}
+  を満たす定数とする．もし，$2K+\delta\leq 1$ならば．
+  \begin{equation*}
+    \|\tilde{x}-\bar{x}\|_X \leq \frac{\eta}{1-(K+\delta)} := p
+  \end{equation*}
+  に対し，真の解は$\bar{B}(\bar{x},p)$内に存在する．その上，$\bar{B}\left(\bar{x},\frac{2\eta}{1-\delta}\right)$内で一意である．
+\end{thm}
+
+\begin{proof}
+  まず，$AとDF(\bar{x})$が全単射であることを示す．$DF(\bar{x})$は$Fの\bar{x}$におけるFr\'{e}chet微分であるから，$DF(\bar{x})$は$\mathcal{L}(X,Y)$に属する．さらに，Neumann級数の定理（\ref{thm:Neumann級数}）と仮定$\|I-ADF(\bar{x})_{\mathcal{L}(X)}\leq \delta 1$より，$ADF(\bar{x})$は全単射である．その上，定理（\ref{thm:Banachの全単射}）より，$DF(\bar{x})$は単射であり，$A$は全射である．また，定理の仮定より，$DF(\bar{x})$は全単射となるため，逆作用素$DF(\bar{x})^{-1}$が存在し，$\mathcal{L}(Y,X)$に属する．また$A$の単射性について，定理（\ref{thm:線形作用素に対する単射性(1)}）と逆作用素$DF(\bar{x})^{-1}$を用いて
+  \begin{equation*}
+    A\phi = 0 \Rightarrow ADF(\bar{x}) DF(\bar{x})^{-1}\phi = 0 \Rightarrow \phi = 0
+  \end{equation*}
+  となるため，$A$も全単射である．
+
+  続いて，Banachの不動点定理（\ref{thm:Banachの不動点定理}）を用いて解の存在を示す．まず，作用素方程式$F(x)=0$を不動点方程式に変形すｒ．$w:=\tilde{x}-\bar{x}$とする．$A$が単射であるため，
+  \begin{align*}
+     & F(\tilde{x})=0                                                    \\
+     & \Leftrightarrow w = w-AF(\tilde{x} + w)                           \\
+     & \Leftrightarrow w = -AF(\bar{x}) + w - A(F(\bar{x}+w)-F(\bar{x})) \\
+  \end{align*}
+  $\mathcal{T}: V \rightarrow V$を
+  \begin{equation*}
+    \mathcal{T}(w) := -AF(\bar{x}) + w - A(F(\bar{x}+w)-F(\bar{x}))
+  \end{equation*}
+  となる非線形作用素とし，不動産方程式$w=\mathcal{F}(w)$の解の存在をBanachの不動点定理（$\ref{thm:Banachの不動点定理}$）を用いて示す．
+
+  Banachの不動点定理（\ref{thm:Banachの不動点定理}）では$M$を決めて，$\mathcal{T}がMからMへ$の縮小写像になることを確認しなければならない．特に，ポイントの1つは$\mathcal{T}$の定義域を$M$としたときに，値域が$M$に含まれることを確かめなければならない．すなわち，$\mathcal{T}(M) \ subset M$となるように$M$を選ぶことが重要である．この定理では，$M=\overline{B(0,\rho)},\ \rho = \frac{\eta}{1-(K+\delta)}$と選ぶ．まず，$M$として選んだ閉球$\overline{B(0,\rho)}$と定理で出てくるもう1つの閉球$B\left(0, \frac{\eta}{1-\delta}\right)$の関係性を確認する．定理の仮定より$1-\delta>0$と$1-\left(\delta + 2K\geq 0\right)$を持つため，
+  \begin{align*}
+    \rho - \frac{2\eta}{1-\delta} & = \frac{\eta(1-\delta)}{(1-(\delta+K))(1-\delta)}-\frac{2\eta(1-(\delta +K))}{(1-(\delta+K))(1-\delta)} \\
+                                  & = \frac{\eta((1-\delta)-2(1-\delta)+2K)}{(1-(\delta+2K))(1-\delta)}                                     \\
+                                  & = \frac{-\eta(1-\delta-2K)}{(1-(\delta+K))(1-\delta)}
+    \leq 0
+  \end{align*}
+  となる．よって，$\rho\leq\frac{2\eta}{1-\delta}$から$\overline{B(\bar{x},\rho)}\subset \overline{B\left(0,\rho\right)}$となる．
+
+  次に，$\mathcal{T}(\overline{B(0,\rho)}) \subset \overline{B(0,\rho)}$を示す．任意の$w\in \overline{B(0,\rho)}$に対し，Fr\'{e}chet微分とBochner積分に対する微分積分学の定理を用いることで
+  \begin{align*}
+    \|\mathcal{T}(w)\|_X & \leq \|AF(\bar{x})\|_X + \|w-A(F(\bar{x}+w)-F(\bar{x}))\|_X                                                             \\
+                         & \leq \eta + \|w - R\int_0^1 DF((1-t)\bar{x})+t(\bar{x}+w)wdt\|_X                                                        \\
+                         & \leq \eta + \int_0^1 \|w - ADF(\bar{x}+tw))w\|_X dt                                                                     \\
+                         & \leq \eta + \int_0^1 \|I - ADF(\bar{x}+tw)\|_{\mathcal{L}(V,V)}\|w\|_X dt                                               \\
+                         & \leq \eta + \int_0^1 \|A(DF(\bar{x})-DF(\bar{x}+tw))\|_{\mathcal{L}(X)} + \|I-ADF(\bar{x})\|_{\mathcal{L}(X)}\|w\|_X dt \\
+                         & \leq \eta + \int_0^1 (\|A(DF(\bar{x})-DF(\bar{x}+tw))\|_{\mathcal{L}(X)} +m) \|w\|_{X}dt                                \\
+  \end{align*}
+  を得る．さらに，$t\in[0,1]$に対し$tw\in\overline{B(0,\rho)}\subset\overline{B\left(0,\frac{2\eta}{1-\delta}\right)}$となるため，定理の仮定$\|R(DF(\bar{x})-DF(\bar{x}+tw))\|_{\mathcal{L}(X)}\leq K$から，
+  \begin{align*}
+    \|\mathcal{T}(w)\|_X & \leq \eta + (K+\delta)\|w\|_X                                             \\
+                         & \leq \eta + (K+\delta)\rho                                                \\
+                         & = \eta + \frac{\eta(K+\delta)}{1-(K+\delta)}                              \\
+                         & = \frac{\eta-\eta(\delta+K)}{1-(\delta+K)}+{\eta(K+\delta)}{1-(\delta+K)} \\
+                         & = \rho
+  \end{align*}
+  となる．よって，任意の$w\in \overline{B(0,\rho)}$に対して$\|\mathcal{T}(w)\|_X \leq \rho$となることから，$\mathcal{T}\left(\overline{B(0,\rho)}\right) \subset \overline{B(0,\rho)}$となる．
+
+  次に，$\mathcal{T}:\overline{B(0,\rho)}\rightarrow \overline{B(0,\rho)}$が縮小写像になることを確認する．すなわち
+  \begin{equation*}
+    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X \leq k \|w_1-w_2\|_X,\ \forall w_1,w_2\in \overline{B(0,\rho)}
+  \end{equation*}
+  となる定数$k$が1未満になることを確認しなければならない．この定理では，一意性の範囲を広げるために，$\overline{B(0,\rho)}\subset \overline{B\left(\frac{2\eta}{1-m}\right)}$であることを用いて
+  \begin{equation*}
+    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X \leq k \|w_1-w_2\|_X,\ \forall w_1,w_2\in \overline{B\left(0,\frac{2\eta}{1-\delta}\right)}
+  \end{equation*}
+  となる定数$k$が$1$未満になることを確かめる．その上，任意の$\overline{B(0,\rho)}\in\overline{B\left(\frac{2\eta}{1-m}\right)}$に対し，
+  \begin{align*}
+    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X & = \|w_1-w_2-A(D(\bar{x}+w_1)-F(\bar)+w_2)\|_X                                                         \\
+                                               & = \|(w_1-w_2)-A\int_{0}^{1}DF(\bar{x}+(1-t)w_2+tw_1)\|_{\mathcal{L}(X)}dt\|w_1-w_2\|_X                \\
+                                               & \leq \int_{0}^{1} \|I-ADF(\bar{u}+(1-t)w_2+tw_1)\|_{\mathcal{L}(X)}dt\|w_1-w_2\|_X                    \\
+                                               & \leq \int_{0}^{1} \|A(DF(\bar{x})-DF(\bar{x}+(1-t)w_2+tw_1)\|_{\mathcal{L}(X)}+\delta)dt\|w_1-w_2\|_X \\
+  \end{align*}
+  となる．任意の$w_1,w_2\in\overline{B\left(0,\frac{2\eta}{1-\delta}\right)}$と$0\leq t \leq 1$に対し，$\|(1-t)w_2+tw_1\|_X\leq(1-t)\|w_2\|_x+t\|w_1\|_X\leq \frac{2\eta}{1-\delta}$となるため，
+  \begin{equation*}
+    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X \leq (K+\delta)\|w_1-w_2\|_X
+  \end{equation*}
+  となる．その上，仮定$2K+\delta\leq 1かつ\delta<1$より$K+\delta < 1$も満たすため，$\mathcal{T}は\overline{B(0,\rho)}から\overline{B(0,\rho)}$への縮小写像となる．よって，Banachの不動点定理（\ref{thm:Banachの不動点定理}）より不動点方程式$w=\mathcal{T}(w)$の$F(u)=0$を満たす解が$\overline{B(0,\rho)}$に一意に存在する．$w=\tilde{x}-\bar{x}$であったことから，作用素方程式$F(x)=0$を満たす解が$\overline{B(\bar{x}),\rho}$内に一意に存在する．
+
+  最後に，$\overline{B\left(\bar{x},\frac{2\eta}{1-\delta}\right)}$内で一意に存在することを示す．$\overline{B\left(0,\frac{2\eta}{1-\delta}\right)}$内に不動点方程式$w=\mathcal{T}(w)$の解が2つあったとする．すなわち，2つの解$\tilde{z_1},\tilde{w_2}\in\overline{\bar{x},\frac{2\eta}{1-\delta}}$とし，$\tilde{x_1}=\mathcal{T}(\tilde{w_1})$と$\tilde{x_2}=\mathcal{T}(\tilde{w_2})$を満たすとする．そのとき，
+  \begin{equation*}
+    \|\tilde{w_1}-\tilde{w_2}\|_X = \|\mathcal{T}(\tilde{w_1})-\mathcal{T}(\tilde{w_2})\|_X \leq (K+m)\|\tilde{w_1}-\tilde{w_2}\|_X
+  \end{equation*}
+  となる．ここで，$2K+m<1$であるため，不等式を満たすものは$\tilde{w_1}=\tilde{w_2}$の場合のみである．すなわち，不動点方程式$w=\mathcal{T}(w)$を満たす解は$\overline{B\left(\bar{x},\rho\right)}$内に一意である．よって，作用素方程式$F(x)=0$を満たす解が$\overline{B(\bar{x},\frac{2\eta}{1-\delta})}$内に一意に存在する．
+
+\end{proof}
+%-----------------
+
+\newpage
+\chapter{既存のvan der Pol方程式の精度保証付き数値計算\cite{github}}
+
+\section{van der Pol方程式}
+van der Pol方程式とは，ある発振現象をもつ電気回路の方程式であり，以下のように表す．
+\begin{equation*}
+  \frac{d^2x}{dt^2} - \mu (1-x^2)\frac{dx}{dt}+x=0
+\end{equation*}
+
+未知関数は$x(t)$で，$\mu >0$は非線形の減衰の強さを表すパラメータである．
+
+
+\section{フーリエ・スペクトル法}
+フーリエ・スペクトル法の計算に必要な参照軌道をまず得るために，van der Pol方程式の解を数値計算する．まず，van der Pol方程式を次の連立常微分方程式系にしてODEソルバーで数値を計算する．
+
+\begin{equation*}
+  \begin{cases}
+    \frac{dx}{dt} = y \\
+    \frac{dy}{dt} = \mu (1-x^2)y-x
+  \end{cases}
+\end{equation*}
+
+初期値$x(0)=0,\ y(0)=2$とし，$\mu=1$の時の数値計算を実行する．周期解をフーリエ級数で表し，その係数と周期を求めるため，Van der Pol方程式の周期解の周期を大まかに求める．得た近似周期軌道と近似周期を使って，起動のフーリエ補完を計算する．van der Pol方程式は，$\dot{x}=\frac{dx}{dt}$とおくと，以下のように表すことができる．
+\begin{equation*}
+  \ddot{x} - \mu (1-x^2)\dot{x} - x = 0
+\end{equation*}
+後の計算のために，式を整理すると，
+\begin{equation*}
+  \ddot{x} - \mu \dot{x} + \frac{\mu}{3} \left(\dot{x}^3\right) + x = 0
+\end{equation*}
+
+周期解$x(t)$を周期$L$の周期関数とし，$\omega = \frac{2\pi}{L}$とおくと，$x(t)$とその微分やべき乗はフーリエ級数を使って，
+\begin{align*}
+  x(t)                 & = \sum_{k\in\mathbb{N}} a_k \exp(ik \omega t)                \\
+  \frac{d(x)}{dt}      & = \sum_{k\in\mathbb{N}} (ik \omega) a_k \exp(ik \omega t)    \\
+  \frac{d^2x(t)}{dt^2} & = \sum_{k\in\mathbb{N}} (-k^2\omega^2) a_k \exp(ik \omega t) \\
+  x(t)^3               & = \sum_{k\in\mathbb{N}} (a*a*a)_k \exp(ik \omega t)
+\end{align*}
+と書くことができる．ここで
+
+\begin{equation*}
+  (a*a*a)_k = \sum_{\substack{k_1+k_2+k_3=k\\k_i\in\mathbb{Z}}} a_{k_1}a_{k_2}a_{k_3},\ k\in\mathbb{Z}
+\end{equation*}
+
+は3次の離散畳み込みである．
+
+そしてフーリエ係数に関する式を立てる．係数$a=\left(a_k\right)_{k\in\mathbb{Z}}$に対して，van der Pol方程式に求めたフーリエ級数を代入すると，
+\begin{equation*}
+  f_k(a) := -k^2\omega^2 a_k - \mu ik \omega a_k + \frac{\mu}{3} (ik \omega)(a*a*a)_k + a_k
+\end{equation*}
+となる点列$(f_k(a))_{k\in\mathbb{Z}}$が得られる．そして，各$k\in\mathbb{Z}$について
+\begin{equation*}
+  f_k(a) = 0
+\end{equation*}
+となる点列$a$があれば，van der Pol方程式の解のフーリエ係数になる．未知数は周期数$\omega$と点列$a$であり，これらを並べて$x=(\omega,a)$と書くことにする．未知数$x$に対して，$f_k(a)=0$という方程式だけでは不逞な方程式になるため，解の形を1つに定めることができない．そこで，位相条件
+\begin{equation*}
+  \eta(a) = \sum_{|k|\in N} a_k-\eta_0 = 0,\ \eta_0\in\mathbb{R}
+\end{equation*}
+を加える．この条件は，$x(t)$の切片$x(0)=\eta_0$を表している．最終的にvan der Pol方程式の周期解の球解は次の代数方程式を解くことに帰着される．
+\begin{equation*}
+  F(x) := \begin{bmatrix}
+    \eta(a) \\
+    \left(f_k(a)_{k\in\mathcal{Z}}\right)
+  \end{bmatrix}
+\end{equation*}
+
+以下，この零点探索問題$F(x)=0$についてNewton法で解を得ることを考える．まず，$N$をフーリエ係数の打ち切り番号（最大波数：$N-1$）とし，周期解の近似を次のように構成する．
+\begin{equation*}
+  x_N(t) = \sum_{|k|<N} \bar{a}_k \exp(ik\omega t)
+\end{equation*}
+
+このとき，フーリエ係数と（近似）周期をならべた
+\begin{equation*}
+  \bar{x} = \left(\bar{\omega},\bar{a}_{-N+1},\cdots,\bar{a}_{N-1}\right) \in \mathbb{C}^{2N}
+\end{equation*}
+を近似解と呼ぶ．近似解$\bar{x}$の項数は$2N$個．そして，$f_k(a)=0$を$|k|<N$の範囲で打ち切る方程式
+\begin{equation*}
+  F^{(N)}\left(x^{(N)}\right) = \begin{bmatrix}
+    \eta\left(a^{(N)}\right) \\
+    \left(f_k(a^{(N)})\right)_{|k|<N}
+  \end{bmatrix}
+  = 0
+\end{equation*}
+を考える．ここで$a^{(N)}=\left(a_k\right)_{|k|<N},\ x^{(N)}=\left(\omega, a^{(N)}\right)$をそれぞれ表し，$F^{(N)}:\mathbb{C}^{2N}\rightarrow\mathbb{C}^{2N}$である．したがって$F^{(N)}\left(x^{(N)}\right)=0$という有限次元の非線形方程式を解くことで，近似解$\bar{x}$を得られる．
+
+実際にNewton法を用いて，周期化の数値計算を行っていく．Newton法では，ある適当な初期値$x_0$を最初に定め，以下の反復計算によって計算できる．
+\begin{equation*}
+  x_{n+1} = x_n - DF^{(N)}\left(x_n\right)^{-1} F^{(N)}\left(x_n\right),\ n=0,1,\cdots
+\end{equation*}
+このことから，$DF^{(N)}\left(x_n\right)^{-1}$と$F^{(N)}\left(x_n\right)$を計算することができれば，近似解を得ることができる．はじめに，離散畳み込みの関数を用意する．
+
+$F^{(x)}(X^{(N)})$のヤコビ行列は
+\begin{equation*}
+  DF^{(N)}\left(x^{(N)}\right)=\begin{bmatrix}
+    \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      \\ \hline
+    \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        \\
+    \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots \\
+    \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        \\
+  \end{bmatrix} \in \mathbb{C}^{2N\times 2N}\ \left(|k|,|j|<N\right)
+\end{equation*}
+ここで，
+
+\begin{align*}
+   & \begin{cases}
+       \partial_w f_k = (-2k^2\omega - \mu ik)a_k + \frac{\mu ik}(a*a*a)_k                     & (|k|<N) \\
+       \partial_{a_j} f_k = (k^2\omega^2 - \mu ik\omega)\delta_{k_j} + \mu ik\omega(a*a)_{k-j} & (|k|<N)
+     \end{cases}
+  \\
+   & \delta_{k_j} = \begin{cases}
+                      1 & (k=j)     \\
+                      0 & (k\neq j)
+                    \end{cases}
+\end{align*}
+
+である．ヤコビ行列の各要素との対応は
+\begin{align*}
+   & \left(DF^{(N)}\left(x^{(N)}\right)\right)_{l,m}                                                                                        \\
+   & = \begin{cases}
+         0                   & \left(l=m=1\right)                                                                                             \\
+         1                   & \left(l=1,\ m= 2,\cdots,2N\right)                                                                              \\
+         \partial_\omega f_k & \left(l=2,\cdots,2N,\ m=1, \ \mathrm{i.e.},\ l=k+N+1 \ \mathrm{for} \ |k|<N\right)                             \\
+         \partial_{a_j}f_k   & \left(l,m=2,\cdots,2N, \ \mathrm{i.e.}, l=k+N+1 \ \mathrm{for} \ |k|<N,\ m=j+N+1 \ \mathrm{for} \ |j|<N\right)
+       \end{cases}
+\end{align*}
+
+
+\section{重み付き空間と作用素の決定}
+\begin{dfn}[許容重み]
+  \label{dfn:許容重み}
+  点列$\omega = \left(\omega_k\right)_{k\in\mathbb{Z}}$について，
+  \begin{align}
+    \omega_k>0,\                           & \forall k \in \mathbb{Z}   \\
+    \omega_{n+k} \leq \omega_n \omega_k,\  & \forall n,k\in\mathbb{Z}
+  \end{align}
+  が成立するとき，許容重み（admissible wights）であるという．
+\end{dfn}
+
+\begin{thm}[重み付き$l^1$空間]
+  \label{thm:重み付きl1空間}
+  \begin{equation*}
+    l_\omega^1 := \left\{ a = (a_k)_{k\in\mathbb{Z}}:a_k\in\mathbb{C},\ \|a\|_\omega:=\sum_{k\in\mathbb{Z}}|a_k|\omega_k < \infty\right\}
+  \end{equation*}
+
+  点列$\omega$を許容重みとする．$\left(l_m^1, *\right)$は可換なBanach環となる．すなわち，点列$a,b\in l^1_m$として，離散畳み込み$*$に対して
+  \begin{equation*}
+    \|a*b\|_\omega \leq \|a\|_\omega\|b\|_\omega
+  \end{equation*}
+  が成立する．
+\end{thm}
+
+\begin{proof}
+  $a,b\in l_{\omega}^1$として，
+  \begin{equation*}
+    \begin{split}
+      \|a*b\|_\omega &= \sum_{k\in\mathbb{Z}} \|(a*b)\|\omega_k \\
+      &= \sum_{k\in\mathbb{Z}} \left\|\sum_{\substack{k_1+k_2=k \\ k_1,k_2\in\mathbb{Z}}}a_{k_1} a_{k_2}\right\| \omega_k \\
+      &\leq \sum_{k\in\mathbb{Z}} \left(\sum_{\substack{k_1+k_2=k \\ k_1,k_2\in\mathbb{Z}}}|a_{k_1}||a_{k_2}|\omega_k\right)\\
+      &\leq \sum_{k\in\mathbb{Z}} \left(\sum_{\substack{k_1+k_2=k \\ k_1,k_2\in\mathbb{Z}}}|a_{k_1}|\omega_{k_1}|a_{k_2}|\omega_{k_2}\right)\\
+      &\leq \left(\sum_{k_1\in\mathbb{Z}}|a_{k_1}|\omega_{k_1}\right) \left(\sum_{k_\in\mathbb{Z}}|a_{k_2}|\omega_{k_2}\right) \\
+      &= \|a\|_\omega\|b\|_\omega
+    \end{split}
+  \end{equation*}
+\end{proof}
+
+\begin{dfn}[Banach空間$X$]
+  \label{dfn:Banach空間X-重み付きl1空間}
+  Banach空間$X$を次のように定める．はじめに重み付き$l^1$空間を重み$w_k=\nu^{|k|}\ (\nu=1.05)$として次のように定める．
+  \begin{equation*}
+    l_{\nu}^1 := \left\{ a = (a_k)_{k\in\mathbb{Z}}:a_k\in\mathbb{C},\ \|a\|_{w} := \sum_{k\in\mathbb{Z}}|a_k|\nu^{|k|} < \infty\right\}
+  \end{equation*}
+
+  そして，検証に用いいる関数空間$X$はBanach空間となる．
+  \begin{equation*}
+    X:=\mathbb{C}\times l_{\nu}^1,\ x=(\omega,a),\ \omega \in \mathbb{C},\ a\in l_{\nu}^1
+  \end{equation*}
+  と定め，そのノルムを
+  \begin{equation*}
+    \|x\|_X:=\max \{|\omega|,\ \|a\|_w \}
+  \end{equation*}
+  として，定義する．このとき，$X$はBanach空間となる．
+\end{dfn}
+
+\begin{dfn}[ヤコビ行列$DF^{(N)}\left(x^{(N)}\right)$]
+  $F^{(N)}\left(x^{(N)}\right)$のヤコビ行列は，次のような形をしている．
+  \begin{equation*}
+    DF^{(N)}\left(x^{(N)}\right)=\begin{bmatrix}
+       & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \\ \cline{2-5}
+       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        & \\
+       & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & \\
+       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        & \\
+    \end{bmatrix}
+    \in \mathbb{C}^{2N\times 2N},\ \left(|k|,|j|<N\right)
+  \end{equation*}
+  ここで，
+  \begin{align*}
+     & \begin{cases}
+         \partial_w f_k = (-2k^2\omega - \mu ik)a_k + \frac{\mu ik}{3}(a*a*a)_k                     & (|k|<N) \\
+         \partial_{a_j} f_k = (k^2\omega^2 - \mu ik\omega)\delta_{k_j} + \mu ik\omega(a*a)_{k-j} & (|k|<N)
+       \end{cases}
+    \\
+     & \delta_{k_j} = \begin{cases}
+                        1 & (k=j)     \\
+                        0 & (k\neq j)
+                      \end{cases}
+  \end{align*}
+\end{dfn}
+である．ヤコビ行列の各要素の伏せ字とその対応は
+\begin{align*}
+   & \left(DF^{(N)}\left(x^{(N)}\right)\right)_{l,m}                                                                                        \\
+   & = \begin{cases}
+         0                   & \left(l=m=1\right)                                                                                             \\
+         1                   & \left(l=1,\ m= 2,\cdots,2N\right)                                                                              \\
+         \partial_\omega f_k & \left(l=2,\cdots,2N,\ m=1, \ \mathrm{i.e.},\ l=k+N+1 \ \mathrm{for} \ |k|<N\right)                             \\
+         \partial_{a_j}f_k   & \left(l,m=2,\cdots,2N, \ \mathrm{i.e.}, l=k+N+1 \ \mathrm{for} \ |k|<N,\ m=j+N+1 \ \mathrm{for} \ |j|<N\right)
+       \end{cases}
+\end{align*}
+
+\begin{dfn}[作用素$A^\dagger,A$の定義]
+  まず，Banach空間$X=\mathbb{C}\times l_\nu^1$から$Y=\mathbb{C}\times l_\nu^1,\ (\nu^\prime<\nu)$と設定し，$A^\dagger$を$A^\dagger\in (X,Y)$として，$b=(b_0,b_1)\in \mathbb{C}\times l_\nu^1=X$に対して，$A^\dagger b=\left(\left(A^\dagger b\right)_0,\left(A^\dagger b\right)_1\right)$と作用素するように定義する．ここで，$A^\dagger$を形式的に見ると，
+  \begin{equation*}
+    A^\dagger =
+    \begin{bmatrix}
+       & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \cdots           & 0               & \cdots           & \\ \cline{2-8}
+       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &                  &                 &                  & \\
+       & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &                  & \text{\huge{0}} &                    \\
+       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &                  &                 &                    \\
+       & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \lambda_N        &                 & \text{\Large{0}} & \\
+       & \multicolumn{1}{c|}{0}              &        & \text{\huge{0}}   &        &                  & \lambda_{N+1}   &                    \\
+       & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \text{\Large{0}} &                 & \ddots
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+       & \multicolumn{1}{c|}{0}                    & A_{a,0}^\dagger & \\ \cline{2-3}
+       & \multicolumn{1}{c|}{A_{\omega,1}^\dagger} & A_{a,0}^\dagger &
+    \end{bmatrix}
+  \end{equation*}
+
+  このことから，$A^\dagger b$は
+  \begin{equation*}
+    A^\dagger b = \begin{bmatrix}
+      0                    & A^\dagger_{a,0} \\
+      A^\dagger_{\omega,1} & A^\dagger_{a,1}
+    \end{bmatrix}
+    \begin{bmatrix}
+      b_0 \\
+      b_1
+    \end{bmatrix}
+    = \begin{bmatrix}
+      A_{a,0}^\dagger b_1 \\
+      A_{\omega,1}^\dagger b_0 + A_{a,1}^\dagger b_1
+    \end{bmatrix}
+    =: \begin{bmatrix}
+      \left(A^\dagger b\right)_0 \\
+      \left(A^\dagger b\right)_1
+    \end{bmatrix}
+  \end{equation*}
+  と表すことができ，
+  \begin{align*}
+    \left(A^\dagger b\right)_0                & = \sum_{|k|<N} (b_1)_k                                                                                                             \\
+    \left(\left(A^\dagger b\right)_1\right)_k & := \begin{cases}
+                                                     \partial_\omega f_k b_0 + \sum_{|j|<N} \partial_{a_j} f_k (b_1)_j & ,\ |k|<N                                                    \\
+                                                     \lambda_k (b_1)_k                                                 & ,\ |k|\geq N,\ \lambda_k := -k^2\omega^2 - \mu ik\omega + 1 \\
+                                                   \end{cases}
+  \end{align*}
+  と書ける．またこのとき，$(A^\dagger b)_0$と$(A^\dagger b)_1$はそれぞれ
+  \begin{align*}
+    \left(A^\dagger b\right)_0 & = A_{a,0}^\dagger b_1 = \sum_{|k|<N} (b_1)_k \in \mathbb{C} \\
+    \left(A^\dagger b\right)_1 & = A_{\omega,1}^\dagger b_0 + A_{a,1}^\dagger b_1 \in l_{\nu^\prime}^1
+  \end{align*}
+
+  次に，$作用素A$について考える．
+  \begin{equation*}
+    A^{N} = \begin{bmatrix}
+      A_{\omega,0}^{(N)} & A_{a,0}^{(N)} \\
+      A_{\omega,1}^{(N)} & A_{a,1}^{(N)}
+    \end{bmatrix}
+    \approx DF^{(N)} \left(\bar{x}\right)^{-1} \in \mathbb{C}^{2N\times 2N}
+  \end{equation*}
+  をヤコビ行列の近似逆行列とする．$A\in\mathcal{L}(Y,X)$として，$b=\left(b_0,b_1\right)\in X$に対して，$Ab=\left((Ab)_0,(Ab)_1\right)$と作用するように定義する．ここで，
+  \begin{align*}
+    (Ab)_0 & = A_{\omega,0}^{(N)}b_0 + A_{a,0}^{(N)} b_1^{(N)} \\
+    (Ab)_1 & = A_{\omega,1}^{(N)}b_0 + A_{a,1}^{(N)} b_1
+  \end{align*}
+
+  ただし，無限次元の$A_{a,1}b_1$は以下のようになる．
+  \begin{equation*}
+    \left(A_{a,1}b_1\right)=\begin{dcases}
+      \left(A_{a,1}^{(N)}b_1{(N)}\right)_k & \ (|k|<N)     \\
+      \frac{(b_1)_k}{\lambda_k}            & \ (|k|\geq N)
+    \end{dcases}
+  \end{equation*}
+
+  この定義を形式的に見ると，
+  \begin{equation*}
+    A =
+    \begin{bmatrix}
+       & \multicolumn{1}{c|}{A_{\omega,0}^{(N)}} & A_{a,0}^{(N)} & 0                   & \cdots                  & 0      & \\ \cline{2-6}
+       & \multicolumn{1}{c|}{A_{\omega,1}^{(N)}} & A_{a,1}^{(N)} &                     & \text{\large{0}}        &        & \\
+       & \multicolumn{1}{c|}{0}                  &               & \frac{1}{\lambda_N} &                         &        & \\
+       & \multicolumn{1}{c|}{\vdots}             &               &                     & \frac{1}{\lambda_{N+1}} &        & \\
+       & \multicolumn{1}{c|}{0}                  &               & \text{\large{0}}    &                         & \ddots & \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+       & \multicolumn{1}{c|}{0}            & A_{a,0} & \\ \cline{2-3}
+       & \multicolumn{1}{c|}{A_{\omega,1}} & A_{a,0} &
+    \end{bmatrix}
+  \end{equation*}
+  と表記できる．
+\end{dfn}
+
+\section{$Y_0,Z_0,Z_1,Z_2$の評価}
+\label{sct:Y0,Z0,Z1,Z2の評価}
+\begin{description}
+  \item[$Y_0$]
+    \begin{equation}
+      \label{equ:Y0}
+      \left\| AF\left(\bar{x}\right)\right\|_X \leq Y_0
+    \end{equation}
+  \item[$Z_0$]
+    \begin{equation*}
+      \left\| I-AA^\dagger \right\|_{\mathcal{L}\left(
+      X
+      \right)} \leq Z_0
+    \end{equation*}
+  \item[$Z_1$]
+    \begin{equation*}
+      \left\| A \left(DF \left( \bar{x} \right) A^\dagger \right) c \right\|_X \leq Z_1,\ c\in \overline{B(0,1)}
+    \end{equation*}
+    また，ここでの$\overline{B(0,1)}$とは$\|c\|_X=1$ということである．
+  \item[$Z_2$]
+    \quad \\
+    $b\in \overline{B\left(\bar{x},r\right)},\ h\in \overline{B(0,1)}$として，
+    \begin{equation*}
+      \left\| A \left(DF \left( b \right) - DF \left( \bar{x} \right) h \right) \right\|_{X} \leq Z_2 (r)r
+    \end{equation*}
+\end{description}
+
+\subsection{$Y_0$を計算する}
+\begin{equation*}
+  F(\bar{x}) = (\delta_0, \delta_1) \in \mathbb{C}\times l_\nu^\prime
+\end{equation*}
+とすると，$A$の定義より，
+\begin{equation*}
+  \left\| AF(\bar{x}) \right\|_X \leq \max \left\{ \left| A_{\omega, 0}^{(N)} \delta_0 + A_{a,0}^{(N)} \delta_1^{(N)} \right|,\  \left\| A_{\omega,1}^{(N)} \delta_0 + A_{a,1} \delta_1^{(N)} \right\|_\omega + \sum_{|k|>N} \left\| \frac{\left(\delta_1^\infty\right)_k}{\lambda_k}  \right\| \nu^{|k|} \right\}
+\end{equation*}
+
+ここで，$\delta_1 = \left( \delta_1^{(N)}, \delta_1^{(\infty)} \right) \in \mathbb{C}^{2 \times 3(N-1)+1}$であり，
+
+\begin{equation*}
+  \left( \delta_1 \right)_k = \begin{cases}
+    \delta_1^{(N)}      & (k<|N|)      \\
+    \delta_1^{(\infty)} & (k \geq |N|)
+  \end{cases}
+\end{equation*}
+と表す．
+
+\subsection{$Z_0$を計算する}
+\begin{equation*}
+  B := I - AA^\dagger = \begin{bmatrix}
+    B_{\omega,0} & B_{a,0} \\
+    B_{\omega,1} & B_{a,1}
+  \end{bmatrix}
+\end{equation*}
+
+この$Bをc\in \overline{B(0,1)},\ \|c\|_X \leq 1$である$c=(c_0,c_1)$に作用させると，
+\begin{align*}
+  (Bc)_0 & = B_{\omega,0} c_0 + B_{a,0} c_1 \\
+  (Bc)_1 & = B_{\omega,1} c_0 + B_{a,1} c_1
+\end{align*}
+
+$Bc_0$はスカラ値なので，
+\begin{align*}
+  \left| B_{a,0}c_1 \right| & \leq \sum_{k \in \mathbb{Z}} \left|(B_{a,0})_k\right| \left|(c_1)_k \right|                                                            \\
+                            & = \sum_{k \in \mathbb{Z}} \frac{|(B_{a,0})_k|}{\omega_k} |(c_1)_k| \omega_k                                                            \\
+                            & \leq \max_{k < |N|} \frac{|(B_{a,0})_k|}{\omega_k} \sum_{k \in \mathbb{Z}} |(c_1)_k| \omega_k                                          \\
+                            & \leq \max_{k < |N|} \frac{|(B_{a,0})_k|}{\omega_k},\ \left( \sum_{k \in \mathbb{Z}} |(c_1)_k| \omega_k = \|c_1\|_\omega \leq 1 \right)
+\end{align*}
+
+以上より，
+\begin{equation*}
+  |(Bc)_0| \leq |B_{\omega,0}| + \max_{|k| < N} \frac{|(B_{a,0})|_k}{\omega_k} = Z_0^{(0)}
+\end{equation*}
+
+またここで，作用素$M:l_\nu^1 \Rightarrow l_\nu^1 $の作用素ノルムについて以下の補題を陣日する．
+
+\begin{lmm}
+  行列$M^{(N)}$を$M^{(N)} \in \mathbb{C}^{(2N-1) \times (2N-1)}$，双方向の複素無限点列を$(\delta_k)_{|k| \geq N}$と定義する．ここで，$\delta_N > 0$であり，
+  \begin{equation*}
+    |\delta_k| \leq \delta_N,\ \forall |k| \geq N
+  \end{equation*}
+  を満たすとする．そして，$a=(a_k)_{k<\mathbb{Z}} \in l_\nu^1$に対して$a^{(N)}=(a_{-N+1},\cdots,a_{N-1})\in \mathbb{C}^{2N-1}$と表し，作用素$M:l_\nu^1 \Rightarrow l_\nu^1$を
+  以下のように定義する．
+  \begin{equation*}
+    [Ma]_k := \begin{cases}
+      [M^{(N)}a^{(N)}]_k & (|k|<N)     \\
+      \delta_k a_k       & (|k|\geq N)
+    \end{cases}
+  \end{equation*}
+
+  このとき，$M$は有界線形作用素であり，
+  \begin{equation*}
+    \|M\|_{\mathcal{L}(l_\nu^1)} \leq \max \left( K,\delta_N \right),\ K:=\max_{|n|<N} \frac{1}{\nu^{|n|}} \sum_{|k|<N} |M_{n,k}| \nu^{|k|}
+  \end{equation*}
+  と評価させる．
+\end{lmm}
+
+上の補題を利用すると，
+\begin{eqnarray}
+  \|(Bc)_1\|_\omega \leq \|B_{\omega,1}\|_\omega + \|B_{a,1}\|_{\mathcal{L}(l_\nu^1)} = Z_0^{(1)}
+\end{eqnarray}
+が評価可能となり，結論としては，求めたい$Z_0はZ_0:=\{Z_0^{(0)},Z_0^{(0)}\}$となる．
+
+% ---------------------
+\subsection{$Z_1$を計算する}
+\begin{equation*}
+  \left\| A \left( DF \left( \bar{x} \right) - A^\dagger \right) c \right\|_X \leq Z_1,\ c=(c_0,c_1) \in \overline{B(0,1)} \Leftrightarrow \|c\|_X \leq 1
+\end{equation*}
+
+点列$z$を下記のように定義する．
+\begin{equation}
+  z := \left(DF(\bar{x})-A^\dagger\right)c = \begin{bmatrix}
+    z_0 \\
+    z_1
+  \end{bmatrix}
+\end{equation}
+
+ここで，$DF(\bar{x})とA^\dagger$は
+\begin{align*}
+  DF(\bar{x}) & = \begin{bmatrix}
+                     & \multicolumn{0}{c|}{0}                         & \cdots & 0      & \cdots & \\ \cline{2-5}
+                     & \multicolumn{1}{c|}{\partial_\omega f_k^{(N)}} & \cdots & 0      & \cdots & \\
+                     & \multicolumn{1}{c|}{\vdots}                    &        & \vdots &        &
+                  \end{bmatrix}                                         \\
+  A^\dagger   & = \begin{bmatrix}
+                     & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \cdots    & 0                & \cdots & \\ \cline{2-8}
+                     & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &           &                  &        & \\
+                     & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &           &                  &          \\
+                     & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &           & \text{\Large{0}} &          \\
+                     & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \lambda_N &                  &        & \\
+                     & \multicolumn{1}{c|}{0}              &        & \text{\Large{0}}  &        &           & \lambda_{N+1}    &          \\
+                     & \multicolumn{1}{c|}{\vdots}         &        &                   &        &           &                  & \ddots
+                  \end{bmatrix} \\
+  \lambda_k   & := -k^2\omega^2 - \mu ik\omega + 1
+\end{align*}
+と表される．すると$z_0$は，
+\begin{align*}
+  z_0 & = \sum_{|k|<N} (c_1)_k, \\
+  |z_0| &\leq \frac{1}{\omega_N} \sum_{|k|<N} |(c_1)_k| \omega_k \leq \frac{1}{\omega_N}
+\end{align*}
+
+次に，$z_1$について考える．$DF(\bar{x})c$部分は，
+\begin{equation*}
+  \begin{split}
+    \left(\left(DF(\bar{x})c\right)_1 \right)_k &= \partial_\omega f_k c_0 + \partial_a f_k c_1 \\
+    &= \frac{\partial \lambda_k}{\partial} c_0 \bar{a}_k + \frac{\mu ik}{3} \left( \bar{a} * \bar{a} * \bar{a} \right)_k c_0 + \lambda_k (c_1)_k + \mu ik \omega \left( \bar{a} * \bar{a} * c_1 \right)_k,\ k \in \mathbb{Z}
+  \end{split}
+\end{equation*}
+
+と書け，$|k| \geq N で \bar{a_k} = 0$より，$c_1 = c_1^{(N)} + c_1^{(N)}$として，
+\begin{align*}
+  |(z_1)_k| & \leq |\mu ik \omega| \max \left\{ \max_{k-N+1\leq j \leq -N} \frac{|\left( \bar{a} * \bar{a} \right)_{k-j}|}{\omega_j} ,\ \max_{N \leq j \leq k+N-1 \frac{|\left( \bar{a} * \bar{a}\right)_{k-j} |}{\omega_j}} \right\} := \zeta, \\
+  \zeta     & = (\zeta_k)_{k < N} \in \mathbb{R}^{2N-1}
+\end{align*}
+
+最後に，$Z_1$を評価していく．$Z_1^{(0)}$の評価は
+\begin{align*}
+  |(A(DF(\bar{x})-A^\dagger)c)_0| & = |(Az)_0|                                                                                                \\
+                                  & \leq \left|A_{\omega,0}^{(N)}\right| \left|Z_0\right| + \left|A_{a,0}^{(N)}\right| \left|Z_1^{(N)}\right| \\
+                                  & \leq \frac{|A_{\omega, 0}^{(N)}|}{\omega_N} + \left|A_{a,0}^{(N)}\right| \zeta                            \\
+                                  & =: z_1^{(0)}
+\end{align*}
+
+$Z_1^{(1)}$の評価は
+\begin{equation*}
+  \begin{split}
+    \left\| (A(DF(\bar{x})-A^\dagger)c)_1 \right\|_\omega =& \left\| (Az)_1 \right\|_\omega \\
+    =& \left\| A_{\omega,1}^{(N)} z_0 + A_{a,1} z_1 \right\|_\omega \\
+    \leq& \frac{\left\| A_{\omega,1}^{(N)} \right\|_\omega}{\omega_N} + \sum_{|k|<N} \left( \left| A_{a,1}^{(N)} \right| \zeta \right)_k \omega_k + \sum_{N \leq |k| \leq 3(N-1)} \frac{\left| \mu ik \left( \bar{a} * \bar{a} * \bar{a} \right)_k \right|}{3\left| \lambda_k \right|} \omega_k \\
+    &+ \sum_{|k| \geq N} \frac{\left| \mu ik \omega \left(\bar{a}*\bar{a}*\bar{x}\right) \right|}{\left| \lambda_k \right|} \omega_k \\
+    \leq& \frac{\left\| A_{\omega,1}^{(N)} \right\|_\omega}{\omega_N} + \left\| \left| A_{a,1}^{(N)} \right| \zeta \right\|_\omega + \sum_{N\leq|k|\leq 3(N-1)} \frac{\left| \mu ik \left( \bar{a} * \bar{a} * \bar{a} \right)_k \right|}{3\left| \lambda_k \right|} \omega_k \\
+    &+ \frac{1}{N} \frac{\mu \omega \left\|\bar{a}\right\|_\omega^2}{\omega^2-\frac{1}{N^2}}\\
+    =:& Z_1^{(1)}
+  \end{split}
+\end{equation*}
+
+よって，
+\begin{equation*}
+  Z_1 := \max \left\{ Z_1^{(0)}, Z_1^{(1)} \right\}
+\end{equation*}
+
+%---------------------
+\subsection{$Z_2$を計算する}
+$b \in \overline{B\left(\bar{x},r\right)},\ c=\left(c_0,c_1\right)\in\overline{Z(0,1)}$について
+\begin{equation*}
+  \left\| A \left( DF \left( b \right) - DF \left( \bar{x} \right) \right) c \right\|_X \leq Z_2(r)r
+\end{equation*}
+を考える．まず$z$を
+\begin{equation*}
+  z := \left( DF(b) - DF(\bar{x}) \right) c = \begin{bmatrix}
+    z_0 \\
+    z_1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    0 \\
+    z_1
+  \end{bmatrix}
+\end{equation*}
+と定義する．$z_0=0$となるので，$z_1$だけを考えればよく
+\begin{equation*}
+  \left(z_1\right)_k := \left(\partial_\omega f_k \left(b\right) - \partial_\omega f_k \left(\bar{x}\right) \right)c_0 + \left[ \left(\partial_a f\left(b\right) - \partial_a f \left(\bar{x}\right) \right) c_1 \right]_k,\ k \in \mathbb{Z}
+\end{equation*}
+と書ける．$b=\left( \omega, \left(a_k\right)_{k\in\mathbb{Z}} \right), \bar{x}=\left( \bar{\omega}, \left(\bar{a_k}\right)_{|k|<N} \right)$として，第1項は
+\begin{equation*}
+  \begin{split}
+    &\left(\partial_\omega f_k \left(b\right) - \partial_\omega f_k \left(\bar{x}\right) \right)c_0 \\
+    =& \left[ \left( \left( -2k^2\omega - \mu ik \right) a_k + \frac{\mu ik}{3} \left( a*a*a \right)_k \right) - \left( \left( -2k^2\bar{\omega} - \mu ik \right) \bar{a}_k       + \frac{\mu ik}{3} \left( \bar{a}*\bar{a}*\bar{a} \right)_k \right) \right]c_0 \\
+    =& \left[  -2k^2\omega \left( a_k - \bar{a}_k \right) -2k^2\left( \omega - \bar{\omega} \right)\bar{a}_k - \mu ik \left( a_k - \bar{a}_k \right) + \frac{\mu ik}{3} \left( \left( a*a*a \right)_k - \left(\bar{a}*\bar{a}*\bar{a}\right)_k \right) \right] c_0
+  \end{split}
+\end{equation*}
+と書ける．そして，第2項は，
+\begin{equation*}
+  \begin{split}
+    &\left[ \left( \partial_a f(b) - \partial_a f(\bar{x}) \right)_{c_1} \right]_k \\
+    =& \left( -k^2\omega^2 - \mu ik \omega + 1 \right) \left( c_1 \right)_k + \mu ik \omega (a * a * c_1)_k - \left( -k^2\bar{\omega}^2 - \mu ik \bar{\omega} + 1 \right) \left( c_1 \right)_k \\
+    &+ \mu ik \bar{\omega} (\bar{a} * \bar{a} * c_1)_k \\
+    =& \left[ -k^2\left(\omega + \bar{\omega}\right) \left(\omega - \bar{\omega}\right) - \mu ik \left(\omega - \bar{\omega}\right) \right] \left(c_1\right)_k + \mu ik \omega \left(\left(a+\bar{a}\right)*\left(a-\bar{a}\right)*c_1\right)_k \\
+    &+ \mu ik \left(\omega - \bar{\omega}\right) \left( \bar{a} * \bar{a} * c_1 \right)_k
+  \end{split}
+\end{equation*}
+と書ける．$(Az)_0,(Az)_1$は，
+\begin{align*}
+  (Az)_0 & = A_{a,0}^{(N)} + z_1^{(N)} \\
+  (Az)_1 & = A_{a,1} + z_1
+\end{align*}
+より，
+\begin{equation*}
+  \|Az\|_X = \max\left\{ \left| A_{a,0}^{(N)} z_1^{(N)} \right|,\ \left\| A_a,1 z_1 \right\| \right\}
+\end{equation*}
+となる．
+
+$\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに，$\tilde{A}_{a,0}, \tilde{B}_{a,0}$を以下のように定義する．
+\begin{align*}
+  \tilde{A}_{a,0} & := \left( \left| k \right| \left( A_{a,0}^{(N)} \right)_k \right)_{|k|<N} \\
+  \tilde{B}_{a,0} & := \left( k^2 \left( A_{a,0}^{(N)} \right)_k \right)_{|k|<N}
+\end{align*}
+すると，
+\begin{equation*}
+  \begin{split}
+    \left| A_{a,0}^{(N)} z_1^{(N)} \right| &\leq 2\left(\tilde{\omega} + r\right) \left\| \tilde{B}_{a,0} \right\|_\omega r + 2 \left\| \tilde{B}_{a,0} \right\|_\omega \left\| \tilde{a} \right\|_\omega r + \mu \left\| \tilde{A}_{a,0} \right\|_\omega r \\
+    &+ \frac{\mu}{3} \left\| \tilde{A}_{a,0} \right\|_\omega \left( r^2 * 3 \left\| \bar{a} \right\|_\omega r + 3 \left\| \bar{a} \right\|^2_\omega \right) r + \left\| \tilde{B}_{a,0} \right\|_\omega \left( 2\bar{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,0} \right\|_\omega r \\
+    &+ \mu\left(\bar{\omega}+r\right)\left\| \tilde{A}_{a,0} \right\|_\omega \left( 2 \left\| \bar{a} \right\|_{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,0} \right\|_\omega \left\| a \right\|_\omega^2 r\\
+    &= Z_2^{(4,0)} r^3 + Z_2^{(3,0)} r^2 + Z_2^{(2,0)} r
+  \end{split}
+\end{equation*}
+となる．同様に，$\left\| A_{a,1} z_1 \right\|_\omega$を上から評価する．$\tilde{A}_{a,1}, \tilde{B}_{a,1}$を以下のように定義する．
+\begin{align*}
+  \tilde{A}_{a,1} & := \left( \left| j \right| \left( A_{a,1} \right)_{k,j} \right)_{k,j\in\mathbb{Z}} \\
+  \tilde{B}_{a,1} & := \left( j^2 \left( A_{a,1} \right)_{k,j} \right)_{k,j\in\mathbb{Z}}
+\end{align*}
+すると，
+\begin{equation*}
+  \begin{split}
+    \left\| A_{a,1} z_1 \right\|_{\omega} &\leq 2\left(\tilde{\omega} + r\right) \left\| \tilde{B}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} r + 2 \left\| \tilde{B}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left\| \tilde{a} \right\|_\omega r + \mu \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} r \\
+    &+ \frac{\mu}{3} \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left( r^2 + 3 \left\| \bar{a} \right\|_\omega r + 3 \left\| \bar{a} \right\|^2_\omega \right) r + \left\| \tilde{B}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left( 2\bar{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} r \\
+    &+ \mu\left(\bar{\omega}+r\right)\left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left( 2 \left\| \bar{a} \right\|_{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left\| a \right\|_\omega^2 r\\
+    &= Z_2^{(4,1)} r^3 + Z_2^{(3,1)} r^2 + Z_2^{(2,1)} r
+  \end{split}
+\end{equation*}
+と書ける．$Z_2^{(4,1)},Z_2^{(3,1)},Z_2^{(2,1)}$は，先ほどの$\tilde{A}_{a,0},\tilde{B}_{a,0}を\tilde{A}_{a,1},\tilde{B}_{a,1}$に置き換えたものになる．$j=2,3,4$で
+\begin{equation*}
+  Z_2^{(j)} := \max \left\{ Z_2^{(j,0)}, Z_2^{(j,1)} \right\}
+\end{equation*}
+とすれば，
+\begin{equation*}
+  Z_2(r) := Z_2^{(4,1)} r^2 + Z_2^{(3,1)} r + Z_2^{(2,1)}
+\end{equation*}
+となる．
+
+\begin{comment}
+  \section{radii polynomalの零点探索の精度保証}
+以上で，$Y_0,\cdots,Z_2$の評価を区間演算で求めた．これらの評価を用いて$p(r_0)<0$となる$r_0$を求める．精度保証の方法は，Newton法を反復させることで，$p(r_0)=0$となる$r_0$の近似会を求め，これをKrawczyk法で検証する．
+
+\section{Krawczyk（クラフチック）法}
+\begin{thm}[Krawczyk法\cite{}]
+  $X \subset \mathbb{R}^n$を区間ベクトル，$c=\mathrm{mid}(X),\ R\simeq Df(c)^{-1} = j(c)^{-1}, E$を単位行列とし，
+  \begin{equation*}
+    K(X) = c- Rf(c) + (E-RDf(X))(X-c)
+  \end{equation*}
+  としたとき，$K(X) \subset \mathrm{int}(X)$（$\mathrm{int}(X):X$の内部）ならば$Xにf(x)=0$の解が唯一存在する．
+\end{thm}
+\end{comment}
+
+
+%======
+%
+%=====
+
+
+\chapter{無限次元ガウスの消去法}
+\section{射影}
 
 \begin{dfn}[代数的直和]
   Banach空間$X$とする．また，$X_1,X_2$をXの線形部分空間とする．ただし，$X_1$と$X_2$のノルムは，$X$のノルムと同一とする．そのとき，$X$が$X_1$と$X_2$の代数的直和であるとは
@@ -1576,7 +2341,7 @@ $p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使�
   Banach空間$X$が$X_1$と$X_2$の代数的直和であるとする．その上，$X_1$と$X_2$が共 にBanach空間であるとき，Banach空間$X$が$X_1$と$X_2$の位相的直和であるという．
 \end{dfn}
 
-\subsection{射影を用いたBanach空間上の無限次元ガウスの消去法}
+\section{射影を用いたBanach空間上の無限次元ガウスの消去法}
 \label{sct:無限次元ガウスの消去法}
 
   初めに，$X,X_1,X_2,L,g,P,\phi_1,\phi_2,T,B,C,D$を定義する．
@@ -2162,777 +2927,57 @@ $p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使�
 \end{proof}
 
 
-\newpage
-
-
-%==================
-%==================
-\newpage
-\chapter{Newton Kantorovichの定理を用いた精度保証付き数値計算}
-$X,Y$をBanach空間とし，非線形方程式
-\begin{equation*}
-  F(u)=0,\ u\in X
-\end{equation*}
-を求める問題を考える．この問題に対して近似解の品質保証を行う，定理の1つを以下に説明する．
-
-\section{radii polynomal approach \cite{github}}
-\begin{thm}[Newton-Kantorovich type argument]
-  有界線形作用素$A^\dagger \in \mathcal{L}(X,Y),\ A\in \mathcal{L}(Y,X)$を考え，作用素$F:X\rightarrow Y$が$C^1$-Fr\'{e}chet微分可能とする．また，$A$が単射で$AF:X\rightarrow X$とする．いま，$\bar{x} \in X$に対して%\overline{x}は，F(x) \approx 0となる近似解とする．
-  \begin{align*}
-    \|AF(\bar{x})\|_X                             & \leq Y_0                                             \\
-    \|I-A^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
-    \|A(DF(\bar{x})-A^\dagger)\|_{\mathcal{L}(X)} & \leq Z_1                                             \\
-    \|A(DF(b)-A^\dagger)\|_{\mathcal{L}(X)}       & \leq Z_2(r)r,\ \forall b \in \overline{B(\bar{x},r)} \\
-  \end{align*}
-  が成り立つとする．このとき
-  \begin{equation*}
-    p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r+Y_0
-  \end{equation*}
-  をradii polynomialといい，もし$p(r_0)<0$となる$r_0>0$が存在すれば，$F(\tilde{x})=0$をみたす$\tilde{x}$が$\overline{B(\tilde{x},r_0)}$内に一意存在する．
-\end{thm}
-
-\begin{proof}
-  写像$T$が閉球$\overline{B(\bar{x},r_0)}$において縮小写像になることを示す．
-
-  まず，
-  \begin{equation*}
-    DT(x)=I-ADF(x),\ x\in X
-  \end{equation*}
-  から，任意の$x\in \overline{B(\bar{x},r_0)}$に対して，仮定より
-  \begin{align*}
-    \|DT(x)\|_{\mathcal{L}(X)} & = \|I-ADF(x)\|_{\mathcal{L}(X)}                                                                                                  \\
-                               & \leq \|I-AA^\dagger\|_\mathcal{L(X)} + \|A(A^\dagger-DF(\bar{x}))\|_{\mathcal{L}(X)} + \|A(DF(\bar{x})-DF(x))\|_{\mathcal{L}(X)} \\
-                               & \leq Z_0 + Z_1 + Z_2(r_0)r_0
-  \end{align*}
-\end{proof}
-
-そして，任意の$x\in \overline{B(\bar{x},r_0)}$に対して，平均値の定理より，
-\begin{align*}
-  \|T(x)-\bar{x}\|_X & = \|T(x)-T(\bar{x})\|_X + \|T(\bar{x}) - \bar{x}\|_X                                           \\
-                     & \leq \sup_{b\in B(\bar{x},r_0)} \|DT(b)\|_{\mathcal{L}(X)} \|x-\bar{x}\|_X + \|AF(\bar{x})\|_X \\
-                     & \leq (Z_0 + Z_1 + Z_2(r_0)r_0) r_0 + Y_0                                                       \\
-                     & = p(r_0)+r_0
-\end{align*}
-
-よって，$p(r_0)<0$ならば，$\|T(x)-\bar{x}\|_X<r_0$．よって，$T(x)\in\overline{B(\bar{x},r_0)}$．
-
-次に，$X$の距離として，$d(x,y):=\|x-y\|_X,\ x,y\in X$と定義すると，
-\begin{align*}
-  d(T(x),T(y))\leq \sup_{b\in B(\bar{x},r_0)} \|DT(b)\|_{\mathcal{L}(X)} d(x,y) \\
-  \leq (Z_0 + Z_1 + Z_2(r_0)r_0) d(x,y),\ x,y\in \overline{B(\bar{x},r_0)}
-\end{align*}
-
-このとき，$p(r_0)<0$より，
-\begin{equation*}
-  Z_0 + Z_1 + Z_2{r_0}r_0 + \frac{Y_0}{r_0} < 1
-\end{equation*}
-
-よって，$k:=Z_0+Z_1+Z_2(r_0)r_0<1$となるため，$T$は$\overline{B(\bar{x},r_0)}$において縮小写像になる．
-
-したがって，Banachの不動点定理より，ただ1つの不動点$\tilde{x}$が$\overline{B(\bar{x},r_0)}$内に存在し，$A$の単射性により，この不動点は写像$F$の零点となる，$\mathrm{i.e.}，F(\tilde{x})=0$
-
-% 修正：先にDFを表記しろ．
-\section{Newton-Kantorovichの定理の特徴\cite{}}
-\begin{thm}[Newton-Kantorovichの定理の亜種]
-  XとYをBanach空間とする．$F:X\rightarrow Y$を与えられた作用素とし，$\bar{x}\in X$を与えられているとする．$A\in \mathcal{L}(Y,X)$とする．$F$は$\bar{x}$でFr\'{e}chet微分可能とし，$DF(\bar{x})$と表記する．$DF(\bar{x})$は全射であるとする．$\eta,\delta$を不等式
-  \begin{align*}
-    \|AF(\bar{x})\|_X \leq \eta \\
-    \|I-A(DF(\bar{x}))\|_{\mathcal{L}(X)} \leq \delta < 1
-  \end{align*}
-  を満たす定数とする．
-
-  $\overline{B(0,\frac{2\eta}{1-\delta})} = \{z\in X \mid \|z\|_X \leq \frac{2\eta}{1-\delta} \}$とし，定数$K$を不等式
-  \begin{equation*}
-    \|A(DF(\bar{x})-DF(\bar{x}+z))\|_\mathcal{{L}(X)} \leq K,\ z\in \overline{B\left(0,\frac{2\eta}{1-\delta}\right)}
-  \end{equation*}
-  を満たす定数とする．もし，$2K+\delta\leq 1$ならば．
-  \begin{equation*}
-    \|\tilde{x}-\bar{x}\|_X \leq \frac{\eta}{1-(K+\delta)} := p
-  \end{equation*}
-  に対し，真の解は$\bar{B}(\bar{x},p)$内に存在する．その上，$\bar{B}\left(\bar{x},\frac{2\eta}{1-\delta}\right)$内で一意である．
-\end{thm}
-
-\begin{proof}
-  まず，$AとDF(\bar{x})$が全単射であることを示す．$DF(\bar{x})$は$Fの\bar{x}$におけるFr\'{e}chet微分であるから，$DF(\bar{x})$は$\mathcal{L}(X,Y)$に属する．さらに，Neumann級数の定理（\ref{thm:Neumann級数}）と仮定$\|I-ADF(\bar{x})_{\mathcal{L}(X)}\leq \delta 1$より，$ADF(\bar{x})$は全単射である．その上，定理（\ref{thm:Banachの全単射}）より，$DF(\bar{x})$は単射であり，$A$は全射である．また，定理の仮定より，$DF(\bar{x})$は全単射となるため，逆作用素$DF(\bar{x})^{-1}$が存在し，$\mathcal{L}(Y,X)$に属する．また$A$の単射性について，定理（\ref{thm:線形作用素に対する単射性(1)}）と逆作用素$DF(\bar{x})^{-1}$を用いて
-  \begin{equation*}
-    A\phi = 0 \Rightarrow ADF(\bar{x}) DF(\bar{x})^{-1}\phi = 0 \Rightarrow \phi = 0
-  \end{equation*}
-  となるため，$A$も全単射である．
-
-  続いて，Banachの不動点定理（\ref{thm:Banachの不動点定理}）を用いて解の存在を示す．まず，作用素方程式$F(x)=0$を不動点方程式に変形すｒ．$w:=\tilde{x}-\bar{x}$とする．$A$が単射であるため，
-  \begin{align*}
-     & F(\tilde{x})=0                                                    \\
-     & \Leftrightarrow w = w-AF(\tilde{x} + w)                           \\
-     & \Leftrightarrow w = -AF(\bar{x}) + w - A(F(\bar{x}+w)-F(\bar{x})) \\
-  \end{align*}
-  $\mathcal{T}: V \rightarrow V$を
-  \begin{equation*}
-    \mathcal{T}(w) := -AF(\bar{x}) + w - A(F(\bar{x}+w)-F(\bar{x}))
-  \end{equation*}
-  となる非線形作用素とし，不動産方程式$w=\mathcal{F}(w)$の解の存在をBanachの不動点定理（$\ref{thm:Banachの不動点定理}$）を用いて示す．
-
-  Banachの不動点定理（\ref{thm:Banachの不動点定理}）では$M$を決めて，$\mathcal{T}がMからMへ$の縮小写像になることを確認しなければならない．特に，ポイントの1つは$\mathcal{T}$の定義域を$M$としたときに，値域が$M$に含まれることを確かめなければならない．すなわち，$\mathcal{T}(M) \ subset M$となるように$M$を選ぶことが重要である．この定理では，$M=\overline{B(0,\rho)},\ \rho = \frac{\eta}{1-(K+\delta)}$と選ぶ．まず，$M$として選んだ閉球$\overline{B(0,\rho)}$と定理で出てくるもう1つの閉球$B\left(0, \frac{\eta}{1-\delta}\right)$の関係性を確認する．定理の仮定より$1-\delta>0$と$1-\left(\delta + 2K\geq 0\right)$を持つため，
-  \begin{align*}
-    \rho - \frac{2\eta}{1-\delta} & = \frac{\eta(1-\delta)}{(1-(\delta+K))(1-\delta)}-\frac{2\eta(1-(\delta +K))}{(1-(\delta+K))(1-\delta)} \\
-                                  & = \frac{\eta((1-\delta)-2(1-\delta)+2K)}{(1-(\delta+2K))(1-\delta)}                                     \\
-                                  & = \frac{-\eta(1-\delta-2K)}{(1-(\delta+K))(1-\delta)}
-    \leq 0
-  \end{align*}
-  となる．よって，$\rho\leq\frac{2\eta}{1-\delta}$から$\overline{B(\bar{x},\rho)}\subset \overline{B\left(0,\rho\right)}$となる．
-
-  次に，$\mathcal{T}(\overline{B(0,\rho)}) \subset \overline{B(0,\rho)}$を示す．任意の$w\in \overline{B(0,\rho)}$に対し，Fr\'{e}chet微分とBochner積分に対する微分積分学の定理を用いることで
-  \begin{align*}
-    \|\mathcal{T}(w)\|_X & \leq \|AF(\bar{x})\|_X + \|w-A(F(\bar{x}+w)-F(\bar{x}))\|_X                                                             \\
-                         & \leq \eta + \|w - R\int_0^1 DF((1-t)\bar{x})+t(\bar{x}+w)wdt\|_X                                                        \\
-                         & \leq \eta + \int_0^1 \|w - ADF(\bar{x}+tw))w\|_X dt                                                                     \\
-                         & \leq \eta + \int_0^1 \|I - ADF(\bar{x}+tw)\|_{\mathcal{L}(V,V)}\|w\|_X dt                                               \\
-                         & \leq \eta + \int_0^1 \|A(DF(\bar{x})-DF(\bar{x}+tw))\|_{\mathcal{L}(X)} + \|I-ADF(\bar{x})\|_{\mathcal{L}(X)}\|w\|_X dt \\
-                         & \leq \eta + \int_0^1 (\|A(DF(\bar{x})-DF(\bar{x}+tw))\|_{\mathcal{L}(X)} +m) \|w\|_{X}dt                                \\
-  \end{align*}
-  を得る．さらに，$t\in[0,1]$に対し$tw\in\overline{B(0,\rho)}\subset\overline{B\left(0,\frac{2\eta}{1-\delta}\right)}$となるため，定理の仮定$\|R(DF(\bar{x})-DF(\bar{x}+tw))\|_{\mathcal{L}(X)}\leq K$から，
-  \begin{align*}
-    \|\mathcal{T}(w)\|_X & \leq \eta + (K+\delta)\|w\|_X                                             \\
-                         & \leq \eta + (K+\delta)\rho                                                \\
-                         & = \eta + \frac{\eta(K+\delta)}{1-(K+\delta)}                              \\
-                         & = \frac{\eta-\eta(\delta+K)}{1-(\delta+K)}+{\eta(K+\delta)}{1-(\delta+K)} \\
-                         & = \rho
-  \end{align*}
-  となる．よって，任意の$w\in \overline{B(0,\rho)}$に対して$\|\mathcal{T}(w)\|_X \leq \rho$となることから，$\mathcal{T}\left(\overline{B(0,\rho)}\right) \subset \overline{B(0,\rho)}$となる．
-
-  次に，$\mathcal{T}:\overline{B(0,\rho)}\rightarrow \overline{B(0,\rho)}$が縮小写像になることを確認する．すなわち
-  \begin{equation*}
-    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X \leq k \|w_1-w_2\|_X,\ \forall w_1,w_2\in \overline{B(0,\rho)}
-  \end{equation*}
-  となる定数$k$が1未満になることを確認しなければならない．この定理では，一意性の範囲を広げるために，$\overline{B(0,\rho)}\subset \overline{B\left(\frac{2\eta}{1-m}\right)}$であることを用いて
-  \begin{equation*}
-    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X \leq k \|w_1-w_2\|_X,\ \forall w_1,w_2\in \overline{B\left(0,\frac{2\eta}{1-\delta}\right)}
-  \end{equation*}
-  となる定数$k$が$1$未満になることを確かめる．その上，任意の$\overline{B(0,\rho)}\in\overline{B\left(\frac{2\eta}{1-m}\right)}$に対し，
-  \begin{align*}
-    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X & = \|w_1-w_2-A(D(\bar{x}+w_1)-F(\bar)+w_2)\|_X                                                         \\
-                                               & = \|(w_1-w_2)-A\int_{0}^{1}DF(\bar{x}+(1-t)w_2+tw_1)\|_{\mathcal{L}(X)}dt\|w_1-w_2\|_X                \\
-                                               & \leq \int_{0}^{1} \|I-ADF(\bar{u}+(1-t)w_2+tw_1)\|_{\mathcal{L}(X)}dt\|w_1-w_2\|_X                    \\
-                                               & \leq \int_{0}^{1} \|A(DF(\bar{x})-DF(\bar{x}+(1-t)w_2+tw_1)\|_{\mathcal{L}(X)}+\delta)dt\|w_1-w_2\|_X \\
-  \end{align*}
-  となる．任意の$w_1,w_2\in\overline{B\left(0,\frac{2\eta}{1-\delta}\right)}$と$0\leq t \leq 1$に対し，$\|(1-t)w_2+tw_1\|_X\leq(1-t)\|w_2\|_x+t\|w_1\|_X\leq \frac{2\eta}{1-\delta}$となるため，
-  \begin{equation*}
-    \|\mathcal{T}(w_1) - \mathcal{T} (w_2)\|_X \leq (K+\delta)\|w_1-w_2\|_X
-  \end{equation*}
-  となる．その上，仮定$2K+\delta\leq 1かつ\delta<1$より$K+\delta < 1$も満たすため，$\mathcal{T}は\overline{B(0,\rho)}から\overline{B(0,\rho)}$への縮小写像となる．よって，Banachの不動点定理（\ref{thm:Banachの不動点定理}）より不動点方程式$w=\mathcal{T}(w)$の$F(u)=0$を満たす解が$\overline{B(0,\rho)}$に一意に存在する．$w=\tilde{x}-\bar{x}$であったことから，作用素方程式$F(x)=0$を満たす解が$\overline{B(\bar{x}),\rho}$内に一意に存在する．
-
-  最後に，$\overline{B\left(\bar{x},\frac{2\eta}{1-\delta}\right)}$内で一意に存在することを示す．$\overline{B\left(0,\frac{2\eta}{1-\delta}\right)}$内に不動点方程式$w=\mathcal{T}(w)$の解が2つあったとする．すなわち，2つの解$\tilde{z_1},\tilde{w_2}\in\overline{\bar{x},\frac{2\eta}{1-\delta}}$とし，$\tilde{x_1}=\mathcal{T}(\tilde{w_1})$と$\tilde{x_2}=\mathcal{T}(\tilde{w_2})$を満たすとする．そのとき，
-  \begin{equation*}
-    \|\tilde{w_1}-\tilde{w_2}\|_X = \|\mathcal{T}(\tilde{w_1})-\mathcal{T}(\tilde{w_2})\|_X \leq (K+m)\|\tilde{w_1}-\tilde{w_2}\|_X
-  \end{equation*}
-  となる．ここで，$2K+m<1$であるため，不等式を満たすものは$\tilde{w_1}=\tilde{w_2}$の場合のみである．すなわち，不動点方程式$w=\mathcal{T}(w)$を満たす解は$\overline{B\left(\bar{x},\rho\right)}$内に一意である．よって，作用素方程式$F(x)=0$を満たす解が$\overline{B(\bar{x},\frac{2\eta}{1-\delta})}$内に一意に存在する．
-
-\end{proof}
-%-----------------
-
-\newpage
-\chapter{既存のvan der Pol方程式の精度保証付き数値計算\cite{github}}
-
-\section{van der Pol方程式}
-van der Pol方程式とは，ある発振現象をもつ電気回路の方程式であり，以下のように表す．
-\begin{equation*}
-  \frac{d^2x}{dt^2} - \mu (1-x^2)\frac{dx}{dt}+x=0
-\end{equation*}
-
-未知関数は$x(t)$で，$\mu >0$は非線形の減衰の強さを表すパラメータである．
-
-
-\section{フーリエ・スペクトル法}
-フーリエ・スペクトル法の計算に必要な参照軌道をまず得るために，van der Pol方程式の解を数値計算する．まず，van der Pol方程式を次の連立常微分方程式系にしてODEソルバーで数値を計算する．
-
-\begin{equation*}
-  \begin{cases}
-    \frac{dx}{dt} = y \\
-    \frac{dy}{dt} = \mu (1-x^2)y-x
-  \end{cases}
-\end{equation*}
-
-初期値$x(0)=0,\ y(0)=2$とし，$\mu=1$の時の数値計算を実行する．周期解をフーリエ級数で表し，その係数と周期を求めるため，Van der Pol方程式の周期解の周期を大まかに求める．得た近似周期軌道と近似周期を使って，起動のフーリエ補完を計算する．van der Pol方程式は，$\dot{x}=\frac{dx}{dt}$とおくと，以下のように表すことができる．
-\begin{equation*}
-  \ddot{x} - \mu (1-x^2)\dot{x} - x = 0
-\end{equation*}
-後の計算のために，式を整理すると，
-\begin{equation*}
-  \ddot{x} - \mu \dot{x} + \frac{\mu}{3} \left(\dot{x}^3\right) + x = 0
-\end{equation*}
-
-周期解$x(t)$を周期$L$の周期関数とし，$\omega = \frac{2\pi}{L}$とおくと，$x(t)$とその微分やべき乗はフーリエ級数を使って，
-\begin{align*}
-  x(t)                 & = \sum_{k\in\mathbb{N}} a_k \exp(ik \omega t)                \\
-  \frac{d(x)}{dt}      & = \sum_{k\in\mathbb{N}} (ik \omega) a_k \exp(ik \omega t)    \\
-  \frac{d^2x(t)}{dt^2} & = \sum_{k\in\mathbb{N}} (-k^2\omega^2) a_k \exp(ik \omega t) \\
-  x(t)^3               & = \sum_{k\in\mathbb{N}} (a*a*a)_k \exp(ik \omega t)
-\end{align*}
-と書くことができる．ここで
-
-\begin{equation*}
-  (a*a*a)_k = \sum_{\substack{k_1+k_2+k_3=k\\k_i\in\mathbb{Z}}} a_{k_1}a_{k_2}a_{k_3},\ k\in\mathbb{Z}
-\end{equation*}
-
-は3次の離散畳み込みである．
-
-そしてフーリエ係数に関する式を立てる．係数$a=\left(a_k\right)_{k\in\mathbb{Z}}$に対して，van der Pol方程式に求めたフーリエ級数を代入すると，
-\begin{equation*}
-  f_k(a) := -k^2\omega^2 a_k - \mu ik \omega a_k + \frac{\mu}{3} (ik \omega)(a*a*a)_k + a_k
-\end{equation*}
-となる点列$(f_k(a))_{k\in\mathbb{Z}}$が得られる．そして，各$k\in\mathbb{z}$について
-\begin{equation*}
-  f_k(a) = 0
-\end{equation*}
-となる点列$a$があれば，van der Pol方程式の解のフーリエ係数になる．未知数は周期数$\omega$と点列$a$であり，これらを並べて$x=(\omega,a)$と書くことにする．未知数$x$に対して，$f_k(a)=0$という方程式だけでは不逞な方程式になるため，解の形を1つに定めることができない．そこで，位相条件
-\begin{equation*}
-  \eta(a) = \sum_{|k|\in N} a_k-\eta_0 = 0,\ \eta_0\in\mathbb{R}
-\end{equation*}
-を加える．この条件は，$x(t)$の切片$x(0)=\eta_0$を表している．最終的にvan der Pol方程式の周期解の球解は次の代数方程式を解くことに帰着される．
-\begin{equation*}
-  F(x) := \begin{bmatrix}
-    \eta(a) \\
-    \left(f_k(a)_{k\in\mathcal{Z}}\right)
-  \end{bmatrix}
-\end{equation*}
-
-以下，この零点探索問題$F(x)=0$についてNewton法で解を得ることを考える．まず，$N$をフーリエ係数の打ち切り番号（最大波数：$N-1$）とし，周期解の近似を次のように構成する．
-\begin{equation*}
-  x_N(t) = \sum_{|k|<N} \bar{a}_k \exp(ik\omega t)
-\end{equation*}
-
-このとき，フーリエ係数と（近似）周期をならべた
-\begin{equation*}
-  \bar{x} = \left(\bar{\omega},\bar{a}_{-N+1},\cdots,\bar{a}_{N-1}\right) \in \mathbb{C}^{2N}
-\end{equation*}
-を近似解と呼ぶ．近似解$\bar{x}$の項数は$2N$個．そして，$f_k(a)=0$を$|k|<N$の範囲で打ち切る方程式
-\begin{equation*}
-  F^{(N)}\left(x^{(N)}\right) = \begin{bmatrix}
-    \eta\left(a^{(N)}\right) \\
-    \left(f_k(a^{(N)})\right)_{|k|<N}
-  \end{bmatrix}
-  = 0
-\end{equation*}
-を考える．ここで$a^{(N)}=\left(a_k\right)_{|k|<N},\ x^{(N)}=\left(\omega, a^{(N)}\right)$をそれぞれ表し，$F^{(N)}:\mathbb{C}^{2N}\rightarrow\mathbb{C}^{2N}$である．したがって$F^{(N)}\left(x^{(N)}\right)=0$という有限次元の非線形方程式を解くことで，近似解$\bar{x}$を得られる．
-
-実際にNewton法を用いて，周期化の数値計算を行っていく．Newton法では，ある適当な初期値$x_0$を最初に定め，以下の反復計算によって計算できる．
-\begin{equation*}
-  x_{n+1} = x_n - DF^{(N)}\left(x_n\right)^{-1} F^{(N)}\left(x_n\right),\ n=0,1,\cdots
-\end{equation*}
-このことから，$DF^{(N)}\left(x_n\right)^{-1}$と$F^{(N)}\left(x_n\right)$を計算することができれば，近似解を得ることができる．はじめに，離散畳み込みの関数を用意する．
-
-$F^{(x)}(X^{(N)})$のヤコビ行列は
-\begin{equation*}
-  DF^{(N)}\left(x^{(N)}\right)=\begin{bmatrix}
-    \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      \\
-    \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        \\
-    \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots \\
-    \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        \\
-  \end{bmatrix} \in \mathbb{C}^{2N\times 2N}\ \left(|k|,|j|<N\right)
-\end{equation*}
-ここで，
-
-\begin{align*}
-   & \begin{cases}
-       \partial_w f_k = (-2k^2\omega - \mu ik)a_k + \frac{\mu ik}(a*a*a)_k                     & (|k|<N) \\
-       \partial_{a_j} f_k = (k^2\omega^2 - \mu ik\omega)\delta_{k_j} + \mu ik\omega(a*a)_{k-j} & (|k|<N)
-     \end{cases}
-  \\
-   & \delta_{k_j} = \begin{cases}
-                      1 & (k=j)     \\
-                      0 & (k\neq j)
-                    \end{cases}
-\end{align*}
-
-である．ヤコビ行列の各要素との対応は
-\begin{align*}
-   & \left(DF^{(N)}\left(x^{(N)}\right)\right)_{l,m}                                                                                        \\
-   & = \begin{cases}
-         0                   & \left(l=m=1\right)                                                                                             \\
-         1                   & \left(l=1,\ m= 2,\cdots,2N\right)                                                                              \\
-         \partial_\omega f_k & \left(l=2,\cdots,2N,\ m=1, \ \mathrm{i.e.},\ l=k+N+1 \ \mathrm{for} \ |k|<N\right)                             \\
-         \partial_{a_j}f_k   & \left(l,m=2,\cdots,2N, \ \mathrm{i.e.}, l=k+N+1 \ \mathrm{for} \ |k|<N,\ m=j+N+1 \ \mathrm{for} \ |j|<N\right)
-       \end{cases}
-\end{align*}
-
-
-\section{重み付き空間と作用素の決定}
-\begin{dfn}[許容重み]
-  \label{dfn:許容重み}
-  点列$\omega = \left(\omega_k\right)_{k\in\mathbb{Z}}$について，
-  \begin{align}
-    \omega_k>0,\                           & \forall k \in \mathbb{Z}   \\
-    \omega_{n+k} \leq \omega_n \omega_k,\  & \forall n,k\in\mathbb{Z}
-  \end{align}
-  が成立するとき，許容重み（admissible wights）であるという．
-\end{dfn}
-
-\begin{thm}[重み付き$l^1$空間]
-  \label{dfn:重み付きl1空間}
-  \begin{equation*}
-    l_\omega^1 := \left\{ a = (a_k)_{k\in\mathbb{Z}}:a_k\in\mathbb{C},\ \|a\|_\omega:=\sum_{k\in\mathbb{Z}}|a_k|\omega_k < \infty\right\}
-  \end{equation*}
-
-  点列$\omega$を許容重みとする．$\left(l_m^1, *\right)$は可換なBanach環となる．すなわち，点列$a,b\in l^1_m$として，離散畳み込み$*$に対して
-  \begin{equation*}
-    \|a*b\|_\omega \leq \|a\|_\omega\|b\|_\omega
-  \end{equation*}
-  が成立する．
-\end{thm}
-
-\begin{proof}
-  $a,b\in l_{\omega}^1$として，
-  \begin{equation*}
-    \begin{split}
-      \|a*b\|_\omega &= \sum_{k\in\mathbb{Z}} \|(a*b)\|\omega_k \\
-      &= \sum_{k\in\mathbb{Z}} \left\|\sum_{\substack{k_1+k_2=k \\ k_1,k_2\in\mathbb{Z}}}a_{k_1} a_{k_2}\right\| \omega_k \\
-      &\leq \sum_{k\in\mathbb{Z}} \left(\sum_{\substack{k_1+k_2=k \\ k_1,k_2\in\mathbb{Z}}}|a_{k_1}||a_{k_2}|\omega_k\right)\\
-      &\leq \sum_{k\in\mathbb{Z}} \left(\sum_{\substack{k_1+k_2=k \\ k_1,k_2\in\mathbb{Z}}}|a_{k_1}|\omega_{k_1}|a_{k_2}|\omega_{k_2}\right)\\
-      &\leq \left(\sum_{k_1\in\mathbb{Z}}|a_{k_1}|\omega_{k_1}\right) \left(\sum_{k_\in\mathbb{Z}}|a_{k_2}|\omega_{k_2}\right) \\
-      &= \|a\|_\omega\|b\|_\omega
-    \end{split}
-  \end{equation*}
-\end{proof}
-
-\begin{dfn}[Banach空間$X$]
-  Banach空間の$X$を次のように定める．はじめに重み付き$l^1$空間を重み$w_k=\nu^{|k|}\ (\nu=1.05)$として次のように定める．
-  \begin{equation*}
-    l_{\nu}^1 := \left\{ a = (a_k)_{k\in\mathbb{Z}}:a_k\in\mathbb{C},\ \|a\|_{w} := \sum_{k\in\mathbb{Z}}|a_k|\nu^{|k|} < \infty\right\}
-  \end{equation*}
-
-  そして，検証に用いいる関数空間$X$はBanach空間となる．
-  \begin{equation*}
-    X:=\mathbb{C}\times l_{\nu}^1,\ x=(x,a),\ \omega \in \mathbb{C},\ a\in l_{\nu}^1
-  \end{equation*}
-  と定め，そのノルムを
-  \begin{equation*}
-    \|x\|_X:=\max |\omega|,\ \|a\|_{\omega}
-  \end{equation*}
-  として，定義する．このとき，$X$はBanach空間となる．
-\end{dfn}
-
-\begin{dfn}[ヤコビ行列$F^{(N)}\left(x^{(N)}\right)$]
-  $F^{(N)}\left(x^{(N)}\right)$のヤコビ行列は，次のような形をしている．
-  \begin{equation*}
-    DF^{(N)}\left(x^{(N)}\right)=\begin{bmatrix}
-       & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \\ \cline{2-5}
-       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        & \\
-       & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & \\
-       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        & \\
-    \end{bmatrix}
-    \in \mathbb{C}^{2N\times 2N},\ \left(|k|,|j|<N\right)
-  \end{equation*}
-  ここで，
-  \begin{align*}
-     & \begin{cases}
-         \partial_w f_k = (-2k^2\omega - \mu ik)a_k + \frac{\mu ik}{3}(a*a*a)_k                     & (|k|<N) \\
-         \partial_{a_j} f_k = (k^2\omega^2 - \mu ik\omega)\delta_{k_j} + \mu ik\omega(a*a)_{k-j} & (|k|<N)
-       \end{cases}
-    \\
-     & \delta_{k_j} = \begin{cases}
-                        1 & (k=j)     \\
-                        0 & (k\neq j)
-                      \end{cases}
-  \end{align*}
-\end{dfn}
-である．ヤコビ行列の各要素の伏せ字とその対応は
-\begin{align*}
-   & \left(DF^{(N)}\left(x^{(N)}\right)\right)_{l,m}                                                                                        \\
-   & = \begin{cases}
-         0                   & \left(l=m=1\right)                                                                                             \\
-         1                   & \left(l=1,\ m= 2,\cdots,2N\right)                                                                              \\
-         \partial_\omega f_k & \left(l=2,\cdots,2N,\ m=1, \ \mathrm{i.e.},\ l=k+N+1 \ \mathrm{for} \ |k|<N\right)                             \\
-         \partial_{a_j}f_k   & \left(l,m=2,\cdots,2N, \ \mathrm{i.e.}, l=k+N+1 \ \mathrm{for} \ |k|<N,\ m=j+N+1 \ \mathrm{for} \ |j|<N\right)
-       \end{cases}
-\end{align*}
-
-\begin{dfn}[作用素$A^\dagger,A$の定義]
-  まず，Banach空間$X=\mathbb{C}\times l_\nu^1$から$Y=\mathbb{C}\times l_\nu^1,\ (\nu^\prime<\nu)$と設定し，$A^\dagger$を$A^\dagger\in (X,Y)$として，$b=(b_0,b_1)\in \mathbb{C}\times l_\nu^1=X$に対して，$A^\dagger b=\left(\left(A^\dagger b\right)_0,\left(A^\dagger b\right)_1\right)$と作用素するように定義する．ここで，$A^\dagger$を形式的に見ると，
-  \begin{equation*}
-    A^\dagger =
-    \begin{bmatrix}
-       & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \cdots           & 0               & \cdots           & \\ \cline{2-8}
-       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &                  &                 &                  & \\
-       & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &                  & \text{\huge{0}} &                    \\
-       & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &                  &                 &                    \\
-       & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \lambda_N        &                 & \text{\Large{0}} & \\
-       & \multicolumn{1}{c|}{0}              &        & \text{\huge{0}}   &        &                  & \lambda_{N+1}   &                    \\
-       & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \text{\Large{0}} &                 &
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-       & \multicolumn{1}{c|}{0}                    & A_{a,0}^\dagger & \\ \cline{2-3}
-       & \multicolumn{1}{c|}{A_{\omega,1}^\dagger} & A_{a,0}^\dagger &
-    \end{bmatrix}
-  \end{equation*}
-
-  このことから，$A^\dagger b$は
-  \begin{equation*}
-    A^\dagger b = \begin{bmatrix}
-      0                    & A^\dagger_{a,0} \\
-      A^\dagger_{\omega,1} & A^\dagger_{a,1}
-    \end{bmatrix}
-    \begin{bmatrix}
-      b_0 \\
-      b_1
-    \end{bmatrix}
-    = \begin{bmatrix}
-      A_{a,0}^\dagger b_1 \\
-      A_{\omega,1}^\dagger b_0 + A_{a,1}^\dagger b_1
-    \end{bmatrix}
-    =: \begin{bmatrix}
-      \left(A^\dagger b\right)_0 \\
-      \left(A^\dagger b\right)_1
-    \end{bmatrix}
-  \end{equation*}
-  と表すことができ，
-  \begin{align*}
-    \left(A^\dagger b\right)_0                & = \sum_{|k|<N} (b_1)_k                                                                                                             \\
-    \left(\left(A^\dagger b\right)_1\right)_k & := \begin{cases}
-                                                     \partial_\omega f_k b_0 + \sum_{|j|<N} \partial_{a_j} f_k (b_1)_j & ,\ |k|<N                                                    \\
-                                                     \lambda_k (b_1)_k                                                 & ,\ |k|\geq N,\ \lambda_k := -k^2\omega^2 - \mu ik\omega + 1 \\
-                                                   \end{cases}
-  \end{align*}
-  と書ける．またこのとき，$(A^\dagger b)_0$と$(A^\dagger b)_1$はそれぞれ
-  \begin{align*}
-    \left(A^\dagger b\right)_0 & = A_{a,0}^\dagger = \sum_{|k|<N} (b_1)_k \in \mathbb{C}           \\
-    \left(A^\dagger b\right)_1 & = A_{\omega,1}^\dagger b_0 + A_{a,1}^\dagger \in l_{\nu^\prime}^1
-  \end{align*}
-
-  次に，$作用素A$について考える．
-  \begin{equation*}
-    A^{N} = \begin{bmatrix}
-      A_{\omega,0}^{(N)} & A_{a,0}^{(N)} \\
-      A_{\omega,1}^{(N)} & A_{a,1}^{(N)}
-    \end{bmatrix}
-    \approx DF^{(N)} \left(\bar{x}\right)^{-1} \in \mathbb{C}^{2N\times 2N}
-  \end{equation*}
-  をヤコビ行列の近似逆行列とする．$A\in\mathcal{L}(Y,X)$として，$b=\left(b_0,b_1\right)\in X$に対して，$Ab=\left((Ab)_0,(Ab)_1\right)$と作用するように定義する．ここで，
-  \begin{align*}
-    (Ab)_0 & = A_{\omega,0}^{(N)}b_0 + A_{a,0}^{(N)} b_1^{(N)} \\
-    (Ab)_1 & = A_{\omega,1}^{(N)}b_0 + A_{a,1}^{(N)} b_1
-  \end{align*}
-
-  ただし，無限次元の$A_{a,1}b_1$は以下のようになる．
-  \begin{equation*}
-    \left(A_{a,1}b_1\right)=\begin{dcases}
-      \left(A_{a,1}^{(N)}b_1{(N)}\right)_k & \ (|k|<N)     \\
-      \frac{(b_1)_k}{\lambda_k}            & \ (|k|\geq N)
-    \end{dcases}
-  \end{equation*}
-
-  この定義を形式的に見ると，
-  \begin{equation*}
-    A =
-    \begin{bmatrix}
-       & \multicolumn{1}{c|}{A_{\omega,0}^{(N)}} & A_{a,0}^{(N)} & 0                   & \cdots                  & 0      & \\ \cline{2-6}
-       & \multicolumn{1}{c|}{A_{\omega,1}^{(N)}} & A_{a,1}^{(N)} &                     & \text{\large{0}}        &        & \\
-       & \multicolumn{1}{c|}{0}                  &               & \frac{1}{\lambda_N} &                         &        & \\
-       & \multicolumn{1}{c|}{\vdots}             &               &                     & \frac{1}{\lambda_{N+1}} &        & \\
-       & \multicolumn{1}{c|}{0}                  &               & \text{\large{0}}    &                         & \ddots & \\
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-       & \multicolumn{1}{c|}{0}            & A_{a,0} & \\ \cline{2-3}
-       & \multicolumn{1}{c|}{A_{\omega,1}} & A_{a,0} &
-    \end{bmatrix}
-  \end{equation*}
-  と表記できる．
-\end{dfn}
-
-\section{$Y_0,Z_0,Z_1,Z_2$の評価}
-\begin{description}
-  \item[$Y_0$]
-    \begin{equation*}
-      \left\| AF\left(\bar{x}\right)\right\|_X \leq Y_0
-    \end{equation*}
-  \item[$Z_0$]
-    \begin{equation*}
-      \left\| I-AA^\dagger \right\|_{\mathcal{L}\left(
-      X
-      \right)} \leq Z_0
-    \end{equation*}
-  \item[$Z_1$]
-    \begin{equation*}
-      \left\| A \left(DF \left( \bar{x} \right) A^\dagger \right) c \right\|_X \leq Z_1,\ c\in \overline{B(0,1)}
-    \end{equation*}
-    また，ここでの$\overline{B(0,1)}$とは$\|c\|_X=1$ということである．
-  \item[$Z_2$]
-    \quad \\
-    $b\in \overline{B\left(\bar{x},r\right)},\ h\in \overline{B(0,1)}$として，
-    \begin{equation*}
-      \left\| A \left(DF \left( b \right) - DF \left( \bar{x} \right) h \right) \right\|_{X} \leq Z_2 (r)r
-    \end{equation*}
-\end{description}
-
-\subsection{$Y_0$を計算する}
-\begin{equation*}
-  F(\bar{x}) = (\delta_0, \delta_1) \in \mathbb{C}\times l_\nu^\prime
-\end{equation*}
-とすると，$A$の定義より，
-\begin{equation*}
-  \left\| AF(\bar{x}) \right\|_X \leq \max \left\{ \left| A_{\omega, 0}^{(N)} \delta_0 + A_{a,0}^{(N)} \delta_1^{(N)} \right|,\  \left\| A_{\omega,1}^{(N)} \delta_0 + A_{a,1} \delta_1^{(N)} \right\|_\omega + \sum_{|k|>N} \left\| \frac{\left(\delta_1^\infty\right)_k}{\lambda_k}  \right\| \nu^{|k|} \right\}
-\end{equation*}
-
-ここで，$\delta_1 = \left( \delta_1^{(N)}, \delta_1^{(\infty)} \right) \in \mathbb{C}^{2 \times 3(N-1)+1}$であり，
-
-\begin{equation*}
-  \left( \delta_1 \right)_k = \begin{cases}
-    \delta_1^{(N)}      & (k<|N|)      \\
-    \delta_1^{(\infty)} & (k \geq |N|)
-  \end{cases}
-\end{equation*}
-と表す．
-
-\subsection{$Z_0$を計算する}
-\begin{equation*}
-  B := I - AA^\dagger = \begin{bmatrix}
-    B_{\omega,0} & B_{a,0} \\
-    B_{\omega,1} & B_{a,1}
-  \end{bmatrix}
-\end{equation*}
-
-この$Bをc\in \overline{B(0,1)},\ \|c\|_X \leq 1$である$c=(c_0,c_1)$に作用させると，
-\begin{align*}
-  (Bc)_0 & = B_{\omega,0} c_0 + B_{a,0} c_1 \\
-  (Bc)_1 & = B_{\omega,1} c_0 + B_{a,1} c_1
-\end{align*}
-
-$Bc_0$はスカラ値なので，
-\begin{align*}
-  \left| B_{a,0}c_1 \right| & \leq \sum_{k \in \mathbb{Z}} \left|(B_{a,0})_k\right| \left|(c_1)_k \right|                                                            \\
-                            & = \sum_{k \in \mathbb{Z}} \frac{|(B_{a,0})_k|}{\omega_k} |(c_1)_k| \omega_k                                                            \\
-                            & \leq \max_{k < |N|} \frac{|(B_{a,0})_k|}{\omega_k} \sum_{k \in \mathbb{Z}} |(c_1)_k| \omega_k                                          \\
-                            & \leq \max_{k < |N|} \frac{|(B_{a,0})_k|}{\omega_k},\ \left( \sum_{k \in \mathbb{Z}} |(c_1)_k| \omega_k = \|c_1\|_\omega \leq 1 \right)
-\end{align*}
-
-以上より，
-\begin{equation*}
-  |(Bc)_0| \leq |B_{\omega,0}| + \max_{|k| < N} \frac{|(B_{a,0})|_k}{\omega_k} = Z_0^{(0)}
-\end{equation*}
-
-またここで，作用素$M:l_\nu^1 \Rightarrow l_\nu^1 $の作用素ノルムについて以下の補題を陣日する．
-
-\begin{lmm}
-  行列$M^{(N)}$を$M^{(N)} \in \mathbb{C}^{(2N-1) \times (2N-1)}$，双方向の複素無限点列を$(\delta_k)_{|k| \geq N}$と定義する．ここで，$\delta_N > 0$であり，
-  \begin{equation*}
-    |\delta_k| \leq \delta_N,\ \forall |k| \geq N
-  \end{equation*}
-  を満たすとする．そして，$a=(a_k)_{k<\mathbb{Z}} \in l_\nu^1$に対して$a^{(N)}=(a_{-N+1},\cdots,a_{N-1})\in \mathbb{C}^{2N-1}$と表し，作用素$M:l_\nu^1 \Rightarrow l_\nu^1$を
-  以下のように定義する．
-  \begin{equation*}
-    [Ma]_k := \begin{cases}
-      [M^{(N)}a^{(N)}]_k & (|k|<N)     \\
-      \delta_k a_k       & (|k|\geq N)
-    \end{cases}
-  \end{equation*}
-
-  このとき，$M$は有界線形作用素であり，
-  \begin{equation*}
-    \|M\|_{\mathcal{L}(l_\nu^1)} \leq \max \left( K,\delta_N \right),\ K:=\max_{|n|<N} \frac{1}{\nu^{|n|}} \sum_{|k|<N} |M_{n,k}| \nu^{|k|}
-  \end{equation*}
-  と評価させる．
-\end{lmm}
-
-上の補題を利用すると，
-\begin{eqnarray}
-  \|(Bc)_1\|_\omega \leq \|B_{\omega,1}\|_\omega + \|B_{a,1}\|_{\mathcal{L}(l_\nu^1)} = Z_0^{(1)}
-\end{eqnarray}
-が評価可能となり，結論としては，求めたい$Z_0はZ_0:=\{Z_0^{(0)},Z_0^{(0)}\}$となる．
-
-% ---------------------
-\subsection{$Z_1$を計算する}
-\begin{equation*}
-  \left\| A \left( DF \left( \bar{x} \right) - A^\dagger \right) c \right\|_X \leq Z_1,\ c=(c_0,c_1) \in \overline{B(0,1)} \Leftrightarrow \|c\|_X \leq 1
-\end{equation*}
-
-点列$z$を下記のように定義する．
-\begin{equation}
-  z := \left(DF(\bar{x})-A^\dagger\right)c = \begin{bmatrix}
-    z_0 \\
-    z_1
-  \end{bmatrix}
-\end{equation}
-
-ここで，$DF(\bar{x})とA^\dagger$は
-\begin{align*}
-  DF(\bar{x}) & = \begin{bmatrix}
-                     & \multicolumn{0}{c|}{0}                         & \cdots & 0      & \cdots & \\ \cline{2-5}
-                     & \multicolumn{1}{c|}{\partial_\omega f_k^{(N)}} & \cdots & 0      & \cdots & \\
-                     & \multicolumn{1}{c|}{\vdots}                    &        & \vdots &        &
-                  \end{bmatrix}                                         \\
-  A^\dagger   & = \begin{bmatrix}
-                     & \multicolumn{1}{c|}{0}              & 1      & \cdots            & 1      & \cdots    & 0                & \cdots & \\ \cline{2-8}
-                     & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &           &                  &        & \\
-                     & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &           &                  &          \\
-                     & \multicolumn{1}{c|}{\vdots}         &        & \vdots            &        &           & \text{\Large{0}} &          \\
-                     & \multicolumn{1}{c|}{\vdots}         &        &                   &        & \lambda_N &                  &        & \\
-                     & \multicolumn{1}{c|}{0}              &        & \text{\Large{0}}  &        &           & \lambda_{N+1}    &          \\
-                     & \multicolumn{1}{c|}{\vdots}         &        &                   &        &           &                  &
-                  \end{bmatrix} \\
-  \lambda_k   & := -k^2\omega^2 - \mu ik\omega + 1
-\end{align*}
-と表される．すると$z_0$は，
-\begin{align*}
-  z_0 & = \sum_{|k|<N} (c_1)_k, \\
-  |z_0| \leq \frac{1}{\omega_N} \sum_{|k|<N} |(c_1)_k| \omega_k \leq \frac{1}{\omega_N}
-\end{align*}
-
-次に，$z_1$について考える．$DF(\bar{x})c$部分は，
-\begin{equation*}
-  \begin{split}
-    \left(\left(DF(\bar{x})c\right)_1 \right)_k &= \partial_\omega f_k c_0 + \partial_a f_k c_1 \\
-    &= \frac{\partial \lambda_k}{\partial} c_0 \bar{a}_k + \frac{\mu ik}{3} \left( \bar{a} * \bar{a} * \bar{a} \right)_k c_0 + \lambda_k (c_1)_k + \mu ik \omega \left( \bar{a} * \bar{a} * c_1 \right)_k,\ k \in \mathbb{Z}
-  \end{split}
-\end{equation*}
-
-と書け，$|k| \geq N で \bar{a_k} = 0$より，$c_1 = c_1^{(N)} + c_1^{(N)}$として，
-\begin{align*}
-  |(z_1)_k| & \leq |\mu ik \omega| \max \left\{ \max_{k-N+1\leq j \leq -N} \frac{|\left( \bar{a} * \bar{a} \right)_{k-j}|}{\omega_j} ,\ \max_{N \leq j \leq k+N-1 \frac{|\left( \bar{a} * \bar{a}\right)_{k-j} |}{\omega_j}} \right\} := \zeta, \\
-  \zeta     & = (\zeta_k)_{k < N} \in \mathbb{R}^{2N-1}
-\end{align*}
-
-最後に，$Z_1$を評価していく．$Z_1^{(0)}$の評価は
-\begin{align*}
-  |(A(DF(\bar{x})-A^\dagger)c)_0| & = |(Az)_0|                                                                                                \\
-                                  & \leq \left|A_{\omega,0}^{(N)}\right| \left|Z_0\right| + \left|A_{a,0}^{(N)}\right| \left|Z_1^{(N)}\right| \\
-                                  & \leq \frac{|A_{\omega, 0}^{(N)}|}{\omega_N} + \left|A_{a,0}^{(N)}\right| \zeta                            \\
-                                  & =: z_1^{(0)}
-\end{align*}
-
-$Z_1^{(1)}$の評価は
-\begin{equation*}
-  \begin{split}
-    \left\| (A(DF(\bar{x})-A^\dagger)c)_1 \right\|_\omega =& \left\| (Az)_1 \right\|_\omega \\
-    =& \left\| A_{\omega,1}^{(N)} z_0 + A_{a,1} z_1 \right\|_\omega \\
-    \leq& \frac{\left\| A_{\omega,1}^{(N)} \right\|_\omega}{\omega_N} + \sum_{|k|<N} \left( \left| A_{a,1}^{(N)} \right| \zeta \right)_k \omega_k + \sum_{N \leq |k| \leq 3(N-1)} \frac{\left| \mu ik \left( \bar{a} * \bar{a} * \bar{a} \right)_k \right|}{3\left| \lambda_k \right|} \omega_k \\
-    &+ \sum_{|k| \geq N} \frac{\left| \mu ik \omega \left(\bar{a}*\bar{a}*\bar{x}\right) \right|}{\left| \lambda_k \right|} \omega_k \\
-    \leq& \frac{\left\| A_{\omega,1}^{(N)} \right\|_\omega}{\omega_N} + \left\| \left| A_{a,1}^{(N)} \right| \zeta \right\|_\omega + \sum_{N\leq|k|\leq 3(N-1)} \frac{\left| \mu ik \left( \bar{a} * \bar{a} * \bar{a} \right)_k \right|}{3\left| \lambda_k \right|} \omega_k \\
-    &+ \frac{1}{N} \frac{\mu \omega \left\|\bar{a}\right\|_\omega^2}{\omega^2-\frac{1}{N^2}}\\
-    =:& Z_1^{(1)}
-  \end{split}
-\end{equation*}
-
-よって，
-\begin{equation*}
-  Z_1 := \max \left\{ Z_1^{(0)}, Z_1^{(1)} \right\}
-\end{equation*}
-
-%---------------------
-\subsection{$Z_2$を計算する}
-$b \in \overline{B\left(\bar{x},r\right)},\ c=\left(c_0,c_1\right)\in\overline{Z(0,1)}$について
-\begin{equation*}
-  \left\| A \left( DF \left( b \right) - DF \left( \bar{x} \right) \right) c \right\|_X \leq Z_2(r)r
-\end{equation*}
-を考える．まず$z$を
-\begin{equation*}
-  z := \left( DF(b) - DF(\bar{x}) \right) c = \begin{bmatrix}
-    z_0 \\
-    z_1
-  \end{bmatrix}
-  = \begin{bmatrix}
-    0 \\
-    z_1
-  \end{bmatrix}
-\end{equation*}
-と定義する．$z_0=0$となるので，$z_1$だけを考えればよく
-\begin{equation*}
-  \left(z_1\right)_k := \left(\partial_\omega f_k \left(b\right) - \partial_\omega f_k \left(\bar{x}\right) \right)c_0 + \left[ \left(\partial_a f\left(b\right) - \partial_a f \left(\bar{x}\right) \right) c_1 \right]_k,\ k \in \mathbb{Z}
-\end{equation*}
-と書ける．$b=\left( \omega, \left(a_k\right)_{k\in\mathbb{Z}} \right), \bar{x}=\left( \bar{\omega}, \left(\bar{a_k}\right)_{|k|<N} \right)$として，第1項は
-\begin{equation*}
-  \begin{split}
-    &\left(\partial_\omega f_k \left(b\right) - \partial_\omega f_k \left(\bar{x}\right) \right)c_0 \\
-    =& \left[ \left( \left( -2k^2\omega - \mu ik \right) a_k + \frac{\mu ik}{3} \left( a*a*a \right)_k \right) - \left( \left( -2k^2\bar{\omega} - \mu ik \right) \bar{a}_k       + \frac{\mu ik}{3} \left( \bar{a}*\bar{a}*\bar{a} \right)_k \right) \right]c_0 \\
-    =& \left[  -2k^2\omega \left( a_k - \bar{a}_k \right) -2k^2\left( \omega - \bar{\omega} \right)\bar{a}_k - \mu ik \left( a_k - \bar{a}_k \right) + \frac{\mu ik}{3} \left( \left( a*a*a \right)_k - \left(\bar{a}*\bar{a}*\bar{a}\right)_k \right) \right] c_0
-  \end{split}
-\end{equation*}
-と書ける．そして，第2項は，
-\begin{equation*}
-  \begin{split}
-    &\left[ \left( \partial_a f(b) - \partial_a f(\bar{x}) \right)_{c_1} \right]_k \\
-    =& \left( -k^2\omega^2 - \mu ik \omega + 1 \right) \left( c_1 \right)_k + \mu ik \omega (a * a * c_1)_k - \left( -k^2\bar{\omega}^2 - \mu ik \bar{\omega} + 1 \right) \left( c_1 \right)_k \\
-    &+ \mu ik \bar{\omega} (\bar{a} * \bar{a} * c_1)_k \\
-    =& \left[ -k^2\left(\omega + \bar{\omega}\right) \left(\omega - \bar{\omega}\right) - \mu ik \left(\omega - \bar{\omega}\right) \right] \left(c_1\right)_k + \mu ik \omega \left(\left(a+\bar{a}\right)*\left(a-\bar{a}\right)*c_1\right)_k \\
-    &+ \mu ik \left(\omega - \bar{\omega}\right) \left( \bar{a} * \bar{a} * c_1 \right)_k
-  \end{split}
-\end{equation*}
-と書ける．$(Az)_0,(Az)_1$は，
-\begin{align*}
-  (Az)_0 & = A_{a,0}^{(N)} + z_1^{(N)} \\
-  (Az)_1 & = A_{a,1} + z_1
-\end{align*}
-より，
-\begin{equation*}
-  \|Az\|_X = \max\left\{ \left| A_{a,0}^{(N)} z_1^{(N)} \right|,\ \left\| A_a,1 z_1 \right\| \right\}
-\end{equation*}
-となる．
-
-$\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに，$\tilde{A}_{a,0}, \tilde{B}_{a,0}$を以下のように定義する．
-\begin{align*}
-  \tilde{A}_{a,0} & := \left( \left| k \right| \left( A_{a,0}^{(N)} \right)_k \right)_{|k|<N} \\
-  \tilde{B}_{a,0} & := \left( k^2 \left( A_{a,0}^{(N)} \right)_k \right)_{|k|<N}
-\end{align*}
-すると，
-\begin{equation*}
-  \begin{split}
-    \left| A_{a,0}^{(N)} z_1^{(N)} \right| &\leq 2\left(\tilde{\omega} + r\right) \left\| \tilde{B}_{a,0} \right\|_\omega r + 2 \left\| \tilde{B}_{a,0} \right\|_\omega \left\| \tilde{a} \right\|_\omega r + \mu \left\| \tilde{A}_{a,0} \right\|_\omega r \\
-    &+ \frac{\mu}{3} \left\| \tilde{A}_{a,0} \right\|_\omega \left( r^2 * 3 \left\| \bar{a} \right\|_\omega r + 3 \left\| \bar{a} \right\|^2_\omega \right) r + \left\| \tilde{B}_{a,0} \right\|_\omega \left( 2\bar{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,0} \right\|_\omega r \\
-    &+ \mu\left(\bar{\omega}+r\right)\left\| \tilde{A}_{a,0} \right\|_\omega \left( 2 \left\| \bar{a} \right\|_{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,0} \right\|_\omega \left\| a \right\|_\omega^2 r\\
-    &= Z_2^{(4,0)} r^3 + Z_2^{(3,0)} r^2 + Z_2^{(2,0)} r
-  \end{split}
-\end{equation*}
-となる．同様に，$\left\| A_{a,1} z_1 \right\|_\omega$を上から評価する．$\tilde{A}_{a,1}, \tilde{B}_{a,1}$を以下のように定義する．
-\begin{align*}
-  \tilde{A}_{a,1} & := \left( \left| j \right| \left( A_{a,1} \right)_{k,j} \right)_{k,j\in\mathbb{Z}} \\
-  \tilde{B}_{a,1} & := \left( j^2 \left( A_{a,1} \right)_{k,j} \right)_{k,j\in\mathbb{Z}}
-\end{align*}
-すると，
-\begin{equation*}
-  \begin{split}
-    \left\| A_{a,1} z_1 \right\|_{\omega} &\leq 2\left(\tilde{\omega} + r\right) \left\| \tilde{B}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} r + 2 \left\| \tilde{B}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left\| \tilde{a} \right\|_\omega r + \mu \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} r \\
-    &+ \frac{\mu}{3} \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left( r^2 + 3 \left\| \bar{a} \right\|_\omega r + 3 \left\| \bar{a} \right\|^2_\omega \right) r + \left\| \tilde{B}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left( 2\bar{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} r \\
-    &+ \mu\left(\bar{\omega}+r\right)\left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left( 2 \left\| \bar{a} \right\|_{\omega} + r\right)r + \mu \left\| \tilde{A}_{a,1} \right\|_{\mathcal{L}\left(l_{\nu}^1\right)} \left\| a \right\|_\omega^2 r\\
-    &= Z_2^{(4,1)} r^3 + Z_2^{(3,1)} r^2 + Z_2^{(2,1)} r
-  \end{split}
-\end{equation*}
-と書ける．$Z_2^{(4,1)},Z_2^{(3,1)},Z_2^{(2,1)}$は，先ほどの$\tilde{A}_{a,0},\tilde{B}_{a,0}を\tilde{A}_{a,1},\tilde{B}_{a,1}$に置き換えたものになる．$j=2,3,4$で
-\begin{equation*}
-  Z_2^{(j)} := \max \left\{ Z_2^{(j,0)}, Z_2^{(j,1)} \right\}
-\end{equation*}
-とすれば，
-\begin{equation*}
-  Z_2(r) := Z_2^{(4,1)} r^2 + Z_2^{(3,1)} r + Z_2^{(2,1)}
-\end{equation*}
-となる．
-
-
-
-\begin{comment}
-  
-\section{radii polynomalの零点探索の精度保証}
-以上で，$Y_0,\cdots,Z_2$の評価を区間演算で求めた．これらの評価を用いて$p(r_0)<0$となる$r_0$を求める．精度保証の方法は，Newton法を反復させることで，$p(r_0)=0$となる$r_0$の近似会を求め，これをKrawczyk法で検証する．
-
-\section{Krawczyk（クラフチック）法}
-\begin{thm}[Krawczyk法\cite{}]
-  $X \subset \mathbb{R}^n$を区間ベクトル，$c=\mathrm{mid}(X),\ R\simeq Df(c)^{-1} = j(c)^{-1}, E$を単位行列とし，
-  \begin{equation*}
-    K(X) = c- Rf(c) + (E-RDf(X))(X-c)
-  \end{equation*}
-  としたとき，$K(X) \subset \mathrm{int}(X)$（$\mathrm{int}(X):X$の内部）ならば$Xにf(x)=0$の解が唯一存在する．
-\end{thm}
-\end{comment}
-
-
-%======
-%
-%=====
-
 \chapter{提案手法}
 \label{cpt:提案手法}
 
-従来の手法では，Banach空間を定理\ref{dfn:重み付きl1空間}
+\begin{dfn}[Banach空間$X$]
+  Banach空間$X$を次のように定める．はじめに$l^1$空間を次のように定める．
+  \begin{equation}
+    l^1 := \left\{ a=(a_k)_{k\in \mathbb{Z}} : a_k \in \mathbb{C}, \|a\| := \sum_{k \in \mathbb{Z}} |a_k| < \infty \right\}
+  \end{equation}
+  そして，検証に用いる関数空間$X$は
+  \begin{equation}
+    X:= \mathbb{C} \times l^1, x = (\omega, a), \omega \in \mathbb{C}, a \in l^1
+  \end{equation}
+  と定め，そのノルムを
+  \begin{equation}
+    \| x \|_X := \max \{ |\omega| , \|a\| \}
+  \end{equation}
+  として定義する．このとき，$X$はBanach空間となる．
+\end{dfn}
 
-radii-polynomal approachにおける，$Y_0$の評価式
+\begin{dfn}[拡張したヤコビ行列$DF(x)$]
+  まず，近似解$x$について
+  \begin{equation}
+    x = (\omega,\ \underbrace{0,\cdots,0}_{M},\ a,\ \underbrace{0,\cdots,0}_{M}) \in \mathbb{C}^{2N+2M}
+  \end{equation}
+  と定める．
+  $F(x)$のヤコビ行列は
+  \begin{equation}
+    DF(x) = \left[
+      \begin{array}{c|ccc}
+        0 & \cdots & 1 & \cdots \\ \hline
+        \vdots & & \vdots &  \\
+        \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
+        \vdots & & \vdots &
+      \end{array}
+    \right] \in \mathbb{C}^{(2N+2M) \times (2N+2M)}
+  \end{equation}
+\end{dfn}
+
+\begin{dfn}[作用素$A$の定義]
+  Banach空間$X=\mathbb{C} \times l^1$からBanach空間$Y=\mathbb{C} \times l^1$とし，
+\end{dfn}
+
+
+\hrulefill
+%----------------------------------------------------------
+
+従来の手法では，定理\ref{dfn:Banach空間X-重み付きl1空間}よりBanach空間$X$を$X:=\mathbb{C} \times l^1_\nu$と定義していた．許容重みが付加しているため，節\ref{sct:Y0,Z0,Z1,Z2の評価}の評価式のノルムの値が大きくなり，精度が低下する問題があった．
+
+radii-polynomal approachの精度を向上させるため，Banach空間$X$を$X:=\mathbb{C} \times l^1$とし，許容重みを付加せず定義したい．
+
+そこで，radii-polynomal approachにおける，$Y_0$の評価式
 \begin{equation}
   \label{eq:y0}
   \|AF(\bar{x})\|_X \leq Y_0
