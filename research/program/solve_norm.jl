@@ -110,9 +110,9 @@ while num_itr ≤ 100
 end
 
 # A^(N)
-ix = map(interval, x)
-iω̄ = map(interval, real(x[1]))
-iā = map(interval, x[2:end])
+#ix = map(interval, x)
+#iω̄ = map(interval, real(x[1]))
+#iā = map(interval, x[2:end])
 
 ix = x
 iω̄ = real(x[1])
