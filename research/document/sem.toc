@@ -28,8 +28,11 @@
 \contentsline {section}{\numberline {5.1}射影}{48}{}%
 \contentsline {section}{\numberline {5.2}射影を用いたBanach空間上の無限次元ガウスの消去法}{50}{}%
 \contentsline {chapter}{\numberline {第6章}提案手法}{55}{}%
+\contentsline {section}{\numberline {6.1}定義}{55}{}%
+\contentsline {section}{\numberline {6.2}提案手法}{56}{}%
+\contentsline {section}{\numberline {6.3}計算手順}{56}{}%
 \contentsline {chapter}{\numberline {第7章}実験結果}{58}{}%
 \contentsline {section}{\numberline {7.1}実験環境}{58}{}%
-\contentsline {section}{\numberline {7.2}実験手法}{58}{}%
+\contentsline {section}{\numberline {7.2}実験結果}{58}{}%
 \contentsline {chapter}{\numberline {第8章}おわりに}{59}{}%
 \contentsline {chapter}{参考文献}{61}{}%

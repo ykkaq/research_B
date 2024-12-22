@@ -105,7 +105,7 @@
 
 radii polynomial approachは，Newton-Kantorovichの定理を精度保証付き数値計算に応用した定理である．
 
-従来のradii polynomial approachでは，無限次元の計算箇所が有限次元に近似して計算されているため，大きな誤差が起こる原因になっている．
+既存のradii polynomial approachでは，無限次元の計算箇所が有限次元に近似して計算されているため，大きな誤差が起こる原因になっている．
 
 本研究では，無限次元ガウスの消去法を用いて，無限次元を有限次元に近似せずに計算を行う．このことで，radii polynomial approachによる精度保証ができる誤算の範囲を改善することを目的とする．
 
@@ -2783,6 +2783,7 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 \end{proof}
 
 \begin{thm}
+  \label{thm:Sが全単射->Lが全単射}
   $X,X_1,X_2,L,g,P,\phi_1,\phi_2,T,B,C,D$はすべて本節で定義したものとする．線形作用素$T$を全単射であると仮定する．そのとき，
   \begin{equation*}
     Sが全単射 \Leftrightarrow Lが全単射
@@ -2929,8 +2930,10 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 
 \chapter{提案手法}
 \label{cpt:提案手法}
+\section{定義}
 
-\begin{dfn}[Banach空間$X$]
+\begin{dfn}[許容重みなしBanach空間$X$]
+  \label{dfn:Banach-l1}
   Banach空間$X$を次のように定める．はじめに$l^1$空間を次のように定める．
   \begin{equation}
     l^1 := \left\{ a=(a_k)_{k\in \mathbb{Z}} : a_k \in \mathbb{C}, \|a\| := \sum_{k \in \mathbb{Z}} |a_k| < \infty \right\}
@@ -2947,12 +2950,12 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 \end{dfn}
 
 \begin{dfn}[拡張したヤコビ行列$DF(x)$]
+  \label{dfn:拡張したヤコビ行列}
   まず，近似解$x$について
   \begin{equation}
     x = (\omega,\ \underbrace{0,\cdots,0}_{M},\ a,\ \underbrace{0,\cdots,0}_{M}) \in \mathbb{C}^{2N+2M}
   \end{equation}
-  と定める．
-  $F(x)$のヤコビ行列は
+  と定めると，$F(x)$のヤコビ行列は
   \begin{equation}
     DF(x) = \left[
       \begin{array}{c|ccc}
@@ -2961,28 +2964,46 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
         \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
         \vdots & & \vdots &
       \end{array}
-    \right] \in \mathbb{C}^{(2N+2M) \times (2N+2M)}
+    \right] %\in \mathbb{C}^{(2N+2M) \times (2N+2M)}
   \end{equation}
+  と定義できる．
 \end{dfn}
 
 \begin{dfn}[作用素$A$の定義]
-  Banach空間$X=\mathbb{C} \times l^1$からBanach空間$Y=\mathbb{C} \times l^1$とし，
+  \label{dfn:作用素A}
+  はじめに，
+  \begin{equation}
+    \bar{x} = (\omega,\ \underbrace{0,\cdots,0}_{M},\ a,\ \underbrace{0,\cdots,0}_{M}) \in \mathbb{C}^{2N+2M}
+  \end{equation}
+  と定めると，$A$の定義は，以下のように定義できる．
+  \begin{equation*}
+    A = \left(
+    \begin{array}{c|ccc}
+      DF(\bar{x})^{-1} & 0 & \cdots & \cdots \\ \hline
+      0 & \lambda_N^{-1} &  & 0 \\
+      \vdots &  & \lambda_{N+1}^{-1} &  \\
+      \vdots & 0 &   & \ddots
+    \end{array}
+    \right)
+  \end{equation*}
 \end{dfn}
 
-
-\hrulefill
 %----------------------------------------------------------
 
-従来の手法では，定理\ref{dfn:Banach空間X-重み付きl1空間}よりBanach空間$X$を$X:=\mathbb{C} \times l^1_\nu$と定義していた．許容重みが付加しているため，節\ref{sct:Y0,Z0,Z1,Z2の評価}の評価式のノルムの値が大きくなり，精度が低下する問題があった．
+\section{提案手法}
 
-radii-polynomal approachの精度を向上させるため，Banach空間$X$を$X:=\mathbb{C} \times l^1$とし，許容重みを付加せず定義したい．
+既存手法では，Banach空間$X$を定義\ref{dfn:Banach空間X-重み付きl1空間}と定義していた．許容重みが付加しているため，節\ref{sct:Y0,Z0,Z1,Z2の評価}の評価式のノルムの値が大きくなり，精度が低下する問題があった．
 
-そこで，radii-polynomal approachにおける，$Y_0$の評価式
+提案手法では，節\ref{sct:Y0,Z0,Z1,Z2の評価}の計算に節\ref{sct:無限次元ガウスの消去法}を用いることで，Banach空間$X$を定義として定義できる．
+
+radii-polynomal approachにおける，$Y_0$の評価式
 \begin{equation}
   \label{eq:y0}
   \|AF(\bar{x})\|_X \leq Y_0
 \end{equation}
 について，無限次元ガウスの消去法を用いる．
+
+\section{計算手順}
 
 $A=DF(\bar{x})^{-1}$とおき，式(\ref{eq:y0})に代入すると，節\ref{sct:無限次元ガウスの消去法}より，
 \begin{equation}
@@ -3098,6 +3119,8 @@ $S$について計算する．式(\ref{eq:def_lo})より，
 \end{equation*}
 であれば，$S$は全単射となる．
 
+定理\ref{thm:Sが全単射->Lが全単射}より，$S$が全単射ならば，$DF(\bar{x})$が全単射となる．
+
 \chapter{実験結果}
 \section{実験環境}
 本研究を行った実験環境を表\ref{tab:環境}，使用したパッケージを表\ref{tab:パッケージ}を示す．
@@ -3130,9 +3153,11 @@ $S$について計算する．式(\ref{eq:def_lo})より，
   \end{tabular}
 \end{table}
 
-\section{実験手法}
-\ref{cpt:提案手法}
+\section{実験結果}
 
+
+
+\sec
 \chapter{おわりに}
 
 \chapter*{謝辞}

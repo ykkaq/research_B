@@ -83,7 +83,7 @@ find_period = abs.(f_tmp .- sol(a))
 b = a + app_period / 2 + timestep * (ind - 1)
 #calc fouriercoeffs
 
-N = 50 # size of Fourier
+N = 200 # size of Fourier
 
 println("size of Fourier = $N")
 a_0 = odefouriercoeffs(sol, N, [a, b])
