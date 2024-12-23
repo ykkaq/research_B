@@ -3154,11 +3154,32 @@ $S$について計算する．式(\ref{eq:def_lo})より，
 \end{table}
 
 \section{実験結果}
+実験結果の数値を表\ref{tab:norm-num}に，グラフにしたものを表\ref{fig:nrom-gra}に示す．
+
+\begin{table}[htbp]
+  \centering
+  \caption{フーリエサイズとノルム値}
+  \label{tab:norm-num}
+  \begin{tabular}{c||c}
+    フーリエサイズ & ノルム値 \\ \hline
+    50 & 0.22815114629236252 \\
+    100&0.11455533660051737\\
+    150&0.07655718822651922\\
+    200&0.05749210273025131
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \label{fig:norm-gra}
+  \includegraphics[scale=0.5]{img/scatter.png}
+  \caption{フーリエサイズとノルム値}
+\end{figure}
 
 
-
-\sec
 \chapter{おわりに}
+本研究は，radii polynomal approachにおける精度保証付き数値計算の精度の向上が可能かを目的とした．無限次元ガウスの消去法を用いることで，対象のBanach空間から許容重みを無視することができ，精度の向上が図れることがわかった．
+
 
 \chapter*{謝辞}
 

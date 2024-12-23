@@ -1,9 +1,9 @@
-This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.sjis) (TeX Live 2024) (preloaded format=platex 2024.12.12)  23 DEC 2024 07:02
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.sjis) (TeX Live 2024) (preloaded format=platex 2024.12.13)  23 DEC 2024 13:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**d:/workspace_win/research_B/research/document/sem
-(d:/workspace_win/research_B/research/document/sem.tex
+**"c:/Users/yuki saito/workspace/research_B/research/document/sem"
+(c:/Users/yuki saito/workspace/research_B/research/document/sem.tex
 pLaTeX2e <2023-02-14>+1, based on
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
@@ -917,58 +917,45 @@ Excluding 'comment' comment.
 
 [57]
 第7章
-! Missing $ inserted.
-<inserted text> 
-                $
-l.3160 \sec
-           
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.3161 \chapter
-               {おわりに}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+LaTeX Warning: Reference `fig:nrom-gra' on page 58 undefined on input line 3157.
 
+File: img/scatter.png Graphic file (type bmp)
+<img/scatter.png>
 
 
 [58
 
 ]
+
+[59]
 第8章
 
-
-[59
-
-]
 
 [60
 
 ]
-Underfull \hbox (badness 2318) in paragraph at lines 3166--3169
+
+[61
+
+]
+Underfull \hbox (badness 2318) in paragraph at lines 3187--3190
 []\JY1/mc/m/n/10 舩越康太\OT1/cmr/m/n/10 , \JY1/mc/m/n/10 井藤佳奈子\OT1/cmr/m/n/10 , \JY1/mc/m/n/10 大谷俊輔\OT1/cmr/m/n/10 , \JY1/mc/m/n/10 近藤慎佑\OT1/cmr/m/n/10 , \JY1/mc/m/n/10 高橋和暉\OT1/cmr/m/n/10 , \JY1/mc/m/n/10 瀬戸翔太\OT1/cmr/m/n/10 , \JY1/mc/m/n/10 二平泰
  []
 
 
-Underfull \hbox (badness 1281) in paragraph at lines 3166--3169
+Underfull \hbox (badness 1281) in paragraph at lines 3187--3190
 \JY1/mc/m/n/10 知\OT1/cmr/m/n/10 , \JY1/mc/m/n/10 高安亮紀\OT1/cmr/m/n/10 , ``Ju-lia \JY1/mc/m/n/10 言語を使 った精度保証付き数値計算のチ ュ ートリアル\OT1/cmr/m/n/10 '',
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3169--3170
+Underfull \hbox (badness 10000) in paragraph at lines 3190--3191
 []\JY1/mc/m/n/10 著者名\OT1/cmr/m/n/10 , ``\JY1/mc/m/n/10 題名\OT1/cmr/m/n/10 '',
  []
 
 
-Package caption Warning: Unused \captionsetup[figure] on input line 62.
-See the caption package documentation for explanation.
 
-
-
-[61
+[62
 
 ] (./sem.aux)
  ***********
@@ -976,14 +963,18 @@ pLaTeX2e <2023-02-14>+1, based on
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 10873 strings out of 473988
- 176399 string characters out of 5738183
+ 10889 strings out of 473988
+ 176724 string characters out of 5738183
  629493 words of memory out of 5000000
- 33769 multiletter control sequences out of 15000+600000
+ 33780 multiletter control sequences out of 15000+600000
  585143 words of font info for 159 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 84i,27n,93p,696b,438s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,27n,93p,711b,438s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on sem.dvi (62 pages, 226512 bytes).
+Output written on sem.dvi (63 pages, 227996 bytes).
