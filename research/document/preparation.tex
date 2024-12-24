@@ -1,0 +1,1352 @@
+
+\chapter{準備}
+\section{バナッハ空間}
+\begin{dfn}[線形空間の公理]
+  \label{dfn:線形空間の公理}
+  空でない集合$X$が，係数体$\mathbb{K}$上の線形空間であるとは，任意の$u+v \in X$とスカラー$\alpha \in \mathbb{K}$に対して，加法$u+v \in X$とスカラー乗法$\alpha u \in X$が定義されていて，任意の$u,v,w \in X$とスカラー$\alpha, \beta \in \mathbb{K}$に対して次のことが成り立つことである．
+  \begin{enumerate}
+    \item $(u+v)+w=u+(v+w)$
+    \item $u+v=v+u$
+    \item $u+0=u$となる$0 \in X$が一意に存在
+    \item $u+(-u)=0$となる$-u\in X$が一意に存在
+    \item $\alpha(u+v)=\alpha u+\alpha v$
+    \item $(\alpha +\beta)u = \alpha u+\beta u$
+    \item $(\alpha \beta)u = \alpha (\beta u)$
+    \item $1u=u, 1 \in \mathbb{K}$
+  \end{enumerate}
+\end{dfn}
+
+\begin{dfn}[ノルムとノルム空間の定義]
+  $X$を係数体$\mathbb{K}$上の線形空間とする．$X$で定義された関数$||\cdot||:X\rightarrow \mathbb{K}$上で定義された関数が$X$のノルムであるとは
+  \begin{enumerate}
+    \item $||u||\geq 0, \quad u \in X$
+    \item $||u||=0 \Leftrightarrow u=0$
+    \item $||\alpha u||=|\alpha| ||u||, \quad (\alpha \in \mathbb{K}, u \in X)$
+    \item $||u+v||\leq ||u||+||v||$
+  \end{enumerate}
+  が成立することである．さらに$X$に1つのノルムが指定されているとき，$X$はノルム空間という．
+\end{dfn}
+
+\begin{dfn}[ノルム空間の収束と極限]$X$をノルム空間とする．$X$の点列$(u_n)\subset X$は
+  \begin{equation*}
+    \forall\epsilon >0, \ \exists N\in \mathbb{N}, \space \forall N \geq Nに対して||u_n-u||<\epsilon
+  \end{equation*}
+  のとき，点$u\in X$に収束するといい，
+  \begin{equation*}
+    ||u_n-u||\rightarrow 0, \ \left(n\rightarrow\infty\right)
+  \end{equation*}
+  と表す．このとき，$u$を$u_n$の極限といい，
+  \begin{equation*}
+    u_n-u, \ (n\rightarrow \infty)
+  \end{equation*}
+  と表す．
+\end{dfn}
+
+\begin{dfn}[Cauchy列]
+  \label{dfn:cauchy}
+  $X$をノルム空間とする．そのとき$X$がCauchy列であるとは
+  \begin{equation*}
+    u_n-u_m\rightarrow 0, \ \left(n,m\rightarrow\infty \right)
+  \end{equation*}
+  が成立することである．即ち
+  \begin{equation*}
+    ||u_n-u_m||\rightarrow 0, \ \left(n,m\rightarrow \infty\right)
+  \end{equation*}
+  が成立することである．
+\end{dfn}
+
+\begin{dfn}[完備]
+  \label{dfn:完備}
+  $X$をノルム空間とする．$X$が完備であるとは，任意のCauchy列$(u_n)$が$X$の中で極限をもつことである．すなわち，任意のCauchy列$(u_n\subset X)$が
+  \begin{equation*}
+    \|u_n-u\|\rightarrow 0\ ,\left(n\rightarrow 0\right)
+  \end{equation*}
+  となる極限$u$を$X$内に持つことである．
+\end{dfn}
+
+\begin{dfn}[Banach空間]
+  ノルム空間$X$がBanach空間であるとは，$X$が完備であることである．
+\end{dfn}
+
+\begin{thm}[逆三角不等式]
+  \label{thm1}
+  $X$をノルム空間とする．任意の$u,v\in X$について次の不等式を満たす．
+  \begin{equation*}
+    |\|u\|-\|v\||\leq\|u-v\|
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  任意の$u,v\in X$について
+  \begin{align*}
+    \|u\| & =\|u-v+v\|\leq\|u-v\|+\|v\|               \\
+    \|v\| & =\|v-u+u\|\leq\|v-u\|+\|u\|=\|u-v\|+\|u\|
+  \end{align*}
+  となる．よって
+  \begin{equation*}
+    \|u\|-\|v\|\leq\|u-v\| \\
+    \|v\|-\|u\|\leq\|u-v\|
+  \end{equation*}
+  となるため，
+  \begin{equation*}
+    |\|u\|-\|v\||\leq\|u-v\|
+  \end{equation*}
+  を持つ．
+\end{proof}
+
+\begin{dfn}[有界列]
+  $X$をノルム空間とする．そのとき$X$の点列$(u_n)$が有界列とは任意の$n\in\mathbb{N}$に対して
+  \begin{equation*}
+    \|u_n\|\leq M
+  \end{equation*}
+  となる定数$M>0$が存在することである．
+\end{dfn}
+
+\begin{thm}[Cauchy列ならば有界列]
+  $X$をノルム空間とする．そのとき$X$の点列$(u_n)$がCauchy列ならば有界列でもある．
+\end{thm}
+
+\begin{proof}
+  $X$の点列$(u_n)$がCauchy列であるために，$\epsilon -N$論法を用いた表記で
+  \begin{equation*}
+    \forall\epsilon >0, \ \exists N\in \mathbb{N}, \ \forall n,m \geq Nに対して||u_n-u_m||<\epsilon
+  \end{equation*}
+  を満たす．$\epsilon=1$としても，それに対応した$N$が存在し，任意の$n\geq N$に対して
+  \begin{equation*}
+    \|u_n-u_N\|<1
+  \end{equation*}
+  を満たす．
+
+  任意の$n\geq N$に対して$\|u_n\|$が$\|u_N\|$で評価できることを示す．逆三角不等式である定理\ref{thm1}を用いると
+  \begin{equation*}
+    |\|u_n\|-\|u_N\|\leq \|u_n-u_N\|<1
+  \end{equation*}
+  となる．絶対値の性質より$|\|u_n-u_N\||<1$は
+  \begin{equation*}
+    \|u_N\|-1\leq\|u_n\|<\|u_N\|+1
+  \end{equation*}
+  となる．よって
+  \begin{equation*}
+    M=\max\{\|u_1\|,\|u_2\|,\cdots,\|u_{N-1}\|,\|u_N\|+1\}
+  \end{equation*}
+  とすると，任意の$n\in \mathbb{N}について$
+  \begin{equation*}
+    \|u_n\|\leq M
+  \end{equation*}
+  が成り立つため，点列$(u_N)$は有界列である．
+\end{proof}
+
+\begin{dfn}[線形部分空間]
+  線形空間$X$の空でない集合$M$が任意の元$u,v\in M$と任意の係数体$\alpha\in\mathbb{K}$に対して
+  \begin{align*}
+    u+v\in M \\
+    \alpha u \in M
+  \end{align*}
+  を満たすとき，$M$は線形空間$X$の線形部分空間と呼ぶ．
+\end{dfn}
+
+\begin{dfn}[ノルム空間の開球]
+  $X$をノルム空間とする．$x\in X$とし，$r>0$を正実数とする．そのとき，集合
+  \begin{equation*}
+    B_X(x,r):=\{y\in X \mid \|x-y\|_X<r\}
+  \end{equation*}
+  を中心$x$，半径$r$の開球という．$X$が明らかな場合は$B_X(x,r)$を省略して$B(x,r)$と表記する．
+\end{dfn}
+
+\begin{dfn}[ノルム空間の開集合]
+  $X$をノルム空間とし，$M$を$X$の部分集合とする．任意の$x\in M$に対して，$B_X(x,r)\subset M$となる$r>0$が存在する場合，$M$が開集合であるという．
+\end{dfn}
+
+\begin{dfn}[ノルム空間の閉集合]
+  $X$をノルム空間とし，$M$を$X$の部分集合とする．$M$が閉集合であるとは，$M$の任意の点列$(u_n)$の極限$u\in X$がMにも属することである．すなわち，点列$(u_n)\subset M$について
+  \begin{equation*}
+    u_n\rightarrow u, \quad \left(n\rightarrow \infty\right) \Rightarrow u\in M
+  \end{equation*}
+  であるとき，$M$は閉集合であるという．
+\end{dfn}
+
+\begin{dfn}[閉部分空間]
+  $X$をノルム空間とし，$M$を$X$の線形部分空間が閉集合であるとき，$M$を閉部分空間である．
+\end{dfn}
+
+\section{作用素}
+\begin{dfn}[作用素]
+  ある線形空間$X$から別の線形空間$Y$への作用素$A$とは，
+  \begin{equation*}
+    \mathcal{D}(A) := \{u \in X \mid Au \in Y\}
+  \end{equation*}
+  としたとき，$\mathcal{D}(A)$のどんな元に対しても，それぞれ集合$Y$のただ一つの元を指定する規則のことである.また，$\mathcal{D}(A)$は$A$の定義域と呼ばれ
+  \begin{equation*}
+    \mathcal{R}(A) := \{Au \in Y \mid u\in\mathcal{D}(A)\}
+  \end{equation*}
+  を値域と呼ぶ
+\end{dfn}
+
+\begin{dfn}[単射]
+  \label{dfn:単射}
+  線形空間$X$から線形空間$Y$への作用素$A$が
+  \begin{equation*}
+    u_1 \neq u_2, \quad \forall u_1,u_2 \in \mathcal{D}(A) \Rightarrow A(u_1)\neq A(u_2)
+  \end{equation*}
+\end{dfn}
+
+\begin{dfn}[全射]
+  \label{dfn:全射}
+  線形空間$X$から線形空間$Y$への作用素$A$が
+  \begin{equation*}
+    Y=\mathcal{R}(A)
+  \end{equation*}
+  を満たすときに作用素$A$は全単射であるという．
+\end{dfn}
+
+\begin{dfn}[逆作用素]
+  \label{dfn:逆作用素}
+  線形空間$X$から線形空間$Y$への作用素$A$とし，その定義域を$\mathcal{D}(A)\subset X$，値域を$\mathcal{R}(A)\subset Y$とする．そのとき，
+  \begin{align*}
+    A^{-1}\left( A\left( u \right) \right) & =u, \  u\in\mathcal{D}\left( A \right) \\
+    A(A^{-1}(u))                           & =u, \  u\in\mathcal{R}(A)
+  \end{align*}
+  かつ
+  \begin{align*}
+    \mathcal{D}(A^{-1}) & =\mathcal{R}(A) \\
+    \mathcal{R}(A^{-1}) & =\mathcal{D}(A)
+  \end{align*}
+  となる$Y$から$X$への作用素$A^{-1}$を$A$の逆作用素と呼ぶ．
+\end{dfn}
+
+\begin{thm}[単射と逆作用素の関係]
+  \label{thm:単射と逆作用素の関係}
+  線形空間$X$から線形空間$Y$への作用素$A$とすると．
+  \begin{equation*}
+    Aが逆作用素を持つ \Leftrightarrow Aが単射である
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  「$Aが逆作用素を持つ \Rightarrow Aが単射である$」の証明
+
+  単射の定義\ref{dfn:単射}の待遇「$任意のu_1,u_2\in\mathcal{D}(A)に対しA(u_1)=A(u_2) \Rightarrow u_1=u_2$」を満たすことを確かめる．$A$の逆作用素を$A^{-1}$とすると，任意の$u_1,u_2\in\mathcal{D}(A)$に対し
+  \begin{align*}
+                & A(u_1) = A(u_2)               \\
+    \Rightarrow & A^{-1}(A(u_1))=A^{-1}(A(u_2)) \\
+    \Rightarrow & u_1=u_2
+  \end{align*}
+
+  $「Aが単射である\Rightarrow Aが逆作用素A^{-1}をもつ」の証明$
+
+  $A$の値域の定義$\mathcal{R}(A)=\{A(u)\in Y \mid u\in\mathcal{D}(A)\}$より，任意の$v\in\mathcal{R}(A)$に対し，
+  \begin{equation*}
+    A(u)=v
+  \end{equation*}
+  となる$u\in\mathcal{D}(A)$が存在する．その上，$A$が単射であるため，単射の定義の対偶より$u\in\mathcal{D}(A)$はどんな$u\in\mathcal{R}(A)$に対してもただ一つの元である．そのため，作用素の定義より，上記の$u\in\mathcal{R}(A)$に対してただ一つの元$u\in\mathcal{D}(A)$を指定する規則として
+  \begin{equation*}
+    B(v)=u
+  \end{equation*}
+  となる定義域$\mathcal{D}(B)=\mathcal{R}(A)$と値域$\mathcal{R}(B)=\mathcal{D}(A)$となるYからXへの作用素Bが定義できる．その上，$B(v)=u$の$v=A(u)$を代入すると
+  \begin{equation*}
+    B(A(u))=u`'
+  \end{equation*}
+  となる．同様に，$A(u)=v$の$u$に$u=B(v)$を代入すると
+  \begin{equation*}
+    A(B(v))=v
+  \end{equation*}
+  となる．よって，定義域$\mathcal{D}(B)=\mathcal{R}(A)$と値域$\mathcal{R}(B)=\mathcal{D}(A)$となる$Y$から$X$への作用素$B$は$A$の逆作用素であるため，$A$は逆作用素を持つ．
+\end{proof}
+
+\begin{dfn}[作用素の等号]
+  線形空間$X$から線形空間$Y$への作用素$A$と$B$が等しいとは
+  \begin{equation*}
+    \mathcal{D}(A) = \mathcal{D}(B)
+  \end{equation*}
+  かつ
+  \begin{equation*}
+    Au=Bu, \  \forall u\in\mathcal{D}(A)=\mathcal{D}(B)
+  \end{equation*}
+  が成立することであり，
+  \begin{equation*}
+    A=B
+  \end{equation*}
+  と表記する．
+\end{dfn}
+
+\begin{dfn}[作用素の連続]
+  ノルム空間$X$からノルム空間$Y$への作用素$A$が$u\in\mathcal{D}(A)$で連続であるとは
+  \begin{equation*}
+    u_n \rightarrow u, \ (n\rightarrow \infty)
+  \end{equation*}
+  となる任意の$u_n\in\mathcal{D}(A)\subset X$に対して
+  \begin{equation*}
+    Au_n\rightarrow Au, \ (n\rightarrow \infty)
+  \end{equation*}
+  を満たすときである．さらに，$A$が任意の$u\in\mathcal{D}(A)$において連続であるとき，$A$は連続であるという．
+\end{dfn}
+
+\begin{dfn}[線形作用素]
+  線形空間$X$から線形空間$Y$への作用素$A$が，任意の$u,v\in\mathcal{D}(A)\subset X$と$\alpha\in\mathbb{K}$に対し，
+  \begin{align*}
+     & \mathcal{D}(A)がXの線形部分空間 \\
+     & A(u+v)=Au+Av                    \\
+     & A(\alpha u)=\alpha Au
+  \end{align*}
+  を満たすとき，$A$を作用素と呼ぶ．
+\end{dfn}
+
+\begin{dfn}[線形作用素の加法]
+  \label{dfn:線形作用素の加法}
+  線形空間$X$から線形空間$Y$への線形作用素$A$と$B$の和を
+  \begin{equation*}
+    (A+B)u := Au+Bu, \ u\in\mathcal{D}(A)\cup\mathcal{D}(B)
+  \end{equation*}
+  と定義する．このとき，$X$から$Y$への作用素$A+B$の定義域は
+  \begin{equation*}
+    \mathcal{D}(A+B) = \mathcal{D}(A)\cup\mathcal{D}(B)
+  \end{equation*}
+  とする．
+\end{dfn}
+
+\begin{dfn}[線形作用素のスカラー乗法]
+  \label{dfn:線形作用素のスカラー乗法}
+  線形空間$X$から線形空間$Y$への線形作用素Aの$\alpha\in\mathbb{K}$によるスカラー倍を
+  \begin{equation*}
+    (\alpha A)u := \alpha Au, \ u\in\mathcal{D}(A)
+  \end{equation*}
+  と定義する．このとき，$X$から$Y$への作用素$\alpha A$の定義域は
+  \begin{equation*}
+    \mathcal{D}(\alpha A):= \mathcal{D}(A)
+  \end{equation*}
+  とする．
+\end{dfn}
+
+\begin{dfn}[合成作用素]
+  \label{dfn:合成作用素}
+  $X,Y,Z$を線形空間とする．$A$を$Y$から$Z$への線形作用素とし，$B$を$X$から$Y$への線形作用素とする．そのとき，$A$と$B$の合成作用素$AB$は
+  \begin{equation*}
+    (AB)u:=A(Bu),\ u\in\{v\in\mathcal{D}(B)\mid Bv\in\mathcal{D}(A)\}
+  \end{equation*}
+  と定義する．このとき，$X$から$Z$への合成作用素$AB$の定義域は
+  \begin{equation*}
+    \mathcal{D}(AB):=\{v\in\mathcal{D}(B)\mid Bv\in\mathcal{D}(A)\}
+  \end{equation*}
+  とする．
+\end{dfn}
+
+\begin{thm}[線形作用素に対する単射性(1)]
+  \label{thm:線形作用素に対する単射性(1)}
+  線形空間$X$から線形空間$Y$への線形作用素$A$において以下は同値である．
+  \begin{enumerate}
+    \item 線形作用素が$A$の単射である．
+    \item $Au=0,\ u\in\mathcal{D}(A)\Rightarrow u=0$
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  単射の定義の対偶は
+  \begin{equation*}
+    Au_1 = Au_2,\ \forall u_1,u_2\in\mathcal{D}(A)\Rightarrow u_1=u_2
+  \end{equation*}
+  となる．その上，$A$は線形作用素であるため，
+  \begin{equation*}
+    Au_1=Au_2\Leftrightarrow A(u_1-u_2)=0
+  \end{equation*}
+  となる．$u_1-u_2\in\mathcal{D}(A)$を$u\in\mathcal{D}(A)$とおきなおせば，$1\Rightarrow2$は証明された．また，証明を逆に追うことで$2\Rightarrow1$も示せる．
+\end{proof}
+
+\begin{thm}[線形作用素に対する単射性(2)]
+  ノルム空間Xからノルム空間Yへの線形作用素$A$とする．不等式
+  \begin{equation*}
+    \|u\|_X \leq K\|Au\|_Y,\ u\in\mathcal{D}(A)
+  \end{equation*}
+  を満たす定数$K>0$が存在するならば，線形作用素$A$は単射である．
+\end{thm}
+
+\begin{proof}
+  $A$が線形作用素であるため，$Au=0,\ u\in\mathcal{D}(A)\Rightarrow u=0$を使って証明する．ノルムの定義より
+  \begin{equation*}
+    Au=0,\ \forall u\in\mathcal{D}(A)\Leftrightarrow\|Au\|_Y=0
+  \end{equation*}
+  となる．さらに，$Au=0$ならば，
+  \begin{equation*}
+    \|u\|_X \leq K\|Au\|_Y=0,\ u\in\mathcal{D}(A)
+  \end{equation*}
+  より$\|u\|_X=0$となる．よって，再びノルムの定義より
+  \begin{equation*}
+    \|u\|_X=0,\ \forall u\in\mathcal{D}(A)\Leftrightarrow u=0
+  \end{equation*}
+  より，$Au=0$ならば$u=0$となる．
+\end{proof}
+
+\begin{dfn}[有界な線形作用素]
+  ノルム空間$X$からノルム空間$Y$への作用素$A$に対し，
+  \begin{equation*}
+    \|Au\|_Y\leq K\|u\|_X,\ \mathcal{D}(A)
+  \end{equation*}
+  を満たす正の定数$K$が存在する時，線形作用素$A$を有界な作用素と呼ぶ．
+\end{dfn}
+
+\begin{thm}[有界な線形作用素と連続な線形作用素]
+  ノルム空間$X$からノルム空間$Y$への作用素$A$に対し，
+  \begin{equation*}
+    Aが有界\Leftrightarrow Aが連続
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  「$Aが有界\Rightarrow Aが連続$」の証明
+
+  連続性の定義より，$u_n\rightarrow u$となる任意の$u_n\in\mathcal{D}(A)$に対して$Au_n\rightarrow Au$となることを確かめる．$u_n\rightarrow u$となる任意の$u_n\in \mathcal{D}(A)$から$\|u_n-u\|_X\rightarrow 0,\ (n\rightarrow \infty)$を持つ．その上，$A$は有界であることから
+  \begin{equation*}
+    \|Au_n-Au\|_Y\leq M\|u_n-u\|_X\rightarrow 0,\ (n\rightarrow\infty)
+  \end{equation*}
+  よって，$u_n\rightarrow u,\ (n\rightarrow \infty)$ならば，$Au_n\rightarrow Au$であるため，$A$は連続である．
+
+  \vskip\baselineskip
+
+  「$Aが連続\Rightarrow Aが有界$」の証明
+
+  背理法によって証明する．すなわち，$A$が連続ならば，任意の$M_2>0$に対して
+  \begin{equation*}
+    \|Au\|_Y>M_2\|u\|_x
+  \end{equation*}
+  を満たす$u\in\mathcal{D}$が存在すると仮定して矛盾を見つける．この仮定より自然数$n$に対して，
+  \begin{equation*}
+    \|Au_n\|_Y>n\|u_n\|_X
+  \end{equation*}
+  を満たす$u_n\in\mathcal{D}(A)$が存在する．このとき，$\|u_n\|_X\neq 0$であることに注意する．ノルム空間$X$はノルム空間全体の定義より線形空間であるため，ゼロ元$0\subset X$を持つ．その上，線形作用素の定義より$\mathcal{D}(A)$は$X$の部分空間であるため，ゼロ元$0\in\mathcal{D}(A)\subset X$を持つ．その上，$A$が連続であるため，$A$は$0\in\mathcal{D}(A)$でも連続である．$\epsilon-\sigma$論法による$A$の$0\in\mathcal{D}(A)\subset X$における連続の定義を記述すると
+  \begin{equation*}
+    \forall\epsilon>0,\ \exists\delta>0,\ \|u_n\|_X<\delta となる\forall u_n\in Xに対して\|Au_n\|_Y<\epsilon
+  \end{equation*}
+  となる．その上，$\epsilon$を$n\|u_n\|_X$とすると，$\delta_n>0$が存在し，$\|u_n\|_X<\delta$となる任意の$u_n\in\mathcal{D}(A)$に対して，
+  \begin{equation*}
+    \|Au_n\|_Y<n\|u_n\|_X
+  \end{equation*}
+  となる．有界ではないという仮定と組み合わせると
+  \begin{equation*}
+    n\|u_n\|_X<\|Au_n\|_Y<n\|u_n\|_X
+  \end{equation*}
+  となるため矛盾する．
+\end{proof}
+
+\begin{dfn}[定義域が$X$の全体となる有界な線形作用素全体の集合$\mathcal{L}(X,Y)$]
+  定義域がBanach空間$X$全体となる$X$から$Y$への有界線形作用素全体を
+  \begin{equation*}
+    \mathcal{L}(X,Y)
+  \end{equation*}
+  とする.
+\end{dfn}
+
+\begin{thm}[$\mathcal{L}(X,Y)$はBanach空間]
+  $X$をノルム空間とし，$Y$をBanach空間とする．定義域が$X$全体となる$X$から$Y$への有界な線形作用素全体の集合$\mathcal{L}(X,Y)$のノルムを
+  \begin{equation*}
+    \|A\|_{\mathcal{L}(X,Y)}:=\sup_{u\in X\backslash\{0\}} \frac{\|Au\|_Y}{\|X\|_X}, \ A\in\mathcal{L}(X,Y)
+  \end{equation*}
+  とすると，$\mathcal{L}(X,Y)$はBanach空間となる．
+\end{thm}
+
+\begin{proof}
+  作用素の加法（\ref{dfn:線形作用素の加法}）と作用素のスカラー乗法（\ref{dfn:線形作用素のスカラー乗法}）の定義をもとに線形空間の公理（\ref{dfn:線形空間の公理}）が満たされていることが導かれる．ただし，$\mathcal{L}(X,Y)$のゼロ元は任意の$u\in X$を$0\in Y$へ写す作用素であることに注意が必要である．
+
+  「ノルム空間」
+  $\|A\|_{\mathcal{L}(X,Y)}$がノルムの定義を満たすことを示せばよい．ノルム空間$X$とBanach空間$Y$であるため$\|\cdot\|_X\geq 0$と$\|\cdot\|_Y\geq 0$であることから
+  \begin{align*}
+    \frac{\|Au\|_Y}{\|u\|_X} \geq 0
+  \end{align*}
+  となるため，$\|A\|_{\mathcal{L}(X,Y)}\geq 0$となり，ノルムの定義(\ref{dfn:線形空間の公理})はいえる．
+
+  次に，$A=0$ならば$\|Au\|_Y=0$であるため，
+  \begin{equation*}
+    \|A\|_{\mathcal{L}(X,Y)}=\sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y}{\|u\|_X} = \sup_{u\in X\backslash \{0\}} \frac{0}{\|u\|_X} = 0
+  \end{equation*}
+  である．さらに，任意の$u\in X\backslash\{0\}$について
+  \begin{equation*}
+    \frac{\|Au\|_Y}{\|u\|_X} = 0 \Leftrightarrow \|Au\|_Y=0 \Leftrightarrow Au=0
+  \end{equation*}
+  任意の$u\in X\backslash \{0\}$を$0\in Y$へ写す作用素は$\mathcal{L}(X,Y)$が線形空間により一意に存在し，$A=0$である．よって，ノルムの定義(2)も示された．
+
+  続いて$\alpha\in K$としたとき，$Y$はBanach空間であるため，$\|\cdot\|_Y$はノルムの定義を満たすため，
+  \begin{equation*}
+    \|\alpha A\|_{\mathcal{L}} = \sup_{u\in X\backslash \{0\}} \frac{\|\alpha Au\|_Y}{\|u\|_X} = |\alpha|\sup_{u\in X\backslash \{0\}} \frac{\| Au\|_Y}{\|u\|_X} = |\alpha|\|A\|_{\mathcal{L}(X,Y)}
+  \end{equation*}
+  となるため，ノルムの定義(3)も示された．
+
+  最後に，任意の$A,B\in \mathcal{L}(X,Y)$について
+  \begin{align*}
+    \|A+B\|_{\mathcal{L}(X,Y)} & = \sup_{u\in X\backslash \{0\}} \frac{\|(A+B)u\|_Y}{\|u\|_X}                                                    \\
+                               & = \sup_{u\in X\backslash \{0\}} \frac{\|Au+Bu\|_Y}{\|u\|_X}                                                     \\
+                               & = \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y + \|Bu\|_Y}{|u\|_X}                                              \\
+                               & = \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y}{|u\|_X} + \sup_{u\in X\backslash \{0\}} \frac{\|Bu\|_Y}{|u\|_X} \\
+                               & = \|A\|_{\mathcal{L}(X,Y)} + \|B\|_{\mathcal{L}(X,Y)}
+  \end{align*}
+  となり，ノルムの定義(4)も示されたため，$\mathcal{L}(X,Y)$はノルム空間である．
+
+  「Banach空間」
+
+  Banach空間であることを証明するには$\mathcal{L}(X,Y)$の任意のCauchy列$(A_n)\subset \mathcal{L}(X,Y)$が極限$T$を$\mathcal{L}(X,Y)$内に持つことを示せばよい．
+
+  まず，極限の候補$\tilde{A}$が定義できるか確認する．任意のCauchy列$(A_n)\subset \mathcal{L}(X,Y)$はCauchy列の定義(\ref{dfn:cauchy})より
+  \begin{equation*}
+    \|A_n-A_m\|_{\mathcal{L}(X,Y)} \rightarrow 0,\ (n,m\rightarrow \infty)
+  \end{equation*}
+  となる．任意の$u\in X\backslash \{0\}$に対して，点列$(A_nu) \subset Y$は
+  \begin{align*}
+    \|A_n u-A_mu\|_Y & = \frac{\|(A_n-A_m)u\|_Y}{\|u\|_X}\|u\|_X                                         \\
+                     & \leq \sup_{\phi\in X\backslash\{0\}} \frac{\|(A_n-A_m)\phi\|_Y}{\|\phi\|_X}\|\|_X \\
+                     & = \|A_n-A_m\|_{\mathcal{L}(X,Y)}\|u\|_X \rightarrow 0,\ (n,m \rightarrow \infty)
+  \end{align*}
+  を持つため，点列$(A_nu)\subset Y$はCauchy列になる．その上，$Y$はBanach空間であるため，$Y$の任意のCauchy列は収束し，$Y$内に極限$\tilde{A}u$となるような$X$から$Y$への作用素$\tilde{A}$が存在する．ここで，任意の$u\in X$に対して極限$\tilde{A}u$が定義されることから，$\tilde{A}$の定義域は$\mathcal{D}(\tilde{A})=X$である．これにより，$\mathcal{L}(X,Y)$の任意のCauchy列$(A_n)$の極限の候補$\tilde{A}$が定義できた．
+
+  続いて，定義した極限の候補$\tilde{A}$が$\mathcal{L}(X,Y)$に属しているか確認する．$\tilde{A}$が有界な線形作用素であり，かつ$D(\tilde{A})=X$であることを示せばよい．$\mathcal{L}(X,Y)$の任意のCauchy列$(A_n)$の元$A_n$は線形作用素であるため，線形作用素の定義より任意の$\alpha,\beta \in \mathbb{K}$と$u,v\in X$について
+
+  \begin{equation*}
+    A_n(\alpha u+\beta v) = \alpha A_n u + \beta A_n v
+  \end{equation*}
+  を持つ．よって$n\rightarrow \infty$とすると
+  \begin{equation*}
+    (\alpha u+\beta v)=\alpha \tilde{A} u + \beta \tilde{A} v
+  \end{equation*}
+  となり，極限の候補$\tilde{A}$は線形作用素である．次に極限の候補$\tilde{A}$が有界作用素であることを示す．点列$(A_n)$はCauchy列であるため定理(2)より有界列でもある．すなわち，どんな$n\in \mathbb{N}$に対しても
+  \begin{equation*}
+    \|A_n\|_{\mathcal{L}(X,Y)} \leq M
+  \end{equation*}
+  となる$n\in\mathbb{N}$に依存しない定数$M$が存在する．この$n\in\mathbb{N}$に依存しない定数$M$は，任意の$n\in X$について
+  \begin{equation*}
+    \|A_nu\|_Y \leq M\|u\|_X
+  \end{equation*}
+  も満たす．$\|A_nu\|\rightarrow\tilde{A}_u,\ (n\rightarrow \infty)$であるため，上の不等式に対して$n\rightarrow \infty$とすると$M$が$n$に依存しないため
+  \begin{equation*}
+    \|\tilde{A}u\|_Y \leq M\|u\|_X
+  \end{equation*}
+  を得る．よって，点列$(A_n)$の極限の候補$\tilde{A}$は$\mathcal{L}(X,Y)$に属する．
+
+  最後に，点列$(A_n)$の極限が$\tilde{A}$であることを示す．任意の$u\in X$に対して，点列$(A_nu)\subset Y$は$Y$内に極限$\tilde{A}u$を持つこと，すなわち
+  \begin{equation*}
+    A_nu\rightarrow \tilde{A}u,\ (u\rightarrow \infty)
+  \end{equation*}
+  を持つことから
+  \begin{equation*}
+    \|A_n u- A_m u\|_Y\rightarrow \|A_n u-\tilde{A}u\|_Y,\ (m\rightarrow \infty)
+  \end{equation*}
+  となる．その上，$\mathcal{L}(X,Y)$のノルムの定義と$\tilde{A}\in\mathcal{L}(X,Y)$から
+  \begin{equation*}
+    \|A_n-A_m\|_{\mathcal{L}(X,Y)}\rightarrow\|A_n-\tilde{A}\|_{\mathcal{L}(X,Y)},\ (m\rightarrow \infty)
+  \end{equation*}
+  を得る．点列$(A_n)$がCauchy列であるため
+  \begin{equation*}
+    \forall \epsilon >0,\ \exists N\in\mathbb{N},\ \forall n,m\geq N に対して\|A_n-A_m\|_{\mathcal{L}(X,Y)}<\epsilon
+  \end{equation*}
+  を満たす．その上，$m\rightarrow \infty$とすると
+  \begin{equation*}
+    \forall \epsilon >0,\ \exists N\in\mathbb{N},\ \forall n\geq N に対して\|A_n-\tilde{A}\|_{\mathcal{L}(X,Y)}<\epsilon
+  \end{equation*}
+  となり，$\tilde{A}\in\mathcal{L}(X,Y)$はCauchy列$(A_n)$の極限である．よって，任意のCauchy列は$\mathcal{L}(X,Y)$内に極限を持つため，ノルム空間$\mathcal{L}(X,Y)$はBanach空間である．
+\end{proof}
+
+\begin{thm}[$\mathcal{L}(X,Y)$ノルムの性質(1)]
+  $X$をノルム空間とし，$Y$をBanach空間とする．そのとき，任意の$u\in X$と任意の$A\in\mathcal{L}(X,Y)$について以下の不等式が成り立つ．
+  \begin{equation*}
+    \|Au\|_Y\geq\|A\|_{\mathcal{L}(X,Y)}\|u\|_X
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  $u=0$の時は明らかに成り立つため，$u\in X\backslash\{0\}$について考える．$u\in X\backslash\{0\}$について
+  \begin{equation*}
+    \|Au\|_Y = \frac{\|Au\|_Y}{\|u\|_X}\|u\|_X \leq \sup_{\phi\in X\backslash \{0\}} \frac{\|A\phi\|_Y}{\|\phi\|_X}\|u\|_X = \|A\|_{\mathcal{L}(X,Y)}\|u\|_X
+  \end{equation*}
+  となるため，題意は示された．
+\end{proof}
+
+\begin{thm}[$\mathcal{L}(X,Y)$ノルムの性質(2)]
+  \label{thm:ノルムの性質2}
+  $X$をノルム空間とし，$Y$と$Z$をBanach空間とする．そのとき，任意の$B\in\mathcal{L}(X,Y)$と$A\in\mathcal{L}(X,Y)$の合成作用素$AB$は$\mathcal{L}(X,Y)$に属する．その上，
+  \begin{equation*}
+    \|AB\|_{\mathcal{L}(X,Z)} \leq \|A\|_{\mathcal{L}(Y,Z)}\|B\|_{\mathcal{L}(X,Y)}
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  合成作用素の定義(\ref{dfn:合成作用素})から
+  \begin{equation*}
+    \mathcal{D}(AB)=\{v\in\mathcal{D}(B)=X \mid Bv\in\mathcal{D}(A)=Y\}
+  \end{equation*}
+  となるが，$B\in\mathcal{L}(X,Y)$であるため，任意の$v\in X$に対して$Bv$は$Y$に属する．よって，
+  \begin{equation*}
+    \mathcal{D}(AB)=\mathcal{D}=X
+  \end{equation*}
+  となる．その上，$A$も$B$も線形作用素であることから，任意の$u,v\in X$と任意の$\alpha,\beta\in\mathbb{K}$に対して
+  \begin{equation*}
+    AB(\alpha u+\beta v) = A(B\alpha u+B\beta v) = A(\alpha Bu+\beta Bv) = A\alpha Bu + A\beta Bv = \alpha ABu + \beta ABv
+  \end{equation*}
+  となるため，合成作用素$AB$は定義域が$X$全体となる線形作用素である．よって$AB$は$\mathcal{L}(X,Y)$に属する．その上，
+  \begin{align*}
+    \|AB\|_{\mathcal{L}(X,Z)} & = \sup_{u\in X\backslash \{0\}} \frac{\|ABu\|_Z}{\|u\|_X}                                                            \\
+                              & \leq \sup_{u\in X\backslash \{0\}} \frac{\|A\|_{\mathcal{L}(Y,Z)} \|B\|_{\mathcal{L}(X,Y)} \|u\|_X }{\|u\|_X}\|u\|_X \\
+                              & = \|A\|_{\mathcal{L}(Y,Z)} \|B\|_{\mathcal{L}(X,Y)}
+  \end{align*}
+\end{proof}
+
+\begin{dfn}[X上の恒等作用素]
+  $X$をBanach空間とする．任意の$u\in X$に対して
+  \begin{equation*}
+    Iu=u
+  \end{equation*}
+  となる$I\in\mathcal{L}(X)$をX上の恒等作用素と呼ぶ．
+\end{dfn}
+
+\begin{thm}[Neumann級数]
+  \label{thm:Neumann級数}
+  $X$をBanach空間とする．$B\in\mathcal{L}(X)$とし，$I\in\mathcal{L}(X)$を$X$上の恒等作用素とする．もし
+  \begin{equation*}
+    \|I-B\|_{\mathcal{L}(X)}<1
+  \end{equation*}
+  ならば逆作用素をもち$B^{-1}\in\mathcal{L}(X)$となる．そのうえ，
+  \begin{equation*}
+    B^{-1} = I + (I-B) + (I-B)^2 + \cdots = \sum^\infty_{i=0}(I-B)^i
+  \end{equation*}
+  で，かつ
+  \begin{equation*}
+    \|B^{-1}\|_{\mathcal{L}(X)} \leq \frac{1}{1-\|I-B\|_{\mathcal{L}(X)}}
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  \begin{equation*}
+    S_n = I + (I-B) + (I-B)^2 + \cdots + (I-B)^n
+  \end{equation*}
+  とすると，$B$と$I$ともに$\mathcal{L}(X)$に属するため，加法$I-B$や合成作用素$(I-B)(I-B)$なども$\mathcal{L}(X)$に属する．よって$S_n$も$\mathcal{L}(X)$に属する．
+
+  続いて点列$(S_n)\subset\mathcal{L}(X)$が極限$S$を$\mathcal{L}(X)$内に持つか確認する．定理(\ref{thm:ノルムの性質2})より
+  \begin{equation*}
+    \|(I-B)^i\|_{\mathcal{L}(X)} \leq \|(I-B)\|_{\mathcal{L}(X)}^i,\ i=0,1,\cdots
+  \end{equation*}
+  となるため，$n>m>0$となる整数に対して
+  \begin{equation*}
+    \|S_n-S_m\|_{\mathcal{L}(X)} = \left \| \sum^n_{i=m+1}(I-B)^i \right \| _{\mathcal{L}(X)} \leq \sum^n_{i=m+1}\|(I-B)\|^i_{\mathcal{L}(X)}
+  \end{equation*}
+  となる．定理の仮定より$\|(I-B)\|_{\mathcal{L}(X)}<1$であるため，
+  \begin{equation*}
+    \sum^n_{i=m+1}\|(I-B)\|^i_{\mathcal{L}(X)} \rightarrow 0,\ (n,m\rightarrow \infty)
+  \end{equation*}
+  となる．よって
+  \begin{equation*}
+    \|S_n-S_m\|_{\mathcal{L}(X)} \rightarrow 0,\ (n,m\rightarrow \infty)
+  \end{equation*}
+  となるため，点列$(S_n)$はCauchy列である．その上，$\mathcal{L}(X)$はBanach空間であるため，任意のCauchy列は極限$\mathcal{L}(X)$に持つため，点列$(S_n)$は
+  \begin{equation*}
+    \|S_n-S\|_{\mathcal{L}(X)} \rightarrow 0,\ (n,m\rightarrow \infty)
+  \end{equation*}
+  となる極限$S\in\mathcal{L}(X,Y)$を持つ．
+
+  次に$S$が$B^{-1}$になることを示す．合成作用素の定義(\ref{dfn:合成作用素})にしたがって合成作用素$BS_n$を考える．$X$はBanach空間であり，$S,B_n\in\mathcal{L}(X)$であるため，定理(\ref{thm:ノルムの性質2})より合成作用素$BS_n$は$\mathcal{L}(X)$に属する．その上，点列$(BS_n)\subset\mathcal{L}(X)$は
+  \begin{equation*}
+    \|BS_n-BS\|_{\mathcal{L}(X)} \leq \|B\|_{\mathcal{L}(X)}\|S_n-S\|_{\mathcal{L}(X)}\rightarrow 0,\ (n\rightarrow \infty)
+  \end{equation*}
+  となるため，極限$BS$を$\mathcal{L}(X)$内にもつ．一方で，
+  \begin{align*}
+    BS_n & = (I-(I-B))S_n                                 \\
+         & = S_n-(I-B)S_n                                 \\
+         & = \sum^n_{i=0}(I-B)^i -\sum^{n+1}_{i=1}(I-B)^i \\
+         & = I-(I-B)^{n+1}
+  \end{align*}
+  となり，定理の仮定より$\|I-B\|_{\mathcal{L}(X)}<1$を持つため
+  \begin{equation*}
+    \|BS_n-I\|_{\mathcal{L}(X)} = \|(I-B)^{n+1}\|_{\mathcal{L}(X)} \leq \|(I-B)\|^{n+1}_{\mathcal{L}(X)} \rightarrow 0,\ (n\rightarrow 0)
+  \end{equation*}
+  となるため，点列$(BS_n)$は極限$I$も$\mathcal{L}(X)$内に持つ．よって，極限の一意性より
+  \begin{equation*}
+    BS=I
+  \end{equation*}
+  を得る．$\mathcal{R}(I)=X$であるため，$\mathcal{R}(BS)=X$である．その上，$X=\mathcal{R}(BS)\subset \mathcal{R}(B)$と$\mathcal{R}(B)\subset X$となるため，
+  \begin{equation*}
+    \mathcal{D}(S)=\mathcal{R}(B)=X
+  \end{equation*}
+  となる．
+
+  同様の議論を$S_nB\in\mathcal{L}(X)$について行うと
+  \begin{equation*}
+    SB=I
+  \end{equation*}
+  と
+  \begin{equation*}
+    \mathcal{D}(B)=\mathcal{R}(S)=X
+  \end{equation*}
+  が得られる．そのため，$B$は逆作用素を持ち，逆作用素$B^{-1}=S\in\mathcal{L}(X)$である．
+
+  また，
+  \begin{equation*}
+    S_n=I+(I-B)+(I-B)^2+\cdots+(I-B)^n \rightarrow B^-1,\ (n\rightarrow\infty)
+  \end{equation*}
+  より
+  \begin{equation*}
+    B^{-1}=I+(I-B)+(I-B)^2+\cdots = \sum^{\infty}_{i=0}(I-B)^i\\
+  \end{equation*}
+  となる．
+
+  最後に
+  \begin{equation*}
+    \|B^{-1}\|_{\mathcal{L}(X)} = \left \| \sum^\infty_{i=0}(I-B)^i \right \| _{\mathcal{L}(X)} \leq \sum^\infty_{i=0}\|(I-B)\|^i
+  \end{equation*}
+  となり，初項1，公比$\|I-B\|_{\mathcal{L}(X)}<1$の総和より
+  \begin{equation*}
+    \|B^{-1}\|_{\mathcal{L}(X)} \leq \frac{1}{1-\|I-B\|_{\mathcal{L}(X)}}
+  \end{equation*}
+\end{proof}
+
+\begin{thm}
+  \label{thm:Banachの全単射}
+  $X$と$Y$をBanach空間とする．$A\in\mathcal{L}(X,Y),R\in\mathcal{L}(Y,X)$とする．もし$RA$が全単射ならば，$A$は単射であり，$R$は全射である．
+\end{thm}
+
+\begin{proof}
+  「$A$が単射」の証明
+
+  定理(\ref{thm:線形作用素に対する単射性(1)})(線形作用素に対する単射性(1))の(2)を用いて証明する．$u\in X$とし，$RA$が単射であることに注意すると
+  \begin{equation*}
+    Au=0 \Rightarrow RAu=0 \Rightarrow u=0
+  \end{equation*}
+
+  「$R$が全射」の証明
+
+  $RA$が全射であるため任意の$g\in X$に対して，
+  \begin{equation*}
+    RAu=g
+  \end{equation*}
+  となる$u\in X$が存在する．その上，$v=Au$とすると任意の$g\in X$に対して
+  \begin{equation*}
+    Rv=g
+  \end{equation*}
+  となる$v\in Y$が存在するため，$R$は全射である．
+\end{proof}
+
+\begin{dfn}[Fr\'{e}chet微分]
+  作用素$F:X\rightarrow Y$が$x_0\in X$でFr\'{e}chet微分可能であるとは，ある有界線形作用素$E:X\rightarrow Y$が存在して
+  \begin{equation*}
+    \lim_{\|h\|_X\rightarrow 0} \frac{\|F(x_0+h)-F(x_0)-Eh\|_Y}{\|h\|_X} = 0
+  \end{equation*}
+  が成り立つことをいう．このとき$E$は作用素$F$の$x_0$におけるFr\'{e}chet微分といい，$E=DF(x_0)$とも書く．もしも作用素$F:X\rightarrow Y$がすべての$x\in X$に対してFr\'{e}chet微分可能ならば，$F$は$X$において$C^1\textrm{-Fr\'{e}chet}$微分可能という．
+\end{dfn}
+
+%===================%
+\section{Banachの不動点定理}
+\begin{dfn}[不動点]
+  $X$を係数帯が$\mathbb{K}$のBanach空間とする．$M$は空でない閉集合で$M\subset X$を満たすとする．$A$を$M$から$M$への写像とする．$x\in M$が$A$の不動点であるとは，$x$が
+  \begin{equation*}
+    x=Ax
+  \end{equation*}
+  を満たすことである．
+\end{dfn}
+
+\begin{dfn}[距離空間]
+  $X$をノルム空間とし，$x,y\in X$に対して実数値を対応させる関数$d(\cdot,\cdot):X\times X\rightarrow \mathbb{R}$が定義され，
+  \begin{enumerate}
+    \item $d(x,y) \leq 0$かつ$d(x,y)=0 \Leftrightarrow x=y,\ x,y\in X$
+    \item $d(x,y)=d(y,x),\ x,y\in X$
+    \item $d(x,y)\leq d(x,z) + d(z,y),\ x,y,z\in X$
+  \end{enumerate}
+  を満たすとき，$d$を距離空間という．距離の備わった集合を距離空間という．
+\end{dfn}
+
+\begin{dfn}[縮小写像]
+  $X$を係数体が$\mathbb{K}$のBanach空間とする．$M$は空でない閉集合で$M\subset X$を満たすとする．写像$A:M\rightarrow M$が$k$次の縮小写像であるとは，$0\leq k<1$を満たす定数$k$が存在し，$\forall x,y \in M$について
+  \begin{equation*}
+    \|Ax-Ay\|\leq k\|x-y\|
+  \end{equation*}
+  を満たすことである．
+\end{dfn}
+
+\begin{thm}[Banachの不動点定理]
+  \label{thm:Banachの不動点定理}
+  $X$を係数体が$\mathbb{K}$のBanach空間とする．$M$は空でない閉集合で$M\subset X$を満たすとする．$A$は$M$から$M$への$k$次の縮小写像とする．そのとき，問題
+  \begin{equation}
+    \label{equ:Banachの不動点定理}
+    \mathrm{Find}\ u\in M\ \mathrm{s.t.} \ u=Au
+  \end{equation}
+  は真の解$u^*$を$M$内にただ一つ持つ．即ち，写像$A$は$M$上にただ一つ不動点$u^*$を持つ．
+\end{thm}
+
+\begin{proof}
+  $u_0$を閉集合$M$の元として与えられていると仮定する．点列$(u_n)$は反復法
+  \begin{equation}
+    \label{equ:反復法による点列}
+    u_{n+1}=Au_n,\ n=0,1,\cdots
+  \end{equation}
+  にとって得られる．そのとき，証明のプロセスは次のように考える．
+  \begin{enumerate}
+    \item $(u_n)$がCauchy列になること，さらにBanach空間の完備性を使うことで，$u_n\rightarrow u,\ n\rightarrow \infty$となる$u$が$X$内に存在することを示す．
+    \item $u$が(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$と一致することを示す(解の存在性)．
+    \item 真の解$u^*$が$M$内で一意であることを示す．
+  \end{enumerate}
+
+  \begin{description}
+    \item[1]
+      \quad\\
+      (\ref{equ:反復法による点列})より，
+      \begin{equation}
+        \|u_n-u_{n+1}\|=\|Au_{n-1}-Au_{n}\|
+      \end{equation}
+      となる．定理の仮定より$A$は$k$次の縮小写像であるため，
+      \begin{equation}
+        \|Au_{n-1}-Au_{n}\|\leq k\|u_{n-1}-u_{n}\|
+      \end{equation}
+      となる定数$k$が存在する．同様に$\|u_{n-1}-u_{n}\|$に(\ref{equ:反復法による点列})と$A$の縮小写像の性質を使うと最終的に
+      \begin{equation}
+        \label{equ:点列と縮小写像より}
+        \|u_{n}-u_{n+1}\|\leq k^n\|u_{0}-u_{1}\|
+      \end{equation}
+      を得る．
+
+      次に三角不等式より，$n=0,1,2,\cdots,\ m>n$について
+      \begin{align}
+        \|u_{n}-u_{m}\| & = \|(u_{n}-u_{n+1})+(u_{n+1}-u_{n+2})+\cdots+(u_{m-1}-u_{m})\|      \\
+                        & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\|
+      \end{align}
+      となる．上の式に(\ref{equ:点列と縮小写像より})を適用すると
+      \begin{align}
+        \|u_{n}-u_{m}\| & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\| \label{equ:-1}    \\
+                        & \leq k^n\|(u_{n}-u_{n+1}\|+k^{n+1}\|u_{n+1}-u_{n+2}\|+\cdots+k^{m-1}\|u_{m-1}-u_{m}\| \\
+                        & = k^n(1+k+\cdots+k^{m-n-1})\|u_0-u_1\|
+      \end{align}
+      となる．ここで，$k$は$0<k<1$であるため，$1+k+\cdots+k^{m-n-1}\leq 1+k+\cdots+k^{m-1}$となる．さらに，等比級数から
+      \begin{equation}
+        1+k+\cdots+k^{m-1} = \frac{1-k^m}{1-k}
+      \end{equation}
+
+      であるため，(\ref{equ:-1})は
+      \begin{equation}
+        \|u_{n}-u_{m}\| \leq \frac{k^n(1-k^m)}{1-k} \|u_0-u_1\|
+      \end{equation}
+      となる．よって，$k$は$0<k<1$から$k^n\rightarrow 0,\ n\rightarrow \infty$と$k^m\rightarrow 0,\ m\rightarrow \infty$となる．すなわち，
+      \begin{equation*}
+        \|u_{n}-u_{m}\| \rightarrow 0,\ (n,m\rightarrow \infty)
+      \end{equation*}
+      となるため，点列$(u_n)$はCauchy列である．さらに$X$はBanach空間であるため，$X$は完備である．すなわち，任意のCauchy列が$X$の中で極限を持つ．よって，点列$(u_n)$は
+      \begin{equation*}
+        u_n\rightarrow u,\ n\rightarrow \infty
+      \end{equation*}
+      となる$u \in X$が存在する．
+
+    \item[2]
+      \quad\\
+      $t_0$を$M$の元とする．仮定より，$A$は$M$から$M$への写像であるため，$A(M)\subseteq M$となる．すなわち，$u_1=Au_0$が成立する$u_1\in M$が存在する．同様に，$\forall n \in \mathbb{N}$について$u_n\in M$が存在する．さらに，$M$は閉集合であるため，\textbf{1}で存在を証明した$u$は$M$に属する．そのうえで仮定とり$A$は$k$次の縮小写像であるため
+      \begin{equation*}
+        \|Au_n-Au\|\leq k\|u_n-u\|
+      \end{equation*}
+      を得る．\textbf{1}より点列$(u_n)$は極限をもつため，$\|u_n-u\|\rightarrow 0,\ n\rightarrow \infty$となる．すなわち
+      \begin{equation*}
+        \|Au_n-Au\|\rightarrow 0,\ n\rightarrow \infty
+      \end{equation*}
+      となるため，$Au$は$Au_n$の極限である．よって(\ref{equ:反復法による点列})とすると
+      \begin{equation*}
+        u=Au
+      \end{equation*}
+      が成立する．とって$u$は(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$となる．
+
+    \item[3]
+      \quad\\
+      $u^*,v^*\in M$をそれぞれ$u^*=Au^*$と$v^*=Av^*$を満たすとする．その時，$A$は$k$次の縮小写像であるため
+      \begin{equation*}
+        \|u^*-v^*\| \leq \|Au^*-Av^*\| \leq k\|u^*-v^*\|
+      \end{equation*}
+      を得る．ここで$0\leq k<1$であるため，不等式を満たすものは$u^*=v^*$の場合のみである．すなわち(\ref{equ:Banachの不動点定理})を満たす真の解は一意である．
+  \end{description}
+
+\end{proof}
+
+\section{簡易ニュートン写像}
+本節では，$X,Y$をBanach空間とし，写像$F:X\rightarrow Y$に対して
+\begin{equation*}
+  F(x)=0 \in Y
+\end{equation*}
+という（非線形）作用素方程式を考える．
+
+このとき，写像$T:X\rightarrow X$を
+\begin{equation*}
+  T(x):=x-AF(X)
+\end{equation*}
+で定義する．これを簡易ニュートン写像という．ここで$A:Y\rightarrow X$はある全単射な線形作用素である．いま$\bar{x}$を$F(\bar{x})\approx 0$となる近似解とし，$\bar{x}$の近傍を
+\begin{align*}
+  B(\bar{x},r)            & :=\{x\in X\:\|x-\bar{x}\|<r\}\ （開球）     \\
+  \overline{B(\bar{x},r)} & :=\{x\in X\:\|x-\bar{x}\|\leq r\}\ （閉球）
+\end{align*}
+で定義する．このとき，もし，$B(\bar{x},r)$上で写像$T$が縮小写像となれば，Banachの不動点定理から$F(\tilde{x})=0$をみたす解$\tilde{x}\in B(\bar{x},r)$がただ一つ存在することになる．このように解の存在を仮定せずに近似解近傍での収束をいう定理をNewton-Kantorovichの定理という．
+
+\section{フーリエ級数}
+\subsection{フーリエ級数の導出}
+ある関数$f(x)$が有限の閉空間$[a,b]$で定義されている場合に，次の性質をもつとき区分的に連続であるという．
+\begin{enumerate}
+  \item $f(x)$は有限個の不連続点を除いて連続である．
+  \item $f(x)$の不連続点$c$では$f(c+0)$と$f(c-0)$が存在する．
+\end{enumerate}
+
+また，$f(x)$が無限区間で定義されている場合には，$f(x)$が任意の有限区間で区分的に連続であるときに，$f(x)$は区分的に連続であるという．以降は，特に断らないかぎり区分的に連続な関数のみを考えることにする．
+
+関数$f(x),\ (x\in [-\pi,\pi])$を周期$2\pi$の周期関数とする．このような$f(x)$が以下の三角関数で表されるとして，係数$(a_0,a_1,a_2,\cdots,b_0,b_1,b_2,\cdots)$を求めることを考える．
+
+\begin{align}
+  f(x) & = \frac{a_0}{2} + \sum_{\infty}^{n=1} (a_n \cos x + b_n \sin nx)                       \label{equ:fourie-1} \\
+       & = \frac{a_0}{2} + (a_1 \cos x + b_1 \sin nx) + (a_2 \cos 2x + b_2 \sin 2x) + \cdots \notag
+\end{align}
+
+そのために，次の公式を用意する．ここで，$m,n\in \mathbb{N}$である．
+\begin{align}
+  \int_{-\pi}^{\pi} \cos nx \cos mx dx                        & = \begin{cases}
+                                                                    0 \quad (n\neq m) \\
+                                                                    \pi \quad (n=m)
+                                                                  \end{cases} \notag       \\
+  \int_{-\pi}^{\pi} \sin nx \sin mx dx                        & = \begin{cases}
+                                                                    0 \quad (n\neq m) \\
+                                                                    \pi \quad (n=m)   \\
+                                                                  \end{cases} \notag       \\
+  \int_{-\pi}^{\pi} \sin nx \cos mx dx                        & = 0   \label{equ:fourie-2} \\
+  \int_{-\pi}^{\pi} \sin nx dx = \int_{-\pi}^{\pi} \cos mx dx & = 0 \label{equ:fourie-3}
+\end{align}
+
+ここで，次のような形式的計算が許されると仮定する．まず，(\ref{equ:fourie-1})の両辺について$-\pi$から$\pi$まで積分し，(\ref{equ:fourie-3})を用いれば
+\begin{align*}
+  \int_{-\pi}^{\pi} f(x)dx & = \frac{a_0}{2}\int_{-\pi}^{\pi} dx + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx dx+ \int_{-\pi}^{\pi}b_n \sin nx dx) \\
+                           & = \pi a_0
+\end{align*}
+\begin{equation}
+  \label{equ:fourie-a0}
+  \therefore a_0 = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) dx
+\end{equation}
+
+次に，(\ref{equ:fourie-1})の両辺に$\cos mx$をかけて，$-\pi$から$\pi$まで積分し，(\ref{equ:fourie-2})(\ref{equ:fourie-3})を用いれば
+\begin{align*}
+  \int_{-\pi}^{\pi} f(x) \cos mx dx & = \frac{a_0}{2} \int_{-\pi}^{\pi} \cos mx dx                                                                   \\
+                                    & \quad + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx \cos mx dx + \int_{-\pi}^{\pi}b_n \sin nx \cos mx dx \\
+                                    & = \pi a_0
+\end{align*}
+\begin{equation}
+  \label{equ:fourie-am}
+  \therefore a_m = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) \cos mx dx
+\end{equation}
+
+同様に，(\ref{equ:fourie-1})の両辺に$\sin mx$をかけて，$-\pi$から$\pi$まで積分することにより次の式が得られる．
+\begin{equation}
+  \label{equ:fourie-bm}
+  b_m = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin xm dx
+\end{equation}
+
+(\ref{equ:fourie-a0}),(\ref{equ:fourie-am}),(\ref{equ:fourie-bm})をまとめて次のようになる．
+
+\begin{dfn}[フーリエ級数]
+  \begin{equation*}
+    f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx + \sum_{n=1}^{\infty} b_n \sin nx
+  \end{equation*}
+  ただし
+  \begin{align*}
+    a_n = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \cos nx dx,\ (n\geq 0) \\
+    a_n = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \cos nx dx,\ (n\geq 1)
+  \end{align*}
+  この無限級数を$f$のフーリエ級数といい，$a_n,b_n$をフーリエ係数という．
+\end{dfn}
+
+\begin{dfn}[複素フーリエ変換]
+  また，$$\cos nx = \frac{\exp (inx) + \exp (-inx)}{2},\ \sin nx = \frac{\exp (inx) + \exp(-inx)}{2}\quad (iは虚数単位)$$という関係を用いて
+  \begin{align*}
+    f(x) & = \sum_{k=-\infty}^{\infty} c_k \exp(ikx)          \\
+    c_k  & = \frac{1}{2\pi} \int_{0}^{2\pi} f(x)\exp (ikx) dx
+  \end{align*}
+  と複素数を用いた形式も考えられる．これを$f$の複素フーリエ級数，$c_k$を複素フーリエ係数という．
+
+  これらには関係式
+  \begin{align*}
+    c_k=
+    \begin{dcases}
+      \frac{a_k}{2}            & ,\ k=0 \\
+      \frac{a_k-ib_k}{2}       & ,\ k>0 \\
+      \frac{a_{-k}-ib_{-k}}{2} & ,\ k<0
+    \end{dcases}
+  \end{align*}
+\end{dfn}
+があり，変換可能である．
+
+\subsection{フーリエ級数の性質}
+\begin{description}
+  \item[対称性]
+    \quad\\
+    周期関数$f(x)$が偶関数であるとき，偶関数のフーリエ級数は
+    \begin{equation*}
+      f(x)=\frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx \
+    \end{equation*}
+    と表すことができる．上式のように$\cos$関数のみで表されるフーリエ級数をフーリエ・コサイン級数という．このとき，複素フーリエ係数は$c_{-k}=-c_k$が成り立つ．
+
+    一方で，$f(x)$が奇関数であるとき，奇関数のフーリエ級数は
+    \begin{equation*}
+      f(x) = \sum_{n=1}^{\infty} b_n \sin nx \
+    \end{equation*}
+    と表すことができる．上式のように$\sin$関数のみで表されるフーリエ級数をフーリエ・サイン級数という．このときも，複素フーリエ係数は$c_{-k}=-c_k$が成り立つ．
+
+  \item[実数値関数]
+    \quad\\
+    $f(x)$が実数値関数$f(x)\in \mathbb{R}$であるとき，各フーリエ係数$a_n,b_n$は
+    \begin{equation*}
+      a_n,b_n\in\mathbb{R}
+    \end{equation*}
+    となる．このとき．複素フーリエ級数$c_k$は
+    \begin{equation*}
+      c_{-k}=\overline{c_k}
+    \end{equation*}
+    を満たす．これは，$f(x)=\overline{f(x)}$という実数値関数の性質を使うことで確認できる．
+
+  \item[係数の収束]
+    \quad\\
+    ある周期関数$f(x)$のフーリエ係数を$a_n$として，$n\rightarrow \infty$での収束オーダーを考えると，
+    \begin{equation*}
+      a_n = \begin{cases}
+        \mathcal{O}\left(n^{-K}\right)          & k次オーダーの収束 \\
+        \mathcal{O}\left(e^{-qn^r}\right)       & k次オーダーの収束 \\
+        \mathcal{O}\left(e^{-qb\log (n)}\right) & 超幾何収束
+      \end{cases}
+    \end{equation*}
+    などのパターンがあり，それぞれ$f(x)$の滑らかさによって決まる．例えば，$f(x)$が$k$次オーダーの収束をする場合は，関数$f$は$C^k-級$の関数である．指数オーダーの収束の場合は実解析関数（曲や分岐点を持つ一般的な有限区間・無限区間上の関数），超幾何収束の場合は複素平面上で$\infty$以外で特異点を持たない関数（整関数）とそれぞれ知られている．
+
+    ランダウの記号$\mathcal{O}$は，例えば，$a_n=\mathcal{O}(n^{-2})\ (n\rightarrow\infty)$は，左辺の絶対値が右辺の絶対値の定数倍以下であることを表す．すなわち，ある定数$C$があって，$n$が十分大きいすべての$n\geq 0$に対して，$|a_n|\leq Cn^{-2}$が成立することを意味する．
+
+  \item[微分とシフト]
+    \quad\\
+    フーリエ変換の便利な性質として微分およびシフト（平行移動）がある．
+
+    いま，$f(x)$を複素フーリエ級数とする微分操作は
+    \begin{equation*}
+      \frac{d}{dx}f(x) \sim \sum_{k=-\infty}^{\infty} (ik)c_k \exp(ikx)
+    \end{equation*}
+    と表すことができる．
+
+    同様に，シフト操作も
+    \begin{equation*}
+      \frac{d}{dx}f(x) \sim \sum_{k=-\infty}^{\infty} (ik)c_k \exp(ikx)
+    \end{equation*}
+    することでシフト$d$だけ$x$方向に平行移動できる．以降，簡単のために特に混合がなければ，複素フーリエ級数も単にフーリエ級数と呼ぶ．
+\end{description}
+
+\subsection{フーリエ変換の数値計算}
+\begin{description}
+  \item[与えられた関数のフーリエ級数を計算する]
+    \quad\\
+    周期関数$f(x)$のフーリエ係数$c_k$を数値計算で求める．無限級数を計算機で表現することは難しいため，係数を打ち切る操作が必要である．この時のフーリエ係数のサイズ$N$を$|k|<N$となるように定める（$N-1$を最大端数という）．
+
+    いま，$0=x_0\leq x_1 \leq \cdots \leq x_{2N-1}=2\pi$と区間$[0,2\pi]$を等間隔に分割した点$x_j=jh\ (j=0,\cdots,2N-1),\ h=2\pi / (2N-1)$を標本点といい，標本点上での関数値を用いてフーリエ係数の近似$\overline{c_k}$を得る．
+
+    \begin{equation*}
+      c_k = \frac{1}{2\pi} \int_{0}^{2\pi} f(x) \exp(-kx) dx \thickapprox \frac{1}{2N-1} \sum_{j=0}^{2N-2} f(x_j) \exp\left(-2\pi i \frac{kj}{2N-1}\right) = \overline{c_k},\ (|k|<N)
+    \end{equation*}
+
+    この$\overline{c_k}$の式は，離散フーリエ変換$a_k=\mathcal{F}(b)=\sum_{b_j}^{2N-2} f(x_j) \exp\left(-2\pi i \frac{kj}{2N-1}\right)$そのものである．したがって，高速フーリエ変換（FFT）を用いて近似フーリエ係数$\overline{c_k}$を計算できる．そして，$\overline{c_k}$を使って，元の関数$f(x)$の近似$f^{(N)}(x)$が
+    \begin{equation*}
+      f(x) \approx f^{(N)}(x) = \sum_{|k|<N} \overline{c_k} \exp(ikx)
+    \end{equation*}
+    と得られる．
+
+  \item[フーリエ係数から元の関数の概形を求める]
+    \quad\\
+    近似関数$f^{(N)}(x)$の係数$c_k$から関数の概形を求める．
+
+    いま，標本点上の関数値は
+    \begin{equation*}
+      f^{(N)}(x_j) = \sum_{|k|<N} \overline{c_k} \exp(ikx_j) = \sum_{|k|<N} \overline{c_k} \exp\left(2\pi i \frac{kj}{2N-1}\right)
+    \end{equation*}
+
+    これは逆フーリエ変換（IFFT）に相当する．そこで，IFFTを用いて元の関数の外形を求める．しかし，このままIFFTを用いると標本点と同数の関数値しか得られないため，グラフに描画すると粗い概形となる．そこで，フーリエ係数$\overline{c_k}$に0を余分に張り合わせて，なめらかなグラフのプロットを得る．
+
+
+  \item[周期が$2\pi$以外の場合の計算]
+    \quad\\
+    周期が$2\pi$以外の場合も，ほぼ同様な考え方でフーリエ級数を考えられる．
+
+    いま，$f(x)$を周期$L$の周期関数とする．このとき，変数$t:a\rightarrow b,\ (L=b-a)$に対して，変数$x$を$x=\omega (t-a),\ (\omega = 2\pi /L)$と定めると，$x:0\rightarrow 2\pi$となり，関数$g(x)=f(a+\omega^{-1}x)$は周期$2\pi$の周期関数である．そこで$g(x)$がフーリエ級数
+    $g(x)$がフーリエ級数
+    \begin{equation*}
+      g(x) = \sum_{k\in\mathbb{Z}} c_k \exp(ikx)
+    \end{equation*}
+    で表されたとすると，$f(x)$のフーリエ級数は
+    \begin{equation*}
+      f(t) = g(\omega (t-a)) = \sum_{k\in\mathcal{Z}} c_k \exp(ikx)
+    \end{equation*}
+    が成り立つ．フーリエ係数は$dx=\omega dt$より
+    \begin{align*}
+      c_k & = \frac{1}{2\pi} \int_{0}^{2\pi} g(x) \exp(-ikx) dx                              \\
+          & = \frac{1}{2\pi} \int_{0}^{2\pi} g(\omega (t-a)) \exp(-ik\omega (t-a)) \omega dx \\
+          & = \frac{1}{L} \int_{0}^{2\pi} f(t) \exp(-ik\omega (t-a)) dt   \ (k\in\mathbb{Z}) \\
+    \end{align*}
+    と$f$の離散フーリエ変換で求められる．したがって，サイズ$N$のフーリエ係数は標本点を$a=t_0 \leq t_1 \leq \cdots \leq t_{2N-1}=b$と区間$[a,b]$を等間隔に分割した点$t_j=a+jh(j=0,\cdots,2N-1,h=L/(2N-1))$でとり，この標本点上での関数値を用いてフーリエ係数の近似$\overline{c_k}$を得る．
+    \begin{align*}
+      c_k & = \frac{1}{L} \int_{a}^{b} f(t) \exp(-ik\omega (t-a)) dt                                                                     \\
+          & \thickapprox \frac{1}{2N-1} \sum_{j=0}^{2N-2} f(t_j) \exp\left(-2\pi i \frac{kj}{2N-1}\right) = \overline{c_k},\quad (|k|<N)
+    \end{align*}
+    ここで，$t_j=a+\frac{jL}{2N-1}(j=0,1,\cdots,2N-1)$から，周期が$2\pi$の周期関数のフーリエ係数の近似が同じ式になるため，フーリエ係数の計算方法は変わらない．
+\end{description}
+
+\begin{comment}
+\section{チェビシェフ級数}
+\subsection{チェビシェフ級数の導出}
+\begin{dfn}[チェビシェフ級数]
+  チェビシェフ級数とは，フーリエ・コサイン級数に対し変換$x=\cos \theta$を与えたものである．
+  \begin{equation*}
+    T_n(x) = \cos n\theta,\ \theta = \arccos x
+  \end{equation*}
+  を$n$次の第一種チェビシェフ多項式という．
+  \begin{equation*}
+    f(x)=\sum_{n=0}^{\infty} a_n T_n(x),\ x\in [-1,1]
+  \end{equation*}
+
+  これは変換$x=\cos \theta$と$T_n(x)$の定義から
+  \begin{equation*}
+    f(\cos \theta) = \sum_{n=0}^{\infty} a_n \cos n\theta,\ \theta\in [0,2\pi]
+  \end{equation*}
+  となるため，$g(x)=f(\cos \theta)$というフーリエ・コサイン級数である．したがって，係数の収束もフーリエ級数と似る．チェビシェフ係数は
+  \begin{align*}
+    a_n =
+    \begin{dcases}
+      \frac{1}{\pi} \int_{-1}^{1} \frac{f(x)T_0(x)}{\sqrt{1-x^2}}dx ,\ n=0 \\
+      \frac{2}{\pi} \int_{-1}^{1} \frac{f(x)T_n(x)}{\sqrt{1-x^2}}dx ,\ n\leq 0
+    \end{dcases}
+  \end{align*}
+  で与えられる．この係数$a_n\ (n\leq 0)$をTwo-sided チェビシェフ級数と呼ぶ．
+
+  $T_n(x)=\cos n \theta$なので，$\cos 0=1,\ \cos 1\cdot \theta = \cos \theta,\ \cos 2\theta = 2\cos ^2 \theta -1,\ \cos 3\theta = 4\cos ^3\theta -3\cos \theta,\ \cos4 \theta = 8\cos^4\theta - 8\cos^2\theta + 1, \cdots$となる．これから，
+  \begin{align*}
+    T_0(x) & = 1             \\
+    T_1(x) & = x             \\
+    T_2(x) & = 2x^2 - 1      \\
+    T_3(x) & = 4x^3 - 3x     \\
+    T_4(x) & = 8x^4-8x^2 - 1 \\
+           & \vdots
+  \end{align*}
+  となり，一般的には
+  \begin{equation*}
+    \cos n\theta + \cos (n-2)\theta = 2\cos \theta \cos (n-1) \theta
+  \end{equation*}
+  という三角関数の公式をつかって，
+  \begin{equation*}
+    T_0(x)=1,\ T_1(x)=x,\ T_{n+1}(x) = 2xT_n(x) - T_{n-1}(x) \ (n= 1,2,\cdots)
+  \end{equation*}
+  という漸化式により，多項式が決定される．
+
+  チェビシェフ多項式のもう1つの表現方法として，$|z|=1$を満たす複素平面の単位円上で定義される複素変数$z$を用いる方法がある．いま，
+  \begin{equation*}
+    F(z) \equiv f(x),\ x=\frac{z+z^{-1}}{2},\ z\in\{z\in\mathbb{C}:|z|=1\}
+  \end{equation*}
+  を満たすような複素関数$F$を考える．変換$x=(z+z^{-1})/2$は$x$の1つの値に対して$z$の2つの値$(z,z^{-1})$を対応させる．すなわち$F$は$F(z)=F(z^{-1})$の対処性を持つ．関数$F$ローラン展開を考えると
+  \begin{equation*}
+    F(z) = F(z^{-1}) = \frac{1}{2} \sum_{n=0}^{\infty} a_n (z^n + z^{-n}),\ |z|=1
+  \end{equation*}
+
+  よって$n$番目のチェビシェフ多項式$T_n(x)$は，単位円上の変数$z^n$の実部で定義できて，
+  \begin{equation*}
+    T_n(x) = \frac{1}{2} \left( z^n + z^{-n} \right),\ n \geq 0
+  \end{equation*}
+
+  と表すことができる．この表現方法はチェビシェフ多項式が満たす漸化式を簡潔に導く．すなわち任意の$n \geq 1$について
+
+  \begin{equation*}
+    \frac{1}{2} (z+z^{-1})(z^n + z^{-n}) = \frac{1}{2} (z^{n+1} + z^{-(n+1)}) + \frac{1}{2} (z^{n-1} + z^{-(n-1)})
+  \end{equation*}
+  が成り立ち，上記の漸化式を得る．
+
+  一般の定義域$x\in [a,b]$上でのチェビシェフ多項式は
+  \begin{align*}
+    [a,b]   \rightarrow [-1,1], & \ x \mapsto \xi = 2\frac{x-a}{b-a} - 1                  \\
+    [-1,1]  \rightarrow [a,b],  & \ \zeta \mapsto x = \frac{1-\xi}{2}a + \frac{1+\xi}{2}b
+  \end{align*}
+  という変数変換を使う．
+\end{dfn}
+
+\subsection{チェビシェフ級数の性質}
+\begin{description}
+  \item [対称性]
+        \quad \\
+        チェビシェフ多項式$T_n(x)$は$n$が偶数のときに偶関数，奇数のときに奇関数となる．したがって，$k\in \mathbb{N}$としたとき，次のような対称性が成り立つ．
+        \begin{itemize}
+          \item 周期関数$f(x)$が偶関数であるとき，$a_{2k-1}=0$となる．
+          \item 周期関数$f(x)$が偶関数であるとき，$a_{2k}=0$となる．
+        \end{itemize}
+  \item [チェビシェフ（-Lobatto）点]
+        \quad \\
+        区間$[-1,1]$の点
+        \begin{equation*}
+          x_j = \cos                 \frac{j\pi}{n},\ 0\leq j \leq n
+        \end{equation*}
+        を$n$次チェビシェフ多項式のチェビシェフ（-Lobatto）点という．この点は複素平面上の単位円周を当分した点の実数部$x_j = \mathrm{Re} \left[\exp (i \frac{j\pi}{n}) \right]$である．チェビシェフ点において，$T_n(x_j)=\pm1$となる．
+  \item[フーリエ級数との関係]
+    \quad \\
+    チェビシェフ級数はフーリエ級数への変換が容易である．
+    \begin{align*}
+      f(x) & = c_0 + 2\sum_{n=1}^{\infty} c_n T_n(x)                          \\
+           & = c_0 + 2 \sum_{n=1}^{\infty} c_n \cos n\theta,\ (x=\cos \theta) \\
+           & = \sum_{k=-\infty}^{\infty} c_{|k|} \exp(ik\theta)
+    \end{align*}
+    ここで，
+    \begin{equation*}
+      c_k = \frac{1}{2 \pi} \int_{0}^{2\pi} f(\cos \theta) \exp(-ik\theta) d\theta,\ (k\in \mathbb{Z},\ c_k=c_{-k})
+    \end{equation*}
+    が成り立つため，フーリエ係数$c_{|k|}$は計算できる．この$(c_n)_{n\geq 0}$を（One-sided）チェビシェフ係数と呼ぶ．さらに，$|k|<M$の範囲で打ち切ったチェビシェフ係数$c_k$は離散フーリエ変換を用いて
+    \begin{equation*}
+      c_k \approx \frac{1}{2M-2} \sum_{j=0}^{2M-3} f\left(\cos \theta_j\right) \exp\left(-\pi i \frac{kj}{M-1}\right),\ \left(\theta_j = \frac{\pi j}{M-1},\ h = \frac{\pi}{M-1} ,\ |k|<M\right)
+    \end{equation*}
+    と近似できる．ここで$f(\cos \theta_j)$はチェビシェフ点$x_j=\cos \theta_j$における関数$f$の値を表す．
+\end{description}
+\end{comment}
+
+
+\section{離散フーリエ変換}
+\begin{dfn}[離散フーリエ変換]
+  $b=(b_0,b_1,\cdots,b_{2M-2}) \in \mathbb{C}^{2M-1}$に対して，$a=\mathcal{F}(b)\in \mathbb{C}^{2M-1}$を
+  \begin{equation*}
+    a_k = \mathcal{F}_k(b) := \sum_{j=0}^{2M-2} b_j \exp\left(2\pi i \frac{kj}{2M-1}\right),\ (k=-M+1,\cdots,M-1)
+  \end{equation*}
+  とし，離散フーリエ変換（DFT）と呼ぶ．
+\end{dfn}
+
+\begin{dfn}[逆離散フーリエ変換]
+  $a=(a_{k})_{|k|<M} = (a_{-M+1},\cdots,a_{M-1}) \in \mathbb{C}^{2M-1}$に対して，$b=\mathcal{F}^{-1}(a)\in \mathbb{C}^{2M-1}$を
+  \begin{equation*}
+    b_j = \mathcal{F}^{-1}_j(a) := \sum_{k=-M+1}^{M-1} a_k \exp\left(2\pi i \frac{kj}{2M-1}\right),\ (j=0,\cdots,2M-2)
+  \end{equation*}
+  とし，逆離散フーリエ変換（IDFT）と呼ぶ．
+\end{dfn}
+
+\section{畳み込みのFFTアルゴリズム}
+\subsection{畳み込み定理}
+$u_1,u_2$：周期$L$の周期関数とする．
+\begin{align*}
+  u_1(t) & = \sum_{k\in\mathbb{Z}} a_k^{(1)} \exp\left( ik\omega t \right) ,\ a^{(1)}= \left( a_k^{(1)} \right)_{k\in\mathbb{Z}} \\
+  u_2(t) & = \sum_{k\in\mathbb{Z}} a_k^{(2)} \exp\left( ik\omega t \right) ,\ a^{(2)}= \left( a_k^{(2)} \right)_{k\in\mathbb{Z}}
+\end{align*}
+とする．ただし，$\omega = 2\pi / L$としたとする．このとき，関数の積$u_1(t)u_2(t)$は次のようにフーリエ級数で表せる．
+\begin{equation*}
+  u_1(t)u_2(t) = \sum_{k\in\mathbb{Z}} \left(a^{(1)} * a^{(2)}\right)_k \exp{(ik   \omega t)}
+\end{equation*}
+
+ここで$a=(a_k)_{k\in\mathbb{Z}},\ b=(b_k)_{k\in\mathbb{Z}}$に対して，
+\begin{equation*}
+  (a * b)_k = \sum_{\substack{{k_1+k_2=k} \\ {k_1,k_2\in\mathbb{Z}}}} a_{k_1}b_{k_2},\ k\in\mathbb{Z}
+\end{equation*}
+を離散畳み込みという．スペクトル法の非線形項の計算，$\mathrm{i.e.},u_1,u_2$のような（有限モードのフーリエ級数で表される）周期関数が$p個(p\in\mathbb{N})$あったとき，
+\begin{equation*}
+  u_l(t) = \sum_{|k|<M} a_k^{(l)} \exp(ik\omega t),\ l=1,2,\cdots,p
+\end{equation*}
+とすると，離散畳み込みはこれらの周期関数の積
+\begin{align*}
+  u_1(t)u_2(t)\cdots u_p(t) & = \sum_{|k|<M} \left(a^{(1)} * a^{(2)} * \cdots * a^{(p)}\right)_k \exp(ik\omega t)          \\
+                            & = \sum_{|k|\leq p(M-1)} \left(a^{(1)} * a^{(2)} * \cdots * a^{(p)}\right)_k \exp(ik\omega t)
+\end{align*}
+を表すことになる．ここで，
+\begin{equation*}
+  \left( a^{(1)} * \cdots * a^{(p)} \right)_k = \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k| \leq p(M-1)} \\ {|k_1|,\cdots,|k_p|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)}
+\end{equation*}
+と表される．
+
+\begin{description}
+  \item[畳み込み定理]
+    \quad \\
+    畳み込みをフーリエ変換下もには，それぞれのフーリエ変換の積になる．これを畳み込み定理という．
+    \begin{align*}
+      \mathcal{F} \left( a^{(1)} * a^{(2)} * \cdots * a^{(p)} \right)= \mathcal{F} \left( a^{(1)} \right) \mathcal{F} \left( a^{(2)} \right) \cdots \mathcal{F} \left( a^{(p)} \right) \\
+      = b^{(1)}b^{(2)}\cdots b^{(p)}
+    \end{align*}
+    ただし，ベクトルの積は要素ごとの積を表す．
+\end{description}
+
+
+\subsection{畳み込みのFFTアルゴリズム}
+$p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使って
+\begin{equation*}
+  \left(a^{(1)} * a^{(2)} * \cdots * a^{(p)}\right)_k = \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)},\ |k| \leq p(M-1)
+\end{equation*}
+を計算する．
+
+\begin{description}
+  \item[入力：]
+    \quad \\
+    \begin{equation*}
+      a^{(l)} = \left( a_k^{(l)} \right)_{|k|<M}\in\mathbb{C}^{2M-1},\ (l=1,\cdots,p)
+    \end{equation*}
+  \item[Step1：]
+    \quad \\
+    エイリアシングエラーを防ぐために， 入力された値$a^{(l)}$の両脇に$(p-1)M$個の0を追加する．これを$\tilde{a}^{(l)}$とする．
+    \begin{equation*}
+      \tilde{a}^{(l)} = \begin{cases}
+        a_j^{(l)} ,\  & |j|<M               \\
+        0,\           & M\leq |j| \leq pM-1
+      \end{cases}
+    \end{equation*}
+    という条件で$\tilde{a} \in \mathbb{C}^{2pM-1}$を作る．
+    \begin{equation*}
+      \tilde{a}_j^{(l)} = ( \underbrace{0,\cdots,0}_{p(M-1)},\underbrace{a_{-M+1}^{(l)},\cdots,a_{M-1}^{(l)}}_{2M-1},\underbrace{0,\cdots,0}_{p(M-1)} ) \in \mathbb{C}^{2pM-1}
+    \end{equation*}
+  \item[Step2:]
+    \quad \\
+    $\tilde{b}^{(l)} = \left( \tilde{b}_j^{(l)} \right)_{j=0,\cdots,2pM-2}$を$\tilde{a}^{(l)}$の逆離散フーリエ変換を行い，
+    \begin{equation*}
+      \tilde{b}_j^{(l)} := \mathcal{F}_j^{-1} \left( \tilde{a}^{(l)} \right) = \sum_{k=-pM+1}^{pM-1} \tilde{a}_k^{(l)} \exp\left(2\pi i \frac{kj}{2pM-1}\right)
+    \end{equation*}
+    で定める．
+  \item[Step3:]
+    \quad \\
+    ベクトルの要素毎の積を計算する．
+    \begin{equation*}
+      \left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right)_j := \tilde{b}_j^{(1)} \cdots \tilde{b}_j^{(p)},\ j=0,\cdots,2pM-2
+    \end{equation*}
+  \item[Step4:]
+    \quad \\
+    Step3で計算した$\left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right)$の逆離散フーリエ変換を行うと，$k=-pM+1,\cdots,pM-1$で，
+    \begin{align*}
+       & \mathcal{F}_k \left( \tilde{b}^{(1)} \hat{*} \cdots \hat{*} \tilde{b}^{(p)} \right)                                                                                                                            \\
+       & = \sum_{j=0}^{2pM-2}  \tilde{b}^{(1)}_j \hat{*} \cdots \hat{*} \tilde{b}^{(p)}_j \exp\left(-2\pi i \frac{kj}{2pM-1}\right)                                                                                     \\
+       & = \sum_{j=0}^{2pM-2} \underbrace{ \prod_{l=1}^p  \left( \sum_{k_l=-pM+1}^{pM-1} \tilde{a}_{k_l}^{(l)} \exp\left(2\pi i \frac{k_lj}{2pM-1} \right) \right) \exp\left(2\pi i \frac{kj}{2pM-1}\right)}_{:=S_k(j)}
+    \end{align*}
+
+    いま
+    \begin{align*}
+      S_k(j) := & \prod_{l=1}^p  \left( \sum_{k_l=-pM+1}^{pM-1} \tilde{a}_{k_l}^{(l)} \exp\left(2\pi i \frac{k_lj}{2pM-1} \right) \right) \exp\left(2\pi i \frac{kj}{2pM-1}\right) \\
+      =         & \underbrace{\sum_{\substack{{k_1+\cdots+k_p=k}                                                                                                                   \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} + \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right) }_{k_1+\cdots+k_p-k \equiv 0 \mod pM-1,\ \exp(\pi ij)\equiv 1} \\
+                & + \underbrace{\sum_{\substack{k_1+\cdots+k_p \notin \left\{ k \pm m(2pM-1)m=0,\cdots,p \right\}                                                                  \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)}_{k_1+\cdots+k_p-k \not\equiv 0 \mod 2pM-1}
+    \end{align*}
+
+    として，
+    \begin{align*}
+      \mathcal{F}\left(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}\right) = & \sum_{j=0}^{2pM-2} S_k(j)                                                     \\
+      =                                                                            & (2pM-1) \sum_{\substack{{k_1+\cdots+k_p=k}                                    \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} \\
+                                                                                   & + (2pM-1) \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right)  \\
+                                                                                   & +  \sum_{\substack{( k_1+\cdots+k_p                                           \\ \notin \left\{ k \pm m(2pM-1) :m=0,\cdots,p\right\} ) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \left( \sum_{j=0}^{2pM-2} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)\right)
+    \end{align*}
+
+    このとき，オイラーの公式より，$k_1+\cdots+k_p-k \equiv 0 \mod 2pM-1$のとき
+    \begin{equation*}
+      \sum_{j=0}^{2pM-2} \exp(2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j) = 0
+    \end{equation*}
+
+    そして，$|k_1|,\cdots,|k_p|<M$と$|k|\leq p(M-1)$（最高次）から
+    \begin{equation*}
+      k_1+\cdots+k_p-k \in \{ -2pM-1, \cdots 2p(M-1) \}
+    \end{equation*}
+
+    となり，$k_1,\cdots,k_p = k \pm m(2pM-1),\ (m=1,\cdots, p)$から
+    \begin{equation*}
+      m(2pM-1) = k_1 + \cdots + k_p - k \in \{ -2p(M-1),\cdots, 2p(M-1)\}
+    \end{equation*}
+
+    となる．しかし，これはありえない．なぜなら
+    \begin{equation*}
+      2pM-1 > 2p(M-1)
+    \end{equation*}
+
+    なので，$M=1$としても，上の式は偽となる．すなわち，$0$となる．最終的に，
+    \begin{equation*}
+      \sum_{\substack{k_1+\cdots+k_p=k \\ |k_m|<M}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} = \frac{1}{pM-1}\mathcal{F}_k(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}),\ |k|\leq p(M-1)
+    \end{equation*}
+    を得る．
+\end{description}
+
+まとめると，FFTアルゴリズムは以下になる．
+\begin{screen}
+  \begin{description}
+    \item[入力：]$a^{(m)}=\left( a^{(m)_k} \right)_{|k|<M}\ (m=1,\cdots,p)$（フーリエ・チェビシェフ級数）
+    \item[1.] $\tilde{a}^{(m)_j} = \left( \underbrace{0,\cdots,0}_{(p-1)M}, \underbrace{a_{-M+1}^{(m)},\cdots,a_{M-1}^{(m)}}_{2M-1},\underbrace{{0,\cdots,0}}_{(p-1)M}\right) \in \mathbb{C}^{2pM-1}$
+    \item[2.] $\tilde{b}^{(m)}=\mathcal{F}^{-1} (\tilde{a}^{(m)}) \in \mathbb{C}^{2pM-1}$（IFFTを用いる）
+    \item[3.] $\left( \tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)} \right) = \tilde{b}^{(1)} \cdots \tilde{b}^{(p)}\ \left(j=0,\cdots,2pM-2\right)$
+    \item[4.] $c_k = \frac{1}{2pM-1} \mathcal{F}_k \left( \tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)} \right),\ (|k| \leq p(M-1))$
+    \item[出力：] $c=\left( c_k \right)_{|k|\leq p(M-1)} \in \mathbb{C}^{2p(M-1)+1}$
+  \end{description}
+\end{screen}
