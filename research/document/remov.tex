@@ -1,0 +1,622 @@
+\subsection*{_}
+ここで，$S$について計算する．線形作用素の定義より，
+\begin{equation}
+  \begin{split}
+    S &= E-CT^{-1}B \\
+    &= \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right) - (\left( I-\Pi_N \right) ADF( \bar{x} )) (\Pi_N ADF(\bar{x}))^{-1} ((I-\Pi_N)ADF(\bar{x}))
+  \end{split}
+  \label{eq:s-def}
+\end{equation}
+
+\subsubsection*{$ADF(\bar{x})$を計算する．}
+式(\ref{eq:s-def})を分割して計算する．
+
+以下の定義より，計算をする．
+\begin{align}
+  \bar{x} &= \left( \omega, a_{-N+1}, \cdots, a_{N-1}, 0, \cdots \right) \\
+  (D_xf)_{ij} &= \partial_{x_i} f_j \\
+  \begin{split}
+    F(\bar{x}) &= \begin{bmatrix}
+      \eta(a) \\
+      (f_k(a))_k\in \mathbb{Z}
+    \end{bmatrix}, \\
+    \eta(a) &= \sum_{k\in\mathbb{Z}} a_k - \eta_0 \\
+    f_k(a) &= -k^2\omega^2a_k - \mu i k \omega a_k + \frac{\mu}{3}(ik\omega)(a*a*a)_k + a_k\quad (\text{van der Pol})
+  \end{split}
+\end{align}
+
+これらより，
+\begin{equation*}
+  \begin{split}
+    DF(\bar{x}) &=
+    \begin{bmatrix}
+       & \multicolumn{1}{c|}{0} & 1  & \cdots & 1  & \\ \cline{2-5}
+       & \multicolumn{1}{c|}{\vdots} & & \vdots & &  \\
+       & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots & \\
+       & \multicolumn{1}{c|}{\vdots} & & \vdots & &
+    \end{bmatrix}\\
+    \partial_\omega f_k &= (-2k^2\omega-\mu ik)a_k + \frac{\mu ik}{3} (a*a*a)_k \\
+    \partial_{a_j} f_k &= (k^2\omega^2-\mu ik\omega +1)\delta_{kj} + \mu ik \omega (a*a)_{k-j}
+  \end{split}
+\end{equation*}
+
+となる．なお，$\delta_{kj}$はクロネッカーのデルタである．
+
+これより，
+
+\begin{equation}
+  \begin{split}
+    &ADF(\bar{x}) \\
+    &= \begin{bmatrix}
+      A_N & 0  & \cdots & \cdots  \\
+      0 & \lambda_{N+1}^{-1} & & \mathbf{0} \\
+      \vdots & & \lambda_{N+2}^{-1} & \\
+      \vdots & \mathbf{0} & & \ddots
+    \end{bmatrix}
+    \begin{bmatrix}
+      0 & 1  & \cdots & \cdots \\
+      \vdots & & \vdots &\\
+      \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
+      \vdots & & \vdots &
+   \end{bmatrix}\\
+    &= \begin{bmatrix}
+      & \multicolumn{1}{c|}{A_N} & 0 & \cdots & \cdots  & \\ \cline{2-5}
+      & \multicolumn{1}{c|}{0} & \lambda_{N+1}^{-1} & & \mathbf{0} & \\
+      & \multicolumn{1}{c|}{\vdots} & & \lambda_{N+2}^{-1} & & \\
+      & \multicolumn{1}{c|}{\vdots} & \mathbf{0} & & \ddots &
+    \end{bmatrix}
+    \begin{bmatrix}
+      & \multicolumn{1}{c|}{DF^{(N)}(\bar{x})^{-1}} & 1  & \cdots & \cdots &\\ \cline{2-5}
+      & \multicolumn{1}{c|}{\vdots} & & \vdots & &\\
+      & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &\\
+      & \multicolumn{1}{c|}{\vdots} & & \vdots & &
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      & \multicolumn{1}{c|}{T^{-1}} & \mathbf{0} &  \\ \cline{2-3}
+      & \multicolumn{1}{c|}{\mathbf{0}} & \Lambda &
+    \end{bmatrix}
+    \begin{bmatrix}
+      & \multicolumn{1}{c|}{T} & M_{01} &  \\ \cline{2-3}
+      & \multicolumn{1}{c|}{M_{10}} & M_{11} &
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      T^{-1}T & T^{-1}M_{01} \\
+      \Lambda M_{10} & \Lambda M_{11}
+    \end{bmatrix}
+  \end{split}
+  \label{eq:ADF-0}
+\end{equation}
+
+式(\ref{eq:ADF-0})について，行列ブロックに分けて計算する．はじめに，
+\begin{equation*}
+  \begin{split}
+    T^{-1}
+    =\begin{bmatrix}
+      T^{-1}_{0\ 0} & \cdots & T^{-1}_{0\ 2N} \\
+      \vdots & \ddots & \vdots \\
+      T^{-1}_{2N\ 0} & \cdots & T^{-1}_{2N\ 2N} \\
+    \end{bmatrix}
+  \end{split}
+\end{equation*}
+とおく．
+
+\begin{equation}
+  T^{-1}T = I \mid_{2N}
+\end{equation}
+
+% T^{-1}M_{01}q
+\begin{equation}
+  \begin{split}
+    &T^{-1}M_{01} \\
+    &= T^{-1}
+    \begin{bmatrix}
+      1 & \cdots & \cdots \\
+      \partial_{a_N} f_{-N+1} & \partial_{a_{N+1}} f_{-N+1}  & \cdots \\
+      \partial_{a_N} f_{-N} & \partial_{a_{N+1}} f_{-N}  & \cdots \\
+      \vdots & \vdots & \vdots \\
+      \partial_{a_N} f_{N-1} & \partial_{a_{N+1}} f_{N-1}  & \cdots
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      T^{-1}_{0\ 0} & \cdots & T^{-1}_{0\ 2N} \\
+      \vdots & \ddots & \vdots \\
+      T^{-1}_{2N\ 0} & \cdots & T^{-1}_{2N\ 2N} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+      1 & \cdots & \cdots \\
+      \partial_{a_N} f_{-N+1} & \partial_{a_{N+1}} f_{-N+1}  & \cdots \\
+      \vdots & \vdots & \vdots \\
+      \partial_{a_N} f_{N-1} & \partial_{a_{N+1}} f_{N-1}  & \cdots
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      T^{-1}_{0\ 0} & \cdots & T^{-1}_{0\ 2N} \\
+      \vdots & \ddots & \vdots \\
+      T^{-1}_{2N\ 0} & \cdots & T^{-1}_{2N\ 2N} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+      1 & \cdots & \cdots  & \cdots\\
+      0 & \cdots & \cdots  & \cdots\\
+      \mu i (-N+1) \omega (a*a)_{-2N+2} & 0 & \cdots & \cdots\\
+      \mu i (-N+2) \omega (a*a)_{-2N+1} & \mu i (-N+2) \omega (a*a)_{-2N+2} & 0 & \cdots \\
+      \vdots & \ddots & \ddots & \ddots \\
+      \mu i (N-1) \omega (a*a)_{-1} & \mu i (N-1) \omega (a*a)_{-2}  & \cdots & \cdots
+    \end{bmatrix}\\
+    &=\cdots やっていく
+  \end{split}
+\end{equation}
+
+% lambda M10
+\begin{equation}
+  \begin{split}
+    &\Lambda M_{10} \\
+    &= \begin{bmatrix}
+      \lambda^{-1}_N & & \mathbf{0} \\
+      & \lambda^{-1}_{N+1} & \\
+      \mathbf{0} &  & \ddots &
+    \end{bmatrix}
+    \begin{bmatrix}
+      \partial_{\omega} f_{N} & \partial_{a_{-N+1}} f_{N} &  & \cdots \\
+      \partial_{\omega} f_{N+1} & \partial_{a_{-N+1}} f_{N+1}  & \cdots \\
+      \vdots & \vdots & \ddots \\
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      \lambda^{-1}_N & & \mathbf{0} \\
+      & \lambda^{-1}_{N+1} & \\
+      \mathbf{0} &  & \ddots &
+    \end{bmatrix}\\
+    & \begin{bmatrix}
+      3^{-1}\mu i N (a*a*a)_{N} & 0 & \mu i N \omega (a*a)_{2N-2} & \mu i N \omega (a*a)_{2N-1} & \cdots & \mu i N \omega (a*a)_1 &\\
+      3^{-1}\mu i (N+1) (a*a*a)_{N+1} & 0 & 0 & \mu i (N+1) \omega (a*a)_{2N-2} & \cdots & \mu i (N+1) \omega (a*a)_2 &\\
+      \vdots & \vdots & \vdots & \ddots & \ddots & \vdots\\
+      3^{-1}\mu i (3N-3) (a*a*a)_{3N-3} & 0 & 0 & 0 & \cdots & 0\\
+      0 & 0 & 0 & 0 & \cdots & 0 \\
+      \vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+
+%lambda M11
+\begin{equation}
+  \tiny
+  \begin{split}
+    &\Lambda M_{11}\\
+    &=\begin{bmatrix}
+      \lambda^{-1}_N & & \mathbf{0} \\
+      & \lambda^{-1}_{N+1} &\\
+      \mathbf{0} &  & \ddots
+    \end{bmatrix}
+    \begin{bmatrix}
+      \partial_{a_{N}} f_{N} & \partial_{a_{N+1}} f_{N}  & \cdots \\
+      \partial_{a_{N}} f_{N+1} & \partial_{a_{N+1}} f_{N+1}  & \cdots \\
+      \vdots & \vdots & \ddots \\
+    \end{bmatrix}\\
+    &=\begin{bmatrix}
+      \lambda^{-1}_N &  & \mathbf{0} \\
+      & \lambda^{-1}_{N+1} &\\
+      \mathbf{0} &  & \ddots
+    \end{bmatrix}\\
+    &\begin{bmatrix}
+      \lambda_{N} & \mu i N \omega (a*a)_{-1} & \cdots & \mu i N \omega (a*a)_{-2N+2} & 0 & \cdots \\
+      \mu i (N+1) \omega (a*a)_{1} & \lambda_{N+1} & \cdots & \mu i (N+1) \omega (a*a)_{-2N+1} & \mu i (N+1) \omega (a*a)_{-2N+2} & \cdots \\
+      \vdots & \ddots & \ddots & \ddots & \ddots & \ddots \\
+      \mu i (3N-2) \omega (a*a)_{2N-2} & \mu i (3N-2) \omega (a*a)_{2N-1} & \ddots & \lambda_{3N-2} & \mu i (3N-2) \omega (a*a)_{-1} & \cdots \\
+      0 & \mu i (3N-3) \omega (a*a)_{2N-2} & \ddots & \mu i (3N-3) \omega (a*a)_{1} & \ddots & \ddots \\
+      \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+\subsection*{$M_{01}^T \stackrel{\mathrm{?}}{=} M_{10}$}
+\begin{equation}
+  \tiny
+  \begin{split}
+    &M_{01}
+    =\begin{bmatrix}
+      1 & 1 & 1 & \cdots\\
+      0 & 0 & 0 & \cdots\\
+      \mu i (-N+1) \omega (a*a)_{-2N+2} & 0 & 0 & \cdots\\
+      \mu i (-N+2) \omega (a*a)_{-2N+1} & \mu i (-N+2) \omega (a*a)_{-2N+2} & 0 & \cdots \\
+      \vdots & \ddots & \ddots & \ddots \\
+      \mu i (N-1) \omega (a*a)_{-1} & \mu i (N-1) \omega (a*a)_{-2}  & \cdots & \cdots
+    \end{bmatrix}\\
+    &M_{10}
+    = \begin{bmatrix}
+      3^{-1}\mu i N (a*a*a)_{N} & 0 & \mu i N \omega (a*a)_{2N-2} & \mu i N \omega (a*a)_{2N-1} & \cdots & \mu i N \omega (a*a)_1 &\\
+      3^{-1}\mu i (N+1) (a*a*a)_{N+1} & 0 & 0 & \mu i (N+1) \omega (a*a)_{2N-2} & \cdots & \mu i (N+1) \omega (a*a)_2 &\\
+      \vdots & \vdots & \vdots & \ddots & \ddots & \vdots\\
+      3^{-1}\mu i (3N-3) (a*a*a)_{3N-3}  & 0 & 0 & 0 & \cdots & 0\\
+      0 & 0 & 0 & 0 & \cdots & 0 \\
+      \vdots & \vdots & \vdots & \vdots & \ddots & \vdots\\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+$\mu i (-x) \omega (a*a)_{-x} \stackrel{\mathrm{?}}{=} \mu i (x) \omega (a*a)_{x}$について考える．
+
+\begin{equation}
+  \begin{split}
+    &\mu i (-x) \omega (a*a)_{-x}\\
+    &= -\mu ix \sum_{\substack{k_1+k_2=-x \\ k_i\in\mathbb{Z}}} a_{k_1}a_{k_2}\\
+    &= -\mu ix (a_{-N+1}a_{N-1-x}+a_{-N+2}a_{N-2-x}+\cdots)
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &\mu i x \omega (a*a)_{x}\\
+    &= \mu ix \sum_{\substack{k_1+k_2=x \\ k_i\in\mathbb{Z}}} a_{k_1}a_{k_2}\\
+    &= \mu ix (a_{-N+1}a_{N-1+x}+a_{-N+2}a_{N-2+x}+\cdots)
+  \end{split}
+\end{equation}
+
+より，
+
+\begin{equation}
+  \begin{split}
+    &\mu i x \omega (a*a)_{x} - \mu i (-x) \omega (a*a)_{-x} \\
+    &= \mu ix (a_{-N+1}a_{N-1+x}+a_{-N+2}a_{N-2+x}+\cdots) + \mu ix (a_{-N+1}a_{N-1-x}+a_{-N+2}a_{N-2-x}+\cdots)\\
+    &= \mu ix (a_{-N+1}a_{N-1+x}+a_{-N+2}a_{N-2+x}+\cdots + a_{-N+1}a_{N-1-x}+a_{-N+2}a_{N-2-x}+\cdots)\\
+    &= \mu ix (a_{-N+1}a_{N-1+x}+a_{-N+1+1}a_{N-1-1+x}+\cdots + a_{-N+1}a_{N-1-x}+a_{-N+1+1}a_{N-1-1-x}+\cdots)\\
+    &= \mu ix (a_{-N+1}(a_{N-1+x}+a_{N-1-x})+a_{-N+1+1}(a_{N-1-1+x}+a_{N-1-1-x})+\cdots )\\
+  \end{split}
+\end{equation}
+
+これらより，畳み込みの等号が成り立つ条件は，$j\in \mathbb{N}$とすると，
+\begin{equation}
+  a_{N-1-j+x} = a_{N-1-j-x}
+\end{equation}
+
+よって，$M_{01}^T \stackrel{\mathrm{?}}{=} M_{10}$が成り立つ条件は，$j,x,y\in \mathbb{N}$としとき，
+\begin{equation}
+  \begin{cases}
+    a_{N-1+x-j} = a_{N-1-x-j}\\
+    3^{-1}\mu i (a*a*a)_y = 1
+  \end{cases}
+\end{equation}
+であると考えられる．
+
+
+\subsection*{ゲルシュゴリンの定理}
+[http://www.oishi.info.waseda.ac.jp/~oishi/lec2003/lec7.pdf] \\
+
+
+\dfn[ゲルシュゴリンの定理]
+行列$A$の固有値は複素$\lambda$平面の中の次の集合の中に存在する．
+\begin{equation}
+  K=\bigcup_{i=1}^{n} \left\{ \mu \in C \middle| |\mu - a_{ii}| \leq \sum_{k=1,k\neq i}^{n} |a_k| \right\}
+\end{equation}
+右辺の和集合の中の各集合は中心を$a_{ii}$とする半径
+\begin{equation}
+  r=\sum_{k=1,k\neq i}^{n} |a_{ik}|
+\end{equation}
+の複素平面内の閉円板である．
+
+\begin{proof}
+  $x$が行列$A$の固有値$\lambda$に対する固有ベクトルであるとする．$n \times n$行列$B$を任意に選び，$\lambda$は$B$の固有値でないとする．このとき，
+  \begin{equation}
+    (A-B)x = (\lambda I - B)x
+  \end{equation}
+  となる．$\lambda$が$B$の固有値でないことから$(\lambda I - B)^{-1}$が存在することがわかる．よって
+  \begin{equation}
+    x=(\lambda I - B)(A-B)x
+  \end{equation}
+  となる．これから，
+  \begin{equation}
+    || (\lambda I - B)(A-B) || \geq 1
+  \end{equation}
+  を得る．
+
+\end{proof}
+
+\subsection*{$I-S$}
+行列の積の解を$\begin{bmatrix} A & B \\ C & D\end{bmatrix},\ t,r\in \mathbb{Z}$とする．
+
+\begin{equation}
+  \begin{split}
+    A = I
+  \end{split}
+\end{equation}
+
+\begin{equation}
+    B_{jk} = T_{j,0}^{-1}+\sum_{\substack{k \leq t \leq 2N-2}} \, T_{j,k+2+t}^{-1} \mu i (- N + 1 + t) \omega (a*a)_{-2N+2+t-k}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &C_{jk} \\
+    &=\begin{cases}
+      \lambda_{N+j}^{-1} 3^{-1} \mu i (N+j) (a*a*a)_{N+j} & \text{if $N \leq N+j \leq 3N-3$} \\
+      \lambda_{N+j}^{-1} \mu i (N+j) (a*a)_{2N-2 + j - (k-2)} & \text{if $ |j - k| \leq 2N-2$} \\
+      0 & \text{if $3N-3 < N+j \lor |j - k| > 2N-2$}
+    \end{cases}
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &D_{jk} \\
+    &=\begin{cases}
+      1 & \text{if $j = k$} \\
+      \lambda_{N+j}^{-1} \mu i (N + j) \omega (a*a)_{j-k} & \text{if $|j-k| \leq 2N-2 \land j \neq k$} \\
+      0 & \text{if otherwise}
+    \end{cases}
+  \end{split}
+\end{equation}
+
+ここで，$D-CB$を考える．
+
+\begin{equation}
+  \begin{split}
+    &(CB)_{jk} \\
+    &=\begin{cases}
+      (\lambda_{N+j}^{-1} \mu i N) (3^{-1} T_{a})
+    \end{cases}
+  \end{split}
+\end{equation}
+
+
+\subsubsection*{$\|D\|$}
+
+\begin{equation}
+  \begin{split}
+    & D \\
+    &=\left\|
+    \begin{bmatrix}
+      1 & \lambda_N^{-1} \mu i N \omega (a*a)_{1} & \lambda_N^{-1} \mu i N \omega (a*a)_{2} & \cdots & \lambda_N^{-1} \mu i N \omega (a*a)_{-2N+2} & 0 & \cdots\\
+      \lambda_{N+1}^{-1} \mu i (N+1) \omega (a*a)_{-1} & 1 & \lambda_{N+1}^{-1} \mu i (N+1) \omega (a*a)_{1} & \ddots & \lambda_{N+1}^{-1} \mu i (N+1) \omega (a*a)_{2N-1} & \ddots & \ddots\\
+      \lambda_{N+2}^{-1} \mu i (N+2) \omega (a*a)_{-2}  & \lambda_{N+2}^{-1} \mu i (N+2) \omega (a*a)_{-1} & 1 & \ddots & \ddots & \ddots & \ddots\\
+      \vdots & \ddots & \ddots & \ddots & \ddots & \ddots & \ddots\\
+      \lambda_{3N-1}^{-1} \mu i (3N-1) \omega (a*a)_{-2N+2}  & \lambda_{3N-1}^{-1} \mu i (3N-1) \omega (a*a)_{-2N+3} & \ddots & \ddots & \ddots & \ddots & \ddots\\
+      0 & \lambda_{3N-2}^{-1} \mu i (3N-2) \omega (a*a)_{-2N+2} & \ddots & \ddots & \ddots & \ddots & \ddots\\
+      \vdots & \ddots & \ddots & \ddots & \ddots & \ddots & \ddots\\
+    \end{bmatrix}\right\|
+  \end{split}
+\end{equation}
+
+
+\begin{equation}
+  \begin{split}
+    \| D \| =
+    \sup \left\lbrace \right. &\\
+      &1 + \frac{\mu i (N+1) \omega (a*a)_{-1} }{-(N+1)^2 \omega^2 - \mu i (N+1) \omega +1} + \frac{ \mu i (N+2) \omega (a*a)_{-2} }{-(N+2)^2 \omega^2 - \mu i (N+2)\omega + 1} + \cdots  \\ & \quad + \frac{ \mu i (3N-1) \omega (a*a)_{-2N+2} }{-(3N-1)^2 \omega^2 - \mu i (3N-1)\omega + 1 }, \\
+      &\frac{\mu i N \omega (a*a)_{1} }{-N^2 \omega^2 - \mu i N \omega +1} + 1 + \frac{\mu i (N+2) \omega (a*a)_{-1} }{-(N+2)^2 \omega^2 - \mu i (N+2) \omega +1} + \cdots \\ & + \frac{ \mu i (3N-2) \omega (a*a)_{-2N+2} }{-(3N-2)^2 \omega^2 - \mu i (3N-2)\omega + 1 }, \\
+      & \qquad \vdots \\
+      &\frac{\mu i N \omega (a*a)_{2N-2} }{-N^2 \omega^2 - \mu i N \omega +1} + \cdots + \frac{ \mu i (5N-3) \omega (a*a)_{-2N+2} }{-(5N-3)^2 \omega^2 - \mu i (5N-3)\omega + 1 }, \\
+      &\frac{\mu i (N+1) \omega (a*a)_{2N-2} }{-(N+1)^2 \omega^2 - \mu i (N+1) \omega +1} + \cdots + \frac{ \mu i (5N-2) \omega (a*a)_{-2N+2} }{-(5N-2)^2 \omega^2 - \mu i (5N-2)\omega + 1 }, \\
+      & \qquad \vdots \\
+    \left. \right\rbrace \geq 1 &
+  \end{split}
+\end{equation}
+
+
+$(\lambda_k = -k^2 \omega^2 - \mu i k \omega + 1)$
+
+\subsubsection*{11/19}
+1. $\sum < \sum$
+
+\begin{equation}
+  \begin{split}
+    & \sum_{\substack{t=0 \\ t \neq 2t-1}}^{4t-3} \frac{\mu i \omega (N+a+t)(a*a)_{-2N+2+t}}{-(N+a+t)^2-\mu i \omega (N+a+t)+1} +1 \\
+    & \ -\left\lparen \sum_{\substack{t=0 \\ t \neq 2t-1}}^{4t-3} \frac{\mu i \omega (N+a+1+t)(a*a)_{-2N+2+t}}{-(N+a+1+t)^2-\mu i \omega (N+a+1+t)+1} +1 \right\rparen\\
+    & = \sum_{\substack{t=0 \\ t \neq 2t-1}}^{4t-3} \left\lbrace \right. \left\lbrace \right.  \frac{ (N+a+t)}{-(N+a+t)^2-\mu i \omega (N+a+t)+1} \\
+    & \ - \frac{ (N+a+1+t)}{-(N+a+1+t)^2-\mu i \omega (N+a+1+t)+1} \left. \right\rbrace \mu i \omega(a*a)_{-2N+2+t} \left. \right\rbrace \\
+    &\text{(分母を合わせる)} \\
+    & = \left\lbrace \right. \frac{ (N+a) (a*a)_{-2N+2} }{ -(N+a)^2-\mu i \omega (N+a)+1} \\
+    & \ + \sum_{\substack{t=1 \\ t \neq 2t-1}}^{4t-2} \left\lbrace \right. \frac{ (N+a+t) (a*a)_{-2N+3+t} }{ -(N+a+t)^2-\mu i \omega (N+a+t)+1 } - \frac{ (N+a+t) (a*a)_{-2N+2+t} }{-(N+a+t)^2-\mu i \omega (N+a+t)+1} \left. \right\rbrace \\
+    & \ + \frac{ (N+a+4N-2) (a*a)_{(2N-1)} }{ -(N+a+4N-2)^2-\mu i \omega (N+a+4N-2)+1 } \left. \right\rbrace (\mu i \omega)\\
+    & = \left\lbrace \right. \frac{ (N+a) (a*a)_{-2N+2} }{ -(N+a)^2-\mu i \omega (N+a)+1} \\
+    & \ + \sum_{\substack{t=1 \\ t \neq 2t-1}}^{4t-2} \left\lbrace \right. \frac{ (N+a+t)  }{ -(N+a+t)^2-\mu i \omega (N+a+t)+1 } ( (a*a)_{-2N+3+t} - (a*a)_{-2N+2+t} ) \left. \right\rbrace \\
+    & \ + \frac{ (N+a+4N-2) (a*a)_{(2N-1)} }{ -(N+a+4N-2)^2-\mu i \omega (N+a+4N-2)+1 } \left. \right\rbrace (\mu i \omega)\\
+    & = ?
+  \end{split}
+\end{equation}
+
+%---------------------
+
+2. $\|C\|, \|T^{-1}\|, \|M_{01}\|$
+\begin{equation}
+  \begin{split}
+    \|C\| =& \sup \left\lbrace \right. \\
+    & \| \sum_{t=0}^{2N-3} \frac{\mu i \omega (N+t) (a*a*a)_{N+t}}{3(-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1)} \|,\\
+    & 0,\\
+    & \| \sum_{t=0}^{0} \frac{ \mu i \omega (N+t) (a*a)_{2N-2 + t}}{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1} \|,\\
+    & \| \sum_{t=0}^{1} \frac{ \mu i \omega (N+t) (a*a)_{2N-1 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\|,\\
+    & \vdots , \\
+    & \| \sum_{t=0}^{2N-3} \frac{ \mu i \omega (N+t) (a*a)_{1 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\|,\\
+    \left. \right\rbrace&
+  \end{split}
+\end{equation}
+
+
+\begin{equation}
+  \begin{split}
+    \|T^{-1}\| =& \sup \left\lbrace \right. \\
+    & \|\sum_{t=0}^{2N} T_{0\ t}^{-1}\|, \\
+    & \vdots \\
+    & \|\sum_{t=0}^{2N} T_{2N\ t}^{-1}\|, \\
+    \left. \right\rbrace&
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    \|M_{01}\| =& \sup \left\lbrace \right. \\
+    &\| 1 + \mu i \omega \sum_{t=0}^{2N-3} (-N+1 + t) (a*a)_{-2N+2+t} \| , \\
+    &\| 1 + \mu i \omega \sum_{t=0}^{2N-4} (-N+2 + t) (a*a)_{-2N+2+t} \| , \\
+    & \vdots \\
+    &\| 1 + \mu i \omega \sum_{t=0}^{0} (N-1 + t) (a*a)_{-2N+2+t} \| , \\
+    & 1 \\
+    \left. \right\rbrace&
+  \end{split}
+\end{equation}
+
+\subsubsection*{11/25}
+1. $\sum < \sum$
+
+\begin{equation}
+  \begin{split}
+    \left\| \frac{\mu i \omega N (a*a)_{-2N+2}}{-N^2 \omega^2 - \mu i \omega N + 1} \right\| - \left\| \frac{\mu i \omega (N+1) (a*a)_{-2N+2}}{-(N+1)^2 \omega^2 - \mu i \omega (N+1) + 1} \right\|
+  \end{split}
+\end{equation}
+
+差分が正になることを確かめる．各項の共通部分を（くくり出したテイで）削除すると
+\begin{equation}
+  \begin{split}
+    &\left\| \frac{N}{-N^2 \omega^2 - \mu i \omega N + 1} \right\| - \left\| \frac{N+1}{-(N+1)^2 \omega^2 - \mu i \omega (N+1) + 1} \right\| \\
+    = &  \frac{N}{\sqrt{(-N^2 \omega^2 + 1 )^2- (\mu \omega N)^2}}  -  \frac{N+1}{\sqrt{(-(N+1)^2 \omega^2 + 1 )^2- (\mu \omega (N+1))^2}}  \\
+    = &  \frac{1}{\sqrt{(-N \omega^2 + N^{-1} )^2- (\mu \omega)^2}}  -  \frac{1}{\sqrt{(-(N+1) \omega^2 + (N+1)^{-1} )^2- (\mu \omega)^2}}  \\
+  \end{split}
+\end{equation}
+
+分母を比較する．左の項の分母が小さくなると嬉しい．つまり，次の式が負になってほしい．
+\begin{equation}
+  \begin{split}
+    \sqrt{(-N \omega^2 + N^{-1} )^2- (\mu \omega)^2}  -  \sqrt{(-(N+1) \omega^2 + (N+1)^{-1} )^2- (\mu \omega)^2}
+  \end{split}
+\end{equation}
+
+各項は正であるため，大小関係は二乗しても変わらない．
+\begin{equation}
+  \begin{split}
+    &((-N \omega^2 + N^{-1} )^2 - (\mu \omega)^2) - ((-(N+1) \omega^2 + (N+1)^{-1} )^2- (\mu \omega)^2) \\
+    = & (N^2 \omega^4 - 2 \omega^2 + N^{-2} ) - ((N+1)^2\omega^4 -2 \omega^2 + (N+1)^{-2}) \\
+    = & (-2N+1)\omega^4 + \frac{-2N-1}{N^2(N+1)^2}
+  \end{split}
+\end{equation}
+
+$N$はサイズ数であるため，上式は明らかに負である．よって，確かめられた．
+
+
+%---------------------
+
+2. $\|C\|, \|T^{-1}\|, \|M_{01}\|$
+\begin{equation}
+  \begin{split}
+    \|C\| =& \sup \left\lbrace \right. \\
+    &  \sum_{t=0}^{2N-3} \left\| \frac{\mu i \omega (N+t) (a*a*a)_{N+t}}{3(-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1)} \right\|,\\
+    & 0,\\
+    & \sum_{t=0}^{0} \left\| \frac{ \mu i \omega (N+t) (a*a)_{2N-2 + t}}{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1} \right\|,\\
+    & \sum_{t=0}^{1} \left\| \frac{ \mu i \omega (N+t) (a*a)_{2N-3 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\right\|,\\
+    & \vdots , \\
+    & \sum_{t=0}^{2N-3} \left\| \frac{ \mu i \omega (N+t) (a*a)_{1 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\right\|,\\
+    \left. \right\rbrace \\
+    = & \sup \left\lbrace \right. \\
+    &  \sum_{t=0}^{2N-3} \left\| \frac{\mu i \omega (N+t) (a*a*a)_{N+t}}{3(-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1)} \right\|,\\
+    & \sum_{t=0}^{2N-3} \left\| \frac{ \mu i \omega (N+t) (a*a)_{1 + t} }{-(N+t)^2 \omega^2 - \mu i \omega (N+t)+ 1}\right\|,\\
+    \left. \right\rbrace&
+  \end{split}
+\end{equation}
+
+
+\begin{equation}
+  \begin{split}
+    \|T^{-1}\| =& \sup \left\lbrace \right. \\
+    & \left\|\sum_{t=0}^{2N} T_{0\ t}^{-1}\right\|, \\
+    & \vdots \\
+    & \left\|\sum_{t=0}^{2N} T_{2N\ t}^{-1}\right\|, \\
+    \left. \right\rbrace&
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    \|M_{01}\| =& \sup \left\lbrace \right. \\
+    &\| 1 + \mu i \omega \sum_{t=0}^{2N-3} (-N+1 + t) (a*a)_{-2N+2+t} \| , \\
+    &\| 1 + \mu i \omega \sum_{t=0}^{2N-4} (-N+2 + t) (a*a)_{-2N+2+t} \| , \\
+    & \vdots \\
+    &\| 1 + \mu i \omega \sum_{t=0}^{0} (N-1 + t) (a*a)_{-2N+2+t} \| , \\
+    & 1 \\
+    \left. \right\rbrace&
+  \end{split}
+\end{equation}
+
+\subsubsection*{12/2}
+プログラムの際に，周期解のインデックスをJuliaに合わせたら，計算結果が変わった？
+
+\begin{equation}
+  \begin{split}
+    &ADF(\bar{x}) \\
+    &= \begin{bmatrix}
+      A_N & 0  & \cdots & \cdots  \\
+      0 & \lambda_{N+1}^{-1} & & \mathbf{0} \\
+      \vdots & & \lambda_{N+2}^{-1} & \\
+      \vdots & \mathbf{0} & & \ddots
+    \end{bmatrix}
+    \begin{bmatrix}
+      0 & 1  & \cdots & \cdots \\
+      \vdots & & \vdots &\\
+      \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
+      \vdots & & \vdots &
+   \end{bmatrix}\\
+    &= \begin{bmatrix}
+      & \multicolumn{1}{c|}{A_N} & 0 & \cdots & \cdots  & \\ \cline{2-5}
+      & \multicolumn{1}{c|}{0} & \lambda_{N+1}^{-1} & & \mathbf{0} & \\
+      & \multicolumn{1}{c|}{\vdots} & & \lambda_{N+2}^{-1} & & \\
+      & \multicolumn{1}{c|}{\vdots} & \mathbf{0} & & \ddots &
+    \end{bmatrix}
+    \begin{bmatrix}
+      & \multicolumn{1}{c|}{DF^{(N)}(\bar{x})^{-1}} & 1  & \cdots & \cdots &\\ \cline{2-5}
+      & \multicolumn{1}{c|}{\vdots} & & \vdots & &\\
+      & \multicolumn{1}{c|}{\partial_w f_k} & \cdots & \partial_{a_j}f_k & \cdots &\\
+      & \multicolumn{1}{c|}{\vdots} & & \vdots & &
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      & \multicolumn{1}{c|}{T^{-1}} & \mathbf{0} &  \\ \cline{2-3}
+      & \multicolumn{1}{c|}{\mathbf{0}} & \Lambda &
+    \end{bmatrix}
+    \begin{bmatrix}
+      & \multicolumn{1}{c|}{T} & M_{01} &  \\ \cline{2-3}
+      & \multicolumn{1}{c|}{M_{10}} & M_{11} &
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+      T^{-1}T & T^{-1}M_{01} \\
+      \Lambda M_{10} & \Lambda M_{11}
+    \end{bmatrix}
+    = \begin{bmatrix}
+      I & B \\
+      C & D
+    \end{bmatrix}
+  \end{split}
+  \label{eq:ADF-1}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &M_{01} =
+    \begin{bmatrix}
+      1 & 1 & \cdots \\
+      0 & 0 & \cdots \\
+      0 & 0 & \cdots \\
+      \vdots & \vdots & \ddots \\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &M_{10} \\
+    &= \begin{bmatrix}
+      \partial_{\omega} f_{N+1} & \partial_{a_{1}} f_{N+1}  & \cdots & \partial_{a_{N-1}} f_{N+1} & 0\\
+      \partial_{\omega} f_{N+2} & \partial_{a_{1}} f_{N+2}  & \cdots & \partial_{a_{N-1}} f_{N+2} &\partial_{a_{N}} f_{N+2}\\
+      \vdots & \vdots & \cdots & \vdots & \vdots \\
+      \partial_{\omega} f_{3N-3} & 0  & \cdots &  \partial_{a_{N-1}} f_{3N-3} & \partial_{a_{N}} f_{3N-3} \\
+      0 & 0 & \cdots & 0 & \partial_{a_{N}} f_{3N-2} \\
+      \vdots & \vdots  & \cdots & \vdots & 0 \\
+      \vdots & \vdots & \cdots & \vdots & \vdots \\
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    &M_{11} \\
+    &= \begin{bmatrix}
+      \lambda_{N+1} & 0 & \cdots \\
+      0 & \lambda_{N+2} & \cdots \\
+      \partial_{a_{N+1}} f_{N+3} & 0 & \ddots \\
+      \partial_{a_{N+1}} f_{N+4} & \partial_{a_{N+2}} f_{N+4} & \ddots \\
+      \vdots & \vdots & \vdots \\
+      \partial_{a_{N+1}} f_{3N-3} & 0 & \vdots \\
+      \vdots & \vdots & \vdots \\
+    \end{bmatrix}
+  \end{split}

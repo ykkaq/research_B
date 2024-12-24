@@ -2,12 +2,7 @@
 \chapter{提案手法}
 \label{cpt:提案手法}
 
-\section{提案点}
-
-既存手法では，Banach空間$X$を定義\ref{dfn:Banach空間X-重み付きl1空間}と定義していた．許容重みが付加しているため，節\ref{sct:Y0,Z0,Z1,Z2の評価}の評価式のノルムの値が大きくなり，精度が低下する問題があった．
-
-提案手法では，節\ref{sct:Y0,Z0,Z1,Z2の評価}の計算に節\ref{sct:無限次元ガウスの消去法}を用いることで，Banach空間$X$を定義として定義できる．
-
+\section{提案手法}
 \section{定義}
 
 \begin{dfn}[許容重みなしBanach空間$X$]
@@ -66,20 +61,9 @@
   \end{equation*}
 \end{dfn}
 
-%----------------------------------------------------------
-
-
-
-radii polynomial approachにおける，$Y_0$の評価式
-\begin{equation}
-  \label{eq:y0}
-  \|AF(\bar{x})\|_X \leq Y_0
-\end{equation}
-について，無限次元ガウスの消去法を用いる．
-
 \section{計算手順}
 
-$A=DF(\bar{x})^{-1}$とおき，式(\ref{eq:y0})に代入すると，節\ref{sct:無限次元ガウスの消去法}より，
+$A=DF(\bar{x})^{-1}$とおき，$\| AF(\bar{x}) \| \leq Y_0$に代入すると，節\ref{sct:無限次元ガウスの消去法}より，
 \begin{equation}
   \left \| DF(\bar{x})^{-1} F(\bar{x}) \right \| \leq Y_0
 \end{equation}
@@ -192,6 +176,8 @@ $S$について計算する．式(\ref{eq:def_lo})より，
   \| I_{X_2} -S \| < 1
 \end{equation*}
 であれば，$S$は全単射となる．
+
+
 
 
 \chapter{実験結果}

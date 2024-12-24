@@ -14,7 +14,7 @@
 \contentsline {subsection}{\numberline {2.7.2}畳み込みのFFTアルゴリズム}{27}{}%
 \contentsline {chapter}{\numberline {第3章}Newton Kantorovichの定理を用いた精度保証付き数値計算}{31}{}%
 \contentsline {section}{\numberline {3.1}radii polynomial approach \cite {github}}{31}{}%
-\contentsline {section}{\numberline {3.2}Newton-Kantorovichの定理の特徴\cite {}}{32}{}%
+\contentsline {section}{\numberline {3.2}Newton-Kantorovichの定理の特徴\cite {r1}}{32}{}%
 \contentsline {chapter}{\numberline {第4章}既存のvan der Pol方程式の精度保証付き数値計算\cite {github}}{36}{}%
 \contentsline {section}{\numberline {4.1}van der Pol方程式}{36}{}%
 \contentsline {section}{\numberline {4.2}フーリエ・スペクトル法}{36}{}%
@@ -24,11 +24,11 @@
 \contentsline {subsection}{\numberline {4.4.2}$Z_0$を計算する}{43}{}%
 \contentsline {subsection}{\numberline {4.4.3}$Z_1$を計算する}{44}{}%
 \contentsline {subsection}{\numberline {4.4.4}$Z_2$を計算する}{45}{}%
-\contentsline {chapter}{\numberline {第5章}無限次元ガウスの消去法}{48}{}%
+\contentsline {chapter}{\numberline {第5章}無限次元ガウスの消去法\cite {}}{48}{}%
 \contentsline {section}{\numberline {5.1}射影}{48}{}%
 \contentsline {section}{\numberline {5.2}射影を用いたBanach空間上の無限次元ガウスの消去法}{50}{}%
 \contentsline {chapter}{\numberline {第6章}提案手法}{55}{}%
-\contentsline {section}{\numberline {6.1}提案点}{55}{}%
+\contentsline {section}{\numberline {6.1}提案手法}{55}{}%
 \contentsline {section}{\numberline {6.2}定義}{55}{}%
 \contentsline {section}{\numberline {6.3}計算手順}{56}{}%
 \contentsline {chapter}{\numberline {第7章}実験結果}{58}{}%

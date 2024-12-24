@@ -18,9 +18,9 @@
 % \usepackage[dvipdfmx]{graphicx}
 \usepackage{multicol}
 \usepackage{latexsym}
-% \usepackage{listings}
 \usepackage[dvipdfmx]{pict2e}
 \usepackage[ipaex]{pxchfon}
+\usepackage{remreset}
 \usepackage{tabularx}
 \usepackage{textcomp}
 \usepackage{underscore}
@@ -36,24 +36,34 @@
 % \usepackage{amsmath,amssymb}% 数式入力に数学必携のパッケージ読み込み
 \usepackage{listings,jvlisting}
 % \usepackage{here}
-\lstset{
-  basicstyle={\ttfamily},
-  identifierstyle={\small},
-  commentstyle={\smallitshape},
-  keywordstyle={\small\bfseries},
-  ndkeywordstyle={\small},
-  stringstyle={\small\ttfamily},
-  frame={tb},
-  breaklines=true,
-  columns=[l]{fullflexible},
-  numbers=left,
-  xrightmargin=0zw,
-  xleftmargin=3zw,
-  numberstyle={\scriptsize},
-  stepnumber=1,
-  numbersep=1zw,
-  lineskip=-0.5ex
+\lstset{%
+    captionpos=t,
+    % backgroundcolor=\color[rgb]{0.95,0.95,0.92},
+    % commentstyle=\color{Green},
+    % keywordstyle=\color{Magenta},
+    % numberstyle=\tiny\color{gray},
+    % stringstyle=\color{violet},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    frame={tb},
+    caption=ソースコード
 }
+
+\makeatletter
+	\AtBeginDocument{
+	\@removefromreset{lstlisting}{chapter}
+	\def\thelstlisting{\arabic{lstlisting}}}
+\makeatother
+
+
 %プログラムのソースコード関連はここまで
 
 %\setcounter{secnumdepth}{4}
@@ -70,9 +80,12 @@
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \renewcommand{\proofname}{\textbf{証明}}
+\renewcommand{\lstlistingname}{ソースコード}
 \newcommand{\rad}{radii polynomial approach}
 \newcommand{\nk}{Newton-Kantorovich}
 \newcommand{\vdp}{van der Pol}
+\newcommand{\infg}{無限次元ガウスの消去法}
+
 
 \title{無限次元ガウスの消去法を用いた\ radii polynomal approachの改良}
 \author{齋藤悠希}
@@ -108,6 +121,9 @@
   舩越康太, 井藤佳奈子, 大谷俊輔, 近藤慎佑, 高橋和暉, 瀬戸翔太, 二平泰知, 高安亮紀
   \newblock ``Julia 言語を使った精度保証付き数値計算のチュートリアル''
   \newblock \verb|https://github.com/tak-lab/rigorous_numerics_tutorial_julia,|,(2024/11/29)
+
+  \bibitem{r1}関根晃太, 中尾充宏, 大石進一, Numerical verification methods for a system of elliptic PDEs,
+and their software library
 
 \end{thebibliography}
 %\end{comment}
