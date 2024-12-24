@@ -3,7 +3,6 @@
 
 \documentclass[11pt,a4paper,titlepage]{jsreport}
 
-
 \usepackage{algorithmic}
 \usepackage{amsmath,amssymb,amsfonts,amsthm,,mathtools}
 \usepackage{ascmac}
@@ -27,6 +26,7 @@
 \usepackage{underscore}
 \usepackage{ulem}
 \usepackage{url}
+%\usepackage{subfiles}
 \usepackage{wrapfig}
 \usepackage[dvipsnames,dvipdfmx]{xcolor}
 \usepackage{mdframed}
@@ -70,11 +70,9 @@
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \renewcommand{\proofname}{\textbf{証明}}
-%============
-
-%\newtheo
-
-%============
+\newcommand{\rad}{radii polynomial approach}
+\newcommand{\nk}{Newton-Kantorovich}
+\newcommand{\vdp}{van der Pol}
 
 \title{無限次元ガウスの消去法を用いた\ radii polynomal approachの改良}
 \author{齋藤悠希}
@@ -99,8 +97,20 @@
 \include{conclusion}
 
 \nocite{*}
-\bibliography{sankou}
-\bibliographystyle{junsrt}
+%\bibliographystyle{junsrt}
+%\bibliography{2131701}
+
+%\begin{comment}
+\begin{thebibliography}{99}
+  \bibitem{b1} 大石進一, 精度保証付き数値計算, コロナ社 (2018)
+
+  \bibitem{github}
+  舩越康太, 井藤佳奈子, 大谷俊輔, 近藤慎佑, 高橋和暉, 瀬戸翔太, 二平泰知, 高安亮紀
+  \newblock ``Julia 言語を使った精度保証付き数値計算のチュートリアル''
+  \newblock \verb|https://github.com/tak-lab/rigorous_numerics_tutorial_julia,|,(2024/11/29)
+
+\end{thebibliography}
+%\end{comment}
 
 \include{program}
 

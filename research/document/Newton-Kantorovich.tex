@@ -6,7 +6,7 @@ $X,Y$をBanach空間とし，非線形方程式
 \end{equation*}
 を求める問題を考える．この問題に対して近似解の品質保証を行う，定理の1つを以下に説明する．
 
-\section{radii polynomal approach \cite{github}}
+\section{radii polynomial approach \cite{github}}
 \begin{thm}[Newton-Kantorovich type argument]
   有界線形作用素$A^\dagger \in \mathcal{L}(X,Y),\ A\in \mathcal{L}(Y,X)$を考え，作用素$F:X\rightarrow Y$が$C^1$-Fr\'{e}chet微分可能とする．また，$A$が単射で$AF:X\rightarrow X$とする．いま，$\bar{x} \in X$に対して%\overline{x}は，F(x) \approx 0となる近似解とする．
   \begin{align*}
@@ -741,7 +741,7 @@ $\left| A_{a,0}^{(N)} z_1^{(N)} \right|$を上から評価する．はじめに�
 となる．
 
 \begin{comment}
-  \section{radii polynomalの零点探索の精度保証}
+  \section{radii polynomialの零点探索の精度保証}
 以上で，$Y_0,\cdots,Z_2$の評価を区間演算で求めた．これらの評価を用いて$p(r_0)<0$となる$r_0$を求める．精度保証の方法は，Newton法を反復させることで，$p(r_0)=0$となる$r_0$の近似会を求め，これをKrawczyk法で検証する．
 
 \section{Krawczyk（クラフチック）法}

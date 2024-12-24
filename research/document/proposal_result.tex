@@ -1,6 +1,13 @@
 
 \chapter{提案手法}
 \label{cpt:提案手法}
+
+\section{提案点}
+
+既存手法では，Banach空間$X$を定義\ref{dfn:Banach空間X-重み付きl1空間}と定義していた．許容重みが付加しているため，節\ref{sct:Y0,Z0,Z1,Z2の評価}の評価式のノルムの値が大きくなり，精度が低下する問題があった．
+
+提案手法では，節\ref{sct:Y0,Z0,Z1,Z2の評価}の計算に節\ref{sct:無限次元ガウスの消去法}を用いることで，Banach空間$X$を定義として定義できる．
+
 \section{定義}
 
 \begin{dfn}[許容重みなしBanach空間$X$]
@@ -61,13 +68,9 @@
 
 %----------------------------------------------------------
 
-\section{提案手法}
 
-既存手法では，Banach空間$X$を定義\ref{dfn:Banach空間X-重み付きl1空間}と定義していた．許容重みが付加しているため，節\ref{sct:Y0,Z0,Z1,Z2の評価}の評価式のノルムの値が大きくなり，精度が低下する問題があった．
 
-提案手法では，節\ref{sct:Y0,Z0,Z1,Z2の評価}の計算に節\ref{sct:無限次元ガウスの消去法}を用いることで，Banach空間$X$を定義として定義できる．
-
-radii-polynomal approachにおける，$Y_0$の評価式
+radii polynomial approachにおける，$Y_0$の評価式
 \begin{equation}
   \label{eq:y0}
   \|AF(\bar{x})\|_X \leq Y_0
@@ -190,7 +193,6 @@ $S$について計算する．式(\ref{eq:def_lo})より，
 \end{equation*}
 であれば，$S$は全単射となる．
 
-定理\ref{thm:Sが全単射->Lが全単射}より，$S$が全単射ならば，$DF(\bar{x})$が全単射となる．
 
 \chapter{実験結果}
 \section{実験環境}
@@ -225,7 +227,7 @@ $S$について計算する．式(\ref{eq:def_lo})より，
 \end{table}
 
 \section{実験結果}
-実験結果の数値を表\ref{tab:norm-num}に，グラフにしたものを表\ref{fig:norm-gra}に示す．
+実験結果の数値を表\ref{tab:norm-num}に，グラフにしたものを図\ref{fig:norm-gra}に示す．
 
 \begin{table}[htbp]
   \centering
@@ -242,7 +244,7 @@ $S$について計算する．式(\ref{eq:def_lo})より，
 
 \begin{figure}[htbp]
   \centering
-  \label{fig:norm-gra}
   \includegraphics[scale=0.5]{img/scatter.png}
   \caption{フーリエサイズとノルム値のグラフ}
+  \label{fig:norm-gra}
 \end{figure}

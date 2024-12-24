@@ -1,0 +1,9 @@
+\begin{thebibliography}{1}
+
+\bibitem{cite1}
+Nitesh~V Chawla, Kevin~W Bowyer, Lawrence~O Hall, and W~Philip Kegelmeyer.
+\newblock Smote: synthetic minority over-sampling technique.
+\newblock {\em Journal of artificial intelligence research}, Vol.~16, pp.
+  321--357, 2002.
+
+\end{thebibliography}
