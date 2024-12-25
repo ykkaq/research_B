@@ -29,7 +29,7 @@
 
 \begin{dfn}[ノルム空間の収束と極限]$X$をノルム空間とする．$X$の点列$(u_n)\subset X$は
   \begin{equation*}
-    \forall\epsilon >0, \ \exists N\in \mathbb{N}, \space \forall N \geq Nに対して||u_n-u||<\epsilon
+    \forall\varepsilon >0, \ \exists N\in \mathbb{N}, \space \forall n \geq Nに対して||u_n-u||<\varepsilon
   \end{equation*}
   のとき，点$u\in X$に収束するといい，
   \begin{equation*}
@@ -59,7 +59,7 @@
   \label{dfn:完備}
   $X$をノルム空間とする．$X$が完備であるとは，任意のCauchy列$(u_n)$が$X$の中で極限をもつことである．すなわち，任意のCauchy列$(u_n\subset X)$が
   \begin{equation*}
-    \|u_n-u\|\rightarrow 0\ ,\left(n\rightarrow 0\right)
+    \|u_n-u\|\rightarrow 0\ ,\left(n\rightarrow \infty \right)
   \end{equation*}
   となる極限$u$を$X$内に持つことである．
 \end{dfn}
@@ -107,11 +107,11 @@
 \end{thm}
 
 \begin{proof}
-  $X$の点列$(u_n)$がCauchy列であるために，$\epsilon -N$論法を用いた表記で
+  $X$の点列$(u_n)$がCauchy列であるために，$\varepsilon -N$論法を用いた表記で
   \begin{equation*}
-    \forall\epsilon >0, \ \exists N\in \mathbb{N}, \ \forall n,m \geq Nに対して||u_n-u_m||<\epsilon
+    \forall\varepsilon >0, \ \exists N\in \mathbb{N}, \ \forall n,m \geq Nに対して||u_n-u_m||<\varepsilon
   \end{equation*}
-  を満たす．$\epsilon=1$としても，それに対応した$N$が存在し，任意の$n\geq N$に対して
+  を満たす．$\varepsilon=1$としても，それに対応した$N$が存在し，任意の$n\geq N$に対して
   \begin{equation*}
     \|u_n-u_N\|<1
   \end{equation*}
@@ -204,7 +204,7 @@
   線形空間$X$から線形空間$Y$への作用素$A$とし，その定義域を$\mathcal{D}(A)\subset X$，値域を$\mathcal{R}(A)\subset Y$とする．そのとき，
   \begin{align*}
     A^{-1}\left( A\left( u \right) \right) & =u, \  u\in\mathcal{D}\left( A \right) \\
-    A(A^{-1}(u))                           & =u, \  u\in\mathcal{R}(A)
+    A(A^{-1}(v))                           & =v, \  v\in\mathcal{R}(A)
   \end{align*}
   かつ
   \begin{align*}
@@ -225,12 +225,13 @@
 \begin{proof}
   「$Aが逆作用素を持つ \Rightarrow Aが単射である$」の証明
 
-  単射の定義\ref{dfn:単射}の待遇「$任意のu_1,u_2\in\mathcal{D}(A)に対しA(u_1)=A(u_2) \Rightarrow u_1=u_2$」を満たすことを確かめる．$A$の逆作用素を$A^{-1}$とすると，任意の$u_1,u_2\in\mathcal{D}(A)$に対し
+  単射の定義\ref{dfn:単射}の対偶「$任意のu_1,u_2\in\mathcal{D}(A)に対しA(u_1)=A(u_2) \Rightarrow u_1=u_2$」を満たすことを確かめる．$A$の逆作用素を$A^{-1}$とすると，任意の$u_1,u_2\in\mathcal{D}(A)$に対し
   \begin{align*}
                 & A(u_1) = A(u_2)               \\
     \Rightarrow & A^{-1}(A(u_1))=A^{-1}(A(u_2)) \\
     \Rightarrow & u_1=u_2
   \end{align*}
+  となる．
 
   $「Aが単射である\Rightarrow Aが逆作用素A^{-1}をもつ」の証明$
 
@@ -244,7 +245,7 @@
   \end{equation*}
   となる定義域$\mathcal{D}(B)=\mathcal{R}(A)$と値域$\mathcal{R}(B)=\mathcal{D}(A)$となるYからXへの作用素Bが定義できる．その上，$B(v)=u$の$v=A(u)$を代入すると
   \begin{equation*}
-    B(A(u))=u`'
+    B(A(u))=u
   \end{equation*}
   となる．同様に，$A(u)=v$の$u$に$u=B(v)$を代入すると
   \begin{equation*}
@@ -295,11 +296,11 @@
   \label{dfn:線形作用素の加法}
   線形空間$X$から線形空間$Y$への線形作用素$A$と$B$の和を
   \begin{equation*}
-    (A+B)u := Au+Bu, \ u\in\mathcal{D}(A)\cup\mathcal{D}(B)
+    (A+B)u := Au+Bu, \ u\in\mathcal{D}(A)\cap\mathcal{D}(B)
   \end{equation*}
   と定義する．このとき，$X$から$Y$への作用素$A+B$の定義域は
   \begin{equation*}
-    \mathcal{D}(A+B) = \mathcal{D}(A)\cup\mathcal{D}(B)
+    \mathcal{D}(A+B) = \mathcal{D}(A)\cap\mathcal{D}(B)
   \end{equation*}
   とする．
 \end{dfn}
@@ -352,7 +353,7 @@
 \end{proof}
 
 \begin{thm}[線形作用素に対する単射性(2)]
-  ノルム空間Xからノルム空間Yへの線形作用素$A$とする．不等式
+  ノルム空間$X$からノルム空間$Y$への線形作用素$A$とする．不等式
   \begin{equation*}
     \|u\|_X \leq K\|Au\|_Y,\ u\in\mathcal{D}(A)
   \end{equation*}
@@ -411,11 +412,11 @@
   \begin{equation*}
     \|Au_n\|_Y>n\|u_n\|_X
   \end{equation*}
-  を満たす$u_n\in\mathcal{D}(A)$が存在する．このとき，$\|u_n\|_X\neq 0$であることに注意する．ノルム空間$X$はノルム空間全体の定義より線形空間であるため，ゼロ元$0\subset X$を持つ．その上，線形作用素の定義より$\mathcal{D}(A)$は$X$の部分空間であるため，ゼロ元$0\in\mathcal{D}(A)\subset X$を持つ．その上，$A$が連続であるため，$A$は$0\in\mathcal{D}(A)$でも連続である．$\epsilon-\sigma$論法による$A$の$0\in\mathcal{D}(A)\subset X$における連続の定義を記述すると
+  を満たす$u_n\in\mathcal{D}(A)$が存在する．このとき，$\|u_n\|_X\neq 0$であることに注意する．ノルム空間$X$はノルム空間全体の定義より線形空間であるため，ゼロ元$0\subset X$を持つ．その上，線形作用素の定義より$\mathcal{D}(A)$は$X$の部分空間であるため，ゼロ元$0\in\mathcal{D}(A)\subset X$を持つ．その上，$A$が連続であるため，$A$は$0\in\mathcal{D}(A)$でも連続である．$\varepsilon-\sigma$論法による$A$の$0\in\mathcal{D}(A)\subset X$における連続の定義を記述すると
   \begin{equation*}
-    \forall\epsilon>0,\ \exists\delta>0,\ \|u_n\|_X<\delta となる\forall u_n\in Xに対して\|Au_n\|_Y<\epsilon
+    \forall\varepsilon>0,\ \exists\delta>0,\ \|u_n\|_X<\delta となる\forall u_n\in Xに対して\|Au_n\|_Y<\varepsilon
   \end{equation*}
-  となる．その上，$\epsilon$を$n\|u_n\|_X$とすると，$\delta_n>0$が存在し，$\|u_n\|_X<\delta$となる任意の$u_n\in\mathcal{D}(A)$に対して，
+  となる．その上，$\varepsilon$を$n\|u_n\|_X$とすると，$\delta_n>0$が存在し，$\|u_n\|_X<\delta$となる任意の$u_n\in\mathcal{D}(A)$に対して，
   \begin{equation*}
     \|Au_n\|_Y<n\|u_n\|_X
   \end{equation*}
@@ -443,9 +444,10 @@
 \end{thm}
 
 \begin{proof}
-  作用素の加法（\ref{dfn:線形作用素の加法}）と作用素のスカラー乗法（\ref{dfn:線形作用素のスカラー乗法}）の定義をもとに線形空間の公理（\ref{dfn:線形空間の公理}）が満たされていることが導かれる．ただし，$\mathcal{L}(X,Y)$のゼロ元は任意の$u\in X$を$0\in Y$へ写す作用素であることに注意が必要である．
+  作用素の加法（定義\ref{dfn:線形作用素の加法}）と作用素のスカラー乗法（定義\ref{dfn:線形作用素のスカラー乗法}）の定義をもとに線形空間の公理（\ref{dfn:線形空間の公理}）が満たされていることが導かれる．ただし，$\mathcal{L}(X,Y)$のゼロ元は任意の$u\in X$を$0\in Y$へ写す作用素であることに注意が必要である．
 
   「ノルム空間」
+
   $\|A\|_{\mathcal{L}(X,Y)}$がノルムの定義を満たすことを示せばよい．ノルム空間$X$とBanach空間$Y$であるため$\|\cdot\|_X\geq 0$と$\|\cdot\|_Y\geq 0$であることから
   \begin{align*}
     \frac{\|Au\|_Y}{\|u\|_X} \geq 0
@@ -464,7 +466,7 @@
 
   続いて$\alpha\in K$としたとき，$Y$はBanach空間であるため，$\|\cdot\|_Y$はノルムの定義を満たすため，
   \begin{equation*}
-    \|\alpha A\|_{\mathcal{L}} = \sup_{u\in X\backslash \{0\}} \frac{\|\alpha Au\|_Y}{\|u\|_X} = |\alpha|\sup_{u\in X\backslash \{0\}} \frac{\| Au\|_Y}{\|u\|_X} = |\alpha|\|A\|_{\mathcal{L}(X,Y)}
+    \|\alpha A\|_{\mathcal{L}(X,Y)} = \sup_{u\in X\backslash \{0\}} \frac{\|\alpha Au\|_Y}{\|u\|_X} = |\alpha|\sup_{u\in X\backslash \{0\}} \frac{\| Au\|_Y}{\|u\|_X} = |\alpha|\|A\|_{\mathcal{L}(X,Y)}
   \end{equation*}
   となるため，ノルムの定義(3)も示された．
 
@@ -472,8 +474,8 @@
   \begin{align*}
     \|A+B\|_{\mathcal{L}(X,Y)} & = \sup_{u\in X\backslash \{0\}} \frac{\|(A+B)u\|_Y}{\|u\|_X}                                                    \\
                                & = \sup_{u\in X\backslash \{0\}} \frac{\|Au+Bu\|_Y}{\|u\|_X}                                                     \\
-                               & = \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y + \|Bu\|_Y}{|u\|_X}                                              \\
-                               & = \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y}{|u\|_X} + \sup_{u\in X\backslash \{0\}} \frac{\|Bu\|_Y}{|u\|_X} \\
+                               & \leq \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y + \|Bu\|_Y}{|u\|_X}                                              \\
+                               & \leq \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y}{|u\|_X} + \sup_{u\in X\backslash \{0\}} \frac{\|Bu\|_Y}{|u\|_X} \\
                                & = \|A\|_{\mathcal{L}(X,Y)} + \|B\|_{\mathcal{L}(X,Y)}
   \end{align*}
   となり，ノルムの定義(4)も示されたため，$\mathcal{L}(X,Y)$はノルム空間である．
@@ -501,7 +503,7 @@
   \end{equation*}
   を持つ．よって$n\rightarrow \infty$とすると
   \begin{equation*}
-    (\alpha u+\beta v)=\alpha \tilde{A} u + \beta \tilde{A} v
+    \tilde{A}(\alpha u+\beta v)=\alpha \tilde{A} u + \beta \tilde{A} v
   \end{equation*}
   となり，極限の候補$\tilde{A}$は線形作用素である．次に極限の候補$\tilde{A}$が有界作用素であることを示す．点列$(A_n)$はCauchy列であるため定理(2)より有界列でもある．すなわち，どんな$n\in \mathbb{N}$に対しても
   \begin{equation*}
@@ -519,7 +521,7 @@
 
   最後に，点列$(A_n)$の極限が$\tilde{A}$であることを示す．任意の$u\in X$に対して，点列$(A_nu)\subset Y$は$Y$内に極限$\tilde{A}u$を持つこと，すなわち
   \begin{equation*}
-    A_nu\rightarrow \tilde{A}u,\ (u\rightarrow \infty)
+    A_nu\rightarrow \tilde{A}u,\ (n \rightarrow \infty)
   \end{equation*}
   を持つことから
   \begin{equation*}
@@ -531,11 +533,11 @@
   \end{equation*}
   を得る．点列$(A_n)$がCauchy列であるため
   \begin{equation*}
-    \forall \epsilon >0,\ \exists N\in\mathbb{N},\ \forall n,m\geq N に対して\|A_n-A_m\|_{\mathcal{L}(X,Y)}<\epsilon
+    \forall \varepsilon >0,\ \exists N\in\mathbb{N},\ \forall n,m\geq N に対して\|A_n-A_m\|_{\mathcal{L}(X,Y)}<\varepsilon
   \end{equation*}
   を満たす．その上，$m\rightarrow \infty$とすると
   \begin{equation*}
-    \forall \epsilon >0,\ \exists N\in\mathbb{N},\ \forall n\geq N に対して\|A_n-\tilde{A}\|_{\mathcal{L}(X,Y)}<\epsilon
+    \forall \varepsilon >0,\ \exists N\in\mathbb{N},\ \forall n\geq N に対して\|A_n-\tilde{A}\|_{\mathcal{L}(X,Y)}<\varepsilon
   \end{equation*}
   となり，$\tilde{A}\in\mathcal{L}(X,Y)$はCauchy列$(A_n)$の極限である．よって，任意のCauchy列は$\mathcal{L}(X,Y)$内に極限を持つため，ノルム空間$\mathcal{L}(X,Y)$はBanach空間である．
 \end{proof}
@@ -564,7 +566,7 @@
 \end{thm}
 
 \begin{proof}
-  合成作用素の定義(\ref{dfn:合成作用素})から
+  合成作用素の定義\ref{dfn:合成作用素}から
   \begin{equation*}
     \mathcal{D}(AB)=\{v\in\mathcal{D}(B)=X \mid Bv\in\mathcal{D}(A)=Y\}
   \end{equation*}
@@ -589,7 +591,7 @@
   \begin{equation*}
     Iu=u
   \end{equation*}
-  となる$I\in\mathcal{L}(X)$をX上の恒等作用素と呼ぶ．
+  となる$I\in\mathcal{L}(X)$を$X$上の恒等作用素と呼ぶ．
 \end{dfn}
 
 \begin{thm}[Neumann級数]
@@ -634,9 +636,9 @@
   \begin{equation*}
     \|S_n-S\|_{\mathcal{L}(X)} \rightarrow 0,\ (n,m\rightarrow \infty)
   \end{equation*}
-  となる極限$S\in\mathcal{L}(X,Y)$を持つ．
+  となる極限$S\in\mathcal{L}(X)$を持つ．
 
-  次に$S$が$B^{-1}$になることを示す．合成作用素の定義(\ref{dfn:合成作用素})にしたがって合成作用素$BS_n$を考える．$X$はBanach空間であり，$S,B_n\in\mathcal{L}(X)$であるため，定理(\ref{thm:ノルムの性質2})より合成作用素$BS_n$は$\mathcal{L}(X)$に属する．その上，点列$(BS_n)\subset\mathcal{L}(X)$は
+  次に$S$が$B^{-1}$になることを示す．合成作用素の定義\ref{dfn:合成作用素}にしたがって合成作用素$BS_n$を考える．$X$はBanach空間であり，$S,B_n\in\mathcal{L}(X)$であるため，定理\ref{thm:ノルムの性質2}より合成作用素$BS_n$は$\mathcal{L}(X)$に属する．その上，点列$(BS_n)\subset\mathcal{L}(X)$は
   \begin{equation*}
     \|BS_n-BS\|_{\mathcal{L}(X)} \leq \|B\|_{\mathcal{L}(X)}\|S_n-S\|_{\mathcal{L}(X)}\rightarrow 0,\ (n\rightarrow \infty)
   \end{equation*}
@@ -649,7 +651,7 @@
   \end{align*}
   となり，定理の仮定より$\|I-B\|_{\mathcal{L}(X)}<1$を持つため
   \begin{equation*}
-    \|BS_n-I\|_{\mathcal{L}(X)} = \|(I-B)^{n+1}\|_{\mathcal{L}(X)} \leq \|(I-B)\|^{n+1}_{\mathcal{L}(X)} \rightarrow 0,\ (n\rightarrow 0)
+    \|BS_n-I\|_{\mathcal{L}(X)} = \|(I-B)^{n+1}\|_{\mathcal{L}(X)} \leq \|(I-B)\|^{n+1}_{\mathcal{L}(X)} \rightarrow 0,\ (n\rightarrow \infty)
   \end{equation*}
   となるため，点列$(BS_n)$は極限$I$も$\mathcal{L}(X)$内に持つ．よって，極限の一意性より
   \begin{equation*}
@@ -673,7 +675,7 @@
 
   また，
   \begin{equation*}
-    S_n=I+(I-B)+(I-B)^2+\cdots+(I-B)^n \rightarrow B^-1,\ (n\rightarrow\infty)
+    S_n=I+(I-B)+(I-B)^2+\cdots+(I-B)^n \rightarrow B^{-1},\ (n\rightarrow\infty)
   \end{equation*}
   より
   \begin{equation*}
@@ -699,10 +701,11 @@
 \begin{proof}
   「$A$が単射」の証明
 
-  定理(\ref{thm:線形作用素に対する単射性(1)})(線形作用素に対する単射性(1))の(2)を用いて証明する．$u\in X$とし，$RA$が単射であることに注意すると
+  定理\ref{thm:線形作用素に対する単射性(1)}(線形作用素に対する単射性(1))の(2)を用いて証明する．$u\in X$とし，$RA$が単射であることに注意すると
   \begin{equation*}
     Au=0 \Rightarrow RAu=0 \Rightarrow u=0
   \end{equation*}
+  よって，$A$が全単射である．
 
   「$R$が全射」の証明
 
@@ -728,7 +731,7 @@
 %===================%
 \section{Banachの不動点定理}
 \begin{dfn}[不動点]
-  $X$を係数帯が$\mathbb{K}$のBanach空間とする．$M$は空でない閉集合で$M\subset X$を満たすとする．$A$を$M$から$M$への写像とする．$x\in M$が$A$の不動点であるとは，$x$が
+  $X$を係数体が$\mathbb{K}$のBanach空間とする．$M$は空でない閉集合で$M\subset X$を満たすとする．$A$を$M$から$M$への写像とする．$x\in M$が$A$の不動点であるとは，$x$が
   \begin{equation*}
     x=Ax
   \end{equation*}
@@ -772,14 +775,14 @@
   にとって得られる．そのとき，証明のプロセスは次のように考える．
   \begin{enumerate}
     \item $(u_n)$がCauchy列になること，さらにBanach空間の完備性を使うことで，$u_n\rightarrow u,\ n\rightarrow \infty$となる$u$が$X$内に存在することを示す．
-    \item $u$が(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$と一致することを示す(解の存在性)．
+    \item $u$が\eqref{equ:Banachの不動点定理}を満たす真の解$u^*$と一致することを示す(解の存在性)．
     \item 真の解$u^*$が$M$内で一意であることを示す．
   \end{enumerate}
 
   \begin{description}
     \item[1]
       \quad\\
-      (\ref{equ:反復法による点列})より，
+      \eqref{equ:反復法による点列}より，
       \begin{equation}
         \|u_n-u_{n+1}\|=\|Au_{n-1}-Au_{n}\|
       \end{equation}
@@ -787,7 +790,7 @@
       \begin{equation}
         \|Au_{n-1}-Au_{n}\|\leq k\|u_{n-1}-u_{n}\|
       \end{equation}
-      となる定数$k$が存在する．同様に$\|u_{n-1}-u_{n}\|$に(\ref{equ:反復法による点列})と$A$の縮小写像の性質を使うと最終的に
+      となる定数$k$が存在する．同様に$\|u_{n-1}-u_{n}\|$に\eqref{equ:反復法による点列}と$A$の縮小写像の性質を使うと最終的に
       \begin{equation}
         \label{equ:点列と縮小写像より}
         \|u_{n}-u_{n+1}\|\leq k^n\|u_{0}-u_{1}\|
@@ -799,7 +802,7 @@
         \|u_{n}-u_{m}\| & = \|(u_{n}-u_{n+1})+(u_{n+1}-u_{n+2})+\cdots+(u_{m-1}-u_{m})\|      \\
                         & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\|
       \end{align}
-      となる．上の式に(\ref{equ:点列と縮小写像より})を適用すると
+      となる．上の式に\eqref{equ:点列と縮小写像より}を適用すると
       \begin{align}
         \|u_{n}-u_{m}\| & \leq \|u_{n}-u_{n+1}\|+\|u_{n+1}-u_{n+2}\|+\cdots+\|u_{m-1}-u_{m}\| \label{equ:-1}    \\
                         & \leq k^n\|(u_{n}-u_{n+1}\|+k^{n+1}\|u_{n+1}-u_{n+2}\|+\cdots+k^{m-1}\|u_{m-1}-u_{m}\| \\
@@ -810,7 +813,7 @@
         1+k+\cdots+k^{m-1} = \frac{1-k^m}{1-k}
       \end{equation}
 
-      であるため，(\ref{equ:-1})は
+      であるため，\eqref{equ:-1}は
       \begin{equation}
         \|u_{n}-u_{m}\| \leq \frac{k^n(1-k^m)}{1-k} \|u_0-u_1\|
       \end{equation}
@@ -826,7 +829,7 @@
 
     \item[2]
       \quad\\
-      $t_0$を$M$の元とする．仮定より，$A$は$M$から$M$への写像であるため，$A(M)\subseteq M$となる．すなわち，$u_1=Au_0$が成立する$u_1\in M$が存在する．同様に，$\forall n \in \mathbb{N}$について$u_n\in M$が存在する．さらに，$M$は閉集合であるため，\textbf{1}で存在を証明した$u$は$M$に属する．そのうえで仮定とり$A$は$k$次の縮小写像であるため
+      $u_0$を$M$の元とする．仮定より，$A$は$M$から$M$への写像であるため，$A(M)\subseteq M$となる．すなわち，$u_1=Au_0$が成立する$u_1\in M$が存在する．同様に，$\forall n \in \mathbb{N}$について$u_n\in M$が存在する．さらに，$M$は閉集合であるため，\textbf{1}で存在を証明した$u$は$M$に属する．そのうえで仮定より$A$は$k$次の縮小写像であるため
       \begin{equation*}
         \|Au_n-Au\|\leq k\|u_n-u\|
       \end{equation*}
@@ -834,11 +837,11 @@
       \begin{equation*}
         \|Au_n-Au\|\rightarrow 0,\ n\rightarrow \infty
       \end{equation*}
-      となるため，$Au$は$Au_n$の極限である．よって(\ref{equ:反復法による点列})とすると
+      となるため，$Au$は$Au_n$の極限である．よって\eqref{equ:反復法による点列}について$n \rightarrow \infty$
       \begin{equation*}
         u=Au
       \end{equation*}
-      が成立する．とって$u$は(\ref{equ:Banachの不動点定理})を満たす真の解$u^*$となる．
+      が成立する．とって$u$は\eqref{equ:Banachの不動点定理}を満たす真の解$u^*$となる．
 
     \item[3]
       \quad\\
@@ -846,7 +849,7 @@
       \begin{equation*}
         \|u^*-v^*\| \leq \|Au^*-Av^*\| \leq k\|u^*-v^*\|
       \end{equation*}
-      を得る．ここで$0\leq k<1$であるため，不等式を満たすものは$u^*=v^*$の場合のみである．すなわち(\ref{equ:Banachの不動点定理})を満たす真の解は一意である．
+      を得る．ここで$0\leq k<1$であるため，不等式を満たすものは$u^*=v^*$の場合のみである．すなわち\eqref{equ:Banachの不動点定理}を満たす真の解は一意である．
   \end{description}
 
 \end{proof}
@@ -881,10 +884,13 @@
 
 関数$f(x),\ (x\in [-\pi,\pi])$を周期$2\pi$の周期関数とする．このような$f(x)$が以下の三角関数で表されるとして，係数$(a_0,a_1,a_2,\cdots,b_0,b_1,b_2,\cdots)$を求めることを考える．
 
-\begin{align}
-  f(x) & = \frac{a_0}{2} + \sum_{\infty}^{n=1} (a_n \cos x + b_n \sin nx)                       \label{equ:fourie-1} \\
-       & = \frac{a_0}{2} + (a_1 \cos x + b_1 \sin nx) + (a_2 \cos 2x + b_2 \sin 2x) + \cdots \notag
-\end{align}
+\begin{equation}
+  \begin{split}
+    f(x) & = \frac{a_0}{2} + \sum_{\infty}^{n=1} (a_n \cos x + b_n \sin nx)\\
+       & = \frac{a_0}{2} + (a_1 \cos x + b_1 \sin nx) + (a_2 \cos 2x + b_2 \sin 2x) + \cdots
+  \label{equ:fourie-1}
+\end{split}
+\end{equation}
 
 そのために，次の公式を用意する．ここで，$m,n\in \mathbb{N}$である．
 \begin{align}
@@ -900,7 +906,7 @@
   \int_{-\pi}^{\pi} \sin nx dx = \int_{-\pi}^{\pi} \cos mx dx & = 0 \label{equ:fourie-3}
 \end{align}
 
-ここで，次のような形式的計算が許されると仮定する．まず，(\ref{equ:fourie-1})の両辺について$-\pi$から$\pi$まで積分し，(\ref{equ:fourie-3})を用いれば
+ここで，次のような形式的計算が許されると仮定する．まず，式\eqref{equ:fourie-1}の両辺について$-\pi$から$\pi$まで積分し，式\eqref{equ:fourie-3}を用いれば
 \begin{align*}
   \int_{-\pi}^{\pi} f(x)dx & = \frac{a_0}{2}\int_{-\pi}^{\pi} dx + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx dx+ \int_{-\pi}^{\pi}b_n \sin nx dx) \\
                            & = \pi a_0
@@ -910,7 +916,7 @@
   \therefore a_0 = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) dx
 \end{equation}
 
-次に，(\ref{equ:fourie-1})の両辺に$\cos mx$をかけて，$-\pi$から$\pi$まで積分し，(\ref{equ:fourie-2})(\ref{equ:fourie-3})を用いれば
+次に，式\eqref{equ:fourie-1}の両辺に$\cos mx$をかけて，$-\pi$から$\pi$まで積分し，式\eqref{equ:fourie-2},\eqref{equ:fourie-3}を用いれば
 \begin{align*}
   \int_{-\pi}^{\pi} f(x) \cos mx dx & = \frac{a_0}{2} \int_{-\pi}^{\pi} \cos mx dx                                                                   \\
                                     & \quad + \sum_{n=1}^{\infty} (a_n \int_{-\pi}^{\pi}\cos nx \cos mx dx + \int_{-\pi}^{\pi}b_n \sin nx \cos mx dx \\
@@ -921,13 +927,13 @@
   \therefore a_m = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) \cos mx dx
 \end{equation}
 
-同様に，(\ref{equ:fourie-1})の両辺に$\sin mx$をかけて，$-\pi$から$\pi$まで積分することにより次の式が得られる．
+同様に，式\eqref{equ:fourie-1}の両辺に$\sin mx$をかけて，$-\pi$から$\pi$まで積分することにより次の式が得られる．
 \begin{equation}
   \label{equ:fourie-bm}
   b_m = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin xm dx
 \end{equation}
 
-(\ref{equ:fourie-a0}),(\ref{equ:fourie-am}),(\ref{equ:fourie-bm})をまとめて次のようになる．
+式\eqref{equ:fourie-a0},式\eqref{equ:fourie-am},式\eqref{equ:fourie-bm}をまとめて次のようになる．
 
 \begin{dfn}[フーリエ級数]
   \begin{equation*}
@@ -1224,7 +1230,7 @@ $u_1,u_2$：周期$L$の周期関数とする．
 \end{equation*}
 を離散畳み込みという．スペクトル法の非線形項の計算，$\mathrm{i.e.},u_1,u_2$のような（有限モードのフーリエ級数で表される）周期関数が$p個(p\in\mathbb{N})$あったとき，
 \begin{equation*}
-  u_l(t) = \sum_{|k|<M} a_k^{(l)} \exp(ik\omega t),\ l=1,2,\cdots,p
+  u_l(t) = \sum_{|k|<M} a_k^{(l)} \exp(ik\omega t),\ (l=1,2,\cdots,p)
 \end{equation*}
 とすると，離散畳み込みはこれらの周期関数の積
 \begin{align*}
@@ -1250,7 +1256,7 @@ $u_1,u_2$：周期$L$の周期関数とする．
 
 
 \subsection{畳み込みのFFTアルゴリズム}
-$p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使って
+$p$個の有限点列$\left\{a_{k}^{(l)}\right\}_{|k|<M}$に対して，FFTを使って
 \begin{equation*}
   \left(a^{(1)} * a^{(2)} * \cdots * a^{(p)}\right)_k = \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)},\ |k| \leq p(M-1)
 \end{equation*}
@@ -1322,7 +1328,7 @@ $p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使�
       k_1+\cdots+k_p-k \in \{ -2pM-1, \cdots 2p(M-1) \}
     \end{equation*}
 
-    となり，$k_1,\cdots,k_p = k \pm m(2pM-1),\ (m=1,\cdots, p)$から
+    となり，$k_1+\cdots+k_p = k \pm m(2pM-1),\ (m=1,\cdots, p)$から
     \begin{equation*}
       m(2pM-1) = k_1 + \cdots + k_p - k \in \{ -2p(M-1),\cdots, 2p(M-1)\}
     \end{equation*}
@@ -1334,7 +1340,7 @@ $p$個の有限点列$\left(a_{k}^{(l)}\right)_{|k|<M}$に対して，FFTを使�
 
     なので，$M=1$としても，上の式は偽となる．すなわち，$0$となる．最終的に，
     \begin{equation*}
-      \sum_{\substack{k_1+\cdots+k_p=k \\ |k_m|<M}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} = \frac{1}{pM-1}\mathcal{F}_k(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}),\ |k|\leq p(M-1)
+      \sum_{\substack{k_1+\cdots+k_p=k \\ |k_m|<M}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} = \frac{1}{2pM-1}\mathcal{F}_k \left( \tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)} \right),\ |k|\leq p(M-1)
     \end{equation*}
     を得る．
 \end{description}
