@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024/Arch Linux) (preloaded format=platex 2024.12.8)  25 DEC 2024 11:20
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024/Arch Linux) (preloaded format=platex 2024.12.8)  25 DEC 2024 12:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -827,11 +827,12 @@ Excluding 'comment' comment. [47]
 
 ] [56] [57]
 第7章
+[58
+
+]
 File: img/scatter.png Graphic file (type bmp)
 <img/scatter.png>
-) [58
-
-] [59]
+) [59]
 \openout2 = `conclusion.aux'.
 
  (./conclusion.tex
@@ -879,10 +880,10 @@ L3 programming layer <2024-02-20>
 Here is how much of TeX's memory you used:
  11316 strings out of 474774
  182824 string characters out of 5764027
- 2345032 words of memory out of 5000000
+ 2346032 words of memory out of 5000000
  33379 multiletter control sequences out of 15000+600000
  585797 words of font info for 162 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  84i,27n,93p,728b,1803s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 2131701.dvi (85 pages, 380748 bytes).
+Output written on 2131701.dvi (85 pages, 381628 bytes).
