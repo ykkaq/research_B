@@ -24,7 +24,7 @@
 \contentsline {subsection}{\numberline {4.4.2}$Z_0$を計算する}{43}{}%
 \contentsline {subsection}{\numberline {4.4.3}$Z_1$を計算する}{44}{}%
 \contentsline {subsection}{\numberline {4.4.4}$Z_2$を計算する}{45}{}%
-\contentsline {chapter}{\numberline {第5章}無限次元ガウスの消去法\cite {}}{48}{}%
+\contentsline {chapter}{\numberline {第5章}無限次元ガウスの消去法\cite {r2}}{48}{}%
 \contentsline {section}{\numberline {5.1}射影}{48}{}%
 \contentsline {section}{\numberline {5.2}射影を用いたBanach空間上の無限次元ガウスの消去法}{50}{}%
 \contentsline {chapter}{\numberline {第6章}提案手法}{55}{}%

@@ -1,5 +1,3 @@
-
-
 \begin{lstlisting}[caption=calc_solve.jl, label=calc_solve,]
   using LinearAlgebra, DifferentialEquations, FFTW
 include("FourierChebyshev.jl")
@@ -210,3 +208,7 @@ println("||I - D|| + ||C|| ||T^-1|| ||B|| = ", norm_result)
 
 
 \end{lstlisting}
+
+\lstinputlisting[caption=FourierChebyshev.jl]{../program/FourierChebyshev.jl}
+
+\lstinputlisting[caption=IntervalFunctions.jl]{../program/IntervalFunctions.jl}

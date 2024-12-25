@@ -37,7 +37,7 @@
   \end{equation*}
   と表す．このとき，$u$を$u_n$の極限といい，
   \begin{equation*}
-    u_n-u, \ (n\rightarrow \infty)
+    u_n \rightarrow u, \ (n\rightarrow \infty)
   \end{equation*}
   と表す．
 \end{dfn}
@@ -379,7 +379,7 @@
 \begin{dfn}[有界な線形作用素]
   ノルム空間$X$からノルム空間$Y$への作用素$A$に対し，
   \begin{equation*}
-    \|Au\|_Y\leq K\|u\|_X,\ \mathcal{D}(A)
+    \|Au\|_Y\leq K\|u\|_X,\ u \in \mathcal{D}(A)
   \end{equation*}
   を満たす正の定数$K$が存在する時，線形作用素$A$を有界な作用素と呼ぶ．
 \end{dfn}
@@ -438,7 +438,7 @@
 \begin{thm}[$\mathcal{L}(X,Y)$はBanach空間]
   $X$をノルム空間とし，$Y$をBanach空間とする．定義域が$X$全体となる$X$から$Y$への有界な線形作用素全体の集合$\mathcal{L}(X,Y)$のノルムを
   \begin{equation*}
-    \|A\|_{\mathcal{L}(X,Y)}:=\sup_{u\in X\backslash\{0\}} \frac{\|Au\|_Y}{\|X\|_X}, \ A\in\mathcal{L}(X,Y)
+    \|A\|_{\mathcal{L}(X,Y)}:=\sup_{u\in X\backslash\{0\}} \frac{\|Au\|_Y}{\|u\|_X}, \ A\in\mathcal{L}(X,Y)
   \end{equation*}
   とすると，$\mathcal{L}(X,Y)$はBanach空間となる．
 \end{thm}
@@ -474,8 +474,8 @@
   \begin{align*}
     \|A+B\|_{\mathcal{L}(X,Y)} & = \sup_{u\in X\backslash \{0\}} \frac{\|(A+B)u\|_Y}{\|u\|_X}                                                    \\
                                & = \sup_{u\in X\backslash \{0\}} \frac{\|Au+Bu\|_Y}{\|u\|_X}                                                     \\
-                               & \leq \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y + \|Bu\|_Y}{|u\|_X}                                              \\
-                               & \leq \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y}{|u\|_X} + \sup_{u\in X\backslash \{0\}} \frac{\|Bu\|_Y}{|u\|_X} \\
+                               & \leq \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y + \|Bu\|_Y}{\|u\|_X}                                              \\
+                               & \leq \sup_{u\in X\backslash \{0\}} \frac{\|Au\|_Y}{\|u\|_X} + \sup_{u\in X\backslash \{0\}} \frac{\|Bu\|_Y}{\|u\|_X} \\
                                & = \|A\|_{\mathcal{L}(X,Y)} + \|B\|_{\mathcal{L}(X,Y)}
   \end{align*}
   となり，ノルムの定義(4)も示されたため，$\mathcal{L}(X,Y)$はノルム空間である．
@@ -545,7 +545,7 @@
 \begin{thm}[$\mathcal{L}(X,Y)$ノルムの性質(1)]
   $X$をノルム空間とし，$Y$をBanach空間とする．そのとき，任意の$u\in X$と任意の$A\in\mathcal{L}(X,Y)$について以下の不等式が成り立つ．
   \begin{equation*}
-    \|Au\|_Y\geq\|A\|_{\mathcal{L}(X,Y)}\|u\|_X
+    \|Au\|_Y\leq\|A\|_{\mathcal{L}(X,Y)}\|u\|_X
   \end{equation*}
 \end{thm}
 
@@ -572,7 +572,7 @@
   \end{equation*}
   となるが，$B\in\mathcal{L}(X,Y)$であるため，任意の$v\in X$に対して$Bv$は$Y$に属する．よって，
   \begin{equation*}
-    \mathcal{D}(AB)=\mathcal{D}=X
+    \mathcal{D}(AB)=\mathcal{D}(B)=X
   \end{equation*}
   となる．その上，$A$も$B$も線形作用素であることから，任意の$u,v\in X$と任意の$\alpha,\beta\in\mathbb{K}$に対して
   \begin{equation*}
@@ -1312,10 +1312,10 @@ $p$個の有限点列$\left\{a_{k}^{(l)}\right\}_{|k|<M}$に対して，FFTを�
 
     として，
     \begin{align*}
-      \mathcal{F}\left(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}\right) = & \sum_{j=0}^{2pM-2} S_k(j)                                                     \\
-      =                                                                            & (2pM-1) \sum_{\substack{{k_1+\cdots+k_p=k}                                    \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} \\
-                                                                                   & + (2pM-1) \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right)  \\
-                                                                                   & +  \sum_{\substack{( k_1+\cdots+k_p                                           \\ \notin \left\{ k \pm m(2pM-1) :m=0,\cdots,p\right\} ) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \left( \sum_{j=0}^{2pM-2} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)\right)
+      \mathcal{F}\left(\tilde{b}^{(1)} \hat* \cdots \hat* \tilde{b}^{(p)}\right) = & \sum_{j=0}^{2pM-2} S_k(j)  \\
+      = & (2pM-1) \sum_{\substack{{k_1+\cdots+k_p=k} \\ {|k_l|<M}}} a_{k_1}^{(1)}\cdots a_{k_p}^{(p)} \\
+      & + (2pM-1) \sum_{m=1}^{p} \left( \sum_{\substack{k_1+\cdots+k_p=k \pm m(2pM-1) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \right)  \\
+      & +  \sum_{\substack{( k_1+\cdots+k_p  \\ \notin \left\{ k \pm m(2pM-1) :m=0,\cdots,p\right\} ) \\ |k_l|<M}} a_{k_1}^{(1)} \cdots a_{k_p}^{(p)} \left( \sum_{j=0}^{2pM-2} \exp \left( 2\pi i \frac{k_1+\cdots+k_p-k}{2pM-1}j \right)\right)
     \end{align*}
 
     このとき，オイラーの公式より，$k_1+\cdots+k_p-k \equiv 0 \mod 2pM-1$のとき
