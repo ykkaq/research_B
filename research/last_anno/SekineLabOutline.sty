@@ -1,0 +1,58 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% This Macro is for Outline of Sekine Lab.
+%% This was created by Munehisa Takahashi and Rikuto Takashima on 12/25/2024.
+%% This was written in UTF-8.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% If you change this Macro, please write your name and changing date.
+%% Then, a original command must not delete.
+%% Please, disable the command with '%'.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Mathematical environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% equation counter setting %
+\numberwithin{equation}{section}
+
+% Theorem environment setting %
+\newtheoremstyle{SeknieLabStyle}
+{}%
+{}%
+{\normalfont}%
+{}%
+{\bf}%
+{}%
+{ }%
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%
+
+\theoremstyle{SeknieLabStyle}%
+
+\newtheorem{Axi}{公理}[section]% % Axiom
+\newtheorem{Cor}[Axi]{系}%       % Corollary
+\newtheorem{Def}[Axi]{定義}%     % Definition
+\newtheorem{Lem}[Axi]{補題}%     % Lemma
+\newtheorem{Prop}[Axi]{命題}%    % Proposition
+\newtheorem{Thm}{定理}%     % Theorem
+\newtheorem{Conj}[Axi]{予想}%    % Conjecture
+\newtheorem{Exam}[Axi]{例}%      % Example 
+\newtheorem{Rem2}[Axi]{注意}%    % Remark (This charctor set for JSIAM)
+
+% Proof environment setting %
+\makeatletter
+\newenvironment{Proof}{\par%
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax%
+  \trivlist%
+  \item\relax%
+  {\textbf{証明}}\hskip 1zw%
+}{%
+  \popQED\endtrivlist\@endpefalse%
+}%
+\makeatother

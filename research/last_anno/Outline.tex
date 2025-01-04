@@ -1,0 +1,107 @@
+\documentclass[a4paper,10pt,twocolumn]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\renewcommand{\baselinestretch}{0.8}
+\usepackage{url}
+\usepackage[top=25truemm,bottom=25truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage{float}
+
+\usepackage{amssymb, amsmath}            % 数理環境用パッケージ
+\usepackage{amsthm}                      % 定理環境用パッケージ
+\usepackage{ascmac}                      % box環境用パッケージ
+\usepackage{cite}                        % 参考文献用パッケージ
+\usepackage{SekineLabOutline}            % 関根研究室梗概用スタイルファイル
+
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+
+\newcommand{\rad}{radii polynomial approach}
+\newcommand{\nk}{Newton-Kantorovich}
+\newcommand{\vdp}{van der Pol}
+\newcommand{\infg}{無限次元ガウスの消去法}
+\newcommand{\fre}{Fr\'{e}chet}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% タイトル
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\vspace{-8mm}{\Large \gtfamily\mdseries\upshape 無限次元ガウスの消去法を用いた \rad{}改良 }\vspace{-3mm}}
+\date{}
+\author{（指導教員 関根 晃太 准教授） \\ 関根研究室 2131701 齋藤 悠希
+\vspace{-5mm}}
+\pagestyle{empty}
+
+\begin{document}
+
+\maketitle
+\vspace{-10mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 本文
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{はじめに}
+\vspace{-1mm}
+精度保証付き数値計算に関する定理の一つに，\nk{}型の定理を利用した\rad{}がある．この定理は有限次元や無限次元を問わず, 非線形方程式や偏微分方程式など殆どの微分方程式に用いることができる．
+
+従来の\rad{}では，Banach空間は重み付き$l_1$空間より定義している．$l_1$空間を用いることで，従来手法よりも精度の向上を行うことができる．そこで，本研究では，\rad{}の評価値計算の際に，\infg{}を用いていることで，適用可能な問題を増やすことを目的とする．
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{-1mm}
+\section{\rad{}}
+\vspace{-1mm}
+
+\begin{Thm}
+  有界線形作用素$A^\dagger \in \mathcal{L}(X, Y), A \in \mathcal{L}(Y, X)$を考え，作用素$F:X \rightarrow Y$が$C^1\text{-\fre{}}$微分可能であるとする．また，$A$が単射で，$AF:X \rightarrow X$とする．いま，$\bar{x} \in X$に対して，
+  \begin{equation}
+    \begin{split}
+      \|AF(\bar{x})\|_X                             & \leq Y_0                                             \\
+      \|I-AA^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
+      \|A(DF(\bar{x})-A^\dagger)\|_{\mathcal{L}(X)} & \leq Z_1                                             \\
+      \|A(DF(b)-DF(\bar{x}))\|_{\mathcal{L}(X)}       & \leq Z_2(r)r,\ \forall b \in \overline{B(\bar{x},r)}
+    \end{split}
+  \end{equation}
+\end{Thm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-1mm}
+\section{既存手法}
+\vspace{-1mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+既存手法は～
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-1mm}
+\section{提案手法} 
+\vspace{-1mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+提案手法は～
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-1mm}
+\section{実験結果}
+\vspace{-1mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+実験結果は～
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-1mm}
+\section{おわりに}
+\vspace{-1mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+おわりに～
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 参考文献
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-1mm}
+
+{\footnotesize
+\bibliography{reference} 
+}
+\bibliographystyle{junsrt} %参考文献出力スタイル
+
+\end{document}

@@ -11,9 +11,9 @@ $X,Y$をBanach空間とし，非線形方程式
   有界線形作用素$A^\dagger \in \mathcal{L}(X,Y),\ A\in \mathcal{L}(Y,X)$を考え，作用素$F:X\rightarrow Y$が$C^1$-Fr\'{e}chet微分可能とする．また，$A$が単射で$AF:X\rightarrow X$とする．いま，$\bar{x} \in X$に対して%\overline{x}は，F(x) \approx 0となる近似解とする．
   \begin{align*}
     \|AF(\bar{x})\|_X                             & \leq Y_0                                             \\
-    \|I-A^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
+    \|I-AA^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
     \|A(DF(\bar{x})-A^\dagger)\|_{\mathcal{L}(X)} & \leq Z_1                                             \\
-    \|A(DF(b)-A^\dagger)\|_{\mathcal{L}(X)}       & \leq Z_2(r)r,\ \forall b \in \overline{B(\bar{x},r)} \\
+    \|A(DF(b)-DF(\bar{x}))\|_{\mathcal{L}(X)}       & \leq Z_2(r)r,\ \forall b \in \overline{B(\bar{x},r)} \\
   \end{align*}
   が成り立つとする．このとき
   \begin{equation*}
