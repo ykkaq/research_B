@@ -9,14 +9,22 @@
 \usepackage{amsthm}                      % 定理環境用パッケージ
 \usepackage{ascmac}                      % box環境用パッケージ
 \usepackage{cite}                        % 参考文献用パッケージ
+
+\usepackage{comment}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{pxjahyper}
+\usepackage{cleveref}
+\usepackage{autonum}
+
 \usepackage{SekineLabOutline}            % 関根研究室梗概用スタイルファイル
 
-\usepackage{mathtools}
-\mathtoolsset{showonlyrefs}
+
+%\mathtoolsset{showonlyrefs}
 
 \newcommand{\rad}{radii polynomial approach}
 \newcommand{\nk}{Newton-Kantorovich}
-\newcommand{\vdp}{van der Pol}
+\newcommand{\vdp}{van der Pol方程式}
 \newcommand{\infg}{無限次元ガウスの消去法}
 \newcommand{\fre}{Fr\'{e}chet}
 
@@ -44,54 +52,111 @@
 \vspace{-1mm}
 精度保証付き数値計算に関する定理の一つに，\nk{}型の定理を利用した\rad{}がある．この定理は有限次元や無限次元を問わず, 非線形方程式や偏微分方程式など殆どの微分方程式に用いることができる．
 
-従来の\rad{}では，Banach空間は重み付き$l_1$空間より定義している．$l_1$空間を用いることで，従来手法よりも精度の向上を行うことができる．そこで，本研究では，\rad{}の評価値計算の際に，\infg{}を用いていることで，適用可能な問題を増やすことを目的とする．
+従来の\rad{}では，ノルム空間の定義に重み付き$l_1$空間を用いている．重み付き$l_1$空間を用いると，$l_1$空間を用いた場合よりも，定理の適用できる問題が少ない．従来手法で重み付き$l_1$空間を用いている要因として，計算過程に計算困難な無限次元の問題が生じるためである．
+
+本研究では，\vdp{}
+\begin{equation}
+  \frac{d^2x}{dt^2} - \mu (1-x^2)\frac{dx}{dt}+x=0
+\end{equation}
+を問題とし，無限次元ガウスの消去法を用いて，\rad{}におけるノルム空間を$l_1$空間で定義可能か検証することを目的とする．
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \vspace{-1mm}
-\section{\rad{}}
+\section{\rad{} \cite{github}}
 \vspace{-1mm}
 
 \begin{Thm}
+  \label{thm:radii}
   有界線形作用素$A^\dagger \in \mathcal{L}(X, Y), A \in \mathcal{L}(Y, X)$を考え，作用素$F:X \rightarrow Y$が$C^1\text{-\fre{}}$微分可能であるとする．また，$A$が単射で，$AF:X \rightarrow X$とする．いま，$\bar{x} \in X$に対して，
-  \begin{equation}
-    \begin{split}
+  \begin{align}
       \|AF(\bar{x})\|_X                             & \leq Y_0                                             \\
       \|I-AA^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
       \|A(DF(\bar{x})-A^\dagger)\|_{\mathcal{L}(X)} & \leq Z_1                                             \\
-      \|A(DF(b)-DF(\bar{x}))\|_{\mathcal{L}(X)}       & \leq Z_2(r)r,\ \forall b \in \overline{B(\bar{x},r)}
-    \end{split}
+      \begin{split}
+        \|A(DF(b)-DF(\bar{x}))\|_{\mathcal{L}(X)} &\leq Z_2(r)r, \\ & \forall b \in \overline{B(\bar{x},r)}
+      \end{split}
+  \end{align}
+  が成り立つとする．このとき
+  \begin{equation}
+    p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r+Y_0
   \end{equation}
+  をradii polynomialといい，もし$p(r_0)<0$となる$r_0>0$が存在すれば，$F(\tilde{x})=0$をみたす$\tilde{x}$が$\overline{B(\tilde{x},r_0)}$内に一意存在する.
 \end{Thm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-1mm}
+\section{提案手法}
+\vspace{-1mm}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{-1mm}
-\section{既存手法}
-\vspace{-1mm}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-既存手法は～
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{-1mm}
-\section{提案手法} 
-\vspace{-1mm}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-提案手法は～
+\rad{}で用いられる作用素$A_M,\ DF(x)$を以下のように定義する．
+\begin{equation}
+  \begin{split}
+    DF(x) = \left[
+      \begin{array}{c|ccc}
+        0 & \cdots & 1 & \cdots \\ \hline
+        \vdots & & \vdots &  \\
+        \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
+        \vdots & & \vdots &
+      \end{array}
+    \right] %\in \mathbb{C}^{(2N+2M) \times (2N+2M)}
+  \end{split}
+\end{equation}
+また，
+\begin{equation}
+  \bar{x} = (\omega,\ \underbrace{0,\cdots,0}_{M_2},\ a,\ \underbrace{0,\cdots,0}_{M_2}) \in \mathbb{C}^{2N+2M_2}
+\end{equation}
+と定めると，$A_M$の定義は，以下のように定義できる．
+\begin{equation}
+  A_M = \left(
+  \begin{array}{c|ccc}
+    DF(\bar{x})^{-1} & 0 & \cdots & \cdots \\ \hline
+    0 & \lambda_N^{-1} &  & 0 \\
+    \vdots &  & \lambda_{N+1}^{-1} &  \\
+    \vdots & 0 &   & \ddots
+  \end{array}
+  \right)
+\end{equation}
+定義した作用素を用いて，$\| AF(\bar{x}) \| \leq Y_0$を計算する．$\Pi_N$を射影演算子とし，
+\begin{equation}
+  \begin{split}
+    &\| I_{X_2} - S\|\\
+    &= \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right)|_{X_2}  \\
+    &\quad -(\left( I-\Pi_N \right) ADF( \bar{x} ))|_{X_1} \left((\Pi_N ADF(\bar{x}))|_{X_1}\right)^{-1}\\
+    &\qquad ((I-\Pi_N)ADF(\bar{x}))|_{X_2} \\
+    & < 1
+  \end{split}
+\end{equation}
+となれば，ノルム空間は$l_1$空間で定義可能である．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{-1mm}
 \section{実験結果}
 \vspace{-1mm}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-実験結果は～
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+実験では，フーリエ係数列のサイズを変更した際のノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において無限次元ガウスの消去法による計算手法が有効であることがわかる．
+
+\begin{table}[htbp]
+  \centering
+  \caption{フーリエサイズとノルム値}
+  \label{tab:norm-num}
+  \begin{tabular}{c||c}
+    フーリエサイズ & $\| I_{X_2}-S \|$ \\ \hline
+    50 & 0.22815114629236252 \\
+    100&0.11455533660051737\\
+    150&0.07655718822651922\\
+    200&0.05749210273025131
+\end{tabular}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{-1mm}
 \section{おわりに}
 \vspace{-1mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-おわりに～
+本研究では，\rad{}の適用できる問題を増やすことを，無限次元ガウスの消去法を用いることで可能になるかを検証した．実験より，\rad{}の定理の一部の評価式に対し，期待した結果を得ることができ，無限次元ガウスの消去法が有効であることがわかった．今後の課題として，無限次元ガウスの消去法を他の評価式を対象に適応する手法を検討する．
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -100,7 +165,7 @@
 \vspace{-1mm}
 
 {\footnotesize
-\bibliography{reference} 
+\bibliography{reference}
 }
 \bibliographystyle{junsrt} %参考文献出力スタイル
 
