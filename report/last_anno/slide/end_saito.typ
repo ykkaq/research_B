@@ -1,0 +1,446 @@
+// Get Polylux from the official package repository
+#import "@preview/polylux:0.3.1": *
+//https://typst.app/universe/package/polylux/
+#import "@preview/cetz:0.3.1"
+//https://github.com/cetz-package/cetz
+#import "@preview/showybox:2.0.3":*
+
+#import table: cell, header
+
+// Make the paper dimensions fit for a presentation and the text larger
+#set page(
+  paper: "presentation-16-9"
+)
+#import themes.simple: *
+
+#set text(
+  lang:"ja",
+  font: "Harano Aji Mincho",
+  size: 22pt,
+)
+
+#show heading: set text(
+  //  headingのフォントを変更
+  font: "Harano Aji Gothic",
+  size: 30pt,
+)
+
+
+#show figure.where(
+  kind: table
+): set figure.caption(position: top)
+
+
+#show table.cell.where(y: 0): set text(weight: "bold")
+
+#set table(
+  stroke: (x,y)=>(
+    x: if x == 1 {1pt} else {0pt},
+    y: if y== 0 or y==1 {1pt} else {0pt},
+    right: none,
+    bottom: 1pt
+  )
+)
+
+
+
+// shortcut
+#let fre() = "Fr"+str.from-unicode(233)+"chet"
+#let nk() = "Newton-Kantorovich"
+#let rad() = "radii-polynomial approach"
+#let vdp()= "van der Pol方程式"
+#let infg()= "無限次元ガウスの消去法"
+
+#set underline(
+  offset: 3pt
+)
+
+#set math.mat(delim: "[")
+
+// --- maintain ---
+
+// タイトルスライド
+#slide[
+  #set align(horizon + center)
+  #set text(size:32pt)
+  == 無限次元ガウスの消去法を用いた\ #rad()の改良
+  \
+  #set text(size:25pt)
+  関根研究室　2131701　齋藤 悠希
+]
+
+#slide[
+  == はじめに
+  #set align(horizon)
+  #underline[*#rad()* 非線形方程式の解の精度保証に使われる定理]
+
+  \
+
+  #showybox(
+    frame: (title-color: blue.darken(30%), border-color: blue.darken(30%), body-color: aqua.lighten(80%)),
+    title: [#rad()],
+    title-style: (weight: 600)
+    )[
+      $tilde(x) in X$ に対して、正定数 $Y_0,Z_0,Z_1$ および、非減少関数 $Z_2(r)(r>0)$ が存在して、次の式を満たすとする．
+  ]
+]
+
+#slide[
+  #set text(size: 0.9em)
+  #set align(horizon)
+
+  #showybox(
+    frame: (title-color: blue.darken(30%), border-color: blue.darken(30%), body-color: aqua.lighten(80%)),
+    title: [#rad()（続き）],
+    title-style: (weight: 600)
+    )[
+  #set align(horizon)
+  $
+  ||A F (macron(x))||_X &lt.eq Y_0 \
+  ||I-A A^dagger||_(cal(L)(X)) &lt.eq Z_0 \
+  ||A (D F(macron(x))-A^dagger)||_(cal(L)(X)) &lt.eq Z_1 \
+  ||A (D F(b)-D F (macron(x)))||_(cal(L)(X)) &lt.eq Z_2(r), #h(10pt) forall b &in overline(B(tilde(x),r))
+  $
+  このとき，radii polynomialを以下で定義する．
+  $
+  p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r + Y_0
+  $
+  これに対し、$p(r_0)<0$ となる $r_0>0$ が存在するならば、$F(tilde(x))=0$ を満たす解 $tilde(x)$ が $overline(B(tilde(x),r))$ 内に一意に存在する．
+  ]
+]
+
+#slide[
+  == 既存手法
+  #set align(horizon )
+  /*
+  #showybox(
+    frame: (title-color: blue.darken(30%), border-color: blue.darken(30%), body-color: aqua.lighten(80%)),
+  )[
+    $
+      norm(a)_omega := sum_(k in bb(Z)) abs(a_k) omega^(abs(k)) < oo
+    $
+  ]
+  */
+
+  - 無限次元の作用素を計算する
+
+  - （作用素の例）
+  $
+    A^dagger = mat(
+      0, dots.h.c, 1, dots.h.c, dots.h.c, 0, dots.h.c;
+      dots.v, , dots.v;
+      partial_omega f_k, dots.h.c, partial_(a_j) f_k, dots.h.c, , 0;
+      dots.v, , dots.v;
+      dots.v, , , , lambda_N, , 0;
+      0, , 0, , , lambda_(N+1);
+      dots.v, , , , 0, ,  dots.down;
+      augment: #(hline: 1, vline: 1)
+    )
+  $
+]
+
+#slide[
+  #set text(size: 1em)
+
+  == 既存手法
+  #set align(horizon)
+
+  従来手法では，#underline[*重み付き$l_1$空間*]を用いてBanach空間を定義．
+
+  #showybox(
+    frame: (
+      title-color: blue.darken(30%),
+      border-color: blue.darken(30%),
+      body-color: aqua.lighten(80%)
+      ),
+    title: [重み付き$l_1$空間],
+    title-style: (weight: 600)
+  )[
+    重み $omega_k > 0, forall k in bb(Z) $ としたとき，
+    $
+      l_omega^1 := { a = (a_k)_(k in bb(Z)) : a_k in bb(C), norm(a)_omega := sum_(k in bb(Z)) abs(a_k) omega_k < oo }
+    $
+  ]
+]
+
+#slide[
+  == 既存手法
+  #set align(horizon + center)
+  #showybox(
+    body-style: (
+      align: center,
+    ),
+  )[
+    計算で無限次元作用素が生じる\
+    #sym.arrow.r 有限で打ち切り，重み $omega_k$ で修正
+  ]
+
+  #showybox(
+    frame: (
+      border-color: red.darken(50%),
+      title-color: red.lighten(60%),
+      body-color: red.lighten(80%)
+    ),
+    title-style: (
+      align: center,
+      color: black,
+      weight: 600
+    ),
+    body-style: (
+      align: center,
+    ),
+    title: [問題点],
+    [
+      重み付き $l_1$　空間ではノルム値が大きくなる．\
+      #sym.arrow.r 定理を適用できる問題が少ない
+    ]
+  )
+]
+
+#slide[
+  == 目的
+  #set align(center + horizon)
+  #set text(size:26pt)
+
+  #rad()において \
+  $l_1$空間とするために \
+  無限次元作用素を無限次元ガウスの消去法で \
+  計算可能か検証する
+]
+
+#slide[
+  == 提案手法
+  #set align(horizon)
+
+  扱う問題を#vdp()とし，フーリエスペクトル法で求めた\ 近似周期解をもとに，微分方程式の精度保証をする
+
+  #showybox(
+    frame: (
+      title-color: blue.darken(30%),
+      border-color: blue.darken(30%),
+      body-color: aqua.lighten(80%)
+      ),
+    title: [#vdp()],
+    title-style: (weight: 600)
+  )[
+    $
+
+      frac(d^2x, d t^2) - mu (1-x^2)+x=0
+    $
+    未知関数は$x(t)$，$mu>0$は非線形の減衰の強さを表すパラメータ \ である．
+  ]
+]
+
+#let zero_padding = $0, dots.h.c,0$
+
+#slide[
+  == 提案手法
+  1. $D F(x)$と$A_M$を定義する．
+  #set align(horizon)
+
+  #showybox(
+    frame: (
+      title-color: blue.darken(30%),
+      border-color: blue.darken(30%),
+      body-color: aqua.lighten(80%)
+      ),
+    title: [ヤコビ行列$D F(x)$],
+    title-style: (weight: 600)
+  )[
+    周期とフーリエ係数列$(omega, a)$より，$ x = (omega, underbrace(#zero_padding, "M"), a, underbrace(#zero_padding, "M"))$と定め，
+    $
+      D F(x) = mat(
+        0, dots.h.c, 1, dots.h.c;
+        dots.v, , dots.v;
+        partial_omega f_k, dots.h.c, partial_(a_j) f_k, dots.h.c;
+        dots.v, , dots.v;
+        augment: #(hline: 1, vline: 1)
+      )
+    $
+  ]
+]
+
+#slide[
+  == 提案手法
+  #set align(horizon)
+  #showybox(
+    frame: (
+      title-color: blue.darken(30%),
+      border-color: blue.darken(30%),
+      body-color: aqua.lighten(80%)
+      ),
+    title: [作用素$A_M$],
+    title-style: (weight: 600)
+  )[
+    $macron(x) = (omega, underbrace(#zero_padding, "M"), a, underbrace(#zero_padding, "M"))$と定め，
+    $
+      A_M = mat(
+        D F(macron(x))^(-1), 0, dots.h.c,  dots.h.c;
+        0, lambda_N^(-1),,0;
+        dots.v, , lambda_(N+1)^(-1), ;
+        dots.v, 0, , dots.down;
+        augment: #(hline: 1, vline: 1)
+      )
+    $
+  ]
+]
+
+
+
+
+/*
+#slide[
+  == 提案手法
+  #set text(size:20pt)
+  2. $norm(A F(macron(x))) lt.eq Y_0$について，無限次元ガウスの消去法を用いて求める
+  #set align(horizon)
+  #showybox()[
+  $A = D F(x)^(-1)$とおき，$phi.alt := D F (macron(x))^(-1) F(tilde(x))$とおくと，
+  $
+  D F(macron(x)) phi.alt = F(tilde(x))
+  $
+
+  そして，射影演算子$Pi_N$と作用素$A_M$より
+
+    #set math.mat(delim: "(")
+    $
+    A_M mat(
+      Pi_N D F (macron(x)) Pi_N, Pi_N D F (macron(x)) (I-Pi_N);
+      (I - Pi_N) D F (macron(x)) Pi_N, (I - Pi_N) D F (macron(x)) (I-Pi_N);
+    )
+    mat(
+      Pi_N phi.alt;
+      (I-Pi_N) phi.alt
+    ) \ = A_M mat(
+      Pi_N F(tilde(x)) ;
+      (I-Pi_N) F(tilde(x))
+    )
+    $
+  ]
+]
+*/
+
+
+#slide[
+  == 提案手法
+  #set text(size:20pt)
+  
+  2. $norm(A F(macron(x))) lt.eq Y_0$について，無限次元ガウスの消去法を用いて求める
+  
+  #set align(horizon)
+
+  #showybox()[
+  $A = D F(x)^(-1)$とおき，$phi.alt := D F (macron(x))^(-1) F(tilde(x))$とおくと，
+  $
+  D F(macron(x)) phi.alt = F(tilde(x))
+  $
+  ]
+
+  ここで，射影演算子$Pi_N$と作用素$A_M$より，以下の作用素を定義する．
+
+  #showybox(
+    frame: (
+      title-color: blue.darken(30%),
+      border-color: blue.darken(30%),
+      body-color: aqua.lighten(80%)
+      ),
+    //title: [],
+    //title-style: (weight: 600)
+  )[
+    $
+      &T:= Pi_N A_M D F(macron(x))|_(X_1):X_1 arrow.r X_1,quad &&B:= Pi_N A_M D F(macron(x))|_(X_2):X_2 arrow.r X_1,\
+      &C:= (I-Pi_N) A_M D F(macron(x))|_(X_1):X_1 arrow.r X_2,quad &&E:= (I-Pi_N) A_M D F(macron(x))|_(X_2):X_1arrow.r X_2
+    $
+  ]
+]
+
+#slide[
+  == 提案手法
+
+  #set align(horizon)
+
+  $D F(macron(x)) phi.alt = F(tilde(x))$は，作用素の定義より，以下に変形できる．
+  #showybox()[
+    #set math.mat(delim: "(")
+    $
+    mat(
+      T,B;
+      C,E;
+    )
+    mat(
+      Pi_N phi.alt;
+      (I-Pi_N) phi.alt
+    ) = mat(
+      Pi_N A_M F(tilde(x)) ;
+      (I-Pi_N) A_M F(tilde(x))
+    )
+    $
+  ]
+
+  \ 
+  
+  #showybox(
+    body-style: (
+      align: center
+    )
+  )[
+    #set math.mat(delim: "(")
+    $S := D - C T^(-1) B$ としたとき，
+    $norm(I_(X_2) - S) < 1 $となれば，\
+    $S$は全単射となる．
+  ]
+]
+
+#slide[
+  == 提案手法
+
+  #set align(horizon)
+  計算機での簡略化のため，以下のように変形する．
+  #showybox(
+    body-style: (
+      align: center
+    )
+  )[
+    $
+      norm(I_(X_2) - S) &= norm(I_(X_2) - (D - C T^(-1) B)) \
+      &lt.eq norm(I_(X_2) + D) + norm(C) norm(T^(-1)) norm(B)\
+      &< 1
+    $
+  ]
+]
+
+// -------------------------
+
+#slide[
+  == 実験結果
+  #set align(horizon)
+
+  #figure(
+    //supplement: [],
+    //numbering: none,
+    caption: [フーリエ係数の次数の変化による$norm(I_(X_2) - S)$の比較],
+    table(
+      columns: 2,
+      align: center + horizon,
+      inset:12pt,
+      header(
+        [次数], [$norm(I_(X_2) - S)$],
+      ),
+      [50],[0.22815114629236252],
+      [100],[0.11455533660051737],
+      [150],[0.07655718822651922],
+      [200],[0.05749210273025131],
+    ),
+  )
+]
+
+#slide[
+  == 今後の課題
+  #set align(horizon + left)
+
+  - 無限次元ガウスの消去法を用いた$Y_0$の展開
+
+  \
+
+  - Juliaを用いたプログラムの実証
+]

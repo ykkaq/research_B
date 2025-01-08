@@ -29,9 +29,12 @@
 ): set figure.caption(position: top)
 
 // shortcut
-#let fc() = "Fr"+str.from-unicode(233)+"chet"
+#let fre() = "Fr"+str.from-unicode(233)+"chet"
 #let nk() = "Newton-Kantorovich"
-#let rp() = "radii-polynomial approach"
+#let rad() = "radii-polynomial approach"
+#let vdp()= "van der Pol方程式"
+#let infg()= "無限次元ガウスの消去法"
+
 #set underline(
   offset: 3pt
 )
@@ -42,7 +45,7 @@
 #slide[
   #set align(horizon + center)
   #set text(size:32pt)
-  == 無限次元ガウスの消去法を用いた\ #rp()の改良
+  == 無限次元ガウスの消去法を用いた\ #rad()の改良
   \
   #set text(size:25pt)
   関根研究室　2131701　齋藤 悠希
@@ -133,7 +136,7 @@
   == 提案手法
 
   #set align(horizon + left)
-  #rp()の一部， $Y_0$の評価式 \
+  #rad()の一部， $Y_0$の評価式 \
 
   #set align(center)
   $||A F (tilde(x))||_X <= Y_0$\
