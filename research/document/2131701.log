@@ -1,9 +1,10 @@
-This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.sjis) (TeX Live 2024) (preloaded format=platex 2024.12.12)  4 JAN 2025 18:26
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.sjis) (TeX Live 2024) (preloaded format=platex 2024.12.12)  8 JAN 2025 00:36
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**d:/workspace_win/research_B/research/document/2131701
-(d:/workspace_win/research_B/research/document/2131701.tex
+**2131701.tex
+(./2131701.tex
 pLaTeX2e <2023-02-14>+1, based on
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
@@ -1045,12 +1046,12 @@ L3 programming layer <2024-11-02>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 11355 strings out of 473988
- 184086 string characters out of 5738183
- 1026621 words of memory out of 5000000
+ 11354 strings out of 473988
+ 183950 string characters out of 5738183
+ 1025621 words of memory out of 5000000
  34190 multiletter control sequences out of 15000+600000
  585797 words of font info for 162 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 84i,27n,93p,725b,1803s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,27n,93p,683b,1803s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 2131701.dvi (85 pages, 381656 bytes).
+Output written on 2131701.dvi (85 pages, 382556 bytes).
