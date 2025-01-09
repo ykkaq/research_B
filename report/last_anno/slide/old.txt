@@ -42,6 +42,8 @@
   )
 )
 
+
+
 // shortcut
 #let fre() = "Fr"+str.from-unicode(233)+"chet"
 #let nk() = "Newton-Kantorovich"
@@ -81,43 +83,7 @@
   #underline[精度保証付き数値計算]
 ]
 
-#slide[
-  == 背景 - #vdp()
-  #set align(horizon)
-  #side-by-side[
-    #showybox(
-      frame: (
-        title-color: blue.darken(30%),
-        border-color: blue.darken(30%),
-        body-color: aqua.lighten(80%)
-        ),
-      title: [#vdp()],
-      title-style: (weight: 600)
-    )[
-      $
-        frac(d^2x, d t^2) - mu (1-x^2)+x=0
-      $
-      - $x(t)$ : 未知関数
-      - $mu>0$ : 非線形の減衰の強さを表すパラメータ
-    ]
-  ][
-    > van der Polの図 <
-  ]
 
-  //フーリエ・スペクトル法 #sym.arrow.r 近似周期解 #sym.arrow.r 方程式の精度保証
-]
-
-#slide[
-  == newo
-  #set align(horizon)
-  #side-by-side[
-    newo
-  ][
-    $ x y=z$
-  ][
-    #lorem(5)
-  ]
-]
 
 #slide[
   == はじめに
@@ -251,7 +217,28 @@
   無限次元ガウスの消去法を用いた計算が可能か検証する
 ]
 
+#slide[
+  == 提案手法
+  #set align(horizon)
 
+  扱う問題を#vdp()とし，フーリエ・スペクトル法で求めた\ 近似周期解をもとに，常微分方程式の精度保証をする
+
+  #showybox(
+    frame: (
+      title-color: blue.darken(30%),
+      border-color: blue.darken(30%),
+      body-color: aqua.lighten(80%)
+      ),
+    title: [#vdp()],
+    title-style: (weight: 600)
+  )[
+    $
+
+      frac(d^2x, d t^2) - mu (1-x^2)+x=0
+    $
+    未知関数は$x(t)$，$mu>0$は非線形の減衰の強さを表すパラメータ \ である．
+  ]
+]
 
 #let zero_padding = $0, dots.h.c,0$
 
