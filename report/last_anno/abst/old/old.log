@@ -1,10 +1,10 @@
-This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.sjis) (TeX Live 2024) (preloaded format=platex 2024.12.12)  15 JAN 2025 15:05
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.sjis) (TeX Live 2024) (preloaded format=platex 2024.12.12)  15 JAN 2025 15:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**Outline.tex
-(./Outline.tex
+**old.tex
+(./old.tex
 pLaTeX2e <2023-02-14>+1, based on
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
@@ -415,8 +415,8 @@ File: l3backend-dvips.def 2024-05-08 L3 backend support: dvips
 \g__pdf_backend_annotation_int=\count310
 \g__pdf_backend_link_int=\count311
 \g__pdf_backend_link_sf_int=\count312
-) (./Outline.aux)
-\openout1 = `Outline.aux'.
+) (./old.aux)
+\openout1 = `old.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
@@ -476,9 +476,9 @@ LaTeX Font Info:    ... okay on input line 40.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 40.
-(./Outline.out) (./Outline.out)
+(./old.out) (./old.out)
 \@outlinefile=\write4
-\openout4 = `Outline.out'.
+\openout4 = `old.out'.
 
 \autonum@environmentWidth=\skip63
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
@@ -538,27 +538,27 @@ LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
 (Font)              scaled to size 8.64899pt on input line 143.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
 (Font)              scaled to size 8.64899pt on input line 143.
-(./Outline.bbl)
+(./old.bbl)
 
 [1
 
 
-] (./Outline.aux)
+] (./old.aux)
  ***********
 pLaTeX2e <2023-02-14>+1, based on
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
  ***********
-Package rerunfilecheck Info: File `Outline.out' has not changed.
+Package rerunfilecheck Info: File `old.out' has not changed.
 (rerunfilecheck)             Checksum: B658AE853168A353721D59DB59859769;566.
  ) 
 Here is how much of TeX's memory you used:
  14323 strings out of 473988
- 233528 string characters out of 5738183
- 694776 words of memory out of 5000000
+ 233432 string characters out of 5738183
+ 694768 words of memory out of 5000000
  37272 multiletter control sequences out of 15000+600000
  628288 words of font info for 112 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 72i,22n,79p,397b,523s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,22n,79p,393b,523s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Outline.dvi (1 page, 14988 bytes).
+Output written on old.dvi (1 page, 14948 bytes).

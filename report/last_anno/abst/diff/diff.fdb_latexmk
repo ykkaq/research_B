@@ -1,0 +1,17 @@
+# Fdb version 4
+["dvipdf"] 0 "diff.dvi" "diff.pdf" "diff" 0 -1
+  "diff.dvi" 0 -1 0 "latex"
+  (generated)
+  "diff.pdf"
+  (rewritten before read)
+["latex"] 1736921597.07016 "diff.tex" "diff.dvi" "diff" 1736921597.73559 2
+  "c:/texlive/2024/texmf-dist/web2c/texmf.cnf" 1734007376 42021 a58d36c7ede3d2fc9f93da62d691ddff ""
+  "c:/texlive/2024/texmf-var/web2c/euptex/platex.fmt" 1734012611 3285692 85b488732a00ded3a365bcfc60bafc5f ""
+  "c:/texlive/2024/texmf.cnf" 1734012265 713 e69b156964470283e0530f5060668171 ""
+  "diff.aux" 1736921597 32 3985256e7290058c681f74d7a3565a19 "latex"
+  "diff.tex" 1736921596 21914 4ccdf011d9b44e2e14f7105716ef77a0 ""
+  (generated)
+  "diff.aux"
+  "diff.dvi"
+  "diff.log"
+  (rewritten before read)

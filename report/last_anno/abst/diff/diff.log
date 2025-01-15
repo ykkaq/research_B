@@ -1,0 +1,29 @@
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.sjis) (TeX Live 2024) (preloaded format=platex 2024.12.12)  15 JAN 2025 15:13
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**diff.tex
+(./diff.tex
+pLaTeX2e <2023-02-14>+1, based on
+LaTeX2e <2024-11-01> patch level 1
+L3 programming layer <2024-11-02>
+
+./diff.tex:1: LaTeX Error: Invalid UTF-8 byte "FF.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ^^ff
+        ^^fe ^^@ ^^@\^^@d^^@o^^@c^^@u^^@m^^@e^^@n^^@t^^@c^^@l^^@a^^@s^^@s^^@... 
+Here is how much of TeX's memory you used:
+ 16 strings out of 473988
+ 409 string characters out of 5738183
+ 383968 words of memory out of 5000000
+ 23250 multiletter control sequences out of 15000+600000
+ 561940 words of font info for 53 fonts, out of 8000000 for 9000
+ 929 hyphenation exceptions out of 8191
+ 15i,0n,23p,148b,18s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+No pages of output.

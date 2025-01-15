@@ -1,10 +1,10 @@
-This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.sjis) (TeX Live 2024) (preloaded format=platex 2024.12.12)  15 JAN 2025 15:05
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.sjis) (TeX Live 2024) (preloaded format=platex 2024.12.12)  15 JAN 2025 15:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**Outline.tex
-(./Outline.tex
+**diff.tex
+(./diff.tex
 pLaTeX2e <2023-02-14>+1, based on
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
@@ -407,39 +407,98 @@ TextBlockOrigin set to 0pt x 0pt
 \c@Axi=\count307
 \c@Def=\count308
 \c@Thm=\count309
-) (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
+) (c:/texlive/2024/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box87
+\UL@hyphenbox=\box88
+\UL@skip=\skip63
+\UL@hook=\toks39
+\UL@height=\dimen265
+\UL@pe=\count310
+\UL@pixel=\dimen266
+\ULC@box=\box89
+Package: ulem 2019/11/18
+\ULdepth=\dimen267
+) (c:/texlive/2024/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2024/06/23 v1.3e Standard LaTeX Color (DPC)
+ (c:/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: dvips.def on input line 149.
+ (c:/texlive/2024/texmf-dist/tex/latex/graphics-def/dvips.def
+File: dvips.def 2022/09/22 v3.1e Graphics/color driver for dvips
+) (c:/texlive/2024/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+) (c:/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (c:/texlive/2024/texmf-dist/tex/latex/oberdiek/settobox.sty
+Package: settobox 2016/05/16 v1.5 Assign box dimensions to length registers (HO)
+)
+\DIFdelgraphicsbox=\box90
+\DIFdelgraphicswidth=\skip64
+\DIFdelgraphicsheight=\skip65
+LaTeX Info: Redefining \DIFaddbegin on input line 94.
+LaTeX Info: Redefining \DIFaddend on input line 95.
+LaTeX Info: Redefining \DIFdelbegin on input line 96.
+LaTeX Info: Redefining \DIFdelend on input line 97.
+LaTeX Info: Redefining \DIFaddbeginFL on input line 102.
+LaTeX Info: Redefining \DIFaddendFL on input line 103.
+LaTeX Info: Redefining \DIFdelbeginFL on input line 104.
+LaTeX Info: Redefining \DIFdelendFL on input line 105.
+ (c:/texlive/2024/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count311
+\lst@gtempboxa=\box91
+\lst@token=\toks40
+\lst@length=\count312
+\lst@currlwidth=\dimen268
+\lst@column=\count313
+\lst@pos=\count314
+\lst@lostspace=\dimen269
+\lst@width=\dimen270
+\lst@newlines=\count315
+\lst@lineno=\count316
+\lst@maxwidth=\dimen271
+ (c:/texlive/2024/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
+) (c:/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+\c@lstnumber=\count317
+\lst@skipnumbers=\count318
+\lst@framebox=\box92
+) (c:/texlive/2024/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/09/23 1.10c listings configuration
+))
+Package: listings 2024/09/23 1.10c (Carsten Heinz)
+ (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 File: l3backend-dvips.def 2024-05-08 L3 backend support: dvips
-\l__pdf_internal_box=\box87
-\l__pdf_backend_content_box=\box88
-\l__pdf_backend_model_box=\box89
-\g__pdf_backend_annotation_int=\count310
-\g__pdf_backend_link_int=\count311
-\g__pdf_backend_link_sf_int=\count312
-) (./Outline.aux)
-\openout1 = `Outline.aux'.
+\l__pdf_internal_box=\box93
+\l__pdf_backend_content_box=\box94
+\l__pdf_backend_model_box=\box95
+\g__pdf_backend_annotation_int=\count319
+\g__pdf_backend_link_int=\count320
+\g__pdf_backend_link_sf_int=\count321
+) (./diff.aux)
+\openout1 = `diff.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 126.
+LaTeX Font Info:    ... okay on input line 126.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: dvips
@@ -475,90 +534,112 @@ LaTeX Font Info:    ... okay on input line 40.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 40.
-(./Outline.out) (./Outline.out)
+Package hyperref Info: Link coloring OFF on input line 126.
+(./diff.out) (./diff.out)
 \@outlinefile=\write4
-\openout4 = `Outline.out'.
+\openout4 = `diff.out'.
 
-\autonum@environmentWidth=\skip63
+\autonum@environmentWidth=\skip66
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 40.
+(Font)              scaled to size 6.72699pt on input line 126.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 40.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+(Font)              scaled to size 4.805pt on input line 126.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 126.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 126.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+\c@lstlisting=\count322
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 16.60605pt on input line 43.
+(Font)              scaled to size 16.60605pt on input line 129.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 16.60605pt on input line 43.
+(Font)              scaled to size 16.60605pt on input line 129.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 43.
+(Font)              scaled to size 13.83836pt on input line 129.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 43.
+(Font)              scaled to size 13.83836pt on input line 129.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 43.
+(Font)              scaled to size 13.83836pt on input line 129.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 43.
+(Font)              scaled to size 13.83836pt on input line 129.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 43.
+(Font)              scaled to size 11.53198pt on input line 129.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 43.
+(Font)              scaled to size 11.53198pt on input line 129.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 5.76599pt on input line 43.
+(Font)              scaled to size 5.76599pt on input line 129.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 51.
+(Font)              scaled to size 11.53198pt on input line 137.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 11.53198pt on input line 51.
+(Font)              scaled to size 11.53198pt on input line 137.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 67.
+(hyperref)                removing `\@ifnextchar' on input line 153.
 
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 71.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 157.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 71.
+(Font)              scaled to size 9.60999pt on input line 157.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 71.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 157.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 71.
+(Font)              scaled to size 9.60999pt on input line 157.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 72.
+(Font)              scaled to size 6.72699pt on input line 158.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 72.
+(Font)              scaled to size 4.805pt on input line 158.
 
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 206--208
+\JY1/mc/m/n/10 定義した作用素を用いて ，
+ []
+
+
+Underfull \hbox (badness 1389) in paragraph at lines 206--208
+[]|   [][][]|   [][]\JY1/mc/m/n/10 を[]|   [][][]|   [][]る ．
+ []
+
+
+Overfull \hbox (49.15271pt too wide) in paragraph at lines 216--218
+\JY1/mc/m/n/10 となれば ， []|   [][][]|   [][]で[]|   [][]あ
+ []
+
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 143.
+(Font)              scaled to size 8.64899pt on input line 229.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 143.
-(./Outline.bbl)
+(Font)              scaled to size 8.64899pt on input line 229.
+(./diff.bbl
 
 [1
 
 
-] (./Outline.aux)
+])
+
+
+
+[2
+
+] (./diff.aux)
  ***********
 pLaTeX2e <2023-02-14>+1, based on
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
  ***********
-Package rerunfilecheck Info: File `Outline.out' has not changed.
+Package rerunfilecheck Info: File `diff.out' has not changed.
 (rerunfilecheck)             Checksum: B658AE853168A353721D59DB59859769;566.
  ) 
 Here is how much of TeX's memory you used:
- 14323 strings out of 473988
- 233528 string characters out of 5738183
- 694776 words of memory out of 5000000
- 37272 multiletter control sequences out of 15000+600000
- 628288 words of font info for 112 fonts, out of 8000000 for 9000
+ 16028 strings out of 473988
+ 258507 string characters out of 5738183
+ 714225 words of memory out of 5000000
+ 38943 multiletter control sequences out of 15000+600000
+ 628394 words of font info for 113 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 72i,22n,79p,397b,523s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,22n,79p,414b,727s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Outline.dvi (1 page, 14988 bytes).
+Output written on diff.dvi (2 pages, 18092 bytes).

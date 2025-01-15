@@ -31,17 +31,6 @@
 ): set figure.caption(position: top)
 
 
-#show table.cell.where(y: 0): set text(weight: "bold")
-
-#set table(
-  stroke: (x,y)=>(
-    x: if x == 1 {1pt} else {0pt},
-    y: if y== 0 or y==1 {1pt} else {0pt},
-    right: none,
-    bottom: 1pt
-  )
-)
-
 // shortcut
 #let fre() = "Fr"+str.from-unicode(233)+"chet"
 #let nk() = "Newton-Kantorovich"
@@ -101,163 +90,205 @@
       - $mu>0$ : 非線形の減衰の強さを表すパラメータ
     ]
   ][
-    > van der Polの図 <
+    #figure(
+      image("vdp.png"),
+      caption:[van der Pol方程式 \ 初期値 $(x,y)=(0,2), mu = 1.0$]
+    )
   ]
 
   //フーリエ・スペクトル法 #sym.arrow.r 近似周期解 #sym.arrow.r 方程式の精度保証
 ]
 
 #slide[
-  == newo
-  #set align(horizon)
-  #side-by-side[
-    newo
-  ][
-    $ x y=z$
-  ][
-    #lorem(5)
-  ]
-]
-
-#slide[
-  == はじめに
-  #set align(horizon)
-  #underline[#text(21pt)[*#rad()* 非線形方程式の解の精度保証に使われる定理]]
-
-  \
-
-  #showybox(
-    frame: (title-color: blue.darken(30%), border-color: blue.darken(30%), body-color: aqua.lighten(80%)),
-    title: [#rad()],
-    title-style: (weight: 600)
-    )[
-      $tilde(x) in X$ に対して、正定数 $Y_0,Z_0,Z_1$ および、非減少関数 $Z_2(r)(r>0)$ が存在して、次の式を満たすとする．
-  ]
-]
-
-#slide[
-  #set text(size: 0.9em)
+  == 背景 - 先行研究
   #set align(horizon)
 
-  #showybox(
-    frame: (title-color: blue.darken(30%), border-color: blue.darken(30%), body-color: aqua.lighten(80%)),
-    title: [#rad()（続き）],
-    title-style: (weight: 600)
-    )[
-  #set align(horizon)
-  $
-  ||A F (macron(x))||_X &lt.eq Y_0 \
-  ||I-A A^dagger||_(cal(L)(X)) &lt.eq Z_0 \
-  ||A (D F(macron(x))-A^dagger)||_(cal(L)(X)) &lt.eq Z_1 \
-  ||A (D F(b)-D F (macron(x)))||_(cal(L)(X)) &lt.eq Z_2(r), #h(10pt) forall b &in overline(B(tilde(x),r))
-  $
-  このとき，radii polynomialを以下で定義する．
-  $
-  p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r + Y_0
-  $
-  これに対し、$p(r_0)<0$ となる $r_0>0$ が存在するならば、$F(tilde(x))=0$ を満たす解 $tilde(x)$ が $overline(B(macron(x),r))$ 内に一意に存在する．
-  ]
-]
-
-  /*
-#slide[
-  == 既存手法
-  #set align(horizon )
-
-  - 無限次元の作用素を計算する
-
-  - （作用素の例）
-  $
-    A^dagger = mat(
-      0, dots.h.c, 1, dots.h.c, dots.h.c, 0, dots.h.c;
-      dots.v, , dots.v;
-      partial_omega f_k, dots.h.c, partial_(a_j) f_k, dots.h.c, , 0;
-      dots.v, , dots.v;
-      dots.v, , , , lambda_N, , 0;
-      0, , 0, , , lambda_(N+1);
-      dots.v, , , , 0, ,  dots.down;
-      augment: #(hline: 1, vline: 1)
+  #set table(
+    stroke: (x,y)=>(
+      x: {0pt},
+      y: if y!=0 {1pt},
+      right: none,
+      bottom: 1pt
     )
-  $
+  )
+
+  #showybox(
+    frame: (title-color: blue.darken(30%), border-color: blue.darken(30%), body-color: aqua.lighten(80%)),
+    title: [#rad() [1]],
+    title-style: (weight: 600)
+    )[
+      #set text(size:21pt)
+      #set align(horizon)
+      #side-by-side()[
+        #table(
+          columns:(auto, auto),
+          table.header(
+          [],[]
+          ),
+          align: center,
+          inset:9pt,
+        )[
+          $X,Y$
+        ][
+          Banach空間
+        ][
+          $cal(L)(X,Y)$
+        ][
+          $X arrow.r Y$への\ 有界線形作用素の集合
+        ][
+          $A^dagger$
+        ][
+          $cal(L)(X,Y)$の要素
+        ][
+          $ A $
+        ][
+          $cal(L)(Y,X)$の要素
+        ][
+          $F$
+        ][
+          /*$X arrow.r Y$で*/$C^1$-#fre() 微分\ 可能な作用素
+        ]
+      ][
+      #showybox()[
+        $
+        norm(A F (macron(x)))_X &lt.eq Y_0 \
+        norm(I-A A^dagger)_(cal(L)(X)) &lt.eq Z_0 \
+        norm(A (D F(macron(x))-A^dagger))_(cal(L)(X)) &lt.eq Z_1 \
+        norm(A (D F(b)-D F (macron(x))))_(cal(L)(X)) &lt.eq Z_2(r), \
+        forall b &in overline(B(tilde(x),r))
+        $
+        ]
+      ]
+  ]
 ]
-  */
 
 
 #slide[
-  #set text(size: 1em)
+  == 背景 - 先行研究
+  #set align(horizon + center)
 
-  == 既存手法
+   #showybox(
+    frame: (title-color: blue.darken(30%), border-color: blue.darken(30%), body-color: aqua.lighten(80%)),
+    title: [#rad() [1] （続き）],
+    title-style: (weight: 600)
+    )[
+      #side-by-side()[
+      #set text(size:21pt)
+      #set align(horizon)
+
+      radii polynomialを以下で定義する．
+      $
+      p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r + Y_0
+      $
+      $r_0>0$ かつ $p(r_0)<0$ なら，\
+      $F(tilde(x))=0$ となる解 $tilde(x)$ が \
+      $overline(B(macron(x),r))$ 内に一意に存在する．
+      ][
+        #showybox()[
+          #cetz.canvas(length: 3cm, {
+            import cetz.draw: *
+
+            let rate = 1
+
+            circle((0,0), radius: (rate*1.5,rate*1))
+            content((rate*1.5*calc.cos(135deg)+0.1, 0*calc.sin(135deg)),text()[$overline(B(macron(x),r))$])
+
+            circle((0,0), radius:2pt, fill:gray)
+            content((-0.15,-0.1),[$ macron(x)$],)
+
+            //circle((0,-rate/2-0.1), radius: (rate/2,rate/3))
+
+            circle((0,-1*rate/2), radius:2pt, fill:gray)
+            content((-0.15,-1*rate/2),[$ tilde(x)$],)
+
+            line((0,0),(1.5*calc.cos(30deg), calc.sin(30deg)), name:"r")
+            content(("r.start", 50%, "r.end"), text()[$ r $],anchor: "south",padding:.1)
+          })
+        ]
+      ]
+    ]
+    #align(bottom+right)[#text(size:18pt, gray)[参考：[1]高安亮紀, Julia言語を使った精度保証付き数値計算のチュートリアル]]
+]
+
+#slide[
+  == 背景 - 先行研究
   #set align(horizon)
 
-  既存手法では，#underline[*重み付き$l_1$空間*]を用いてBanach空間を定義．
+  西窪の研究[2]では，#rad()において作用素 $A$ を，\
+  「$A^dagger$の#underline()[近似逆作用素] $arrow.r$ #underline()[真の逆作用素]」とおき，
+  $
+    A approx D F(x)^(-1) arrow.r A = D F(x)^(-1)\
+    A A^dagger approx I arrow.r A A^dagger = I
+  $
 
-  #showybox(
-    frame: (
-      title-color: blue.darken(30%),
-      border-color: blue.darken(30%),
-      body-color: aqua.lighten(80%)
-      ),
-    title: [重み付き$l_1$空間],
-    title-style: (weight: 600)
-  )[
-    重み $omega_k > 0, forall k in bb(Z) $ としたとき，
-    $
-      l_omega^1 := { a = (a_k)_(k in bb(Z)) : a_k in bb(C), norm(a)_omega := sum_(k in bb(Z)) abs(a_k) omega_k < oo }
-    $
-  ]
+  ノルムの計算を簡略化．
+
+  $
+  text("例）") quad norm(A(D F(macron(x))-A^dagger)) lt.eq Z_1  arrow.double.r norm(A D F(macron(x)) - I) lt.eq Z_1
+  $
+
+  #sym.arrow.r 精度は大きく低下しない，計算時間は短縮
+
+  #align(bottom+right)[#text(size:18pt, gray)[参考：[2]西窪壱華, #rad()における零点探索手順の削除]]
 ]
 
 #slide[
-  == 既存手法
-  #set align(horizon + center)
-  #showybox(
-    body-style: (
-      align: center,
-    ),
-  )[
-    計算で無限次元作用素が生じる\
-    #sym.arrow.r 有限で打ち切り，重み $omega_k$ で修正
+  == 既存手法と問題点
+  #set align(horizon)
+
+  ノルムの計算に，L1ノルムに重み $omega_k$ を付ける．
+
+  #side-by-side()[
+    #showybox(frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
+    title: [重み付きノルム],
+    title-style: (weight: 600),
+    body-style: (align: center),
+    )[
+      $
+        norm(a) := sum_(k in bb(Z)) abs(a_k) omega_k < oo
+      $
+    ]
+  ][
+    #showybox(
+    frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
+    title: [L1ノルム],
+    title-style: (weight: 600),
+    body-style: (align: center),
+    )[
+      $
+        norm(a) := sum_(k in bb(Z)) abs(a_k)
+      $
+    ]
   ]
 
-  #showybox(
-    frame: (
-      border-color: red.darken(50%),
-      title-color: red.lighten(60%),
-      body-color: red.lighten(80%)
-    ),
-    title-style: (
-      align: center,
-      color: black,
-      weight: 600
-    ),
-    body-style: (
-      align: center,
-    ),
-    title: [問題点],
-    [
-      重み付き $l_1$ 空間ではノルム値が大きくなる．\
-      #sym.arrow.r 定理を適用できる問題が少ない
-    ]
-  )
+  ノルムの値は，「重み付きノルム」 $>$ 「L1ノルム」
+
+  #sym.arrow.r $a$ に制限がかかり，条件に合わない問題が出てくる．
+
+  #sym.arrow.r L1ノルムで計算すればよい．
 ]
 
 #slide[
   == 目的
   #set align(center + horizon)
-  #set text(size:24pt)
+  //#set text(size:24pt)
 
-  #rad()を使って\
-  精度保証付き数値計算できる問題を増やすために，\
+  #rad()の適用できる問題の範囲を増やす
+
+  #sym.arrow.b
+
+  無限次元ガウスの消去法を用いて，重みを削除する
+
+  #sym.arrow.b
+
   無限次元ガウスの消去法を用いた計算が可能か検証する
 ]
 
-
-
 #let zero_padding = $0, dots.h.c,0$
-
+/*
 #slide[
   == 提案手法
-  1. $D F(x)$と$A_M$を定義する．
+  $D F(x)$と$A_M$を定義する．
   #set align(horizon)
 
   #showybox(
@@ -307,15 +338,13 @@
     $
   ]
 ]
+*/
 
 #slide[
   == 提案手法
-  #set text(size:20pt)
-
-  2. $D F(macron(x))^(-1)$の全単射性を，無限次元ガウスの消去法を用いて確かめる．
-  //$norm(A F(macron(x))) lt.eq Y_0$をもとに，無限次元ガウスの消去法を用いて求める
-
   #set align(horizon)
+  //#set text(size:20pt)
+  //$norm(A F(macron(x))) lt.eq Y_0$をもとに，無限次元ガウスの消去法を用いて求める
 
   #showybox()[
   /*$A = D F(x)^(-1)$とおき，*/$phi.alt := D F (macron(x))^(-1) F(tilde(x))$とおくと，
@@ -323,8 +352,21 @@
   D F(macron(x)) phi.alt = F(tilde(x))
   $
   ]
+  無限次元ガウスの消去法[3]を用いて，$D F(macron(x))^(-1)$の全単射性を確かめる．
 
-  ここで，射影演算子$Pi_N$と作用素$A_M$より，以下の作用素を定義する．
+  #set align(center)
+
+  //$D F(macron(x))^(-1)$の全単射性 $arrow.double.r$ $phi.alt$が計算可能
+
+  #align(bottom+right)[#text(size:16pt, gray)[参考：[3]関根晃太, 中尾充宏, 大石進一, "Numerical verification methods for a system of elliptic
+PDEs, and their software library"]]
+]
+
+#slide[
+  == 提案手法
+  #set align(horizon)
+
+  射影演算子$Pi_N$と作用素$A$より，以下の作用素を定義する．
 
   #showybox(
     frame: (
@@ -335,17 +377,18 @@
     //title: [],
     //title-style: (weight: 600)
   )[
+    #set text(size:20pt)
+    $
+      &T:= Pi_N A D F(macron(x))|_(X_1):X_1 arrow.r X_1,quad &&B:= Pi_N A D F(macron(x))|_(X_2):X_2 arrow.r X_1,\
+      &C:= (I-Pi_N) A D F(macron(x))|_(X_1):X_1 arrow.r X_2,quad &&E:= (I-Pi_N) A D F(macron(x))|_(X_2):X_2 arrow.r X_2
+    $
+    /*
     $
       &T:= Pi_N A_M D F(macron(x))|_(X_1):X_1 arrow.r X_1,quad &&B:= Pi_N A_M D F(macron(x))|_(X_2):X_2 arrow.r X_1,\
       &C:= (I-Pi_N) A_M D F(macron(x))|_(X_1):X_1 arrow.r X_2,quad &&E:= (I-Pi_N) A_M D F(macron(x))|_(X_2):X_2 arrow.r X_2
     $
+    */
   ]
-]
-
-#slide[
-  == 提案手法
-
-  #set align(horizon)
 
   $D F(macron(x)) phi.alt = F(tilde(x))$は，作用素の定義より，以下に変形できる．
   #showybox()[
@@ -359,22 +402,17 @@
       Pi_N phi.alt;
       (I-Pi_N) phi.alt
     ) = mat(
+      Pi_N A F(tilde(x)) ;
+      (I-Pi_N) A F(tilde(x))
+      /*
       Pi_N A_M F(tilde(x)) ;
       (I-Pi_N) A_M F(tilde(x))
+      */
     )
     $
   ]
 
-  #showybox(
-    body-style: (
-      align: center
-    )
-  )[
-    #set math.mat(delim: "(")
-    $S := D - C T^(-1) B$ としたとき，\
-    $norm(I_(X_2) - S) < 1$\
-    となれば，$S$は全単射となる．
-  ]
+  
 ]
 
 /*
@@ -399,22 +437,32 @@
 
 #slide[
   == 提案手法
-
   #set align(horizon)
+  #set text(size:20pt)
+
   #showybox(
-    body-style: (
-      align: center
-    )
+    //body-style: (align: center)
+  )[
+    #set math.mat(delim: "(")
+    $S := D - C T^(-1) B$ としたとき，\
+    #align(center)[$norm(I_(X_2) - S) < 1$]
+    となれば，$S$は全単射となる．
+  ]
+
+  $S$は，$A$と$D F(macron(x))$から求められる．
+  #showybox(
+    body-style: (align: center)
   )[
     $
     S :=& D - C T^(-1) B \
     /*
-    =& (I-Pi_N) A_M D F(macron(x))|_(X_2) - ((I-Pi_N) A_M D F(macron(x))|_(X_1))\ & (Pi_N A_M D F(macron(x))|_(X_1))^(-1)(Pi_N A_M D F(macron(x))|_(X_2))
-    */
     =& (I-Pi_N) A_M D F(macron(x)) - ((I-Pi_N) A_M D F(macron(x)))\ & (Pi_N A_M D F(macron(x)))^(-1)(Pi_N A_M D F(macron(x)))
+    */
+    =& (I-Pi_N) A D F(macron(x)) - ((I-Pi_N) A D F(macron(x)))\ & (Pi_N A D F(macron(x)))^(-1)(Pi_N A D F(macron(x)))
     $
   ]
 
+  /*
   #set align(horizon)
   #showybox(
     body-style: (
@@ -422,7 +470,7 @@
     )
   )[
     $
-      A_M D F(macron(x)) 
+      A_M D F(macron(x))
       & = mat(
         T^(-1), 0;
         0, lambda;
@@ -443,18 +491,51 @@
       )
     $
   ]
+  */
 ]
 
 // -------------------------
 
 #slide[
+  == 実行環境
+  #set text(size:21pt)
+  #set align(horizon + center)
+
+  #figure(
+    caption: [実験環境],
+    table(
+      columns: 2,
+      align: center,
+      inset:12pt,
+      header(
+        [*環境*],[*詳細*]
+      ),
+      [CPU],[12th Gen Intel(R) Core(TM) i7-12700],
+      [OS],[Ubuntu 24.04.1],
+      [コンパイラ],[Julia 1.11.2]
+    )
+  )
+
+]
+
+#slide[
   == 実験結果
-  #set align(horizon)
+  #set align(horizon+center)
+  #show table.cell.where(y: 0): set text(weight: "bold")
+
+  #set table(
+    stroke: (x,y)=>(
+      x: if x == 1 {1pt} else {0pt},
+      y: if y== 0 or y==1 {1pt} else {0pt},
+      right: none,
+      bottom: 1pt
+    )
+  )
 
   #figure(
     //supplement: [],
     //numbering: none,
-    caption: [フーリエ係数の次数の変化による$norm(I_(X_2) - S)$の比較],
+    caption: [フーリエ係数の次数の変更による$norm(I_(X_2) - S)$の比較],
     table(
       columns: 2,
       align: center + horizon,
@@ -466,7 +547,7 @@
       [100],[0.11455533660051737],
       [150],[0.07655718822651922],
       [200],[0.05749210273025131],
-    ),
+    )
   )
 ]
 

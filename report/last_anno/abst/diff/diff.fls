@@ -1,0 +1,6 @@
+PWD d:/workspace_win/research_B/report/last_anno/abst/diff
+INPUT c:/texlive/2024/texmf.cnf
+INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
+INPUT c:/texlive/2024/texmf-var/web2c/euptex/platex.fmt
+INPUT diff.tex
+OUTPUT diff.log

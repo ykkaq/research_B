@@ -118,17 +118,17 @@
   \end{array}
   \right)
 \end{equation}
-定義した作用素を用いて，$DF(\bar{x})^{-1}$の全単射性を確かめる．$\Pi_N$を射影演算子とし，
+定義した作用素を用いて，$\| AF(\bar{x}) \| \leq Y_0$を計算する．$\Pi_N$を射影演算子とし，
 \begin{equation}
   \begin{split}
     &\| I_{X_2} - S\|\\
-    &= \| \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right)|_{X_2}  \\
+    &= \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right)|_{X_2}  \\
     &\quad -(\left( I-\Pi_N \right) ADF( \bar{x} ))|_{X_1} \left((\Pi_N ADF(\bar{x}))|_{X_1}\right)^{-1}\\
-    &\qquad ((I-\Pi_N)ADF(\bar{x}))|_{X_2} \| \\
+    &\qquad ((I-\Pi_N)ADF(\bar{x}))|_{X_2} \\
     & < 1
   \end{split}
 \end{equation}
-となれば，$DF(\bar{x})^{-1}$の全単射性である．
+となれば，ノルム空間は$l_1$空間で定義可能である．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{-1mm}
@@ -136,14 +136,14 @@
 \vspace{-1mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-実験では，フーリエ係数の次数を変更した際のノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において無限次元ガウスの消去法による計算手法が有効可能であることがわかる．
+実験では，フーリエ係数列のサイズを変更した際のノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において無限次元ガウスの消去法による計算手法が有効であることがわかる．
 
 \begin{table}[htbp]
   \centering
-  \caption{フーリエ係数の次数の変更とノルム値の比較}
+  \caption{フーリエサイズとノルム値}
   \label{tab:norm-num}
   \begin{tabular}{c||c}
-    次数 & $\| I_{X_2}-S \|$ \\ \hline
+    フーリエサイズ & $\| I_{X_2}-S \|$ \\ \hline
     50 & 0.22815114629236252 \\
     100&0.11455533660051737\\
     150&0.07655718822651922\\
