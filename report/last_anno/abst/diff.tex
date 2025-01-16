@@ -1,7 +1,7 @@
   \documentclass[a4paper,10pt,twocolumn]{jsarticle}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL old/old.tex   Wed Jan 15 15:06:10 2025
-%DIF ADD Outline.tex   Wed Jan 15 15:05:25 2025
+%DIF DEL old/old.tex   Thu Jan 16 11:02:28 2025
+%DIF ADD Outline.tex   Thu Jan 16 11:02:35 2025
 \usepackage[dvipdfmx]{graphicx}
 \renewcommand{\baselinestretch}{0.8}
 \usepackage{url}
@@ -40,11 +40,11 @@
 \vspace{-5mm}}
 \pagestyle{empty}
 %DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
-%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
-\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+%DIF CFONT PREAMBLE %DIF PREAMBLE
 \RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
-\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
-\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}} %DIF PREAMBLE
+\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue} \sf #1}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red} \scriptsize #1}} %DIF PREAMBLE
 %DIF SAFE PREAMBLE %DIF PREAMBLE
 \providecommand{\DIFaddbegin}{} %DIF PREAMBLE
 \providecommand{\DIFaddend}{} %DIF PREAMBLE
@@ -107,9 +107,9 @@
 \RequirePackage{listings} %DIF PREAMBLE
 \RequirePackage{color} %DIF PREAMBLE
 \lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
-%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
-  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
-  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+%DIF DIFCODE_CFONT %DIF PREAMBLE
+  moredelim=[il][\color{red}\scriptsize]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\sffamily]{\%DIF\ >\ } %DIF PREAMBLE
 } %DIF PREAMBLE
 \lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
 	language=DIFcode, %DIF PREAMBLE
@@ -144,7 +144,7 @@
 \begin{equation}
   \frac{d^2x}{dt^2} - \mu (1-x^2)\frac{dx}{dt}+x=0
 \end{equation}
-を問題とし，無限次元ガウスの消去法を用いて，\rad{}におけるノルム空間を$l_1$空間で定義可能か検証することを目的とする．
+を問題とし，無限次元ガウスの消去法を用いて，\rad{}におけるノルム空間を$l_1$空間で\DIFdelbegin \DIFdel{定義可能}\DIFdelend \DIFaddbegin \DIFadd{線形化作用素が全単射である}\DIFaddend か検証することを目的とする．
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -155,7 +155,7 @@
 
 \begin{Thm}
   \label{thm:radii}
-  有界線形作用素$A^\dagger \in \mathcal{L}(X, Y), A \in \mathcal{L}(Y, X)$を考え，作用素$F:X \rightarrow Y$が$C^1\text{-\fre{}}$微分可能であるとする．また，$A$が単射で，$AF:X \rightarrow X$とする．いま，$\bar{x} \in X$に対して，
+  有界線形作用素$A^\dagger \in \mathcal{L}(X, Y), A \in \mathcal{L}(Y, X)$を考え，作用素$F:X \rightarrow Y$が$C^1\text{-\fre{}}$微分可能であるとする．また，$A$が単射\DIFdelbegin \DIFdel{で，$AF:X \rightarrow X$}\DIFdelend とする．いま，$\bar{x} \in X$に対して，
   \begin{align}
       \|AF(\bar{x})\|_X                             & \leq Y_0                                             \\
       \|I-AA^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
@@ -204,17 +204,17 @@
   \end{array}
   \right)
 \end{equation}
-定義した作用素を用いて，\DIFdelbegin \DIFdel{$\| AF(\bar{x}) \| \leq Y_0$}\DIFdelend \DIFaddbegin \DIFadd{$DF(\bar{x})^{-1}$の全単射性}\DIFaddend を\DIFdelbegin \DIFdel{計算す}\DIFdelend \DIFaddbegin \DIFadd{確かめ}\DIFaddend る．$\Pi_N$を射影演算子とし，
+定義した作用素を用いて，\DIFdelbegin \DIFdel{$DF(\bar{x})^{-1}$}\DIFdelend \DIFaddbegin \DIFadd{$DF(\bar{x})$}\DIFaddend の全単射性を確かめる．$\Pi_N$を射影演算子とし，
 \begin{equation}
   \begin{split}
     &\| I_{X_2} - S\|\\
-    &= \DIFaddbegin \DIFadd{\| }\DIFaddend \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right)|_{X_2}  \\
+    &= \| \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right)|_{X_2}  \\
     &\quad -(\left( I-\Pi_N \right) ADF( \bar{x} ))|_{X_1} \left((\Pi_N ADF(\bar{x}))|_{X_1}\right)^{-1}\\
-    &\qquad ((I-\Pi_N)ADF(\bar{x}))|_{X_2} \DIFaddbegin \DIFadd{\| }\DIFaddend \\
+    &\qquad ((I-\Pi_N)ADF(\bar{x}))|_{X_2} \| \\
     & < 1
   \end{split}
 \end{equation}
-となれば，\DIFdelbegin \DIFdel{ノルム空間は$l_1$空間}\DIFdelend \DIFaddbegin \DIFadd{$DF(\bar{x})^{-1}$の全単射性}\DIFaddend で\DIFdelbegin \DIFdel{定義可能で}\DIFdelend ある．
+となれば，\DIFdelbegin \DIFdel{$DF(\bar{x})^{-1}$の}\DIFdelend \DIFaddbegin \DIFadd{$DF(\bar{x})$は}\DIFaddend 全単射\DIFdelbegin \DIFdel{性}\DIFdelend である．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{-1mm}
@@ -222,14 +222,16 @@
 \vspace{-1mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-実験では，フーリエ係数\DIFdelbegin \DIFdel{列}\DIFdelend の\DIFdelbegin \DIFdel{サイズ}\DIFdelend \DIFaddbegin \DIFadd{次数}\DIFaddend を変更した際のノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において無限次元ガウスの消去法による計算手法が有効\DIFaddbegin \DIFadd{可能}\DIFaddend であることがわかる．
+実験では，フーリエ係数の次数を変更した際のノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において\DIFaddbegin \DIFadd{，ノルム空間を$l_1$空間とし，}\DIFaddend 無限次元ガウスの消去法による計算手法が有効可能であることがわかる．
+\DIFdelbegin %DIFDELCMD < 
 
-\begin{table}[htbp]
+%DIFDELCMD < %%%
+\DIFdelend \begin{table}[htbp]
   \centering
-  \caption{フーリエ\DIFdelbeginFL \DIFdelFL{サイズ}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{係数の次数の変更}\DIFaddendFL とノルム値\DIFaddbeginFL \DIFaddFL{の比較}\DIFaddendFL }
+  \caption{フーリエ係数の次数の変更とノルム値の比較}
   \label{tab:norm-num}
   \begin{tabular}{c||c}
-    \DIFdelbeginFL \DIFdelFL{フーリエサイズ }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{次数 }\DIFaddendFL & $\| I_{X_2}-S \|$ \\ \hline
+    次数 & $\| I_{X_2}-S \|$ \\ \hline
     50 & 0.22815114629236252 \\
     100&0.11455533660051737\\
     150&0.07655718822651922\\
@@ -242,8 +244,7 @@
 \section{おわりに}
 \vspace{-1mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-本研究では，\rad{}の適用できる問題を増やすことを，無限次元ガウスの消去法を用いることで可能になるかを検証した．実験より，\rad{}の定理の一部の評価式に対し，期待した結果を得ることができ，無限次元ガウスの消去法が有効であることがわかった．今後の課題として，無限次元ガウスの消去法を他の評価式を対象に適応する手法を検討する．
-
+本研究では，\DIFdelbegin \DIFdel{\rad{}の適}\DIFdelend \DIFaddbegin \DIFadd{線形化作}\DIFaddend 用\DIFaddbegin \DIFadd{素が全単射}\DIFaddend で\DIFdelbegin \DIFdel{き}\DIFdelend \DIFaddbegin \DIFadd{あ}\DIFaddend る\DIFdelbegin \DIFdel{問題}\DIFdelend \DIFaddbegin \DIFadd{こと}\DIFaddend を\DIFdelbegin \DIFdel{増や}\DIFdelend \DIFaddbegin \DIFadd{l1空間で証明}\DIFaddend す\DIFaddbegin \DIFadd{る}\DIFaddend ことを\DIFdelbegin \DIFdel{，}\DIFdelend 無限次元ガウスの消去法\DIFdelbegin \DIFdel{を用いること}\DIFdelend で\DIFdelbegin \DIFdel{可能になるかを}\DIFdelend 検証した．実験より，\rad{}の定理の一部の評価式に対し，期待した結果を得ることができ，無限次元ガウスの消去法が有効であることがわかった．今後の課題として，無限次元ガウスの消去法を他の評価式を対象に適応する手法を検討する．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 参考文献

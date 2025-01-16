@@ -1,4 +1,4 @@
-PWD d:/workspace_win/research_B/report/last_anno/abst
+PWD c:/Users/yuki saito/workspace/research_B/report/last_anno/abst
 INPUT c:/texlive/2024/texmf.cnf
 INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2024/texmf-var/web2c/euptex/platex.fmt
@@ -152,9 +152,6 @@ INPUT c:/texlive/2024/texmf-dist/tex/latex/textpos/textpos.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/textpos/textpos.sty
 INPUT ./SekineLabOutline.sty
 INPUT SekineLabOutline.sty
-INPUT c:/texlive/2024/texmf-dist/tex/generic/ulem/ulem.sty
-INPUT c:/texlive/2024/texmf-dist/tex/generic/ulem/ulem.sty
-INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/latex-fonts/lasy6.tfm
 INPUT c:/texlive/2024/texmf-dist/tex/latex/graphics/color.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/graphics/color.sty
 INPUT c:/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -242,10 +239,11 @@ INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/ptex-fonts/jis/jisg.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmss12.tfm
+INPUT c:/texlive/2024/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/ptex-fonts/jis/jisg.tfm
+INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT c:/texlive/2024/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/ptex-fonts/jis/jis.tfm
