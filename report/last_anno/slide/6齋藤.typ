@@ -234,14 +234,11 @@
   == 既存手法と問題点
   #set align(horizon)
 
-  無限次元サイズの行列 $D F(macron(x))$\
-  #sym.arrow.r 有限で打ち切り，コンピュータで計算
-
-  打ち切った分を調整するため，重み付きノルムを使う
+  ノルムの計算に，重み付き $l^1$ ノルムを定義．
 
   #side-by-side()[
     #showybox(frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
-    title: [重み付き$l_1$ノルム],
+    title: [重み付き$l^1$ノルム（既存手法）],
     title-style: (weight: 600),
     body-style: (align: center),
     )[
@@ -249,11 +246,9 @@
         norm(a)_omega := sum_(k in bb(Z)) abs(a_k) omega_k < oo
       $
     ]
-  ]
-  /*[
-    #showybox(
-    frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
-    title: [$l_1$ノルム],
+  ][
+    #showybox(frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
+    title: [$l^1$ノルム（$l^1$空間）],
     title-style: (weight: 600),
     body-style: (align: center),
     )[
@@ -261,85 +256,59 @@
         norm(a) := sum_(k in bb(Z)) abs(a_k) < oo
       $
     ]
-  ]*/
-
-
-]
-
-#slide[
-  == 既存手法と問題点
-  #set align(horizon)
-
-  #side-by-side()[
-    #showybox(frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
-    title: [重み付き$l_1$空間],
-    title-style: (weight: 600),
-    body-style: (align: center),
-    )[
-      $
-        l_omega^1={a: norm(a) := sum_(k in bb(Z)) abs(a_k) omega_k < oo}
-      $
-    ]
-  ][
-    #showybox(
-    frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
-    title: [$l_1$空間],
-    title-style: (weight: 600),
-    body-style: (align: center),
-    )[
-      $
-        l_1={a:norm(a) := sum_(k in bb(Z)) abs(a_k) < oo}
-      $
-    ]
   ]
 
-  ノルムの値は「重み付きノルム」 $>$ 「$l_1$ノルム」
+  重み付き $l^1$ ノルムでは，$omega_k$があるため，$a$の条件が厳しくなる．\
 
-  #sym.arrow.r 条件の不等号を満たすために，$a$が限られる．
+  #sym.arrow.r 精度保証できる条件が限られる．
 
-  #sym.arrow.r 精度保証できる問題が限られる．
+
+  #sym.arrow.r $l_1$空間を使うことで，条件を緩和できる．
 ]
+
 
 #slide[
   == 目的
   #set align(center + horizon)
   #set text(size:24pt)
 
-  重みを外し，$l_1$空間上で計算することで，\
-  #rad()の適用できる問題の範囲を増やす
-]
-
-#slide[
-  == 提案手法
-  #set align(horizon + center)
-
-  $l_1$空間で計算するために， 無限次元ガウスの消去法[3]で作用素を計算
-
-  #sym.arrow.b
-
-  作用素$D F$が全単射であることを確認しなければならない．
-
-  
+  重みを外した $l_1$ 空間上で計算することで，\ \
+  #rad()の適用できる問題の範囲を大きくする
 ]
 
 #slide[
   == 提案手法 - 概要
+  #set align(horizon + center)
+
+  精度保証するために，$norm(D F (macron(x)) F (tilde(x)))$を計算しなければならない．
+
+  #sym.arrow.b
+
+  $l^1$空間上で，$D F(macron(x))$は全単射でなければならない．
+
+  #sym.arrow.b
+
+  無限次元ガウスの消去法[3]を用いて，$D F(macron(x))$が全単射であるか確かめる．
+
+  #align(bottom+right)[#text(size:16pt, gray)[参考：[3]Kouta Sekine, Mitsuhiro T. Nakao, and Shin’ichi Oishi:, "Numerical verification methods for a system of elliptic PDEs, and their software library"]]
+]
+
+#slide[
+  == 提案手法 - 無限次元ガウスの消去法
   #set align(horizon)
-  //#set text(size:20pt)
-  //$norm(A F(macron(x))) lt.eq Y_0$をもとに，無限次元ガウスの消去法を用いて求める
 
   #showybox()[
-  //$phi.alt := D F (macron(x))^(-1) F(tilde(x))$とおくと，
-  $
-  D F(macron(x)) phi.alt = F(tilde(x))
-  $
+    $phi.alt := D F (macron(x))^(-1) F(tilde(x))$とおくと，
+    $
+    D F(macron(x)) phi.alt = F(tilde(x))
+    $
+
+    両辺に作用素$A$を掛け，
+
+    $
+    A D F(macron(x)) phi.alt = A F(tilde(x))
+    $
   ]
-  無限次元ガウスの消去法を用いて，$D F(macron(x))^(-1)$の全単射性を確かめる．
-
-  #set align(center)
-
-  //$D F(macron(x))^(-1)$の全単射性 $arrow.double.r$ $phi.alt$が計算可能
-  #align(bottom+right)[#text(size:16pt, gray)[参考：[3]Kouta Sekine, Mitsuhiro T. Nakao, and Shin’ichi Oishi:, "Numerical verification methods for a system of elliptic PDEs, and their software library"]]
 ]
 
 #let zero_padding = $0, dots.h.c,0$
@@ -403,7 +372,7 @@
   == 提案手法 - 無限次元ガウスの消去法
   #set align(horizon)
 
-  射影演算子$Pi_N$と作用素$A$より，以下の作用素を定義する．
+  射影演算子$Pi_N$より，以下の作用素を定義する．
 
   #showybox(
     frame: (
@@ -419,12 +388,6 @@
       &T:= Pi_N A D F(macron(x))|_(X_1):X_1 arrow.r X_1,quad &&B:= Pi_N A D F(macron(x))|_(X_2):X_2 arrow.r X_1,\
       &C:= (I-Pi_N) A D F(macron(x))|_(X_1):X_1 arrow.r X_2,quad &&E:= (I-Pi_N) A D F(macron(x))|_(X_2):X_2 arrow.r X_2
     $
-    /*
-    $
-      &T:= Pi_N A_M D F(macron(x))|_(X_1):X_1 arrow.r X_1,quad &&B:= Pi_N A_M D F(macron(x))|_(X_2):X_2 arrow.r X_1,\
-      &C:= (I-Pi_N) A_M D F(macron(x))|_(X_1):X_1 arrow.r X_2,quad &&E:= (I-Pi_N) A_M D F(macron(x))|_(X_2):X_2 arrow.r X_2
-    $
-    */
   ]
 
   $D F(macron(x)) phi.alt = F(tilde(x))$は，作用素の定義より，以下に変形できる．
@@ -441,64 +404,41 @@
     ) = mat(
       Pi_N A F(tilde(x)) ;
       (I-Pi_N) A F(tilde(x))
-      /*
-      Pi_N A_M F(tilde(x)) ;
-      (I-Pi_N) A_M F(tilde(x))
-      */
     )
     $
   ]
-
 ]
-
-/*
-#slide[
-  == 提案手法
-
-  #set align(horizon)
-  以下のように変形する．
-  #showybox(
-    body-style: (
-      align: center
-    )
-  )[
-    $
-      norm(I_(X_2) - S) &= norm(I_(X_2) - (D - C T^(-1) B)) \
-      &lt.eq norm(I_(X_2) + D) + norm(C) norm(T^(-1)) norm(B)\
-      &< 1
-    $
-  ]
-]
-*/
 
 #slide[
   == 提案手法 - 無限次元ガウスの消去法
   #set align(horizon)
-  #set text(size:20pt)
+
+  $S$ を以下のように定義し，$A$ と $D F(macron(x))$ から求められる．
+  #showybox(
+    body-style: (align: center)
+  )[
+    $
+    S :=& E - C T^(-1) B \
+    /*
+    =& (I-Pi_N) A_M D F(macron(x)) - ((I-Pi_N) A_M D F(macron(x)))\ & (Pi_N A_M D F(macron(x)))^(-1)(Pi_N A_M D F(macron(x)))
+    */
+    =& (I-Pi_N) A D F(macron(x)) - ((I-Pi_N) A D F(macron(x))) & (Pi_N A D F(macron(x)))^(-1)(Pi_N A D F(macron(x)))
+    $
+  ]
 
   #showybox(
     //body-style: (align: center)
   )[
     #set math.mat(delim: "(")
-    $S := D - C T^(-1) B$ としたとき，\
     #align(center)[$norm(I_(X_2) - S) < 1$]
-    となれば，$S$は全単射となる．
+    となれば，$S$ は全単射となる．
   ]
 
-  $S$は，$A$と$D F(macron(x))$から求められる．
-  #showybox(
-    body-style: (align: center)
-  )[
-    $
-    S :=& D - C T^(-1) B \
-    /*
-    =& (I-Pi_N) A_M D F(macron(x)) - ((I-Pi_N) A_M D F(macron(x)))\ & (Pi_N A_M D F(macron(x)))^(-1)(Pi_N A_M D F(macron(x)))
-    */
-    =& (I-Pi_N) A D F(macron(x)) - ((I-Pi_N) A D F(macron(x)))\ & (Pi_N A D F(macron(x)))^(-1)(Pi_N A D F(macron(x)))
-    $
-  ]
+  #set align(center)
+  $T^-1$が存在することを確認し，\ $underline(S #text[が全単射であれば，]D F(macron(x)) #text[が全単射となる])$
+]
 
-  /*
+/*
   #set align(horizon)
   #showybox(
     body-style: (
@@ -528,13 +468,11 @@
     $
   ]
   */
-]
 
 // -------------------------
 
 #slide[
   == 実行環境
-  //#set text(size:21pt)
   #set align(horizon)
 
   /*
@@ -562,8 +500,6 @@
       [数値計算ライブラリ],[IntervalArithmetic v0.20.9],
     )
   )
-  
-
 ]
 
 #slide[
@@ -591,16 +527,16 @@
       header(
         [次数], [$norm(I_(X_2) - S)$],
       ),
-      [50],[0.22815114629236252],
-      [100],[0.11455533660051737],
-      [150],[0.07655718822651922],
-      [200],[0.05749210273025131],
+      [#text(size:20pt)[50]],[#text(size:20pt)[0.22815114629236252]],
+      [#text(size:20pt)[100]],[#text(size:20pt)[0.11455533660051737]],
+      [#text(size:20pt)[150]],[#text(size:20pt)[0.07655718822651922]],
+      [#text(size:20pt)[200]],[#text(size:20pt)[0.05749210273025131]],
     )
   )
 
   #set align(horizon+left)
 
-  - $norm(I_(X_2) - S)<1$を満たした．\
+  - すべての次数条件において，$norm(I_(X_2) - S)<1$ を満たした．\
   - 次数が上がるにつれ，ノルム値が減少．
 
 ]
@@ -609,8 +545,9 @@
   == まとめ
   #set align(horizon)
 
-  - 無限次元ガウスの消去法を用いた#rad()の\ 改良手法を提案した
+  - 無限次元ガウスの消去法を用いた#rad()の\ 改良方法を提案した
 
-  - 数値実験での検証により，$l_1$空間上で$D F(macron(x))$が\ 全単射であることがわかった．\
-  #sym.arrow.r 提案手法で改良可能であることがわかった
+  - 数値実験での検証により，$l_1$空間上で$D F(macron(x))$が全単射であることが\ わかった
+
+  #sym.arrow.r 提案方法で改良可能であることがわかった
 ]
