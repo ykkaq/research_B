@@ -59,7 +59,7 @@
 
 #slide[
   == はじめに
-  #set align(horizon)
+  #set align(horizon+center)
 
   微分方程式を計算機で解くとき，\
   計算機の資源が有限という特徴のために\
@@ -86,17 +86,16 @@
       $
         frac(d^2x, d t^2) - mu (1-x^2)+x=0
       $
-      - $x(t)$ : 未知関数
-      - $mu>0$ : 非線形の減衰の強さを表すパラメータ
+      - 未知関数　 : $x(t)$
+      - パラメータ : $mu>0$
     ]
   ][
     #figure(
       image("vdp.png"),
-      caption:[van der Pol方程式 \ 初期値 $(x,y)=(0,2), mu = 1.0$]
+      caption:[van der Pol方程式 \ 初期値 $(0,2), mu = 1.0$]
     )
   ]
 
-  //フーリエ・スペクトル法 #sym.arrow.r 近似周期解 #sym.arrow.r 方程式の精度保証
 ]
 
 #slide[
@@ -149,7 +148,6 @@
           /*$X arrow.r Y$で*/$C^1$-#fre() 微分\ 可能な作用素
         ]
       ][
-      #showybox()[
         $
         norm(A F (macron(x)))_X &lt.eq Y_0 \
         norm(I-A A^dagger)_(cal(L)(X)) &lt.eq Z_0 \
@@ -157,7 +155,6 @@
         norm(A (D F(b)-D F (macron(x))))_(cal(L)(X)) &lt.eq Z_2(r), \
         forall b &in overline(B(tilde(x),r))
         $
-        ]
       ]
   ]
 ]
@@ -191,15 +188,15 @@
             let rate = 1
 
             circle((0,0), radius: (rate*1.5,rate*1))
-            content((rate*1.5*calc.cos(135deg)+0.1, 0*calc.sin(135deg)),text()[$overline(B(macron(x),r))$])
+            content((rate*1.5*calc.cos(135deg)+0.1, 0*calc.sin(135deg)+0.2),text()[$overline(B(macron(x),r))$])
 
             circle((0,0), radius:2pt, fill:gray)
-            content((-0.15,-0.1),[$ macron(x)$],)
+            content((-0.1,-0.2),[近似解 $macron(x)$],)
 
             //circle((0,-rate/2-0.1), radius: (rate/2,rate/3))
 
             circle((0,-1*rate/2), radius:2pt, fill:gray)
-            content((-0.15,-1*rate/2),[$ tilde(x)$],)
+            content((-0.15,-1*rate/2-0.2),[真の解 $ tilde(x)$],)
 
             line((0,0),(1.5*calc.cos(30deg), calc.sin(30deg)), name:"r")
             content(("r.start", 50%, "r.end"), text()[$ r $],anchor: "south",padding:.1)
@@ -209,6 +206,7 @@
     ]
     #align(bottom+right)[#text(size:18pt, gray)[参考：[1]高安亮紀, Julia言語を使った精度保証付き数値計算のチュートリアル]]
 ]
+
 
 #slide[
   == 背景 - 先行研究
@@ -236,52 +234,117 @@
   == 既存手法と問題点
   #set align(horizon)
 
-  ノルムの計算に，L1ノルムに重み $omega_k$ を付ける．
+  無限次元サイズの行列 $D F(macron(x))$\
+  #sym.arrow.r 有限で打ち切り，コンピュータで計算
+
+  打ち切った分を調整するため，重み付きノルムを使う
 
   #side-by-side()[
     #showybox(frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
-    title: [重み付きノルム],
+    title: [重み付き$l_1$ノルム],
     title-style: (weight: 600),
     body-style: (align: center),
     )[
       $
-        norm(a) := sum_(k in bb(Z)) abs(a_k) omega_k < oo
+        norm(a)_omega := sum_(k in bb(Z)) abs(a_k) omega_k < oo
+      $
+    ]
+  ]
+  /*[
+    #showybox(
+    frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
+    title: [$l_1$ノルム],
+    title-style: (weight: 600),
+    body-style: (align: center),
+    )[
+      $
+        norm(a) := sum_(k in bb(Z)) abs(a_k) < oo
+      $
+    ]
+  ]*/
+
+
+]
+
+#slide[
+  == 既存手法と問題点
+  #set align(horizon)
+
+  #side-by-side()[
+    #showybox(frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
+    title: [重み付き$l_1$空間],
+    title-style: (weight: 600),
+    body-style: (align: center),
+    )[
+      $
+        l_omega^1={a: norm(a) := sum_(k in bb(Z)) abs(a_k) omega_k < oo}
       $
     ]
   ][
     #showybox(
     frame: (title-color: gray.darken(30%), border-color: black.darken(30%), ),
-    title: [L1ノルム],
+    title: [$l_1$空間],
     title-style: (weight: 600),
     body-style: (align: center),
     )[
       $
-        norm(a) := sum_(k in bb(Z)) abs(a_k)
+        l_1={a:norm(a) := sum_(k in bb(Z)) abs(a_k) < oo}
       $
     ]
   ]
 
-  ノルムの値は，「重み付きノルム」 $>$ 「L1ノルム」
+  ノルムの値は「重み付きノルム」 $>$ 「$l_1$ノルム」
 
-  #sym.arrow.r $a$ に制限がかかり，条件に合わない問題が出てくる．
+  #sym.arrow.r 条件の不等号を満たすために，$a$が限られる．
 
-  #sym.arrow.r L1ノルムで計算すればよい．
+  #sym.arrow.r $l_1$ノルム（$l_1$空間）で計算する．
+]
+
+#slide[
+  == 問題解決法
+  #set align(horizon + center)
+
+  $l_1$空間で計算するために， 無限次元ガウスの消去法[3]を使う．
+
+  #sym.arrow.b
+
+  作用素$D F$が全単射であることを確認しなければならない．
+
+
+  #align(bottom+right)[#text(size:16pt, gray)[参考：[3]Kouta Sekine, Mitsuhiro T. Nakao, and Shin’ichi Oishi:, "Numerical verification methods for a system of elliptic PDEs, and their software library"]]
 ]
 
 #slide[
   == 目的
   #set align(center + horizon)
-  //#set text(size:24pt)
+  #set text(size:24pt)
 
-  #rad()の適用できる問題の範囲を増やす
-
-  #sym.arrow.b
-
-  無限次元ガウスの消去法を用いて，重みを削除する
+  #rad()の適用できる\ 問題の範囲を増やす
 
   #sym.arrow.b
 
-  無限次元ガウスの消去法を用いた計算が可能か検証する
+  無限次元ガウスの消去法を用いて，\
+  $l_1$空間で線形作用素が全単射であるか確かめる
+]
+
+#slide[
+  == 提案手法
+  #set align(horizon)
+  //#set text(size:20pt)
+  //$norm(A F(macron(x))) lt.eq Y_0$をもとに，無限次元ガウスの消去法を用いて求める
+
+  #showybox()[
+  /*$A = D F(x)^(-1)$とおき，*/$phi.alt := D F (macron(x))^(-1) F(tilde(x))$とおくと，
+  $
+  D F(macron(x)) phi.alt = F(tilde(x))
+  $
+  ]
+  無限次元ガウスの消去法を用いて，$D F(macron(x))^(-1)$の全単射性を確かめる．
+
+  #set align(center)
+
+  //$D F(macron(x))^(-1)$の全単射性 $arrow.double.r$ $phi.alt$が計算可能
+
 ]
 
 #let zero_padding = $0, dots.h.c,0$
@@ -297,10 +360,10 @@
       border-color: blue.darken(30%),
       body-color: aqua.lighten(80%)
       ),
-    title: [ヤコビ行列$D F(x)$],
+    title: [$D F(x)$],
     title-style: (weight: 600)
   )[
-    /*周期とフーリエ係数列*/近似周期解$(omega, a)$より，$ x = (omega, underbrace(#zero_padding, "M"), a, underbrace(#zero_padding, "M"))$と定め，
+    /*周期とフーリエ係数列*/近似解$(omega, a)$より，$ x = (omega, underbrace(#zero_padding, "M"), a, underbrace(#zero_padding, "M"))$と定め，
     $
       D F(x) = mat(
         0, dots.h.c, 1, dots.h.c;
@@ -322,7 +385,7 @@
       border-color: blue.darken(30%),
       body-color: aqua.lighten(80%)
       ),
-    title: [作用素$A_M$],
+    title: [$A_M$],
     title-style: (weight: 600)
   )[
     $macron(x) = (omega, underbrace(#zero_padding, "M"), a, underbrace(#zero_padding, "M"))$と定め，
@@ -340,27 +403,6 @@
 ]
 */
 
-#slide[
-  == 提案手法
-  #set align(horizon)
-  //#set text(size:20pt)
-  //$norm(A F(macron(x))) lt.eq Y_0$をもとに，無限次元ガウスの消去法を用いて求める
-
-  #showybox()[
-  /*$A = D F(x)^(-1)$とおき，*/$phi.alt := D F (macron(x))^(-1) F(tilde(x))$とおくと，
-  $
-  D F(macron(x)) phi.alt = F(tilde(x))
-  $
-  ]
-  無限次元ガウスの消去法[3]を用いて，$D F(macron(x))^(-1)$の全単射性を確かめる．
-
-  #set align(center)
-
-  //$D F(macron(x))^(-1)$の全単射性 $arrow.double.r$ $phi.alt$が計算可能
-
-  #align(bottom+right)[#text(size:16pt, gray)[参考：[3]関根晃太, 中尾充宏, 大石進一, "Numerical verification methods for a system of elliptic
-PDEs, and their software library"]]
-]
 
 #slide[
   == 提案手法
@@ -412,7 +454,6 @@ PDEs, and their software library"]]
     $
   ]
 
-  
 ]
 
 /*
@@ -498,8 +539,17 @@ PDEs, and their software library"]]
 
 #slide[
   == 実行環境
-  #set text(size:21pt)
-  #set align(horizon + center)
+  //#set text(size:21pt)
+  #set align(horizon)
+
+  /*
+  - CPU,12th Gen Intel(R) Core(TM) i7-12700,
+  - OS,Ubuntu 24.04.1,
+  - コンパイラ,Julia 1.11.2,
+  - 微分方程式解答ライブラリ,DifferentialEquations v7.10.0,
+  - 数値計算ライブラリ,IntervalArithmetic v0.20.9,
+  */
+
 
   #figure(
     caption: [実験環境],
@@ -511,10 +561,13 @@ PDEs, and their software library"]]
         [*環境*],[*詳細*]
       ),
       [CPU],[12th Gen Intel(R) Core(TM) i7-12700],
-      [OS],[Ubuntu 24.04.1],
-      [コンパイラ],[Julia 1.11.2]
+      [OS],[Ubuntu 24.04.1 LTS],
+      [コンパイラ],[Julia 1.11.2],
+      [微分方程式解答ライブラリ],[DifferentialEquations v7.10.0],
+      [数値計算ライブラリ],[IntervalArithmetic v0.20.9],
     )
   )
+  
 
 ]
 
@@ -549,13 +602,20 @@ PDEs, and their software library"]]
       [200],[0.05749210273025131],
     )
   )
+
+  #set align(horizon+left)
+
+  - $norm(I_(X_2) - S)<1$を満たした．\
+  - 次数が上がるにつれ，ノルム値が減少．
+
 ]
 
 #slide[
   == まとめ
   #set align(horizon)
 
-  - 無限次元ガウスの消去法を用いた#rad()の改良手法を提案した
+  - 無限次元ガウスの消去法を用いた#rad()の\ 改良手法を提案した
 
-  - 数値実験での検証により，提案手法で改良可能であることが確かめられた．
+  - 数値実験での検証により，$l_1$空間上で$D F(macron(x))$が\ 全単射であることがわかった．\
+  #sym.arrow.r 提案手法で改良可能であることがわかった
 ]
