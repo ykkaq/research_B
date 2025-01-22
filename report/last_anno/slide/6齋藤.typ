@@ -297,21 +297,7 @@
 
   #sym.arrow.r 条件の不等号を満たすために，$a$が限られる．
 
-  #sym.arrow.r $l_1$ノルム（$l_1$空間）で計算する．
-]
-
-#slide[
-  == 問題解決法
-  #set align(horizon + center)
-
-  $l_1$空間で計算するために， 無限次元ガウスの消去法[3]を使う．
-
-  #sym.arrow.b
-
-  作用素$D F$が全単射であることを確認しなければならない．
-
-
-  #align(bottom+right)[#text(size:16pt, gray)[参考：[3]Kouta Sekine, Mitsuhiro T. Nakao, and Shin’ichi Oishi:, "Numerical verification methods for a system of elliptic PDEs, and their software library"]]
+  #sym.arrow.r 精度保証できる問題が限られる．
 ]
 
 #slide[
@@ -319,22 +305,31 @@
   #set align(center + horizon)
   #set text(size:24pt)
 
-  #rad()の適用できる\ 問題の範囲を増やす
-
-  #sym.arrow.b
-
-  無限次元ガウスの消去法を用いて，\
-  $l_1$空間で線形作用素が全単射であるか確かめる
+  重みを外し，$l_1$空間上で計算することで，\
+  #rad()の適用できる問題の範囲を増やす
 ]
 
 #slide[
   == 提案手法
+  #set align(horizon + center)
+
+  $l_1$空間で計算するために， 無限次元ガウスの消去法[3]で作用素を計算
+
+  #sym.arrow.b
+
+  作用素$D F$が全単射であることを確認しなければならない．
+
+  
+]
+
+#slide[
+  == 提案手法 - 概要
   #set align(horizon)
   //#set text(size:20pt)
   //$norm(A F(macron(x))) lt.eq Y_0$をもとに，無限次元ガウスの消去法を用いて求める
 
   #showybox()[
-  /*$A = D F(x)^(-1)$とおき，*/$phi.alt := D F (macron(x))^(-1) F(tilde(x))$とおくと，
+  //$phi.alt := D F (macron(x))^(-1) F(tilde(x))$とおくと，
   $
   D F(macron(x)) phi.alt = F(tilde(x))
   $
@@ -344,7 +339,7 @@
   #set align(center)
 
   //$D F(macron(x))^(-1)$の全単射性 $arrow.double.r$ $phi.alt$が計算可能
-
+  #align(bottom+right)[#text(size:16pt, gray)[参考：[3]Kouta Sekine, Mitsuhiro T. Nakao, and Shin’ichi Oishi:, "Numerical verification methods for a system of elliptic PDEs, and their software library"]]
 ]
 
 #let zero_padding = $0, dots.h.c,0$
@@ -405,7 +400,7 @@
 
 
 #slide[
-  == 提案手法
+  == 提案手法 - 無限次元ガウスの消去法
   #set align(horizon)
 
   射影演算子$Pi_N$と作用素$A$より，以下の作用素を定義する．
@@ -477,7 +472,7 @@
 */
 
 #slide[
-  == 提案手法
+  == 提案手法 - 無限次元ガウスの消去法
   #set align(horizon)
   #set text(size:20pt)
 
