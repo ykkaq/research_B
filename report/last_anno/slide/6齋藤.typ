@@ -61,13 +61,19 @@
   == はじめに
   #set align(horizon+center)
 
-  微分方程式を計算機で解くとき，\
-  計算機の資源が有限という特徴のために\
-  方程式の解に誤差が発生する．
+  #showybox(
+    body-style: (align: center)
+  )[
+    微分方程式を計算機で解くとき，\ \
+    計算機の資源が #underline[有限] という特徴のために\ \ 
+    方程式の解に誤差が発生する．
+  ]
 
-  #sym.arrow.r 解の誤差を評価し，精度を保証する．
+  #sym.arrow.b
+  
+   解の誤差を評価し，精度を保証する．\
 
-  #underline[精度保証付き数値計算]
+  #sym.arrow.r #underline[精度保証付き数値計算]
 ]
 
 #slide[
@@ -207,7 +213,7 @@
     #align(bottom+right)[#text(size:18pt, gray)[参考：[1]高安亮紀, Julia言語を使った精度保証付き数値計算のチュートリアル]]
 ]
 
-
+/*
 #slide[
   == 背景 - 先行研究
   #set align(horizon)
@@ -229,6 +235,7 @@
 
   #align(bottom+right)[#text(size:18pt, gray)[参考：[2]西窪壱華, #rad()における零点探索手順の削除]]
 ]
+*/
 
 #slide[
   == 既存手法と問題点
@@ -243,7 +250,7 @@
     body-style: (align: center),
     )[
       $
-        norm(a)_omega := sum_(k in bb(Z)) abs(a_k) omega_k < oo
+        norm(a)_omega := sum_(k in bb(Z)) abs(a_k) omega_k < oo, (omega_k > 1)
       $
     ]
   ][
@@ -312,61 +319,6 @@
 ]
 
 #let zero_padding = $0, dots.h.c,0$
-/*
-#slide[
-  == 提案手法
-  $D F(x)$と$A_M$を定義する．
-  #set align(horizon)
-
-  #showybox(
-    frame: (
-      title-color: blue.darken(30%),
-      border-color: blue.darken(30%),
-      body-color: aqua.lighten(80%)
-      ),
-    title: [$D F(x)$],
-    title-style: (weight: 600)
-  )[
-    /*周期とフーリエ係数列*/近似解$(omega, a)$より，$ x = (omega, underbrace(#zero_padding, "M"), a, underbrace(#zero_padding, "M"))$と定め，
-    $
-      D F(x) = mat(
-        0, dots.h.c, 1, dots.h.c;
-        dots.v, , dots.v;
-        partial_omega f_k, dots.h.c, partial_(a_j) f_k, dots.h.c;
-        dots.v, , dots.v;
-        augment: #(hline: 1, vline: 1)
-      )
-    $
-  ]
-]
-
-#slide[
-  == 提案手法
-  #set align(horizon)
-  #showybox(
-    frame: (
-      title-color: blue.darken(30%),
-      border-color: blue.darken(30%),
-      body-color: aqua.lighten(80%)
-      ),
-    title: [$A_M$],
-    title-style: (weight: 600)
-  )[
-    $macron(x) = (omega, underbrace(#zero_padding, "M"), a, underbrace(#zero_padding, "M"))$と定め，
-    $
-      A_M = mat(
-        D F(macron(x))^(-1), 0, dots.h.c,  dots.h.c;
-        0, lambda_N^(-1),,0;
-        dots.v, , lambda_(N+1)^(-1), ;
-        dots.v, 0, , dots.down;
-        augment: #(hline: 1, vline: 1)
-      ),quad
-      (lambda_k := -k^2 omega^2 - i mu k omega + 1)
-    $
-  ]
-]
-*/
-
 
 #slide[
   == 提案手法 - 無限次元ガウスの消去法
@@ -431,58 +383,40 @@
   )[
     #set math.mat(delim: "(")
     #align(center)[$norm(I_(X_2) - S) < 1$]
-    となれば，$S$ は全単射となる．
+    となれば，$S$ は全単射となる．($I_(X_2) = I-Pi_N$)
   ]
 
   #set align(center)
-  $T^-1$が存在することを確認し，\ $underline(S #text[が全単射であれば，]D F(macron(x)) #text[が全単射となる])$
+  $T^(-1)$が存在することを確認し，\ $underline(S #text[が全単射であれば，]D F(macron(x)) #text[が全単射となる])$
 ]
-
-/*
-  #set align(horizon)
-  #showybox(
-    body-style: (
-      align: center
-    )
-  )[
-    $
-      A_M D F(macron(x))
-      & = mat(
-        T^(-1), 0;
-        0, lambda;
-        augment: #(hline: 1, vline: 1)
-      )
-      mat(
-        T, M_(12);
-        M_(21), M_(22);
-        augment: #(hline: 1, vline: 1)
-      )=mat(
-        T^(-1)T, T^(-1)M_(12);
-        lambda M_(21), lambda M_(22);
-        //augment: #(hline: 1, vline: 1)
-      )\
-      & = mat(
-        I, B;
-        C, E;
-      )
-    $
-  ]
-  */
 
 // -------------------------
 
+
 #slide[
-  == 実行環境
+  == 実験手法
+  #set align(horizon + center)
+
+  van der Pol方程式 \
+  
+  #align(center, block[
+    #sym.arrow.b 
+  ])フーリエ・スペクトル法\
+
+  近似解 $macron(x)$ を導出\
+
+  $
+    f(t) = a_0/2 + sum_(n=1)^N (a_n cos n x + b_n sin n x)
+  $
+
+  フーリエ係数の次数$N$を変化
+
+]
+
+
+#slide[
+  == 実験手法
   #set align(horizon)
-
-  /*
-  - CPU,12th Gen Intel(R) Core(TM) i7-12700,
-  - OS,Ubuntu 24.04.1,
-  - コンパイラ,Julia 1.11.2,
-  - 微分方程式解答ライブラリ,DifferentialEquations v7.10.0,
-  - 数値計算ライブラリ,IntervalArithmetic v0.20.9,
-  */
-
 
   #figure(
     caption: [実験環境],
@@ -496,7 +430,6 @@
       [CPU],[12th Gen Intel(R) Core(TM) i7-12700],
       [OS],[Ubuntu 24.04.1 LTS],
       [コンパイラ],[Julia 1.11.2],
-      [微分方程式解答ライブラリ],[DifferentialEquations v7.10.0],
       [数値計算ライブラリ],[IntervalArithmetic v0.20.9],
     )
   )
