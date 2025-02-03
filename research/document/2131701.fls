@@ -1,8 +1,8 @@
-PWD d:/workspace_win/research_B/research/document
+PWD D:/workspace_win/research_B/research/document
 INPUT c:/texlive/2024/texmf.cnf
 INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2024/texmf-var/web2c/euptex/platex.fmt
-INPUT 2131701.tex
+INPUT ./2131701.tex
 OUTPUT 2131701.log
 INPUT c:/texlive/2024/texmf-dist/tex/platex/jsclasses/jsreport.cls
 INPUT c:/texlive/2024/texmf-dist/tex/platex/jsclasses/jsreport.cls

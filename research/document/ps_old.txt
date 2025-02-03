@@ -2,15 +2,25 @@
 \chapter{提案手法}
 \label{cpt:提案手法}
 
-\section{概要}
-
-
-
 %\section{提案手法}
-\begin{comment}
 \section{定義}
 
-
+\begin{dfn}[許容重みなしBanach空間$X$]
+  \label{dfn:Banach-l1}
+  Banach空間$X$を次のように定める．はじめに$l^1$空間を次のように定める．
+  \begin{equation}
+    l^1 := \left\{ a=(a_k)_{k\in \mathbb{Z}} : a_k \in \mathbb{C}, \|a\| := \sum_{k \in \mathbb{Z}} |a_k| < \infty \right\}
+  \end{equation}
+  そして，検証に用いる関数空間$X$は
+  \begin{equation}
+    X:= \mathbb{C} \times l^1, x = (\omega, a), \omega \in \mathbb{C}, a \in l^1
+  \end{equation}
+  と定め，そのノルムを
+  \begin{equation}
+    \| x \|_X := \max \{ |\omega| , \|a\| \}
+  \end{equation}
+  として定義する．このとき，$X$はBanach空間となる．
+\end{dfn}
 
 \begin{dfn}[拡張したヤコビ行列$DF(x)$]
   \label{dfn:拡張したヤコビ行列}
@@ -166,8 +176,6 @@ $S$について計算する．式(\ref{eq:def_lo})より，
   \| I_{X_2} -S \| < 1
 \end{equation*}
 であれば，$S$は全単射となる．
-\end{comment}
-
 
 
 \chapter{実験結果}
