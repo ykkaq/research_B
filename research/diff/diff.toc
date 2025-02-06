@@ -1,4 +1,4 @@
-\contentsline {chapter}{\numberline {第1章}はじめに}{3}{}%
+\contentsline {chapter}{\numberline {第1章}はじめに}{2}{}%
 \contentsline {chapter}{\numberline {第2章}準備}{4}{}%
 \contentsline {section}{\numberline {2.1}バナッハ空間}{4}{}%
 \contentsline {section}{\numberline {2.2}作用素}{7}{}%
@@ -29,11 +29,11 @@
 \contentsline {section}{\numberline {5.2}射影を用いたBanach空間上の無限次元ガウスの消去法}{50}{}%
 \contentsline {chapter}{\numberline {第6章}提案手法}{55}{}%
 \contentsline {section}{\numberline {6.1}概要}{55}{}%
-\contentsline {section}{\numberline {6.2}無限次元ガウスの消去法}{55}{}%
-\contentsline {section}{\numberline {6.3}ノルム値の計算}{57}{}%
-\contentsline {chapter}{\numberline {第7章}実験結果}{62}{}%
-\contentsline {section}{\numberline {7.1}実験手法}{62}{}%
-\contentsline {section}{\numberline {7.2}実験環境}{62}{}%
-\contentsline {section}{\numberline {7.3}実験結果}{62}{}%
+\contentsline {section}{\numberline {6.2}{\color {red} \fontsize {7\jsc@mpt }{8\jsc@mpt }\selectfont \parindent =1zw \kanjiskip =0zw plus .1zw minus .01zw \xkanjiskip =0.25em plus 0.15em minus 0.06em 無限次元ガウスの消去法}}{55}{}%
+\contentsline {section}{\numberline {6.2}{\color {red} \fontsize {7\jsc@mpt }{8\jsc@mpt }\selectfont \parindent =1zw \kanjiskip =0zw plus .1zw minus .01zw \xkanjiskip =0.25em plus 0.15em minus 0.06em ノルム値の計算}}{57}{}%
+\contentsline {chapter}{\numberline {第7章}実験結果}{61}{}%
+\contentsline {section}{\numberline {7.1}{\color {red} \fontsize {7\jsc@mpt }{8\jsc@mpt }\selectfont \parindent =1zw \kanjiskip =0zw plus .1zw minus .01zw \xkanjiskip =0.25em plus 0.15em minus 0.06em 実験手法}}{61}{}%
+\contentsline {section}{\numberline {7.1}実験環境}{61}{}%
+\contentsline {section}{\numberline {7.2}実験結果}{61}{}%
 \contentsline {chapter}{\numberline {第8章}おわりに}{64}{}%
 \contentsline {chapter}{参考文献}{66}{}%
