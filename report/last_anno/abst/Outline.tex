@@ -1,4 +1,4 @@
-  \documentclass[a4paper,10pt,twocolumn]{jsarticle}
+\documentclass[a4paper,10pt,twocolumn]{jsarticle}
 \usepackage[dvipdfmx]{graphicx}
 \renewcommand{\baselinestretch}{0.8}
 \usepackage{url}
@@ -52,13 +52,13 @@
 \vspace{-1mm}
 精度保証付き数値計算に関する定理の一つに，\nk{}型の定理を利用した\rad{}がある．この定理は有限次元や無限次元を問わず, 非線形方程式や偏微分方程式など殆どの微分方程式に用いることができる．
 
-従来の\rad{}では，ノルム空間の定義に重み付き$l_1$空間を用いている．重み付き$l_1$空間を用いると，$l_1$空間を用いた場合よりも，定理の適用できる問題が少ない．従来手法で重み付き$l_1$空間を用いている要因として，計算過程に計算困難な無限次元の問題が生じるためである．
+従来の\rad{}では，ノルム空間の定義に重み付き$l^1$空間を用いている．重み付き$l^1$空間を用いると，$l^1$空間を用いた場合よりも，精度保証のできる条件が厳しくなる問題がある．従来手法で重み付き$l^1$空間を用いている要因として，計算過程に計算困難な無限次元の問題が生じるためである．精度保証できる条件を緩和するためには，重みを除いた$l^1$空間を用いることで解決することができる．$l^1$空間上で\rad{}を用いるためには，線形化作用素が全単射である条件が必要となる．
 
 本研究では，\vdp{}
 \begin{equation}
   \frac{d^2x}{dt^2} - \mu (1-x^2)\frac{dx}{dt}+x=0
 \end{equation}
-を問題とし，無限次元ガウスの消去法を用いて，\rad{}におけるノルム空間を$l_1$空間で線形化作用素が全単射であるか検証することを目的とする．
+を問題とし，無限次元ガウスの消去法\cite{r1}を用いて，\rad{}におけるノルム空間を$l_1$空間で線形化作用素が全単射であるか検証する．これにより，\rad{}の改良が可能であるか確かめる．
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,35 +90,40 @@
 \section{提案手法}
 \vspace{-1mm}
 
-\rad{}で用いられる作用素$A_M,\ DF(x)$を以下のように定義する．
+$\|DF(\bar{x})^{-1} F(\bar{x})\|$について，無限次元ガウスの消去法を用いる．
+$\phi := DF(\bar{x})^{-1} F(\bar{x})$とおくと，
 \begin{equation}
   \begin{split}
-    DF(x) = \left[
-      \begin{array}{c|ccc}
-        0 & \cdots & 1 & \cdots \\ \hline
-        \vdots & & \vdots &  \\
-        \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
-        \vdots & & \vdots &
-      \end{array}
-    \right] %\in \mathbb{C}^{(2N+2M) \times (2N+2M)}
+    A_M DF(\bar{x})\phi = A_M F(\bar{x})
   \end{split}
 \end{equation}
-また，
+作用素$A_M, DF(\bar{x})$，射影演算子$\Pi_N$と，
 \begin{equation}
-  \bar{x} = (\omega,\ \underbrace{0,\cdots,0}_{M_2},\ a,\ \underbrace{0,\cdots,0}_{M_2}) \in \mathbb{C}^{2N+2M_2}
+  \label{eq:def_lo}
+  \begin{split}
+  T:= \Pi_N A_M DF(\bar{x}) \quad &
+  B:= \Pi_N A_M DF(\bar{x}) \\
+  C:= (I-\Pi_N) A_M DF(\bar{x}) \quad &
+  E:= (I-\Pi_N) A_M DF(\bar{x}) 
+\end{split}
 \end{equation}
-と定めると，$A_M$の定義は，以下のように定義できる．
+より，以下に式変形できる．
 \begin{equation}
-  A_M = \left(
-  \begin{array}{c|ccc}
-    DF(\bar{x})^{-1} & 0 & \cdots & \cdots \\ \hline
-    0 & \lambda_N^{-1} &  & 0 \\
-    \vdots &  & \lambda_{N+1}^{-1} &  \\
-    \vdots & 0 &   & \ddots
-  \end{array}
-  \right)
+  \begin{pmatrix}
+    T & B \\
+    C & E
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I -\Pi_N) \phi
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \Pi_N A_M F(\bar{x}) \\
+    (I - \Pi_N) A_M F(\bar{x})
+  \end{pmatrix}
 \end{equation}
-定義した作用素を用いて，$DF(\bar{x})$の全単射性を確かめる．$\Pi_N$を射影演算子とし，
+$S:= E-BT^{-1}C$とすると，
 \begin{equation}
   \begin{split}
     &\| I_{X_2} - S\|\\
@@ -136,7 +141,7 @@
 \vspace{-1mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-実験では，フーリエ係数の次数を変更した際のノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において，ノルム空間を$l_1$空間とし，無限次元ガウスの消去法による計算手法が有効可能であることがわかる．
+実験では，フーリエ係数の次数を変更し，ノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において，ノルム空間を$l_1$空間とし，無限次元ガウスの消去法による計算手法が有効可能であることがわかる．
 \begin{table}[htbp]
   \centering
   \caption{フーリエ係数の次数の変更とノルム値の比較}
@@ -155,7 +160,7 @@
 \section{おわりに}
 \vspace{-1mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-本研究では，線形化作用素が全単射であることをl1空間で証明することを無限次元ガウスの消去法で検証した．実験より，\rad{}の定理の一部の評価式に対し，期待した結果を得ることができ，無限次元ガウスの消去法が有効であることがわかった．今後の課題として，無限次元ガウスの消去法を他の評価式を対象に適応する手法を検討する．
+本研究では，$l^1$空間上で線形化作用素が全単射であることを無限次元ガウスの消去法で検証した．実験より，線形化作用素が全単射であることが検証できた．これにより，\rad{}は，無限次元ガウスの消去法による改良が可能であることがわかった．今後の課題として，無限次元ガウスの消去法による手法を，評価式を対象に適応する手法を検討する．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 参考文献

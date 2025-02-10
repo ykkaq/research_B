@@ -3,36 +3,38 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Outline.aux
 The style file: junsrt.bst
 Database file #1: reference.bib
-You've used 1 entry,
+Warning--empty journal in r1
+Warning--empty year in r1
+You've used 2 entries,
             2270 wiz_defined-function locations,
-            542 strings with 4227 characters,
-and the built_in function-call counts, 298 in all, are:
-= -- 9
-> -- 25
+            545 strings with 4350 characters,
+and the built_in function-call counts, 500 in all, are:
+= -- 18
+> -- 35
 < -- 0
-+ -- 9
-- -- 8
-* -- 17
-:= -- 48
-add.period$ -- 2
-call.type$ -- 1
-change.case$ -- 1
++ -- 13
+- -- 11
+* -- 27
+:= -- 76
+add.period$ -- 4
+call.type$ -- 2
+change.case$ -- 2
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 11
-empty$ -- 25
-format.name$ -- 16
-if$ -- 64
+cite$ -- 4
+duplicate$ -- 24
+empty$ -- 45
+format.name$ -- 22
+if$ -- 109
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 7
-num.names$ -- 1
-pop$ -- 12
+int.to.str$ -- 2
+missing$ -- 1
+newline$ -- 11
+num.names$ -- 2
+pop$ -- 21
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 10
+skip$ -- 20
 stack$ -- 0
 substring$ -- 0
 swap$ -- 1
@@ -40,8 +42,9 @@ text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 1
-width$ -- 2
-write$ -- 10
-is.kanji.str$ -- 15
+warning$ -- 2
+while$ -- 2
+width$ -- 3
+write$ -- 17
+is.kanji.str$ -- 25
+(There were 2 warnings)

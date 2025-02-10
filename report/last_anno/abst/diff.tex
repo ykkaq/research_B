@@ -1,7 +1,7 @@
-  \documentclass[a4paper,10pt,twocolumn]{jsarticle}
+\documentclass[a4paper,10pt,twocolumn]{jsarticle}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL old/old.tex   Thu Jan 16 11:02:28 2025
-%DIF ADD Outline.tex   Thu Jan 16 11:02:35 2025
+%DIF DEL old.tex       Mon Feb 10 07:52:40 2025
+%DIF ADD Outline.tex   Mon Feb 10 07:58:39 2025
 \usepackage[dvipdfmx]{graphicx}
 \renewcommand{\baselinestretch}{0.8}
 \usepackage{url}
@@ -119,7 +119,7 @@
 } %DIF PREAMBLE
 \lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
 \lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
-\lstset{extendedchars=\true,inputencoding=utf8}
+\lstset{extendedchars=\true,inputencoding=UTF-8}
 
 %DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
@@ -138,13 +138,14 @@
 \vspace{-1mm}
 精度保証付き数値計算に関する定理の一つに，\nk{}型の定理を利用した\rad{}がある．この定理は有限次元や無限次元を問わず, 非線形方程式や偏微分方程式など殆どの微分方程式に用いることができる．
 
-従来の\rad{}では，ノルム空間の定義に重み付き$l_1$空間を用いている．重み付き$l_1$空間を用いると，$l_1$空間を用いた場合よりも，定理の適用できる問題が少ない．従来手法で重み付き$l_1$空間を用いている要因として，計算過程に計算困難な無限次元の問題が生じるためである．
+従来の\rad{}では，ノルム空間の定義に重み付き\DIFdelbegin \DIFdel{$l_1$}\DIFdelend \DIFaddbegin \DIFadd{$l^1$}\DIFaddend 空間を用いている．重み付き\DIFdelbegin \DIFdel{$l_1$}\DIFdelend \DIFaddbegin \DIFadd{$l^1$}\DIFaddend 空間を用いると，\DIFdelbegin \DIFdel{$l_1$}\DIFdelend \DIFaddbegin \DIFadd{$l^1$}\DIFaddend 空間を用いた場合よりも，\DIFdelbegin \DIFdel{定理}\DIFdelend \DIFaddbegin \DIFadd{精度保証}\DIFaddend の\DIFdelbegin \DIFdel{適用}\DIFdelend できる\DIFaddbegin \DIFadd{条件が厳しくなる}\DIFaddend 問題が\DIFdelbegin \DIFdel{少ない}\DIFdelend \DIFaddbegin \DIFadd{ある}\DIFaddend ．従来手法で重み付き\DIFdelbegin \DIFdel{$l_1$}\DIFdelend \DIFaddbegin \DIFadd{$l^1$}\DIFaddend 空間を用いている要因として，計算過程に計算困難な無限次元の問題が生じるためである．\DIFaddbegin \DIFadd{精度保証できる条件を緩和するためには，重みを除いた$l^1$空間を用いることで解決することができる．$l^1$空間上で\rad{}を用いるためには，線形化作用素が全単射である条件が必要となる．
+}\DIFaddend 
 
 本研究では，\vdp{}
 \begin{equation}
   \frac{d^2x}{dt^2} - \mu (1-x^2)\frac{dx}{dt}+x=0
 \end{equation}
-を問題とし，無限次元ガウスの消去法を用いて，\rad{}におけるノルム空間を$l_1$空間で\DIFdelbegin \DIFdel{定義可能}\DIFdelend \DIFaddbegin \DIFadd{線形化作用素が全単射である}\DIFaddend か検証することを目的とする．
+を問題とし，無限次元ガウスの消去法\DIFaddbegin \DIFadd{\cite{r1}}\DIFaddend を用いて，\rad{}におけるノルム空間を$l_1$空間で線形化作用素が全単射であるか検証する\DIFaddbegin \DIFadd{．}\DIFaddend こ\DIFdelbegin \DIFdel{とを目的とす}\DIFdelend \DIFaddbegin \DIFadd{れにより，\rad{}の改良が可能であ}\DIFaddend る\DIFaddbegin \DIFadd{か確かめる}\DIFaddend ．
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -155,7 +156,7 @@
 
 \begin{Thm}
   \label{thm:radii}
-  有界線形作用素$A^\dagger \in \mathcal{L}(X, Y), A \in \mathcal{L}(Y, X)$を考え，作用素$F:X \rightarrow Y$が$C^1\text{-\fre{}}$微分可能であるとする．また，$A$が単射\DIFdelbegin \DIFdel{で，$AF:X \rightarrow X$}\DIFdelend とする．いま，$\bar{x} \in X$に対して，
+  有界線形作用素$A^\dagger \in \mathcal{L}(X, Y), A \in \mathcal{L}(Y, X)$を考え，作用素$F:X \rightarrow Y$が$C^1\text{-\fre{}}$微分可能であるとする．また，$A$が単射とする．いま，$\bar{x} \in X$に対して，
   \begin{align}
       \|AF(\bar{x})\|_X                             & \leq Y_0                                             \\
       \|I-AA^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
@@ -176,35 +177,65 @@
 \section{提案手法}
 \vspace{-1mm}
 
-\rad{}で用いられる作用素$A_M,\ DF(x)$を以下のように定義する．
-\begin{equation}
+\DIFdelbegin \DIFdel{\rad{}で}\DIFdelend \DIFaddbegin \DIFadd{$\|DF(\bar{x})^{-1} F(\bar{x})\|$について，無限次元ガウスの消去法を}\DIFaddend 用い\DIFdelbegin \DIFdel{られ}\DIFdelend る\DIFaddbegin \DIFadd{．
+$\phi := DF(\bar{x})^{-1} F(\bar{x})$とおくと，
+}\begin{equation}
   \begin{split}
-    DF(x) = \left[
+    \DIFadd{A_M DF(\bar{x})\phi = A_M F(\bar{x})
+  }\end{split}
+\DIFadd{}\end{equation}
+\DIFaddend 作用素\DIFdelbegin \DIFdel{$A_M,\ DF(x)$を以下のように定義する．
+}\begin{displaymath}
+  \begin{split}
+    \DIFdel{DF(x) = \left[
       \begin{array}{c|ccc}
         0 & \cdots & 1 & \cdots \\ \hline
         \vdots & & \vdots &  \\
         \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
         \vdots & & \vdots &
       \end{array}
-    \right] %\in \mathbb{C}^{(2N+2M) \times (2N+2M)}
-  \end{split}
-\end{equation}
-また，
+    \right] %DIF < \in \mathbb{C}^{(2N+2M) \times (2N+2M)}
+  }\end{split}
+\DIFdel{}\end{displaymath}%DIFAUXCMD
+\DIFdel{また}\DIFdelend \DIFaddbegin \DIFadd{$A_M, DF(\bar{x})$}\DIFaddend ，\DIFdelbegin \begin{displaymath}
+  \DIFdel{\bar{x} = (\omega,\ \underbrace{0,\cdots,0}_{M_2},\ a,\ \underbrace{0,\cdots,0}_{M_2}) \in \mathbb{C}^{2N+2M_2}
+}\end{displaymath}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{射影演算子$\Pi_N$}\DIFaddend と\DIFdelbegin \DIFdel{定めると}\DIFdelend ，
+\DIFdelbegin \DIFdel{$A_M$の定義は}\DIFdelend \DIFaddbegin \begin{equation}
+  \DIFadd{\label{eq:def_lo}
+  }\begin{split}
+  \DIFadd{T:= \Pi_N A_M DF(\bar{x}) \quad }&
+  \DIFadd{B:= \Pi_N A_M DF(\bar{x}) }\\
+  \DIFadd{C:= (I-\Pi_N) A_M DF(\bar{x}) \quad }&
+  \DIFadd{E:= (I-\Pi_N) A_M DF(\bar{x}) 
+}\end{split}
+\DIFadd{}\end{equation}
+\DIFadd{より}\DIFaddend ，以下\DIFdelbegin \DIFdel{のよう}\DIFdelend に\DIFdelbegin \DIFdel{定義}\DIFdelend \DIFaddbegin \DIFadd{式変形}\DIFaddend できる．
 \begin{equation}
-  \bar{x} = (\omega,\ \underbrace{0,\cdots,0}_{M_2},\ a,\ \underbrace{0,\cdots,0}_{M_2}) \in \mathbb{C}^{2N+2M_2}
-\end{equation}
-と定めると，$A_M$の定義は，以下のように定義できる．
-\begin{equation}
-  A_M = \left(
-  \begin{array}{c|ccc}
-    DF(\bar{x})^{-1} & 0 & \cdots & \cdots \\ \hline
-    0 & \lambda_N^{-1} &  & 0 \\
-    \vdots &  & \lambda_{N+1}^{-1} &  \\
-    \vdots & 0 &   & \ddots
-  \end{array}
-  \right)
-\end{equation}
-定義した作用素を用いて，\DIFdelbegin \DIFdel{$DF(\bar{x})^{-1}$}\DIFdelend \DIFaddbegin \DIFadd{$DF(\bar{x})$}\DIFaddend の全単射性を確かめる．$\Pi_N$を射影演算子とし，
+  \DIFdelbegin \DIFdel{A_M }\DIFdelend \DIFaddbegin \begin{pmatrix}
+    T & B \\
+    C & E
+  \end{pmatrix}
+  \begin{pmatrix}
+    \Pi_N \phi \\
+    (I -\Pi_N) \phi
+  \end{pmatrix}
+  \DIFaddend =
+  \DIFdelbegin %DIFDELCMD < \left(
+%DIFDELCMD <   \begin{array}{c|ccc}
+%DIFDELCMD <     DF(\bar{x})^{-1} & 0 & \cdots & \cdots \\ \hline
+%DIFDELCMD <     0 & \lambda_N^{-1} &  & 0 \\
+%DIFDELCMD <     \vdots &  & \lambda_{N+1}^{-1} &  \\
+%DIFDELCMD <     \vdots & 0 &   & \ddots
+%DIFDELCMD <   \end{array}%%%
+\DIFdelend \DIFaddbegin \begin{pmatrix}
+    \Pi_N A_M F(\bar{x}) \\
+    (I - \Pi_N) A_M F(\bar{x})
+  \end{pmatrix}\DIFaddend 
+\DIFdelbegin %DIFDELCMD < \right)
+%DIFDELCMD < %%%
+\DIFdelend \end{equation}
+\DIFdelbegin \DIFdel{定義した作用素を用いて，$DF(\bar{x})$の全単射性を確かめ}\DIFdelend \DIFaddbegin \DIFadd{$S:= E-BT^{-1}C$とす}\DIFaddend る\DIFdelbegin \DIFdel{．$\Pi_N$を射影演算子}\DIFdelend と\DIFdelbegin \DIFdel{し}\DIFdelend ，
 \begin{equation}
   \begin{split}
     &\| I_{X_2} - S\|\\
@@ -214,19 +245,14 @@
     & < 1
   \end{split}
 \end{equation}
-となれば，\DIFdelbegin \DIFdel{$DF(\bar{x})^{-1}$の}\DIFdelend \DIFaddbegin \DIFadd{$DF(\bar{x})$は}\DIFaddend 全単射\DIFdelbegin \DIFdel{性}\DIFdelend である．
-
+となれば，$DF(\bar{x})$は全単射である．
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{-1mm}
 \section{実験結果}
 \vspace{-1mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-実験では，フーリエ係数の次数を変更した際のノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において\DIFaddbegin \DIFadd{，ノルム空間を$l_1$空間とし，}\DIFaddend 無限次元ガウスの消去法による計算手法が有効可能であることがわかる．
-\DIFdelbegin %DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdelend \begin{table}[htbp]
+実験では，フーリエ係数の次数を変更し\DIFdelbegin \DIFdel{た際の}\DIFdelend \DIFaddbegin \DIFadd{，}\DIFaddend ノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において，ノルム空間を$l_1$空間とし，無限次元ガウスの消去法による計算手法が有効可能であることがわかる．
+\begin{table}[htbp]
   \centering
   \caption{フーリエ係数の次数の変更とノルム値の比較}
   \label{tab:norm-num}
@@ -238,22 +264,18 @@
     200&0.05749210273025131
 \end{tabular}
 \end{table}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{-1mm}
 \section{おわりに}
 \vspace{-1mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-本研究では，\DIFdelbegin \DIFdel{\rad{}の適}\DIFdelend \DIFaddbegin \DIFadd{線形化作}\DIFaddend 用\DIFaddbegin \DIFadd{素が全単射}\DIFaddend で\DIFdelbegin \DIFdel{き}\DIFdelend \DIFaddbegin \DIFadd{あ}\DIFaddend る\DIFdelbegin \DIFdel{問題}\DIFdelend \DIFaddbegin \DIFadd{こと}\DIFaddend を\DIFdelbegin \DIFdel{増や}\DIFdelend \DIFaddbegin \DIFadd{l1空間で証明}\DIFaddend す\DIFaddbegin \DIFadd{る}\DIFaddend ことを\DIFdelbegin \DIFdel{，}\DIFdelend 無限次元ガウスの消去法\DIFdelbegin \DIFdel{を用いること}\DIFdelend で\DIFdelbegin \DIFdel{可能になるかを}\DIFdelend 検証した．実験より，\rad{}の定理の一部の評価式に対し，期待した結果を得ることができ，無限次元ガウスの消去法が有効であることがわかった．今後の課題として，無限次元ガウスの消去法を他の評価式を対象に適応する手法を検討する．
-
+本研究では，\DIFaddbegin \DIFadd{$l^1$空間上で}\DIFaddend 線形化作用素が全単射であることを\DIFdelbegin \DIFdel{l1空間で証明することを}\DIFdelend 無限次元ガウスの消去法で検証した．実験より，\DIFdelbegin \DIFdel{\rad{}の定理の一部の評価式に対し，期待した結果を得}\DIFdelend \DIFaddbegin \DIFadd{線形化作用素が全単射であ}\DIFaddend ることが\DIFaddbegin \DIFadd{検証}\DIFaddend でき\DIFaddbegin \DIFadd{た．これにより}\DIFaddend ，\DIFaddbegin \DIFadd{\rad{}は，}\DIFaddend 無限次元ガウスの消去法\DIFaddbegin \DIFadd{による改良}\DIFaddend が\DIFdelbegin \DIFdel{有効}\DIFdelend \DIFaddbegin \DIFadd{可能}\DIFaddend であることがわかった．今後の課題として，無限次元ガウスの消去法\DIFaddbegin \DIFadd{による手法}\DIFaddend を\DIFdelbegin \DIFdel{他の}\DIFdelend \DIFaddbegin \DIFadd{，}\DIFaddend 評価式を対象に適応する手法を検討する．
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 参考文献
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{-1mm}
-
 {\footnotesize
 \bibliography{reference}
 }
 \bibliographystyle{junsrt} %参考文献出力スタイル
-
 \end{document}

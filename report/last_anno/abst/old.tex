@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt,twocolumn]{jsarticle}
+  \documentclass[a4paper,10pt,twocolumn]{jsarticle}
 \usepackage[dvipdfmx]{graphicx}
 \renewcommand{\baselinestretch}{0.8}
 \usepackage{url}
@@ -58,7 +58,7 @@
 \begin{equation}
   \frac{d^2x}{dt^2} - \mu (1-x^2)\frac{dx}{dt}+x=0
 \end{equation}
-を問題とし，無限次元ガウスの消去法を用いて，\rad{}におけるノルム空間を$l_1$空間で定義可能か検証することを目的とする．
+を問題とし，無限次元ガウスの消去法を用いて，\rad{}におけるノルム空間を$l_1$空間で線形化作用素が全単射であるか検証することを目的とする．
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,7 +69,7 @@
 
 \begin{Thm}
   \label{thm:radii}
-  有界線形作用素$A^\dagger \in \mathcal{L}(X, Y), A \in \mathcal{L}(Y, X)$を考え，作用素$F:X \rightarrow Y$が$C^1\text{-\fre{}}$微分可能であるとする．また，$A$が単射で，$AF:X \rightarrow X$とする．いま，$\bar{x} \in X$に対して，
+  有界線形作用素$A^\dagger \in \mathcal{L}(X, Y), A \in \mathcal{L}(Y, X)$を考え，作用素$F:X \rightarrow Y$が$C^1\text{-\fre{}}$微分可能であるとする．また，$A$が単射とする．いま，$\bar{x} \in X$に対して，
   \begin{align}
       \|AF(\bar{x})\|_X                             & \leq Y_0                                             \\
       \|I-AA^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
@@ -118,17 +118,17 @@
   \end{array}
   \right)
 \end{equation}
-定義した作用素を用いて，$\| AF(\bar{x}) \| \leq Y_0$を計算する．$\Pi_N$を射影演算子とし，
+定義した作用素を用いて，$DF(\bar{x})$の全単射性を確かめる．$\Pi_N$を射影演算子とし，
 \begin{equation}
   \begin{split}
     &\| I_{X_2} - S\|\\
-    &= \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right)|_{X_2}  \\
+    &= \| \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right)|_{X_2}  \\
     &\quad -(\left( I-\Pi_N \right) ADF( \bar{x} ))|_{X_1} \left((\Pi_N ADF(\bar{x}))|_{X_1}\right)^{-1}\\
-    &\qquad ((I-\Pi_N)ADF(\bar{x}))|_{X_2} \\
+    &\qquad ((I-\Pi_N)ADF(\bar{x}))|_{X_2} \| \\
     & < 1
   \end{split}
 \end{equation}
-となれば，ノルム空間は$l_1$空間で定義可能である．
+となれば，$DF(\bar{x})$は全単射である．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{-1mm}
@@ -136,14 +136,13 @@
 \vspace{-1mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-実験では，フーリエ係数列のサイズを変更した際のノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において無限次元ガウスの消去法による計算手法が有効であることがわかる．
-
+実験では，フーリエ係数の次数を変更した際のノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において，ノルム空間を$l_1$空間とし，無限次元ガウスの消去法による計算手法が有効可能であることがわかる．
 \begin{table}[htbp]
   \centering
-  \caption{フーリエサイズとノルム値}
+  \caption{フーリエ係数の次数の変更とノルム値の比較}
   \label{tab:norm-num}
   \begin{tabular}{c||c}
-    フーリエサイズ & $\| I_{X_2}-S \|$ \\ \hline
+    次数 & $\| I_{X_2}-S \|$ \\ \hline
     50 & 0.22815114629236252 \\
     100&0.11455533660051737\\
     150&0.07655718822651922\\
@@ -156,8 +155,7 @@
 \section{おわりに}
 \vspace{-1mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-本研究では，\rad{}の適用できる問題を増やすことを，無限次元ガウスの消去法を用いることで可能になるかを検証した．実験より，\rad{}の定理の一部の評価式に対し，期待した結果を得ることができ，無限次元ガウスの消去法が有効であることがわかった．今後の課題として，無限次元ガウスの消去法を他の評価式を対象に適応する手法を検討する．
-
+本研究では，線形化作用素が全単射であることをl1空間で証明することを無限次元ガウスの消去法で検証した．実験より，\rad{}の定理の一部の評価式に対し，期待した結果を得ることができ，無限次元ガウスの消去法が有効であることがわかった．今後の課題として，無限次元ガウスの消去法を他の評価式を対象に適応する手法を検討する．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 参考文献

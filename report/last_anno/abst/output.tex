@@ -1,0 +1,301 @@
+  \documentclass[a4paper,10pt,twocolumn]{jsarticle}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL Outline.tex   Mon Feb 10 07:50:09 2025
+%DIF ADD old.tex       Mon Feb 10 07:52:40 2025
+\usepackage[dvipdfmx]{graphicx}
+\renewcommand{\baselinestretch}{0.8}
+\usepackage{url}
+\usepackage[top=25truemm,bottom=25truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage{float}
+
+\usepackage{amssymb, amsmath}            % 数理環境用パッケージ
+\usepackage{amsthm}                      % 定理環境用パッケージ
+\usepackage{ascmac}                      % box環境用パッケージ
+\usepackage{cite}                        % 参考文献用パッケージ
+
+\usepackage{comment}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{pxjahyper}
+\usepackage{cleveref}
+\usepackage{autonum}
+
+\usepackage{SekineLabOutline}            % 関根研究室梗概用スタイルファイル
+
+
+%\mathtoolsset{showonlyrefs}
+
+\newcommand{\rad}{radii polynomial approach}
+\newcommand{\nk}{Newton-Kantorovich}
+\newcommand{\vdp}{van der Pol方程式}
+\newcommand{\infg}{無限次元ガウスの消去法}
+\newcommand{\fre}{Fr\'{e}chet}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% タイトル
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\vspace{-8mm}{\Large \gtfamily\mdseries\upshape 無限次元ガウスの消去法を用いた \rad{}改良 }\vspace{-3mm}}
+\date{}
+\author{（指導教員 関根 晃太 准教授） \\ 関根研究室 2131701 齋藤 悠希
+\vspace{-5mm}}
+\pagestyle{empty}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF CFONT PREAMBLE %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue} \sf #1}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red} \scriptsize #1}} %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+\begin{picture}(1,1)% %DIF PREAMBLE
+\thicklines\linethickness{2pt} %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+\end{picture}% %DIF PREAMBLE
+}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_CFONT %DIF PREAMBLE
+  moredelim=[il][\color{red}\scriptsize]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\sffamily]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+\lstset{extendedchars=\true,inputencoding=utf-8}
+
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+\begin{document}
+
+\maketitle
+\vspace{-10mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 本文
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{はじめに}
+\vspace{-1mm}
+精度保証付き数値計算に関する定理の一つに，\nk{}型の定理を利用した\rad{}がある．この定理は有限次元や無限次元を問わず, 非線形方程式や偏微分方程式など殆どの微分方程式に用いることができる．
+
+従来の\rad{}では，ノルム空間の定義に重み付き\DIFdelbegin \DIFdel{$l^1$}\DIFdelend \DIFaddbegin \DIFadd{$l_1$}\DIFaddend 空間を用いている．重み付き\DIFdelbegin \DIFdel{$l^1$}\DIFdelend \DIFaddbegin \DIFadd{$l_1$}\DIFaddend 空間を用いると，\DIFdelbegin \DIFdel{$l^1$}\DIFdelend \DIFaddbegin \DIFadd{$l_1$}\DIFaddend 空間を用いた場合よりも，\DIFdelbegin \DIFdel{精度保証}\DIFdelend \DIFaddbegin \DIFadd{定理}\DIFaddend の\DIFaddbegin \DIFadd{適用}\DIFaddend できる\DIFdelbegin \DIFdel{条件が厳しくなる}\DIFdelend 問題が\DIFdelbegin \DIFdel{ある}\DIFdelend \DIFaddbegin \DIFadd{少ない}\DIFaddend ．従来手法で重み付き\DIFdelbegin \DIFdel{$l^1$}\DIFdelend \DIFaddbegin \DIFadd{$l_1$}\DIFaddend 空間を用いている要因として，計算過程に計算困難な無限次元の問題が生じるためである．
+\DIFdelbegin \DIFdel{精度保証できる条件を緩和するためには，重みを除いた$l^1$空間を用いることで解決することができる．$l^1$空間上で\rad{}を用いるためには，線形化作用素が全単射である条件が必要となる．
+}\DIFdelend 
+
+本研究では，\vdp{}
+\begin{equation}
+  \frac{d^2x}{dt^2} - \mu (1-x^2)\frac{dx}{dt}+x=0
+\end{equation}
+を問題とし，無限次元ガウスの消去法\DIFdelbegin \DIFdel{\cite{r1}}\DIFdelend を用いて，\rad{}におけるノルム空間を$l_1$空間で線形化作用素が全単射であるか検証する\DIFdelbegin \DIFdel{．}\DIFdelend こ\DIFdelbegin \DIFdel{れにより，\rad{}の改良が可能であ}\DIFdelend \DIFaddbegin \DIFadd{とを目的とす}\DIFaddend る\DIFdelbegin \DIFdel{か確かめる}\DIFdelend ．
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{-1mm}
+\section{\rad{} \cite{github}}
+\vspace{-1mm}
+
+\begin{Thm}
+  \label{thm:radii}
+  有界線形作用素$A^\dagger \in \mathcal{L}(X, Y), A \in \mathcal{L}(Y, X)$を考え，作用素$F:X \rightarrow Y$が$C^1\text{-\fre{}}$微分可能であるとする．また，$A$が単射とする．いま，$\bar{x} \in X$に対して，
+  \begin{align}
+      \|AF(\bar{x})\|_X                             & \leq Y_0                                             \\
+      \|I-AA^\dagger\|_{\mathcal{L}(X)}              & \leq Z_0                                             \\
+      \|A(DF(\bar{x})-A^\dagger)\|_{\mathcal{L}(X)} & \leq Z_1                                             \\
+      \begin{split}
+        \|A(DF(b)-DF(\bar{x}))\|_{\mathcal{L}(X)} &\leq Z_2(r)r, \\ & \forall b \in \overline{B(\bar{x},r)}
+      \end{split}
+  \end{align}
+  が成り立つとする．このとき
+  \begin{equation}
+    p(r) := Z_2(r)r^2 - (1-Z_1-Z_0)r+Y_0
+  \end{equation}
+  をradii polynomialといい，もし$p(r_0)<0$となる$r_0>0$が存在すれば，$F(\tilde{x})=0$をみたす$\tilde{x}$が$\overline{B(\tilde{x},r_0)}$内に一意存在する.
+\end{Thm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-1mm}
+\section{提案手法}
+\vspace{-1mm}
+
+\DIFdelbegin \DIFdel{$\|DF(\bar{x})^{-1} F(\bar{x})\|$について，無限次元ガウスの消去法を}\DIFdelend \DIFaddbegin \DIFadd{\rad{}で}\DIFaddend 用い\DIFaddbegin \DIFadd{られ}\DIFaddend る\DIFdelbegin \DIFdel{．
+$\phi := DF(\bar{x})^{-1} F(\bar{x})$とおくと，
+}\begin{displaymath}
+  \begin{split}
+    \DIFdel{A_M DF(\bar{x})\phi = A_M F(\bar{x})
+  }\end{split}
+\DIFdel{}\end{displaymath}%DIFAUXCMD
+\DIFdelend 作用素\DIFdelbegin \DIFdel{$A_M, DF(\bar{x})$}\DIFdelend \DIFaddbegin \DIFadd{$A_M,\ DF(x)$を以下のように定義する．
+}\begin{equation}
+  \begin{split}
+    \DIFadd{DF(x) = \left[
+      \begin{array}{c|ccc}
+        0 & \cdots & 1 & \cdots \\ \hline
+        \vdots & & \vdots &  \\
+        \partial_w f_k & \cdots & \partial_{a_j}f_k & \cdots \\
+        \vdots & & \vdots &
+      \end{array}
+    \right] %DIF > \in \mathbb{C}^{(2N+2M) \times (2N+2M)}
+  }\end{split}
+\DIFadd{}\end{equation}
+\DIFadd{また}\DIFaddend ，
+\DIFdelbegin \DIFdel{射影演算子$\Pi_N$}\DIFdelend \DIFaddbegin \begin{equation}
+  \DIFadd{\bar{x} = (\omega,\ \underbrace{0,\cdots,0}_{M_2},\ a,\ \underbrace{0,\cdots,0}_{M_2}) \in \mathbb{C}^{2N+2M_2}
+}\end{equation}
+\DIFaddend と\DIFaddbegin \DIFadd{定めると}\DIFaddend ，\DIFdelbegin \begin{displaymath}
+  \DIFdel{\label{eq:def_lo}
+  }\begin{split}
+  \DIFdel{T:= \Pi_N A_M DF(\bar{x}) \quad }&
+  \DIFdel{B:= \Pi_N A_M DF(\bar{x}) }\\
+  \DIFdel{C:= (I-\Pi_N) A_M DF(\bar{x}) \quad }&
+  \DIFdel{E:= (I-\Pi_N) A_M DF(\bar{x}) 
+}\end{split}
+\DIFdel{}\end{displaymath}%DIFAUXCMD
+\DIFdel{より}\DIFdelend \DIFaddbegin \DIFadd{$A_M$の定義は}\DIFaddend ，以下\DIFaddbegin \DIFadd{のよう}\DIFaddend に\DIFdelbegin \DIFdel{式変形}\DIFdelend \DIFaddbegin \DIFadd{定義}\DIFaddend できる．
+\begin{equation}
+  \DIFdelbegin %DIFDELCMD < \begin{pmatrix}
+%DIFDELCMD <     T & B \\
+%DIFDELCMD <     C & E
+%DIFDELCMD <   \end{pmatrix}
+%DIFDELCMD <   \begin{pmatrix}
+%DIFDELCMD <     \Pi_N \phi \\
+%DIFDELCMD <     (I -\Pi_N) \phi
+%DIFDELCMD <   \end{pmatrix}
+%DIFDELCMD <   %%%
+\DIFdelend \DIFaddbegin \DIFadd{A_M }\DIFaddend = \DIFdelbegin %DIFDELCMD < \begin{pmatrix}
+%DIFDELCMD <     \Pi_N A_M F(\bar{x}) \\
+%DIFDELCMD <     (I - \Pi_N) A_M F(\bar{x})
+%DIFDELCMD <   \end{pmatrix}%%%
+\DIFdelend \DIFaddbegin \left(
+  \begin{array}{c|ccc}
+    DF(\bar{x})^{-1} & 0 & \cdots & \cdots \\ \hline
+    0 & \lambda_N^{-1} &  & 0 \\
+    \vdots &  & \lambda_{N+1}^{-1} &  \\
+    \vdots & 0 &   & \ddots
+  \end{array}\DIFaddend 
+  \DIFaddbegin \right)
+\DIFaddend \end{equation}
+\DIFdelbegin \DIFdel{$S:= E-BT^{-1}C$とす}\DIFdelend \DIFaddbegin \DIFadd{定義した作用素を用いて，$DF(\bar{x})$の全単射性を確かめ}\DIFaddend る\DIFaddbegin \DIFadd{．$\Pi_N$を射影演算子}\DIFaddend と\DIFaddbegin \DIFadd{し}\DIFaddend ，
+\begin{equation}
+  \begin{split}
+    &\| I_{X_2} - S\|\\
+    &= \| \left( \left( I-\Pi_N \right) ADF ( \bar{x} ) \right)|_{X_2}  \\
+    &\quad -(\left( I-\Pi_N \right) ADF( \bar{x} ))|_{X_1} \left((\Pi_N ADF(\bar{x}))|_{X_1}\right)^{-1}\\
+    &\qquad ((I-\Pi_N)ADF(\bar{x}))|_{X_2} \| \\
+    & < 1
+  \end{split}
+\end{equation}
+となれば，$DF(\bar{x})$は全単射である．
+
+\DIFdelbegin %DIFDELCMD < \begin{comment}%DIFDELCMD < 
+%DIFDELCMD <   \begin{equation}
+%DIFDELCMD <     \label{eq:def_lo}
+%DIFDELCMD <     \begin{split}
+%DIFDELCMD <     T:= \Pi_N A_M DF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_1,\quad &
+%DIFDELCMD <     B:= \Pi_N A_M DF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_1, \\
+%DIFDELCMD <     C:= (I-\Pi_N) A_M DF(\bar{x}) \mid _{X_1}:X_1 \rightarrow X_2,\quad &
+%DIFDELCMD <     E:= (I-\Pi_N) A_M DF(\bar{x}) \mid _{X_2}:X_2 \rightarrow X_2
+%DIFDELCMD <   \end{split}
+%DIFDELCMD <   \end{equation}
+%DIFDELCMD < \end{comment}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-1mm}
+\section{実験結果}
+\vspace{-1mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+実験では，フーリエ係数の次数を変更し\DIFdelbegin \DIFdel{，}\DIFdelend \DIFaddbegin \DIFadd{た際の}\DIFaddend ノルム値を検証した．検証結果を\cref{tab:norm-num}に示す．結果より，ノルム値が1より小さいことがわかることから，\rad{}において，ノルム空間を$l_1$空間とし，無限次元ガウスの消去法による計算手法が有効可能であることがわかる．
+\begin{table}[htbp]
+  \centering
+  \caption{フーリエ係数の次数の変更とノルム値の比較}
+  \label{tab:norm-num}
+  \begin{tabular}{c||c}
+    次数 & $\| I_{X_2}-S \|$ \\ \hline
+    50 & 0.22815114629236252 \\
+    100&0.11455533660051737\\
+    150&0.07655718822651922\\
+    200&0.05749210273025131
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-1mm}
+\section{おわりに}
+\vspace{-1mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+本研究では，\DIFdelbegin \DIFdel{$l^1$空間上で}\DIFdelend 線形化作用素が全単射であることを\DIFaddbegin \DIFadd{l1空間で証明することを}\DIFaddend 無限次元ガウスの消去法で検証した．実験より，\DIFdelbegin \DIFdel{線形化作用素が全単射であ}\DIFdelend \DIFaddbegin \DIFadd{\rad{}の定理の一部の評価式に対し，期待した結果を得}\DIFaddend ることが\DIFdelbegin \DIFdel{検証}\DIFdelend でき\DIFdelbegin \DIFdel{た．これにより}\DIFdelend ，\DIFdelbegin \DIFdel{\rad{}は，}\DIFdelend 無限次元ガウスの消去法\DIFdelbegin \DIFdel{による改良}\DIFdelend が\DIFdelbegin \DIFdel{可能}\DIFdelend \DIFaddbegin \DIFadd{有効}\DIFaddend であることがわかった．今後の課題として，無限次元ガウスの消去法\DIFdelbegin \DIFdel{による手法}\DIFdelend を\DIFdelbegin \DIFdel{，}\DIFdelend \DIFaddbegin \DIFadd{他の}\DIFaddend 評価式を対象に適応する手法を検討する．
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 参考文献
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-1mm}
+
+{\footnotesize
+\bibliography{reference}
+}
+\bibliographystyle{junsrt} %参考文献出力スタイル
+
+\end{document}
